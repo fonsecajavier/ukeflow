@@ -770,8 +770,10 @@ function renderScaleReference() {
         const item = document.createElement('div');
         item.className = 'scale-item';
 
+        const chordData = CHORDS[chord];
+
         // Make clickable if chord exists in library
-        if (CHORDS[chord]) {
+        if (chordData) {
             item.classList.add('clickable');
             item.addEventListener('click', () => {
                 openChordModal(chord);
@@ -787,6 +789,21 @@ function renderScaleReference() {
         chordName.className = 'scale-chord';
         chordName.textContent = chord;
         item.appendChild(chordName);
+
+        // Add play button if chord exists
+        if (chordData) {
+            const playBtn = document.createElement('button');
+            playBtn.className = 'scale-play-btn';
+            playBtn.innerHTML = '&#9654;';
+            playBtn.title = 'Play chord';
+            playBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                playChord(chordData);
+                playBtn.classList.add('playing');
+                setTimeout(() => playBtn.classList.remove('playing'), 400);
+            });
+            item.appendChild(playBtn);
+        }
 
         elements.scaleGrid.appendChild(item);
     }

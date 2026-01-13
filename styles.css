@@ -260,6 +260,32 @@ body {
     background: rgba(255, 255, 255, 0.1);
 }
 
+.scale-play-btn {
+    background: rgba(52, 152, 219, 0.2);
+    border: 1px solid rgba(52, 152, 219, 0.4);
+    color: #3498db;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    margin-top: 4px;
+}
+
+.scale-play-btn:hover {
+    background: rgba(52, 152, 219, 0.4);
+    transform: scale(1.15);
+}
+
+.scale-play-btn.playing {
+    background: #3498db;
+    color: #fff;
+}
+
 .enharmonic-notice {
     width: 100%;
     padding: 8px 12px;
