@@ -34,8 +34,13 @@ body {
     color: #f39c12;
 }
 
+.song-selector-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
 .header-controls input {
-    padding: 10px 15px;
+    padding: 10px 35px 10px 15px;
     font-size: 1rem;
     border: none;
     border-radius: 8px;
@@ -52,6 +57,29 @@ body {
     outline: 2px solid #3498db;
     outline-offset: -2px;
     background: #3d4a5f;
+}
+
+.clear-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+    display: none;
+}
+
+.clear-btn:hover {
+    color: #e4e4e4;
+}
+
+.song-selector-wrapper.has-text .clear-btn {
+    display: block;
 }
 
 /* Song Info */
@@ -496,6 +524,10 @@ body {
         flex-direction: column;
         gap: 15px;
         text-align: center;
+    }
+
+    .song-selector-wrapper {
+        width: 100%;
     }
 
     .header-controls input {

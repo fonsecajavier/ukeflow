@@ -13,6 +13,8 @@ const state = {
 // DOM Elements
 const elements = {
     songSelector: document.getElementById('song-selector'),
+    songSelectorWrapper: document.querySelector('.song-selector-wrapper'),
+    songSelectorClear: document.getElementById('song-selector-clear'),
     songList: document.getElementById('song-list'),
     songInfo: document.getElementById('song-info'),
     songTitle: document.getElementById('song-title'),
@@ -55,6 +57,7 @@ function loadFromURL() {
         const song = state.songs.find(song => slugify(song.title) === songParam);
         if (song) {
             elements.songSelector.value = `${song.title} - ${song.artist}`;
+            updateClearButtonVisibility();
             state.currentSong = song;
 
             // Apply transpose if specified
@@ -130,7 +133,12 @@ async function loadSongs() {
  * Populate the song selector datalist
  */
 function populateSongSelector() {
-    state.songs.forEach((song) => {
+    // Sort songs alphabetically by title
+    const sortedSongs = [...state.songs].sort((a, b) =>
+        a.title.localeCompare(b.title)
+    );
+
+    sortedSongs.forEach((song) => {
         const option = document.createElement('option');
         option.value = `${song.title} - ${song.artist}`;
         elements.songList.appendChild(option);
@@ -142,6 +150,7 @@ function populateSongSelector() {
  */
 function setupEventListeners() {
     elements.songSelector.addEventListener('input', handleSongSelect);
+    elements.songSelectorClear.addEventListener('click', clearSongSelector);
     elements.transposeSelect.addEventListener('change', handleTranspose);
     elements.toggleBtn.addEventListener('click', handleToggleProgression);
     elements.modalOverlay.addEventListener('click', handleModalClose);
@@ -149,10 +158,33 @@ function setupEventListeners() {
 }
 
 /**
+ * Update clear button visibility based on input content
+ */
+function updateClearButtonVisibility() {
+    if (elements.songSelector.value.trim()) {
+        elements.songSelectorWrapper.classList.add('has-text');
+    } else {
+        elements.songSelectorWrapper.classList.remove('has-text');
+    }
+}
+
+/**
+ * Clear the song selector input
+ */
+function clearSongSelector() {
+    elements.songSelector.value = '';
+    updateClearButtonVisibility();
+    hideSong();
+    updateURL();
+    elements.songSelector.focus();
+}
+
+/**
  * Handle song selection
  */
 function handleSongSelect(e) {
     const inputValue = e.target.value.trim();
+    updateClearButtonVisibility();
 
     if (inputValue === '') {
         hideSong();

@@ -11,10 +11,13 @@
         <header class="app-header">
             <h1>🎸 UkeFlow</h1>
             <div class="header-controls">
-                <input type="text" id="song-selector" list="song-list"
-                       placeholder="Search for a song..."
-                       aria-label="Search for a song"
-                       autocomplete="off">
+                <div class="song-selector-wrapper">
+                    <input type="text" id="song-selector" list="song-list"
+                           placeholder="Search for a song..."
+                           aria-label="Search for a song"
+                           autocomplete="off">
+                    <button type="button" id="song-selector-clear" class="clear-btn" aria-label="Clear selection">&times;</button>
+                </div>
                 <datalist id="song-list"></datalist>
             </div>
         </header>
