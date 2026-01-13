@@ -472,6 +472,42 @@ body {
     margin: 0 auto;
 }
 
+/* Chord Play Button */
+.chord-play-btn {
+    display: block;
+    margin: 8px auto 0;
+    padding: 4px 10px;
+    background: rgba(46, 204, 113, 0.2);
+    border: 1px solid #2ecc71;
+    border-radius: 4px;
+    color: #2ecc71;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chord-play-btn:hover {
+    background: rgba(46, 204, 113, 0.4);
+    transform: scale(1.05);
+}
+
+.chord-play-btn.playing {
+    background: #2ecc71;
+    color: #1a1a2e;
+    transform: scale(1.1);
+}
+
+/* Modal play button - larger */
+.modal-play-btn {
+    margin-top: 15px;
+    padding: 10px 24px;
+    font-size: 1rem;
+}
+
+.modal-play-btn:hover {
+    transform: scale(1.08);
+}
+
 /* Lyrics Section */
 .lyrics-section {
     background: rgba(255, 255, 255, 0.05);

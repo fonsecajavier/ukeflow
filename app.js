@@ -10,6 +10,143 @@ const state = {
     transpose: 0
 };
 
+// Audio Context for chord playback
+let audioContext = null;
+
+/**
+ * Get or create the audio context (must be initialized after user interaction)
+ */
+function getAudioContext() {
+    if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioContext.state === 'suspended') {
+        audioContext.resume();
+    }
+    return audioContext;
+}
+
+/**
+ * Ukulele string frequencies (standard tuning: G4-C4-E4-A4)
+ * Note: G4 is actually higher than C4 (reentrant tuning)
+ */
+const UKULELE_TUNING = [
+    392.00,  // G4
+    261.63,  // C4
+    329.63,  // E4
+    440.00   // A4
+];
+
+/**
+ * Calculate the frequency for a given string and fret
+ */
+function getNoteFrequency(stringIndex, fret) {
+    if (fret < 0) return null; // Muted string
+    const baseFreq = UKULELE_TUNING[stringIndex];
+    return baseFreq * Math.pow(2, fret / 12);
+}
+
+/**
+ * Karplus-Strong plucked string synthesis
+ * Creates a realistic plucked string sound
+ */
+function pluckString(frequency, duration = 1.5, volume = 0.3) {
+    const ctx = getAudioContext();
+    const sampleRate = ctx.sampleRate;
+    const samples = Math.ceil(sampleRate * duration);
+    const buffer = ctx.createBuffer(1, samples, sampleRate);
+    const data = buffer.getChannelData(0);
+
+    // Delay line length determines pitch
+    const delayLength = Math.round(sampleRate / frequency);
+    const delayLine = new Float32Array(delayLength);
+
+    // Initialize delay line with noise burst (shaped for ukulele character)
+    for (let i = 0; i < delayLength; i++) {
+        // Mix of noise and slight sine component for ukulele brightness
+        delayLine[i] = (Math.random() * 2 - 1) * 0.5 +
+                       Math.sin(2 * Math.PI * i / delayLength) * 0.5;
+    }
+
+    // Damping factor (controls decay rate) - ukulele has quick decay
+    const damping = 0.996;
+    // Brightness filter coefficient
+    const brightness = 0.4;
+
+    let delayIndex = 0;
+    let prevSample = 0;
+
+    // Generate samples using Karplus-Strong algorithm
+    for (let i = 0; i < samples; i++) {
+        // Get current sample from delay line
+        const currentSample = delayLine[delayIndex];
+
+        // Low-pass filter: average with previous sample
+        // This simulates string damping and creates the decaying tone
+        const nextIndex = (delayIndex + 1) % delayLength;
+        const filtered = damping * (
+            brightness * delayLine[delayIndex] +
+            (1 - brightness) * delayLine[nextIndex]
+        );
+
+        // Additional smoothing for warmer ukulele tone
+        const smoothed = 0.5 * filtered + 0.5 * prevSample;
+        prevSample = filtered;
+
+        // Store filtered sample back in delay line
+        delayLine[delayIndex] = smoothed;
+
+        // Output the sample
+        data[i] = currentSample * volume;
+
+        // Move to next position in delay line
+        delayIndex = nextIndex;
+    }
+
+    // Apply amplitude envelope for natural attack and release
+    const attackTime = 0.005 * sampleRate;
+    const releaseStart = samples - 0.1 * sampleRate;
+
+    for (let i = 0; i < samples; i++) {
+        if (i < attackTime) {
+            // Quick attack
+            data[i] *= i / attackTime;
+        } else if (i > releaseStart) {
+            // Smooth release
+            data[i] *= (samples - i) / (samples - releaseStart);
+        }
+    }
+
+    return buffer;
+}
+
+/**
+ * Play a chord arpeggio
+ */
+function playChordArpeggio(chordData) {
+    const ctx = getAudioContext();
+    const now = ctx.currentTime;
+    const arpDelay = 0.08; // Time between each note (80ms for clear arpeggio)
+
+    // Get frequencies for each string
+    const notes = [];
+    chordData.frets.forEach((fret, stringIndex) => {
+        const freq = getNoteFrequency(stringIndex, fret);
+        if (freq) {
+            notes.push({ freq, stringIndex });
+        }
+    });
+
+    // Play each note with a slight delay (arpeggio style)
+    notes.forEach((note, index) => {
+        const buffer = pluckString(note.freq, 1.2, 0.35);
+        const source = ctx.createBufferSource();
+        source.buffer = buffer;
+        source.connect(ctx.destination);
+        source.start(now + index * arpDelay);
+    });
+}
+
 // DOM Elements
 const elements = {
     songSelector: document.getElementById('song-selector'),
@@ -591,8 +728,10 @@ function renderChordReference() {
  * Create a chord diagram element
  * @param {Object} chordData - Chord definition object
  * @param {boolean} large - Whether to render a large version
+ * @param {string} displayName - Override name to display
+ * @param {boolean} showPlayButton - Whether to show the play button
  */
-function createChordDiagram(chordData, large = false, displayName = null) {
+function createChordDiagram(chordData, large = false, displayName = null, showPlayButton = true) {
     const container = document.createElement('div');
     container.className = 'chord-diagram';
 
@@ -614,6 +753,22 @@ function createChordDiagram(chordData, large = false, displayName = null) {
 
     const svg = createChordSVG(chordData, large);
     container.appendChild(svg);
+
+    // Add play button
+    if (showPlayButton) {
+        const playBtn = document.createElement('button');
+        playBtn.className = 'chord-play-btn';
+        playBtn.innerHTML = '&#9654;'; // Play triangle symbol
+        playBtn.title = 'Play chord';
+        playBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Don't trigger chord modal
+            playChordArpeggio(chordData);
+            // Visual feedback
+            playBtn.classList.add('playing');
+            setTimeout(() => playBtn.classList.remove('playing'), 400);
+        });
+        container.appendChild(playBtn);
+    }
 
     return container;
 }
@@ -918,6 +1073,18 @@ function openChordModal(chordName) {
 
     const svg = createChordSVG(chordData, true);
     elements.modalChord.appendChild(svg);
+
+    // Add play button for modal
+    const playBtn = document.createElement('button');
+    playBtn.className = 'chord-play-btn modal-play-btn';
+    playBtn.innerHTML = '&#9654; Play';
+    playBtn.title = 'Play chord arpeggio';
+    playBtn.addEventListener('click', () => {
+        playChordArpeggio(chordData);
+        playBtn.classList.add('playing');
+        setTimeout(() => playBtn.classList.remove('playing'), 400);
+    });
+    elements.modalChord.appendChild(playBtn);
 
     elements.modalOverlay.classList.add('active');
 }
