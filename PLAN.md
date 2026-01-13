@@ -10,6 +10,9 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
 - Display song title and key at the top
 - Show lyrics with chord markers above the text
 - Chords positioned inline above the corresponding lyrics
+- Song selector with autocomplete (type to search)
+- Songs sorted alphabetically in the dropdown
+- Clear button (×) to reset song selection
 
 ### 2. Chord Diagram Library
 - Visual chord diagrams showing:
@@ -29,9 +32,16 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
 ### 3a. Scale Reference (Collapsible)
 - Collapsible section showing all 7 diatonic chords in the current key
 - Displays roman numeral above each chord name
+- Click any chord to see its diagram popup
 - Uses native HTML `<details>`/`<summary>` for expand/collapse
 - Updates when transposing to show the new key's scale
 - Shows warning for uncommon keys (e.g., A#m) with suggestion to use enharmonic equivalent (e.g., Bbm)
+
+### 3b. Progression Summary (Collapsible)
+- Collapsible section showing chord progressions used in the song
+- Groups progressions by song section (Verse, Chorus, etc.)
+- Displays roman numerals with chord names in parentheses
+- Shows repeat count (×2, ×3) when same progression appears multiple times
 
 ### 4. Interactive Chord Popups
 - Click any chord in the lyrics section
