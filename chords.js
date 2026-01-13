@@ -1147,6 +1147,33 @@ function transposeKey(key, semitones) {
     return transposeChord(key, semitones);
 }
 
+// Enharmonic equivalents - maps uncommon keys to their commonly used equivalent
+const ENHARMONIC_EQUIVALENTS = {
+    // Uncommon sharp keys -> common flat equivalents
+    'A#': 'Bb',
+    'D#': 'Eb',
+    'G#': 'Ab',
+    'A#m': 'Bbm',
+    'D#m': 'Ebm',
+    'G#m': 'Abm',
+    // Uncommon flat keys -> common sharp/natural equivalents
+    'Cb': 'B',
+    'Fb': 'E',
+    'Cbm': 'Bm',
+    'Fbm': 'Em',
+    'Gbm': 'F#m',
+    'Abm': 'G#m'
+};
+
+/**
+ * Get the enharmonic equivalent for an uncommon key (if any)
+ * @param {string} key - The key
+ * @returns {string|null} - The common equivalent, or null if already common
+ */
+function getEnharmonicEquivalent(key) {
+    return ENHARMONIC_EQUIVALENTS[key] || null;
+}
+
 // Scale degree mappings for major keys
 const SCALE_DEGREES_MAJOR = {
     'C':  ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'Bdim'],
@@ -1157,11 +1184,18 @@ const SCALE_DEGREES_MAJOR = {
     'B':  ['B', 'C#m', 'D#m', 'E', 'F#', 'G#m', 'A#dim'],
     'F':  ['F', 'Gm', 'Am', 'Bb', 'C', 'Dm', 'Edim'],
     'F#': ['F#', 'G#m', 'A#m', 'B', 'C#', 'D#m', 'E#dim'],
+    'Gb': ['Gb', 'Abm', 'Bbm', 'Cb', 'Db', 'Ebm', 'Fdim'],
     'Bb': ['Bb', 'Cm', 'Dm', 'Eb', 'F', 'Gm', 'Adim'],
     'Eb': ['Eb', 'Fm', 'Gm', 'Ab', 'Bb', 'Cm', 'Ddim'],
     'Ab': ['Ab', 'Bbm', 'Cm', 'Db', 'Eb', 'Fm', 'Gdim'],
     'C#': ['C#', 'D#m', 'E#m', 'F#', 'G#', 'A#m', 'B#dim'],
-    'Db': ['Db', 'Ebm', 'Fm', 'Gb', 'Ab', 'Bbm', 'Cdim']
+    'Db': ['Db', 'Ebm', 'Fm', 'Gb', 'Ab', 'Bbm', 'Cdim'],
+    // Uncommon keys (enharmonic equivalents exist)
+    'A#': ['A#', 'B#m', 'Cxm', 'D#', 'E#', 'Fxm', 'Gxdim'],
+    'D#': ['D#', 'E#m', 'Fxm', 'G#', 'A#', 'B#m', 'Cxdim'],
+    'G#': ['G#', 'A#m', 'B#m', 'C#', 'D#', 'E#m', 'Fxdim'],
+    'Cb': ['Cb', 'Dbm', 'Ebm', 'Fb', 'Gb', 'Abm', 'Bbdim'],
+    'Fb': ['Fb', 'Gbm', 'Abm', 'Bbb', 'Cb', 'Dbm', 'Ebdim']
 };
 
 // Scale degree mappings for minor keys (natural minor + common borrowed chords)
@@ -1178,7 +1212,11 @@ const SCALE_DEGREES_MINOR = {
     'Cm':  ['Cm', 'Ddim', 'Eb', 'Fm', 'Gm', 'Ab', 'Bb', 'F', 'G'],
     'Fm':  ['Fm', 'Gdim', 'Ab', 'Bbm', 'Cm', 'Db', 'Eb', 'Bb', 'C'],
     'Bbm': ['Bbm', 'Cdim', 'Db', 'Ebm', 'Fm', 'Gb', 'Ab', 'Eb', 'F'],
-    'Ebm': ['Ebm', 'Fdim', 'Gb', 'Abm', 'Bbm', 'Cb', 'Db', 'Ab', 'Bb']
+    'Ebm': ['Ebm', 'Fdim', 'Gb', 'Abm', 'Bbm', 'Cb', 'Db', 'Ab', 'Bb'],
+    // Uncommon keys (enharmonic equivalents exist)
+    'A#m': ['A#m', 'B#dim', 'C#', 'D#m', 'E#m', 'F#', 'G#', 'D#', 'E#'],
+    'D#m': ['D#m', 'E#dim', 'F#', 'G#m', 'A#m', 'B', 'C#', 'G#', 'A#'],
+    'Abm': ['Abm', 'Bbdim', 'Cb', 'Dbm', 'Ebm', 'Fb', 'Gb', 'Db', 'Eb']
 };
 
 // Roman numeral representations for major keys

@@ -216,6 +216,15 @@ function renderScaleReference() {
 
     if (!scale) return;
 
+    // Check if this is an uncommon key with an enharmonic equivalent
+    const enharmonic = getEnharmonicEquivalent(transposedKey);
+    if (enharmonic) {
+        const notice = document.createElement('div');
+        notice.className = 'enharmonic-notice';
+        notice.textContent = `Uncommon key. Consider using ${enharmonic} instead.`;
+        elements.scaleGrid.appendChild(notice);
+    }
+
     // Only show the 7 diatonic chords (not borrowed chords at indices 7+)
     for (let i = 0; i < 7; i++) {
         const chord = scale[i];
