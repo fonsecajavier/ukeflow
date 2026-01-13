@@ -152,6 +152,10 @@ function renderChordReference() {
         const chordData = CHORDS[chordName];
         if (chordData) {
             const diagram = createChordDiagram(chordData, false);
+            diagram.style.cursor = 'pointer';
+            diagram.addEventListener('click', () => {
+                openChordModal(chordName);
+            });
             elements.chordGrid.appendChild(diagram);
         }
     });

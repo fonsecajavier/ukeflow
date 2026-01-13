@@ -23,6 +23,7 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
 - Display all chords used in the current song
 - Each chord shows a mini diagram with finger positions
 - Located prominently at the top for quick reference
+- Click any chord to see enlarged popup
 
 ### 4. Interactive Chord Popups
 - Click any chord in the lyrics section
