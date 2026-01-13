@@ -435,6 +435,142 @@ body {
     color: #3498db;
 }
 
+/* Harmonic Analysis */
+.harmonic-analysis {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.harmonic-analysis summary {
+    padding: 12px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.harmonic-analysis summary::-webkit-details-marker {
+    display: none;
+}
+
+.harmonic-analysis summary::before {
+    content: '▶';
+    font-size: 0.7rem;
+    transition: transform 0.2s ease;
+}
+
+.harmonic-analysis[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.harmonic-analysis summary:hover {
+    color: #e4e4e4;
+}
+
+.harmonic-content {
+    padding: 15px;
+    padding-top: 5px;
+}
+
+.harmonic-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.harmonic-table th {
+    text-align: left;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #f39c12;
+    font-weight: 600;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.harmonic-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.harmonic-table tr:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.harmonic-table .chord-cell {
+    font-weight: 600;
+    color: #3498db;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.harmonic-table .chord-cell span:hover {
+    color: #5dade2;
+}
+
+.harmonic-play-btn {
+    background: rgba(52, 152, 219, 0.2);
+    border: 1px solid rgba(52, 152, 219, 0.4);
+    color: #3498db;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.harmonic-play-btn:hover {
+    background: rgba(52, 152, 219, 0.4);
+    transform: scale(1.1);
+}
+
+.harmonic-play-btn.playing {
+    background: #3498db;
+    color: #fff;
+}
+
+.harmonic-table .degree-cell {
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    color: #e4e4e4;
+}
+
+.harmonic-table .function-cell {
+    color: #888;
+}
+
+.function-tonic {
+    color: #2ecc71 !important;
+}
+
+.function-dominant {
+    color: #e74c3c !important;
+}
+
+.function-subdominant {
+    color: #9b59b6 !important;
+}
+
+.function-mediant {
+    color: #3498db !important;
+}
+
+.function-borrowed {
+    color: #f39c12 !important;
+    font-style: italic;
+}
+
 .chords-title {
     font-size: 1rem;
     color: #888;

@@ -437,6 +437,7 @@ const elements = {
     scaleGrid: document.getElementById('scale-grid'),
     progressionContent: document.getElementById('progression-content'),
     triviaContent: document.getElementById('trivia-content'),
+    harmonicContent: document.getElementById('harmonic-content'),
     chordGrid: document.getElementById('chord-grid'),
     lyricsSection: document.getElementById('lyrics-section'),
     lyricsContainer: document.getElementById('lyrics-container'),
@@ -730,10 +731,11 @@ function displaySong() {
     elements.lyricsSection.style.display = 'block';
     elements.welcomeMessage.style.display = 'none';
 
-    // Render scale reference, progression summary, trivia, chord reference and lyrics
+    // Render scale reference, progression summary, trivia, harmonic analysis, chord reference and lyrics
     renderScaleReference();
     renderProgressionSummary();
     renderMusicTrivia();
+    renderHarmonicAnalysis();
     renderChordReference();
     renderLyrics();
 }
@@ -946,6 +948,247 @@ function renderMusicTrivia() {
 
         elements.triviaContent.appendChild(div);
     });
+}
+
+/**
+ * Render harmonic analysis table showing chord, scale degree, and function
+ */
+function renderHarmonicAnalysis() {
+    const transposedKey = transposeKey(state.currentSong.key, state.transpose);
+    const isMinor = isMinorKey(transposedKey);
+    const usedChords = getUsedChords();
+
+    elements.harmonicContent.innerHTML = '';
+
+    // Create table
+    const table = document.createElement('table');
+    table.className = 'harmonic-table';
+
+    // Header
+    const thead = document.createElement('thead');
+    const headerRow = document.createElement('tr');
+    ['Chord', 'Degree', 'Function'].forEach(text => {
+        const th = document.createElement('th');
+        th.textContent = text;
+        headerRow.appendChild(th);
+    });
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    // Body
+    const tbody = document.createElement('tbody');
+
+    usedChords.forEach(chord => {
+        const row = document.createElement('tr');
+
+        // Chord name (clickable) with play button
+        const chordCell = document.createElement('td');
+        chordCell.className = 'chord-cell';
+
+        const chordData = CHORDS[chord];
+        if (chordData) {
+            // Play button
+            const playBtn = document.createElement('button');
+            playBtn.className = 'harmonic-play-btn';
+            playBtn.innerHTML = '&#9654;';
+            playBtn.title = 'Play chord';
+            playBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                playChord(chordData);
+                playBtn.classList.add('playing');
+                setTimeout(() => playBtn.classList.remove('playing'), 400);
+            });
+            chordCell.appendChild(playBtn);
+        }
+
+        const chordName = document.createElement('span');
+        chordName.textContent = chord;
+        if (chordData) {
+            chordName.style.cursor = 'pointer';
+            chordName.addEventListener('click', () => openChordModal(chord));
+        }
+        chordCell.appendChild(chordName);
+        row.appendChild(chordCell);
+
+        // Scale degree
+        const degreeCell = document.createElement('td');
+        degreeCell.className = 'degree-cell';
+        const degree = getScaleDegree(chord, transposedKey);
+        degreeCell.textContent = degree;
+        row.appendChild(degreeCell);
+
+        // Harmonic function
+        const functionCell = document.createElement('td');
+        functionCell.className = 'function-cell';
+        const func = getHarmonicFunction(chord, degree, transposedKey, isMinor);
+        functionCell.textContent = func.name;
+        functionCell.classList.add(func.class);
+        row.appendChild(functionCell);
+
+        tbody.appendChild(row);
+    });
+
+    table.appendChild(tbody);
+    elements.harmonicContent.appendChild(table);
+}
+
+/**
+ * Get the harmonic function of a chord based on its scale degree and chord quality
+ */
+function getHarmonicFunction(chord, degree, key, isMinor) {
+    // Detect chord quality
+    const is7th = chord.includes('7');
+    const isMaj7 = chord.includes('maj7') || chord.includes('Maj7') || chord.includes('M7');
+    const isMin7 = chord.includes('m7') && !chord.includes('maj7');
+    const isDim = chord.includes('dim') || chord.includes('°');
+    const isAug = chord.includes('aug') || chord.includes('+');
+    const isSus = chord.includes('sus');
+    const isAdd = chord.includes('add');
+
+    // Normalize degree for comparison
+    const normalizedDegree = degree.toUpperCase().replace(/[^IV°]/g, '');
+    const isLowerCase = degree === degree.toLowerCase();
+
+    // Check if it's the relative major/minor
+    const relativeKey = getRelativeKey(key);
+    const chordRoot = chord.replace(/m7?|maj7|7|dim|aug|sus[24]?|add\d+/g, '');
+    const relativeRoot = relativeKey.replace('m', '');
+    const isRelative = chordRoot === relativeRoot;
+
+    // Build function description
+    let funcName = '';
+    let funcClass = 'function-borrowed';
+
+    // Determine base function by degree
+    if (isMinor) {
+        // Minor key functions
+        switch (normalizedDegree) {
+            case 'I':
+                funcName = 'Tonic';
+                funcClass = 'function-tonic';
+                break;
+            case 'II':
+                funcName = isDim ? 'Supertonic (dim)' : 'Supertonic';
+                funcClass = 'function-subdominant';
+                break;
+            case 'III':
+                funcName = 'Mediant (Relative Major)';
+                funcClass = 'function-mediant';
+                break;
+            case 'IV':
+                funcName = isLowerCase ? 'Subdominant' : 'Subdominant (Dorian)';
+                funcClass = 'function-subdominant';
+                break;
+            case 'V':
+                funcName = isLowerCase ? 'Dominant (natural)' : 'Dominant';
+                funcClass = 'function-dominant';
+                break;
+            case 'VI':
+                funcName = 'Submediant';
+                funcClass = 'function-mediant';
+                break;
+            case 'VII':
+                funcName = 'Subtonic';
+                funcClass = 'function-mediant';
+                break;
+            default:
+                funcName = 'Chromatic';
+        }
+    } else {
+        // Major key functions
+        switch (normalizedDegree) {
+            case 'I':
+                funcName = 'Tonic';
+                funcClass = 'function-tonic';
+                break;
+            case 'II':
+                funcName = 'Supertonic (Pre-dominant)';
+                funcClass = 'function-subdominant';
+                break;
+            case 'III':
+                funcName = 'Mediant';
+                funcClass = 'function-mediant';
+                break;
+            case 'IV':
+                funcName = 'Subdominant';
+                funcClass = 'function-subdominant';
+                break;
+            case 'V':
+                funcName = 'Dominant';
+                funcClass = 'function-dominant';
+                break;
+            case 'VI':
+                funcName = 'Submediant (Relative Minor)';
+                funcClass = 'function-mediant';
+                break;
+            case 'VII':
+                funcName = isDim ? 'Leading Tone (dim)' : 'Leading Tone';
+                funcClass = 'function-dominant';
+                break;
+            default:
+                funcName = 'Chromatic';
+        }
+    }
+
+    // Add extensions/modifications
+    const modifiers = [];
+
+    if (isMaj7) {
+        modifiers.push('maj7');
+    } else if (isMin7) {
+        modifiers.push('m7');
+    } else if (is7th) {
+        modifiers.push('dom7');
+    }
+
+    if (isDim) {
+        modifiers.push('diminished');
+    } else if (isAug) {
+        modifiers.push('augmented');
+    }
+
+    if (isSus) {
+        modifiers.push('suspended');
+    }
+
+    if (isAdd) {
+        modifiers.push('added tone');
+    }
+
+    // Check for borrowed chords
+    if (degree.includes('♭') || degree.includes('#')) {
+        funcName = 'Borrowed';
+        funcClass = 'function-borrowed';
+        if (degree.includes('♭VII')) {
+            funcName = 'Borrowed (Mixolydian)';
+        } else if (degree.includes('♭III')) {
+            funcName = 'Borrowed (Parallel Minor)';
+        } else if (degree.includes('♭VI')) {
+            funcName = 'Borrowed (Parallel Minor)';
+        }
+    }
+
+    // Mark if it's the relative key chord
+    if (isRelative && funcClass === 'function-mediant') {
+        if (isMinor) {
+            funcName = 'Mediant (Relative Major)';
+        } else {
+            funcName = 'Submediant (Relative Minor)';
+        }
+    }
+
+    // Add modifier info if present
+    if (modifiers.length > 0 && funcName !== 'Chromatic' && funcName !== 'Borrowed') {
+        funcName += ` [${modifiers.join(', ')}]`;
+    }
+
+    // Handle unknown degrees
+    if (degree === '?') {
+        funcName = 'Non-diatonic';
+        funcClass = 'function-borrowed';
+    }
+
+    return { name: funcName, class: funcClass };
 }
 
 /**

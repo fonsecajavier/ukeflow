@@ -59,6 +59,26 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
 - **Borrowed Chords**: Identifies chords outside the diatonic scale (modal interchange)
 - Only shows trivia items that are relevant to the current song
 
+### 3d. Harmonic Analysis (Collapsible)
+- Collapsible table showing detailed harmonic analysis of each chord in the song
+- **Columns**:
+  - Chord: Clickable chord name (opens diagram modal)
+  - Degree: Roman numeral scale degree
+  - Function: Harmonic function with color coding
+- **Play button**: Small play button next to each chord to hear it
+- **Function types** (color coded):
+  - Tonic (green): I/i - home base
+  - Dominant (red): V, VII - tension/resolution
+  - Subdominant (purple): II, IV - pre-dominant
+  - Mediant (blue): III, VI - color/transitions
+  - Borrowed (orange): Chromatic/modal interchange
+- **Extended chord detection**: Shows [maj7], [m7], [dom7], [diminished], [augmented], [suspended], [added tone]
+- **Special annotations**:
+  - Relative Major/Minor identification
+  - Dorian IV in minor keys
+  - Natural vs harmonic minor dominant
+  - Borrowed chord sources (Mixolydian, Parallel Minor)
+
 ### 4. Interactive Chord Popups
 - Click any chord in the lyrics section
 - Shows a popup/modal with the chord diagram
