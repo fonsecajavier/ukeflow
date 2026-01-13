@@ -83,8 +83,12 @@ php -S localhost:8000
 ukeflow/
 ├── index.html      # Main page
 ├── styles.css      # Styling
-├── chords.js       # Chord definitions (50+ chords)
+├── chords.js       # Chord definitions (150+ chords)
 ├── app.js          # Application logic
 ├── songs.json      # Song index
 └── songs/          # Individual song files
 ```
+
+## License
+
+MIT License - see [LICENSE](LICENSE) for details.
