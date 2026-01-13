@@ -25,6 +25,7 @@ const elements = {
     chordReference: document.getElementById('chord-reference'),
     scaleGrid: document.getElementById('scale-grid'),
     progressionContent: document.getElementById('progression-content'),
+    triviaContent: document.getElementById('trivia-content'),
     chordGrid: document.getElementById('chord-grid'),
     lyricsSection: document.getElementById('lyrics-section'),
     lyricsContainer: document.getElementById('lyrics-container'),
@@ -237,9 +238,10 @@ function displaySong() {
     elements.lyricsSection.style.display = 'block';
     elements.welcomeMessage.style.display = 'none';
 
-    // Render scale reference, progression summary, chord reference and lyrics
+    // Render scale reference, progression summary, trivia, chord reference and lyrics
     renderScaleReference();
     renderProgressionSummary();
+    renderMusicTrivia();
     renderChordReference();
     renderLyrics();
 }
@@ -375,6 +377,172 @@ function renderProgressionSummary() {
         sectionDiv.appendChild(list);
         elements.progressionContent.appendChild(sectionDiv);
     }
+}
+
+/**
+ * Render music trivia section
+ */
+function renderMusicTrivia() {
+    const transposedKey = transposeKey(state.currentSong.key, state.transpose);
+    const isMinor = isMinorKey(transposedKey);
+    const usedChords = getUsedChords();
+
+    elements.triviaContent.innerHTML = '';
+    const trivia = [];
+
+    // Key information
+    const keyType = isMinor ? 'minor' : 'major';
+    const relativeKey = getRelativeKey(transposedKey);
+    trivia.push({
+        icon: '🎵',
+        text: `This song is in <strong>${transposedKey}</strong> (${keyType}). Its relative ${isMinor ? 'major' : 'minor'} is <strong>${relativeKey}</strong>.`
+    });
+
+    // Chord count
+    trivia.push({
+        icon: '🎸',
+        text: `Uses <strong>${usedChords.length}</strong> unique chord${usedChords.length > 1 ? 's' : ''}: <span class="highlight">${usedChords.join(', ')}</span>.`
+    });
+
+    // Check for famous progressions
+    const progressions = detectFamousProgressions(transposedKey);
+    if (progressions.length > 0) {
+        progressions.forEach(prog => {
+            trivia.push({
+                icon: '⭐',
+                text: prog
+            });
+        });
+    }
+
+    // Check for borrowed chords
+    const borrowedChords = detectBorrowedChords(transposedKey, usedChords);
+    if (borrowedChords.length > 0) {
+        trivia.push({
+            icon: '🎭',
+            text: `Uses borrowed chord${borrowedChords.length > 1 ? 's' : ''}: <strong>${borrowedChords.join(', ')}</strong>. These add color by borrowing from ${isMinor ? 'major modes' : 'minor modes'}.`
+        });
+    }
+
+    // Chord variety assessment
+    if (usedChords.length <= 3) {
+        trivia.push({
+            icon: '✨',
+            text: 'A simple song with few chords - great for beginners!'
+        });
+    } else if (usedChords.length >= 6) {
+        trivia.push({
+            icon: '🎓',
+            text: 'A harmonically rich song with many chord changes.'
+        });
+    }
+
+    // Render trivia items
+    trivia.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'trivia-item';
+
+        const icon = document.createElement('span');
+        icon.className = 'trivia-icon';
+        icon.textContent = item.icon;
+        div.appendChild(icon);
+
+        const text = document.createElement('span');
+        text.className = 'trivia-text';
+        text.innerHTML = item.text;
+        div.appendChild(text);
+
+        elements.triviaContent.appendChild(div);
+    });
+}
+
+/**
+ * Get the relative major/minor key
+ */
+function getRelativeKey(key) {
+    const isMinor = isMinorKey(key);
+    const root = key.replace('m', '');
+
+    if (isMinor) {
+        // Relative major is 3 semitones up
+        return transposeChord(root, 3);
+    } else {
+        // Relative minor is 3 semitones down
+        return transposeChord(key, -3) + 'm';
+    }
+}
+
+/**
+ * Detect famous chord progressions in the song
+ */
+function detectFamousProgressions(key) {
+    const found = [];
+    const isMinor = isMinorKey(key);
+
+    // Get all chord sequences in the song
+    const sequences = [];
+    state.currentSong.lines.forEach(line => {
+        if (line.chords && line.chords.length >= 2) {
+            const chords = line.chords
+                .sort((a, b) => a.position - b.position)
+                .map(c => getScaleDegree(transposeChord(c.chord, state.transpose), key));
+            sequences.push(chords.join('-'));
+        }
+    });
+
+    const allSequences = sequences.join(' ');
+
+    // Famous progressions to detect
+    const famousProgressions = [
+        { pattern: 'I-V-vi-IV', name: 'I-V-vi-IV', description: 'The "Axis of Awesome" progression - used in countless pop hits!' },
+        { pattern: 'I-IV-V-I', name: 'I-IV-V', description: 'The classic three-chord progression found in rock and blues.' },
+        { pattern: 'ii-V-I', name: 'ii-V-I', description: 'The most common jazz progression.' },
+        { pattern: 'I-vi-IV-V', name: 'I-vi-IV-V', description: 'The "50s progression" or "doo-wop" changes.' },
+        { pattern: 'vi-IV-I-V', name: 'vi-IV-I-V', description: 'A rotation of the famous four-chord progression.' },
+        { pattern: 'I-V-vi-iii-IV', name: 'Canon progression', description: 'Based on Pachelbel\'s Canon - a timeless chord sequence.' },
+        { pattern: 'i-VII-VI-VII', name: 'Andalusian cadence', description: 'A flamenco-inspired progression with Spanish flair.' },
+        { pattern: 'i-iv-v', name: 'Minor i-iv-v', description: 'The natural minor progression.' },
+        { pattern: 'i-VI-III-VII', name: 'i-VI-III-VII', description: 'A popular minor key progression used in many rock songs.' },
+    ];
+
+    famousProgressions.forEach(prog => {
+        if (allSequences.includes(prog.pattern)) {
+            found.push(`Contains the <strong>${prog.name}</strong> progression: ${prog.description}`);
+        }
+    });
+
+    return found;
+}
+
+/**
+ * Detect borrowed chords (chords outside the diatonic key)
+ */
+function detectBorrowedChords(key, usedChords) {
+    const isMinor = isMinorKey(key);
+    const scale = isMinor ? SCALE_DEGREES_MINOR[key] : SCALE_DEGREES_MAJOR[key];
+
+    if (!scale) return [];
+
+    // Only check against the 7 diatonic chords (not the borrowed IV/V we added for minor keys)
+    const diatonicScale = scale.slice(0, 7);
+
+    const borrowed = [];
+    usedChords.forEach(chord => {
+        // Normalize chord for comparison
+        const baseChord = chord.replace(/7|maj7|m7|dim7|aug/, '');
+
+        // Check if it's in the diatonic scale
+        const inScale = diatonicScale.some(scaleChord => {
+            const scaleBase = scaleChord.replace(/dim/, '');
+            return scaleBase === baseChord || scaleChord === baseChord;
+        });
+
+        if (!inScale) {
+            borrowed.push(chord);
+        }
+    });
+
+    return borrowed;
 }
 
 /**
