@@ -1,0 +1,114 @@
+{
+  "title": "Somewhere Over the Rainbow",
+  "artist": "Israel Kamakawiwo'ole",
+  "key": "C",
+  "lines": [
+    { "section": "Intro" },
+    {
+      "lyrics": "",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "Em", "position": 4 },
+        { "chord": "Am", "position": 8 },
+        { "chord": "F", "position": 12 }
+      ]
+    },
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Somewhere over the rainbow",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "Em", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "Way up high",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "And the dreams that you dream of",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "Once in a lullaby",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Am", "position": 8 },
+        { "chord": "F", "position": 14 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Somewhere over the rainbow",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "Em", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "Bluebirds fly",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "And the dreams that you dream of",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "Dreams really do come true",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Am", "position": 10 },
+        { "chord": "F", "position": 18 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Someday I'll wish upon a star",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Wake up where the clouds are far behind me",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "Where trouble melts like lemon drops",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "High above the chimney tops",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "That's where you'll find me",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Am", "position": 12 },
+        { "chord": "F", "position": 20 }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "title": "Stand By Me",
+  "artist": "Ben E. King",
+  "key": "G",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "When the night has come",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "And the land is dark",
+      "chords": [
+        { "chord": "Em", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "And the moon is the only light we'll see",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 20 },
+        { "chord": "G", "position": 35 }
+      ]
+    },
+    {
+      "lyrics": "No, I won't be afraid",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Oh, I won't be afraid",
+      "chords": [
+        { "chord": "Em", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Just as long as you stand, stand by me",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 18 },
+        { "chord": "G", "position": 30 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "So darling, darling, stand by me",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Em", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "Oh, stand by me",
+      "chords": [
+        { "chord": "Em", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Oh, stand, stand by me, stand by me",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 12 },
+        { "chord": "G", "position": 25 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "If the sky that we look upon",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Should tumble and fall",
+      "chords": [
+        { "chord": "Em", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Or the mountain should crumble to the sea",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 22 },
+        { "chord": "G", "position": 38 }
+      ]
+    },
+    {
+      "lyrics": "I won't cry, I won't cry",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "No, I won't shed a tear",
+      "chords": [
+        { "chord": "Em", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Just as long as you stand, stand by me",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 18 },
+        { "chord": "G", "position": 30 }
+      ]
+    }
+  ]
+}

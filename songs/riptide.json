@@ -1,0 +1,98 @@
+{
+  "title": "Riptide",
+  "artist": "Vance Joy",
+  "key": "G",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "I was scared of dentists and the dark",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 18 },
+        { "chord": "C", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "I was scared of pretty girls and starting conversations",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 22 },
+        { "chord": "C", "position": 40 }
+      ]
+    },
+    {
+      "lyrics": "Oh, all my friends are turning green",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 15 },
+        { "chord": "C", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "You're the magician's assistant in their dreams",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 20 },
+        { "chord": "C", "position": 35 }
+      ]
+    },
+    { "section": "Pre-Chorus" },
+    {
+      "lyrics": "Oh, and they come unstuck",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 15 },
+        { "chord": "C", "position": 22 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Lady, running down to the riptide",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 20 },
+        { "chord": "C", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "Taken away to the dark side",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 15 },
+        { "chord": "C", "position": 25 }
+      ]
+    },
+    {
+      "lyrics": "I wanna be your left hand man",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 15 },
+        { "chord": "C", "position": 25 }
+      ]
+    },
+    {
+      "lyrics": "I love you when you're singing that song and",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 22 },
+        { "chord": "C", "position": 35 }
+      ]
+    },
+    {
+      "lyrics": "I got a lump in my throat 'cause",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 18 },
+        { "chord": "C", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "You're gonna sing the words wrong",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 15 },
+        { "chord": "C", "position": 28 }
+      ]
+    }
+  ]
+}

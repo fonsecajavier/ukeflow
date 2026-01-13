@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UkeFlow - Ukulele Chord Progressions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>🎸 UkeFlow</h1>
+            <div class="header-controls">
+                <select id="song-selector" aria-label="Select a song">
+                    <option value="">Select a song...</option>
+                </select>
+            </div>
+        </header>
+
+        <div class="song-info" id="song-info" style="display: none;">
+            <div class="song-meta">
+                <h2 id="song-title"></h2>
+                <span id="song-artist"></span>
+            </div>
+            <div class="song-controls">
+                <div class="key-display">
+                    Key: <strong id="song-key"></strong>
+                </div>
+                <button id="toggle-progression" class="toggle-btn">
+                    Show as Numbers
+                </button>
+            </div>
+        </div>
+
+        <section class="chord-reference" id="chord-reference" style="display: none;">
+            <h3>Chords Used</h3>
+            <div class="chord-grid" id="chord-grid"></div>
+        </section>
+
+        <section class="lyrics-section" id="lyrics-section" style="display: none;">
+            <div class="lyrics-container" id="lyrics-container"></div>
+        </section>
+
+        <div class="welcome-message" id="welcome-message">
+            <p>Select a song to start learning ukulele progressions!</p>
+        </div>
+    </div>
+
+    <!-- Chord Popup Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-content" id="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-chord" id="modal-chord"></div>
+        </div>
+    </div>
+
+    <script src="chords.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
