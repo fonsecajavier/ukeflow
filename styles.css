@@ -435,6 +435,76 @@ body {
     color: #3498db;
 }
 
+.chords-title {
+    font-size: 1rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 12px 0;
+}
+
+.play-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.pattern-display {
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    color: #3498db;
+    letter-spacing: 3px;
+}
+
+.arpeggio-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.arpeggio-control select {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    border: none;
+    border-radius: 6px;
+    background: #2d3a4f;
+    color: #2ecc71;
+    cursor: pointer;
+}
+
+.arpeggio-control select:hover {
+    background: #3d4a5f;
+}
+
+.tempo-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.tempo-control select {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    border: none;
+    border-radius: 6px;
+    background: #2d3a4f;
+    color: #f39c12;
+    cursor: pointer;
+}
+
+.tempo-control select:hover {
+    background: #3d4a5f;
+}
+
 .chord-grid {
     display: flex;
     flex-wrap: wrap;

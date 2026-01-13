@@ -67,10 +67,41 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
 ### 4a. Chord Audio Playback
 - Play button on each chord diagram to hear the chord
 - Uses Karplus-Strong synthesis for realistic plucked ukulele sound
-- Plays notes as arpeggio (strings plucked sequentially)
 - Based on standard ukulele tuning (G4-C4-E4-A4)
 - No external audio files required - generated in real-time
 - Visual feedback when playing (button pulses)
+
+- **Play Style Selector** with grouped options:
+
+  **Strums** (D=down, U=up, x=muted chunk):
+  - Down Strums (D D D D) - simple down strums
+  - Island Strum (D D U U D U) - classic Hawaiian feel (default)
+  - Basic (D U D U) - alternating pattern
+  - Rock (D D U D) - driving rhythm
+  - Calypso (D U U D U) - Caribbean feel
+  - Chunk/Muted (D x U x) - percussive with muted hits
+  - Waltz (D D D) - 3/4 time
+  - Reggae Skank (x U x U) - off-beat style
+
+  **Arpeggios** (fingerpicking patterns):
+  - Down Roll - G→C→E→A
+  - Up Roll - A→E→C→G
+  - Pinch & Roll - bass+treble pinch then roll
+  - Travis Pick - alternating bass fingerpicking
+  - Fingerpick (p-i-m-i) - thumb, index, middle, index
+  - Fingerpick (p-i-m-a) - thumb, index, middle, ring
+  - Campanella - bell-like cascading pattern
+
+- **Tempo Selector** (80-160 BPM):
+  - Controls timing for both strums and arpeggios
+  - Strums use beat-based timing for authentic rhythm feel
+  - Arpeggios scale proportionally (120 BPM = base speed)
+  - Default: 120 BPM
+
+- **Pattern Display**:
+  - Shows visual representation of selected pattern
+  - Strums: ↓ ↑ ✕ arrows (down, up, muted)
+  - Arpeggios: G → C → E → A string sequence
 
 ### 5. Progression Toggle
 - Button to switch between:

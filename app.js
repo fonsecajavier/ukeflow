@@ -38,6 +38,193 @@ const UKULELE_TUNING = [
 ];
 
 /**
+ * Play styles for ukulele - Strums and Arpeggios
+ *
+ * Strums: 'D' = down, 'U' = up, 'x' = muted chunk
+ * Arpeggios: Array of string indices (0=G, 1=C, 2=E, 3=A) or arrays for simultaneous
+ */
+// Tempo settings
+let currentBPM = 120;
+
+/**
+ * Get beat duration based on current tempo
+ */
+function getBeat() {
+    return 60 / currentBPM;
+}
+
+const PLAY_STYLES = {
+    strums: {
+        label: 'Strums',
+        patterns: {
+            'strum-down': {
+                name: 'Down Strums',
+                type: 'strum',
+                // Simple quarter notes: 1, 2, 3, 4 (beat multipliers)
+                pattern: [
+                    { dir: 'D', beat: 0 },
+                    { dir: 'D', beat: 1 },
+                    { dir: 'D', beat: 2 },
+                    { dir: 'D', beat: 3 }
+                ]
+            },
+            'strum-island': {
+                name: 'Island Strum',
+                type: 'strum',
+                // D  D  U  U  D  U  pattern: 1, 2, 2+, 3+, 4, 4+
+                pattern: [
+                    { dir: 'D', beat: 0 },
+                    { dir: 'D', beat: 1 },
+                    { dir: 'U', beat: 1.5 },
+                    { dir: 'U', beat: 2.5 },
+                    { dir: 'D', beat: 3 },
+                    { dir: 'U', beat: 3.5 }
+                ]
+            },
+            'strum-basic': {
+                name: 'Basic (D-U-D-U)',
+                type: 'strum',
+                // Eighth notes
+                pattern: [
+                    { dir: 'D', beat: 0 },
+                    { dir: 'U', beat: 0.5 },
+                    { dir: 'D', beat: 1 },
+                    { dir: 'U', beat: 1.5 },
+                    { dir: 'D', beat: 2 },
+                    { dir: 'U', beat: 2.5 },
+                    { dir: 'D', beat: 3 },
+                    { dir: 'U', beat: 3.5 }
+                ]
+            },
+            'strum-rock': {
+                name: 'Rock (D-D-U-D)',
+                type: 'strum',
+                // Driving: 1, 2, 2+, 3, repeat
+                pattern: [
+                    { dir: 'D', beat: 0 },
+                    { dir: 'D', beat: 1 },
+                    { dir: 'U', beat: 1.5 },
+                    { dir: 'D', beat: 2 },
+                    { dir: 'D', beat: 3 },
+                    { dir: 'U', beat: 3.5 }
+                ]
+            },
+            'strum-calypso': {
+                name: 'Calypso',
+                type: 'strum',
+                // Syncopated: 1, 1+, 2+, 3, 3+, 4+
+                pattern: [
+                    { dir: 'D', beat: 0 },
+                    { dir: 'U', beat: 0.5 },
+                    { dir: 'U', beat: 1.5 },
+                    { dir: 'D', beat: 2 },
+                    { dir: 'U', beat: 2.5 },
+                    { dir: 'U', beat: 3.5 }
+                ]
+            },
+            'strum-chunk': {
+                name: 'Chunk (Muted)',
+                type: 'strum',
+                // Percussive with mutes
+                pattern: [
+                    { dir: 'D', beat: 0 },
+                    { dir: 'x', beat: 0.5 },
+                    { dir: 'U', beat: 1 },
+                    { dir: 'x', beat: 1.5 },
+                    { dir: 'D', beat: 2 },
+                    { dir: 'x', beat: 2.5 },
+                    { dir: 'U', beat: 3 },
+                    { dir: 'x', beat: 3.5 }
+                ]
+            },
+            'strum-waltz': {
+                name: 'Waltz (3/4)',
+                type: 'strum',
+                // 3/4 time: strong 1, soft 2, soft 3
+                pattern: [
+                    { dir: 'D', beat: 0 },
+                    { dir: 'D', beat: 1 },
+                    { dir: 'D', beat: 2 }
+                ]
+            },
+            'strum-reggae': {
+                name: 'Reggae Skank',
+                type: 'strum',
+                // Off-beat emphasis: +, 2+, +, 4+
+                pattern: [
+                    { dir: 'x', beat: 0.5 },
+                    { dir: 'U', beat: 1.5 },
+                    { dir: 'x', beat: 2.5 },
+                    { dir: 'U', beat: 3.5 }
+                ]
+            }
+        }
+    },
+    arpeggios: {
+        label: 'Arpeggios',
+        patterns: {
+            'arp-down': {
+                name: 'Down Roll',
+                type: 'arpeggio',
+                pattern: [0, 1, 2, 3],
+                delay: 0.08
+            },
+            'arp-up': {
+                name: 'Up Roll',
+                type: 'arpeggio',
+                pattern: [3, 2, 1, 0],
+                delay: 0.08
+            },
+            'arp-pinch': {
+                name: 'Pinch & Roll',
+                type: 'arpeggio',
+                pattern: [[0, 3], 1, 2, 1],
+                delay: 0.12
+            },
+            'arp-travis': {
+                name: 'Travis Pick',
+                type: 'arpeggio',
+                pattern: [0, 2, 1, 3, 0, 2, 1, 2],
+                delay: 0.1
+            },
+            'arp-pimi': {
+                name: 'Fingerpick (p-i-m-i)',
+                type: 'arpeggio',
+                pattern: [0, 2, 3, 2],
+                delay: 0.12
+            },
+            'arp-pima': {
+                name: 'Fingerpick (p-i-m-a)',
+                type: 'arpeggio',
+                pattern: [0, 2, 3, 1],
+                delay: 0.12
+            },
+            'arp-campanella': {
+                name: 'Campanella',
+                type: 'arpeggio',
+                pattern: [0, 3, 1, 2, 0, 2, 1, 3],
+                delay: 0.09
+            }
+        }
+    }
+};
+
+// Current selected play style
+let currentPlayStyle = 'strum-island';
+
+/**
+ * Get a play style config by key
+ */
+function getPlayStyle(key) {
+    for (const group of Object.values(PLAY_STYLES)) {
+        if (group.patterns[key]) {
+            return group.patterns[key];
+        }
+    }
+    return PLAY_STYLES.strums.patterns['strum-down'];
+}
+
+/**
  * Calculate the frequency for a given string and fret
  */
 function getNoteFrequency(stringIndex, fret) {
@@ -121,30 +308,114 @@ function pluckString(frequency, duration = 1.5, volume = 0.3) {
 }
 
 /**
- * Play a chord arpeggio
+ * Play a strum (all strings quickly)
+ * @param {Array} stringFreqs - Frequencies for each string
+ * @param {string} direction - 'D' for down, 'U' for up, 'x' for muted
+ * @param {number} startTime - When to start playing
  */
-function playChordArpeggio(chordData) {
+function playStrum(stringFreqs, direction, startTime) {
     const ctx = getAudioContext();
-    const now = ctx.currentTime;
-    const arpDelay = 0.08; // Time between each note (80ms for clear arpeggio)
+    const strumSpeed = 0.02; // Time between each string in a strum
 
-    // Get frequencies for each string
-    const notes = [];
-    chordData.frets.forEach((fret, stringIndex) => {
-        const freq = getNoteFrequency(stringIndex, fret);
+    if (direction === 'x') {
+        // Muted chunk - percussive sound
+        playChunk(startTime);
+        return;
+    }
+
+    // Determine string order based on direction
+    const order = direction === 'D' ? [0, 1, 2, 3] : [3, 2, 1, 0];
+
+    order.forEach((stringIndex, i) => {
+        const freq = stringFreqs[stringIndex];
         if (freq) {
-            notes.push({ freq, stringIndex });
+            const buffer = pluckString(freq, 0.8, 0.25);
+            const source = ctx.createBufferSource();
+            source.buffer = buffer;
+            source.connect(ctx.destination);
+            source.start(startTime + i * strumSpeed);
         }
     });
+}
 
-    // Play each note with a slight delay (arpeggio style)
-    notes.forEach((note, index) => {
-        const buffer = pluckString(note.freq, 1.2, 0.35);
-        const source = ctx.createBufferSource();
-        source.buffer = buffer;
-        source.connect(ctx.destination);
-        source.start(now + index * arpDelay);
-    });
+/**
+ * Play a muted chunk sound (percussive)
+ */
+function playChunk(startTime) {
+    const ctx = getAudioContext();
+    const duration = 0.08;
+    const sampleRate = ctx.sampleRate;
+    const samples = Math.ceil(sampleRate * duration);
+    const buffer = ctx.createBuffer(1, samples, sampleRate);
+    const data = buffer.getChannelData(0);
+
+    // Create a short noise burst for percussive chunk
+    for (let i = 0; i < samples; i++) {
+        const envelope = Math.exp(-i / (sampleRate * 0.02));
+        data[i] = (Math.random() * 2 - 1) * envelope * 0.3;
+    }
+
+    const source = ctx.createBufferSource();
+    source.buffer = buffer;
+
+    // Add a bandpass filter for that woody chunk sound
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.value = 800;
+    filter.Q.value = 1;
+
+    source.connect(filter);
+    filter.connect(ctx.destination);
+    source.start(startTime);
+}
+
+/**
+ * Play a chord using the selected play style
+ */
+function playChord(chordData) {
+    const ctx = getAudioContext();
+    const now = ctx.currentTime;
+    const styleConfig = getPlayStyle(currentPlayStyle);
+    const pattern = styleConfig.pattern;
+
+    // Get frequencies for each string in the chord
+    const stringFreqs = chordData.frets.map((fret, stringIndex) =>
+        getNoteFrequency(stringIndex, fret)
+    );
+
+    if (styleConfig.type === 'strum') {
+        // Play strum pattern with precise timing based on current tempo
+        const beatDuration = getBeat();
+        pattern.forEach((strum) => {
+            playStrum(stringFreqs, strum.dir, now + strum.beat * beatDuration);
+        });
+    } else {
+        // Play arpeggio pattern - scale delay based on tempo (120 BPM = base tempo)
+        const tempoScale = 120 / currentBPM;
+        const delay = styleConfig.delay * tempoScale;
+        let stepIndex = 0;
+        pattern.forEach((step) => {
+            const strings = Array.isArray(step) ? step : [step];
+
+            strings.forEach(stringIndex => {
+                const freq = stringFreqs[stringIndex];
+                if (freq) {
+                    const buffer = pluckString(freq, 1.2, 0.3);
+                    const source = ctx.createBufferSource();
+                    source.buffer = buffer;
+                    source.connect(ctx.destination);
+                    source.start(now + stepIndex * delay);
+                }
+            });
+
+            stepIndex++;
+        });
+    }
+}
+
+// Keep old function name for compatibility
+function playChordArpeggio(chordData) {
+    playChord(chordData);
 }
 
 // DOM Elements
@@ -158,6 +429,9 @@ const elements = {
     songArtist: document.getElementById('song-artist'),
     songKey: document.getElementById('song-key'),
     transposeSelect: document.getElementById('transpose-select'),
+    arpeggioSelect: document.getElementById('arpeggio-select'),
+    tempoSelect: document.getElementById('tempo-select'),
+    patternDisplay: document.getElementById('pattern-display'),
     toggleBtn: document.getElementById('toggle-progression'),
     chordReference: document.getElementById('chord-reference'),
     scaleGrid: document.getElementById('scale-grid'),
@@ -178,8 +452,32 @@ const elements = {
  */
 async function init() {
     await loadSongs();
+    populatePlayStyleSelector();
+    updatePatternDisplay();
     setupEventListeners();
     loadFromURL();
+}
+
+/**
+ * Populate the play style selector with optgroups
+ */
+function populatePlayStyleSelector() {
+    Object.entries(PLAY_STYLES).forEach(([groupKey, group]) => {
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = group.label;
+
+        Object.entries(group.patterns).forEach(([key, config]) => {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = config.name;
+            if (key === currentPlayStyle) {
+                option.selected = true;
+            }
+            optgroup.appendChild(option);
+        });
+
+        elements.arpeggioSelect.appendChild(optgroup);
+    });
 }
 
 /**
@@ -290,10 +588,57 @@ function setupEventListeners() {
     elements.songSelector.addEventListener('input', handleSongSelect);
     elements.songSelectorClear.addEventListener('click', clearSongSelector);
     elements.transposeSelect.addEventListener('change', handleTranspose);
+    elements.arpeggioSelect.addEventListener('change', handleArpeggioChange);
+    elements.tempoSelect.addEventListener('change', handleTempoChange);
     elements.toggleBtn.addEventListener('click', handleToggleProgression);
     elements.modalOverlay.addEventListener('click', handleModalClose);
     elements.modalClose.addEventListener('click', closeModal);
     document.addEventListener('keydown', handleKeyDown);
+}
+
+/**
+ * Handle play style change
+ */
+function handleArpeggioChange(e) {
+    currentPlayStyle = e.target.value;
+    updatePatternDisplay();
+}
+
+/**
+ * Update the pattern display to show current pattern
+ */
+function updatePatternDisplay() {
+    const styleConfig = getPlayStyle(currentPlayStyle);
+    const pattern = styleConfig.pattern;
+    let displayText = '';
+
+    if (styleConfig.type === 'strum') {
+        // Show strum pattern: D ↓ U ↑ x ✕
+        displayText = pattern.map(s => {
+            if (s.dir === 'D') return '↓';
+            if (s.dir === 'U') return '↑';
+            if (s.dir === 'x') return '✕';
+            return s.dir;
+        }).join(' ');
+    } else {
+        // Show arpeggio pattern with string names
+        const stringNames = ['G', 'C', 'E', 'A'];
+        displayText = pattern.map(step => {
+            if (Array.isArray(step)) {
+                return step.map(i => stringNames[i]).join('+');
+            }
+            return stringNames[step];
+        }).join(' → ');
+    }
+
+    elements.patternDisplay.textContent = displayText;
+}
+
+/**
+ * Handle tempo change
+ */
+function handleTempoChange(e) {
+    currentBPM = parseInt(e.target.value, 10);
 }
 
 /**
