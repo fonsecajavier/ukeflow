@@ -210,7 +210,7 @@ const PLAY_STYLES = {
 };
 
 // Current selected play style
-let currentPlayStyle = 'strum-island';
+let currentPlayStyle = 'arp-down';
 
 /**
  * Get a play style config by key
@@ -992,7 +992,8 @@ function detectFamousProgressions(key) {
         { pattern: 'I-vi-IV-V', name: 'I-vi-IV-V', description: 'The "50s progression" or "doo-wop" changes.' },
         { pattern: 'vi-IV-I-V', name: 'vi-IV-I-V', description: 'A rotation of the famous four-chord progression.' },
         { pattern: 'I-V-vi-iii-IV', name: 'Canon progression', description: 'Based on Pachelbel\'s Canon - a timeless chord sequence.' },
-        { pattern: 'i-VII-VI-VII', name: 'Andalusian cadence', description: 'A flamenco-inspired progression with Spanish flair.' },
+        { pattern: 'i-VII-VI-V', name: 'Andalusian cadence', description: 'A flamenco-inspired progression with Spanish flair (Am-G-F-E).' },
+        { pattern: 'V-VI', name: 'Phrygian flavor', description: 'A V-VI movement common in Middle Eastern and Spanish music, creating exotic tension.' },
         { pattern: 'i-iv-v', name: 'Minor i-iv-v', description: 'The natural minor progression.' },
         { pattern: 'i-VI-III-VII', name: 'i-VI-III-VII', description: 'A popular minor key progression used in many rock songs.' },
     ];

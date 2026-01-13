@@ -52,7 +52,8 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - vi-IV-I-V "Sensitive Female" progression
   - ii-V-I Jazz turnaround
   - I-IV-V Classic rock/blues progression
-  - 12-bar blues patterns
+  - i-VII-VI-V Andalusian cadence (flamenco)
+  - V-VI Phrygian flavor (Middle Eastern/Spanish)
   - i-iv-v Minor blues
   - I-vi-IV-V "50s Doo-Wop" progression
 - **Borrowed Chords**: Identifies chords outside the diatonic scale (modal interchange)
@@ -75,7 +76,7 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
 
   **Strums** (D=down, U=up, x=muted chunk):
   - Down Strums (D D D D) - simple down strums
-  - Island Strum (D D U U D U) - classic Hawaiian feel (default)
+  - Island Strum (D D U U D U) - classic Hawaiian feel
   - Basic (D U D U) - alternating pattern
   - Rock (D D U D) - driving rhythm
   - Calypso (D U U D U) - Caribbean feel
@@ -84,7 +85,7 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - Reggae Skank (x U x U) - off-beat style
 
   **Arpeggios** (fingerpicking patterns):
-  - Down Roll - G→C→E→A
+  - Down Roll - G→C→E→A (default)
   - Up Roll - A→E→C→G
   - Pinch & Roll - bass+treble pinch then roll
   - Travis Pick - alternating bass fingerpicking
@@ -146,7 +147,7 @@ ukeflow/
     ├── hips-dont-lie.json             # Shakira, Minor key (Am)
     ├── whenever-wherever.json         # Shakira, Minor key (Bm)
     ├── la-tortura.json                # Shakira, Minor key (Am)
-    ├── ojos-asi.json                  # Shakira 90s, Minor key (Dm)
+    ├── ojos-asi.json                  # Shakira 90s, Minor key (F#m)
     ├── estoy-aqui.json                # Shakira 90s, Minor key (Em)
     ├── ciega-sordomuda.json           # Shakira 90s, Minor key (Am)
     └── antologia.json                 # Shakira 90s (G)
