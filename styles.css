@@ -149,6 +149,74 @@ body {
     letter-spacing: 1px;
 }
 
+/* Scale Reference */
+.scale-reference {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.scale-reference summary {
+    padding: 12px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.scale-reference summary::-webkit-details-marker {
+    display: none;
+}
+
+.scale-reference summary::before {
+    content: '▶';
+    font-size: 0.7rem;
+    transition: transform 0.2s ease;
+}
+
+.scale-reference[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.scale-reference summary:hover {
+    color: #e4e4e4;
+}
+
+.scale-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px;
+    padding-top: 5px;
+}
+
+.scale-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    min-width: 50px;
+}
+
+.scale-item .scale-degree {
+    font-size: 0.75rem;
+    color: #3498db;
+    margin-bottom: 2px;
+}
+
+.scale-item .scale-chord {
+    font-size: 0.95rem;
+    color: #f39c12;
+    font-weight: bold;
+}
+
 .chord-grid {
     display: flex;
     flex-wrap: wrap;

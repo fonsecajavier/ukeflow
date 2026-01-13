@@ -20,6 +20,7 @@ const elements = {
     transposeSelect: document.getElementById('transpose-select'),
     toggleBtn: document.getElementById('toggle-progression'),
     chordReference: document.getElementById('chord-reference'),
+    scaleGrid: document.getElementById('scale-grid'),
     chordGrid: document.getElementById('chord-grid'),
     lyricsSection: document.getElementById('lyrics-section'),
     lyricsContainer: document.getElementById('lyrics-container'),
@@ -196,9 +197,45 @@ function displaySong() {
     elements.lyricsSection.style.display = 'block';
     elements.welcomeMessage.style.display = 'none';
 
-    // Render chord reference and lyrics
+    // Render scale reference, chord reference and lyrics
+    renderScaleReference();
     renderChordReference();
     renderLyrics();
+}
+
+/**
+ * Render the scale reference (all chords in the key)
+ */
+function renderScaleReference() {
+    const transposedKey = transposeKey(state.currentSong.key, state.transpose);
+    const isMinor = isMinorKey(transposedKey);
+    const scale = isMinor ? SCALE_DEGREES_MINOR[transposedKey] : SCALE_DEGREES_MAJOR[transposedKey];
+    const romanNumerals = isMinor ? ROMAN_NUMERALS_MINOR : ROMAN_NUMERALS_MAJOR;
+
+    elements.scaleGrid.innerHTML = '';
+
+    if (!scale) return;
+
+    // Only show the 7 diatonic chords (not borrowed chords at indices 7+)
+    for (let i = 0; i < 7; i++) {
+        const chord = scale[i];
+        const numeral = romanNumerals[i];
+
+        const item = document.createElement('div');
+        item.className = 'scale-item';
+
+        const degree = document.createElement('span');
+        degree.className = 'scale-degree';
+        degree.textContent = numeral;
+        item.appendChild(degree);
+
+        const chordName = document.createElement('span');
+        chordName.className = 'scale-chord';
+        chordName.textContent = chord;
+        item.appendChild(chordName);
+
+        elements.scaleGrid.appendChild(item);
+    }
 }
 
 /**
