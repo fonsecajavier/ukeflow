@@ -441,6 +441,54 @@ const CHORDS = {
     }
 };
 
+// Chromatic scale for transposition
+const CHROMATIC_SCALE = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+const CHROMATIC_SCALE_FLATS = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+
+/**
+ * Transpose a chord by a number of semitones
+ * @param {string} chord - The chord name (e.g., "Am", "F#m7")
+ * @param {number} semitones - Number of semitones to transpose (positive or negative)
+ * @returns {string} - The transposed chord name
+ */
+function transposeChord(chord, semitones) {
+    if (semitones === 0) return chord;
+
+    // Extract root note and suffix (m, 7, maj7, etc.)
+    const match = chord.match(/^([A-G][#b]?)(.*)$/);
+    if (!match) return chord;
+
+    const [, root, suffix] = match;
+
+    // Determine if we should use flats or sharps based on the original chord
+    const useFlats = root.includes('b');
+    const scale = useFlats ? CHROMATIC_SCALE_FLATS : CHROMATIC_SCALE;
+
+    // Find the root in the chromatic scale
+    let rootIndex = CHROMATIC_SCALE.indexOf(root);
+    if (rootIndex === -1) {
+        rootIndex = CHROMATIC_SCALE_FLATS.indexOf(root);
+    }
+    if (rootIndex === -1) return chord;
+
+    // Transpose
+    let newIndex = (rootIndex + semitones) % 12;
+    if (newIndex < 0) newIndex += 12;
+
+    const newRoot = scale[newIndex];
+    return newRoot + suffix;
+}
+
+/**
+ * Transpose a key by a number of semitones
+ * @param {string} key - The key (e.g., "C", "G", "F#")
+ * @param {number} semitones - Number of semitones to transpose
+ * @returns {string} - The transposed key
+ */
+function transposeKey(key, semitones) {
+    return transposeChord(key, semitones);
+}
+
 // Scale degree mappings for different keys
 const SCALE_DEGREES = {
     'C':  ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'Bdim'],

@@ -6,7 +6,8 @@
 const state = {
     songs: [],
     currentSong: null,
-    showAsNumbers: false
+    showAsNumbers: false,
+    transpose: 0
 };
 
 // DOM Elements
@@ -16,6 +17,7 @@ const elements = {
     songTitle: document.getElementById('song-title'),
     songArtist: document.getElementById('song-artist'),
     songKey: document.getElementById('song-key'),
+    transposeSelect: document.getElementById('transpose-select'),
     toggleBtn: document.getElementById('toggle-progression'),
     chordReference: document.getElementById('chord-reference'),
     chordGrid: document.getElementById('chord-grid'),
@@ -77,6 +79,7 @@ function populateSongSelector() {
  */
 function setupEventListeners() {
     elements.songSelector.addEventListener('change', handleSongSelect);
+    elements.transposeSelect.addEventListener('change', handleTranspose);
     elements.toggleBtn.addEventListener('click', handleToggleProgression);
     elements.modalOverlay.addEventListener('click', handleModalClose);
     elements.modalClose.addEventListener('click', closeModal);
@@ -91,6 +94,10 @@ function handleSongSelect(e) {
         hideSong();
         return;
     }
+    // Reset transpose when switching songs
+    state.transpose = 0;
+    elements.transposeSelect.value = '0';
+
     state.currentSong = state.songs[index];
     displaySong();
 }
@@ -115,7 +122,10 @@ function displaySong() {
     // Update song info
     elements.songTitle.textContent = state.currentSong.title;
     elements.songArtist.textContent = state.currentSong.artist;
-    elements.songKey.textContent = state.currentSong.key;
+
+    // Show transposed key
+    const displayKey = transposeKey(state.currentSong.key, state.transpose);
+    elements.songKey.textContent = displayKey;
 
     // Show sections
     elements.songInfo.style.display = 'flex';
@@ -129,13 +139,16 @@ function displaySong() {
 }
 
 /**
- * Get all unique chords used in the current song
+ * Get all unique chords used in the current song (transposed)
  */
 function getUsedChords() {
     const chords = new Set();
     state.currentSong.lines.forEach(line => {
         if (line.chords) {
-            line.chords.forEach(c => chords.add(c.chord));
+            line.chords.forEach(c => {
+                const transposedChord = transposeChord(c.chord, state.transpose);
+                chords.add(transposedChord);
+            });
         }
     });
     return Array.from(chords);
@@ -151,12 +164,18 @@ function renderChordReference() {
     usedChords.forEach(chordName => {
         const chordData = CHORDS[chordName];
         if (chordData) {
-            const diagram = createChordDiagram(chordData, false);
+            const diagram = createChordDiagram(chordData, false, chordName);
             diagram.style.cursor = 'pointer';
             diagram.addEventListener('click', () => {
                 openChordModal(chordName);
             });
             elements.chordGrid.appendChild(diagram);
+        } else {
+            // Chord not in library, show name only
+            const placeholder = document.createElement('div');
+            placeholder.className = 'chord-diagram';
+            placeholder.innerHTML = `<div class="chord-name">${chordName}</div><div style="color:#666;font-size:0.8rem;">No diagram</div>`;
+            elements.chordGrid.appendChild(placeholder);
         }
     });
 }
@@ -166,15 +185,17 @@ function renderChordReference() {
  * @param {Object} chordData - Chord definition object
  * @param {boolean} large - Whether to render a large version
  */
-function createChordDiagram(chordData, large = false) {
+function createChordDiagram(chordData, large = false, displayName = null) {
     const container = document.createElement('div');
     container.className = 'chord-diagram';
 
     const name = document.createElement('div');
     name.className = 'chord-name';
+    const chordName = displayName || chordData.name;
+    const transposedKey = transposeKey(state.currentSong.key, state.transpose);
     name.textContent = state.showAsNumbers && state.currentSong
-        ? getScaleDegree(chordData.name, state.currentSong.key)
-        : chordData.name;
+        ? getScaleDegree(chordName, transposedKey)
+        : chordName;
     container.appendChild(name);
 
     const svg = createChordSVG(chordData, large);
@@ -383,10 +404,12 @@ function renderLyrics() {
             if (line.chords && line.chords.length > 0) {
                 // Build chord row with proper spacing
                 let chordText = '';
-                let lastPos = 0;
 
                 // Sort chords by position
                 const sortedChords = [...line.chords].sort((a, b) => a.position - b.position);
+
+                // Get transposed key for scale degree calculation
+                const transposedKey = transposeKey(state.currentSong.key, state.transpose);
 
                 sortedChords.forEach(c => {
                     // Add spaces to reach the chord position
@@ -394,12 +417,15 @@ function renderLyrics() {
                         chordText += ' ';
                     }
 
+                    // Transpose the chord
+                    const transposedChord = transposeChord(c.chord, state.transpose);
+
                     const displayChord = state.showAsNumbers
-                        ? getScaleDegree(c.chord, state.currentSong.key)
-                        : c.chord;
+                        ? getScaleDegree(transposedChord, transposedKey)
+                        : transposedChord;
 
                     // Create a placeholder for the chord marker
-                    const markerPlaceholder = `{{CHORD:${c.chord}:${displayChord}}}`;
+                    const markerPlaceholder = `{{CHORD:${transposedChord}:${displayChord}}}`;
                     chordText += markerPlaceholder;
                 });
 
@@ -433,6 +459,14 @@ function renderLyrics() {
 }
 
 /**
+ * Handle transpose selection
+ */
+function handleTranspose(e) {
+    state.transpose = parseInt(e.target.value, 10);
+    displaySong();
+}
+
+/**
  * Handle toggle between chord names and progression numbers
  */
 function handleToggleProgression() {
@@ -456,8 +490,9 @@ function openChordModal(chordName) {
 
     const nameDiv = document.createElement('div');
     nameDiv.className = 'chord-name';
+    const transposedKey = transposeKey(state.currentSong.key, state.transpose);
     nameDiv.textContent = state.showAsNumbers
-        ? `${getScaleDegree(chordName, state.currentSong.key)} (${chordName})`
+        ? `${getScaleDegree(chordName, transposedKey)} (${chordName})`
         : chordName;
     elements.modalChord.appendChild(nameDiv);
 

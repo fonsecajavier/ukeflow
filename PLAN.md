@@ -37,6 +37,11 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - **Scale Degrees**: I, vi, IV, V
 - Based on the song's key
 
+### 6. Transpose Feature
+- Dropdown to transpose song up or down by semitones (-5 to +6)
+- Updates key display, chord reference, and all chords in lyrics
+- Resets to original when switching songs
+
 ## File Structure
 
 ```
