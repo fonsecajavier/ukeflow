@@ -36,6 +36,67 @@ const elements = {
 async function init() {
     await loadSongs();
     setupEventListeners();
+    loadFromURL();
+}
+
+/**
+ * Load song from URL parameters
+ */
+function loadFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    const songParam = params.get('song');
+    const transposeParam = params.get('transpose');
+
+    if (songParam) {
+        // Find song by slug
+        const index = state.songs.findIndex(song => slugify(song.title) === songParam);
+        if (index !== -1) {
+            elements.songSelector.value = index;
+            state.currentSong = state.songs[index];
+
+            // Apply transpose if specified
+            if (transposeParam) {
+                const transpose = parseInt(transposeParam, 10);
+                if (!isNaN(transpose) && transpose >= -5 && transpose <= 6) {
+                    state.transpose = transpose;
+                    elements.transposeSelect.value = transpose.toString();
+                }
+            }
+
+            displaySong();
+        }
+    }
+}
+
+/**
+ * Update URL with current song state
+ */
+function updateURL() {
+    const params = new URLSearchParams();
+
+    if (state.currentSong) {
+        params.set('song', slugify(state.currentSong.title));
+        if (state.transpose !== 0) {
+            params.set('transpose', state.transpose.toString());
+        }
+    }
+
+    const newURL = params.toString()
+        ? `${window.location.pathname}?${params.toString()}`
+        : window.location.pathname;
+
+    window.history.replaceState({}, '', newURL);
+}
+
+/**
+ * Convert song title to URL-friendly slug
+ */
+function slugify(text) {
+    return text
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .trim();
 }
 
 /**
@@ -92,6 +153,7 @@ function handleSongSelect(e) {
     const index = e.target.value;
     if (index === '') {
         hideSong();
+        updateURL();
         return;
     }
     // Reset transpose when switching songs
@@ -100,6 +162,7 @@ function handleSongSelect(e) {
 
     state.currentSong = state.songs[index];
     displaySong();
+    updateURL();
 }
 
 /**
@@ -465,6 +528,7 @@ function renderLyrics() {
 function handleTranspose(e) {
     state.transpose = parseInt(e.target.value, 10);
     displaySong();
+    updateURL();
 }
 
 /**
