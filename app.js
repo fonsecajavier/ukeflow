@@ -13,6 +13,7 @@ const state = {
 // DOM Elements
 const elements = {
     songSelector: document.getElementById('song-selector'),
+    songList: document.getElementById('song-list'),
     songInfo: document.getElementById('song-info'),
     songTitle: document.getElementById('song-title'),
     songArtist: document.getElementById('song-artist'),
@@ -50,10 +51,10 @@ function loadFromURL() {
 
     if (songParam) {
         // Find song by slug
-        const index = state.songs.findIndex(song => slugify(song.title) === songParam);
-        if (index !== -1) {
-            elements.songSelector.value = index;
-            state.currentSong = state.songs[index];
+        const song = state.songs.find(song => slugify(song.title) === songParam);
+        if (song) {
+            elements.songSelector.value = `${song.title} - ${song.artist}`;
+            state.currentSong = song;
 
             // Apply transpose if specified
             if (transposeParam) {
@@ -125,14 +126,13 @@ async function loadSongs() {
 }
 
 /**
- * Populate the song selector dropdown
+ * Populate the song selector datalist
  */
 function populateSongSelector() {
-    state.songs.forEach((song, index) => {
+    state.songs.forEach((song) => {
         const option = document.createElement('option');
-        option.value = index;
-        option.textContent = `${song.title} - ${song.artist}`;
-        elements.songSelector.appendChild(option);
+        option.value = `${song.title} - ${song.artist}`;
+        elements.songList.appendChild(option);
     });
 }
 
@@ -140,7 +140,7 @@ function populateSongSelector() {
  * Setup event listeners
  */
 function setupEventListeners() {
-    elements.songSelector.addEventListener('change', handleSongSelect);
+    elements.songSelector.addEventListener('input', handleSongSelect);
     elements.transposeSelect.addEventListener('change', handleTranspose);
     elements.toggleBtn.addEventListener('click', handleToggleProgression);
     elements.modalOverlay.addEventListener('click', handleModalClose);
@@ -151,19 +151,26 @@ function setupEventListeners() {
  * Handle song selection
  */
 function handleSongSelect(e) {
-    const index = e.target.value;
-    if (index === '') {
+    const inputValue = e.target.value.trim();
+
+    if (inputValue === '') {
         hideSong();
         updateURL();
         return;
     }
-    // Reset transpose when switching songs
-    state.transpose = 0;
-    elements.transposeSelect.value = '0';
 
-    state.currentSong = state.songs[index];
-    displaySong();
-    updateURL();
+    // Find song by matching "Title - Artist" format
+    const song = state.songs.find(s => `${s.title} - ${s.artist}` === inputValue);
+
+    if (song) {
+        // Reset transpose when switching songs
+        state.transpose = 0;
+        elements.transposeSelect.value = '0';
+
+        state.currentSong = song;
+        displaySong();
+        updateURL();
+    }
 }
 
 /**
@@ -232,6 +239,14 @@ function renderScaleReference() {
 
         const item = document.createElement('div');
         item.className = 'scale-item';
+
+        // Make clickable if chord exists in library
+        if (CHORDS[chord]) {
+            item.classList.add('clickable');
+            item.addEventListener('click', () => {
+                openChordModal(chord);
+            });
+        }
 
         const degree = document.createElement('span');
         degree.className = 'scale-degree';
