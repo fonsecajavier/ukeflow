@@ -1,0 +1,91 @@
+{
+  "title": "Ciega, Sordomuda",
+  "artist": "Shakira",
+  "key": "Am",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Se me ha clavado en el alma",
+      "chords": [
+        { "chord": "Am", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Una flor, una espina, una astilla",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Y no la puedo arrancar",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "E7", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "Se me ha clavado en los ojos",
+      "chords": [
+        { "chord": "Am", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Tu mirada que quema y que abrasa",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Y no la puedo olvidar",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "E7", "position": 14 }
+      ]
+    },
+    { "section": "Pre-Chorus" },
+    {
+      "lyrics": "Se me ha escapado de las manos",
+      "chords": [
+        { "chord": "Dm", "position": 0 },
+        { "chord": "Am", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "El mundo entero y ya no sé qué hacer",
+      "chords": [
+        { "chord": "E7", "position": 0 },
+        { "chord": "Am", "position": 20 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Me he vuelto ciega, sordomuda",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "Torpe, triste, boba, tonta, loca",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "E7", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Lo mío es desastre total",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "Piensa en él, ya no puedo pensar",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "E7", "position": 16 },
+        { "chord": "Am", "position": 26 }
+      ]
+    }
+  ]
+}

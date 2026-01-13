@@ -1,0 +1,79 @@
+{
+  "title": "Ojos Así",
+  "artist": "Shakira",
+  "key": "Dm",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Hace tiempo que no cruzo el mar",
+      "chords": [
+        { "chord": "Dm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Y me enredé en los recuerdos de ayer",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "Dm", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "Me falta el aire si tú no estás",
+      "chords": [
+        { "chord": "Dm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "La vida se me va, oh oh oh",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "Dm", "position": 16 }
+      ]
+    },
+    { "section": "Pre-Chorus" },
+    {
+      "lyrics": "Ayer soñé que tocaba el sol",
+      "chords": [
+        { "chord": "Bb", "position": 0 },
+        { "chord": "A7", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "Y ardía en mis manos sin querer",
+      "chords": [
+        { "chord": "Dm", "position": 0 },
+        { "chord": "C", "position": 16 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Y yo sigo buscando en la ciudad",
+      "chords": [
+        { "chord": "Dm", "position": 0 },
+        { "chord": "C", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Ojos así como los que tú tienes",
+      "chords": [
+        { "chord": "Bb", "position": 0 },
+        { "chord": "A7", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "Ya no hay que buscarlo en otra parte",
+      "chords": [
+        { "chord": "Dm", "position": 0 },
+        { "chord": "C", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "Tan negros y tan grandes así",
+      "chords": [
+        { "chord": "Bb", "position": 0 },
+        { "chord": "A7", "position": 16 },
+        { "chord": "Dm", "position": 24 }
+      ]
+    }
+  ]
+}

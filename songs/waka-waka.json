@@ -1,0 +1,100 @@
+{
+  "title": "Waka Waka (This Time for Africa)",
+  "artist": "Shakira",
+  "key": "G",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "You're a good soldier",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Choosing your battles",
+      "chords": [
+        { "chord": "Em", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Pick yourself up",
+      "chords": [
+        { "chord": "C", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "And dust yourself off",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "And back in the saddle",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    { "section": "Pre-Chorus" },
+    {
+      "lyrics": "You're on the frontline",
+      "chords": [
+        { "chord": "Em", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Everyone's watching",
+      "chords": [
+        { "chord": "C", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "You know it's serious",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "We're getting closer",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "This isn't over",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "C", "position": 10 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Tsamina mina eh eh",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "D", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "Waka waka eh eh",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "C", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "Tsamina mina zangalewa",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "D", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "This time for Africa",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "C", "position": 10 },
+        { "chord": "G", "position": 16 }
+      ]
+    }
+  ]
+}

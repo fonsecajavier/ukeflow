@@ -1,0 +1,115 @@
+{
+  "title": "Hips Don't Lie",
+  "artist": "Shakira ft. Wyclef Jean",
+  "key": "Am",
+  "lines": [
+    { "section": "Intro" },
+    {
+      "lyrics": "Ladies up in here tonight",
+      "chords": [
+        { "chord": "Am", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "No fighting, no fighting",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 12 }
+      ]
+    },
+    { "section": "Verse 1" },
+    {
+      "lyrics": "I never really knew that she could dance like this",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "She makes a man want to speak Spanish",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Am", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "Como se llama, bonita, mi casa",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Shakira, Shakira",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Am", "position": 10 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Oh baby when you talk like that",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "You make a woman go mad",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Am", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "So be wise and keep on",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "Reading the signs of my body",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Am", "position": 16 }
+      ]
+    },
+    { "section": "Hook" },
+    {
+      "lyrics": "And I'm on tonight",
+      "chords": [
+        { "chord": "Am", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "You know my hips don't lie",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "And I'm starting to feel it's right",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "All the attraction, the tension",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Am", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Don't you see baby, this is perfection",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 16 },
+        { "chord": "Am", "position": 28 }
+      ]
+    }
+  ]
+}

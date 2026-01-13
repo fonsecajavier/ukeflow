@@ -1,0 +1,101 @@
+{
+  "title": "La Tortura",
+  "artist": "Shakira ft. Alejandro Sanz",
+  "key": "Am",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "No pido que todos los días sean de sol",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "No pido que todos los viernes sean de fiesta",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "E7", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "Tampoco te pido que vuelvas rogando perdón",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "Si lloras con los ojos secos",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "E7", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "Y hablando de ella",
+      "chords": [
+        { "chord": "Am", "position": 0 }
+      ]
+    },
+    { "section": "Pre-Chorus" },
+    {
+      "lyrics": "Ay amor me duele tanto",
+      "chords": [
+        { "chord": "Dm", "position": 0 },
+        { "chord": "Am", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "Me duele tanto",
+      "chords": [
+        { "chord": "E7", "position": 0 },
+        { "chord": "Am", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "Que te fueras sin decir a dónde",
+      "chords": [
+        { "chord": "Dm", "position": 0 },
+        { "chord": "Am", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Ay amor fue una tortura perderte",
+      "chords": [
+        { "chord": "E7", "position": 0 },
+        { "chord": "Am", "position": 20 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Yo sé que no he sido un santo",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "Pero lo puedo arreglar amor",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "E7", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "No sólo de pan vive el hombre",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "Y no de excusas vivo yo",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "E7", "position": 14 },
+        { "chord": "Am", "position": 22 }
+      ]
+    }
+  ]
+}

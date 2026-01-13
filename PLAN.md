@@ -43,6 +43,21 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
 - Displays roman numerals with chord names in parentheses
 - Shows repeat count (×2, ×3) when same progression appears multiple times
 
+### 3c. Music Trivia (Collapsible)
+- Collapsible section with educational information about the song's chords
+- **Key Information**: Displays whether song is in major or minor key
+- **Relative Key**: Shows the relative major/minor key
+- **Famous Progressions Detection**: Identifies well-known chord patterns:
+  - I-V-vi-IV "Axis of Awesome" progression
+  - vi-IV-I-V "Sensitive Female" progression
+  - ii-V-I Jazz turnaround
+  - I-IV-V Classic rock/blues progression
+  - 12-bar blues patterns
+  - i-iv-v Minor blues
+  - I-vi-IV-V "50s Doo-Wop" progression
+- **Borrowed Chords**: Identifies chords outside the diatonic scale (modal interchange)
+- Only shows trivia items that are relevant to the current song
+
 ### 4. Interactive Chord Popups
 - Click any chord in the lyrics section
 - Shows a popup/modal with the chord diagram
@@ -83,7 +98,19 @@ ukeflow/
     ├── im-yours.json
     ├── stand-by-me.json
     ├── house-of-the-rising-sun.json  # Minor key (Am)
-    └── mad-world.json                 # Minor key (Em)
+    ├── mad-world.json                 # Minor key (Em)
+    ├── la-bamba.json                  # Latin American (C)
+    ├── guantanamera.json              # Latin American (C)
+    ├── cielito-lindo.json             # Latin American (C)
+    ├── besame-mucho.json              # Latin American, Minor key (Dm)
+    ├── waka-waka.json                 # Shakira (G)
+    ├── hips-dont-lie.json             # Shakira, Minor key (Am)
+    ├── whenever-wherever.json         # Shakira, Minor key (Bm)
+    ├── la-tortura.json                # Shakira, Minor key (Am)
+    ├── ojos-asi.json                  # Shakira 90s, Minor key (Dm)
+    ├── estoy-aqui.json                # Shakira 90s, Minor key (Em)
+    ├── ciega-sordomuda.json           # Shakira 90s, Minor key (Am)
+    └── antologia.json                 # Shakira 90s (G)
 ```
 
 ## Data Structures

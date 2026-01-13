@@ -1,0 +1,124 @@
+{
+  "title": "Whenever, Wherever",
+  "artist": "Shakira",
+  "key": "Bm",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Lucky you were born that far away so",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "A", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "We could both make fun of distance",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Lucky that I love a foreign land for",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "A", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "The lucky fact of your existence",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 18 }
+      ]
+    },
+    { "section": "Pre-Chorus" },
+    {
+      "lyrics": "Baby I would climb the Andes solely",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "To count the freckles on your body",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "A", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Never could imagine there were only",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "Ten million ways to love somebody",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "A", "position": 18 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Whenever, wherever",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "G", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "We're meant to be together",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "I'll be there and you'll be near",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "G", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "And that's the deal my dear",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 12 }
+      ]
+    },
+    { "section": "Chorus 2" },
+    {
+      "lyrics": "There over, hereunder",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "G", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "You'll never have to wonder",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "We can always play by ear",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "G", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "But that's the deal my dear",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 12 },
+        { "chord": "Bm", "position": 20 }
+      ]
+    }
+  ]
+}
