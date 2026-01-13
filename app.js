@@ -334,6 +334,8 @@ function createChordSVG(chord, large = false) {
         barre.setAttribute('height', dotRadius * 2);
         barre.setAttribute('rx', dotRadius);
         barre.setAttribute('fill', '#1a1a2e');
+        barre.setAttribute('stroke', '#e4e4e4');
+        barre.setAttribute('stroke-width', '0.75');
         svg.appendChild(barre);
     }
 
@@ -388,6 +390,8 @@ function createChordSVG(chord, large = false) {
                 dot.setAttribute('cy', y);
                 dot.setAttribute('r', dotRadius);
                 dot.setAttribute('fill', '#1a1a2e');
+                dot.setAttribute('stroke', '#e4e4e4');
+                dot.setAttribute('stroke-width', '0.75');
                 svg.appendChild(dot);
 
                 // Add finger number
