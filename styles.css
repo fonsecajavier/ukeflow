@@ -243,6 +243,96 @@ body {
     color: #e74c3c;
 }
 
+/* Progression Summary */
+.progression-summary {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.progression-summary summary {
+    padding: 12px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.progression-summary summary::-webkit-details-marker {
+    display: none;
+}
+
+.progression-summary summary::before {
+    content: '▶';
+    font-size: 0.7rem;
+    transition: transform 0.2s ease;
+}
+
+.progression-summary[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.progression-summary summary:hover {
+    color: #e4e4e4;
+}
+
+.progression-content {
+    padding: 15px;
+    padding-top: 5px;
+}
+
+.progression-section {
+    margin-bottom: 15px;
+}
+
+.progression-section:last-child {
+    margin-bottom: 0;
+}
+
+.progression-section-title {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.progression-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.progression-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.progression-item .prog-degrees {
+    color: #3498db;
+    font-weight: bold;
+}
+
+.progression-item .prog-chords {
+    color: #f39c12;
+    font-size: 0.85rem;
+}
+
+.progression-item .prog-count {
+    color: #888;
+    font-size: 0.8rem;
+}
+
 .chord-grid {
     display: flex;
     flex-wrap: wrap;

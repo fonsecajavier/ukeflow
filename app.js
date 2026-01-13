@@ -22,6 +22,7 @@ const elements = {
     toggleBtn: document.getElementById('toggle-progression'),
     chordReference: document.getElementById('chord-reference'),
     scaleGrid: document.getElementById('scale-grid'),
+    progressionContent: document.getElementById('progression-content'),
     chordGrid: document.getElementById('chord-grid'),
     lyricsSection: document.getElementById('lyrics-section'),
     lyricsContainer: document.getElementById('lyrics-container'),
@@ -204,8 +205,9 @@ function displaySong() {
     elements.lyricsSection.style.display = 'block';
     elements.welcomeMessage.style.display = 'none';
 
-    // Render scale reference, chord reference and lyrics
+    // Render scale reference, progression summary, chord reference and lyrics
     renderScaleReference();
+    renderProgressionSummary();
     renderChordReference();
     renderLyrics();
 }
@@ -259,6 +261,87 @@ function renderScaleReference() {
         item.appendChild(chordName);
 
         elements.scaleGrid.appendChild(item);
+    }
+}
+
+/**
+ * Render the progression summary (chord sequences used in the song)
+ */
+function renderProgressionSummary() {
+    const transposedKey = transposeKey(state.currentSong.key, state.transpose);
+    elements.progressionContent.innerHTML = '';
+
+    // Extract chord sequences from each section
+    const sectionProgressions = {};
+    let currentSection = 'Intro';
+
+    state.currentSong.lines.forEach(line => {
+        if (line.section) {
+            currentSection = line.section;
+        } else if (line.chords && line.chords.length > 0) {
+            if (!sectionProgressions[currentSection]) {
+                sectionProgressions[currentSection] = [];
+            }
+            // Get chords in order for this line
+            const lineChords = line.chords
+                .sort((a, b) => a.position - b.position)
+                .map(c => transposeChord(c.chord, state.transpose));
+            sectionProgressions[currentSection].push(lineChords);
+        }
+    });
+
+    // Analyze progressions by section
+    for (const [section, lines] of Object.entries(sectionProgressions)) {
+        const sectionDiv = document.createElement('div');
+        sectionDiv.className = 'progression-section';
+
+        const title = document.createElement('div');
+        title.className = 'progression-section-title';
+        title.textContent = section;
+        sectionDiv.appendChild(title);
+
+        const list = document.createElement('div');
+        list.className = 'progression-list';
+
+        // Count unique progressions in this section
+        const progressionCounts = {};
+        lines.forEach(chords => {
+            const key = chords.join(' → ');
+            const degrees = chords.map(c => getScaleDegree(c, transposedKey)).join(' → ');
+            const id = degrees;
+            if (!progressionCounts[id]) {
+                progressionCounts[id] = { chords: key, degrees, count: 0 };
+            }
+            progressionCounts[id].count++;
+        });
+
+        // Display each unique progression
+        for (const prog of Object.values(progressionCounts)) {
+            const item = document.createElement('div');
+            item.className = 'progression-item';
+
+            const degrees = document.createElement('span');
+            degrees.className = 'prog-degrees';
+            degrees.textContent = prog.degrees;
+            item.appendChild(degrees);
+
+            const chords = document.createElement('span');
+            chords.className = 'prog-chords';
+            chords.textContent = `(${prog.chords})`;
+            item.appendChild(chords);
+
+            if (prog.count > 1) {
+                const count = document.createElement('span');
+                count.className = 'prog-count';
+                count.textContent = `×${prog.count}`;
+                item.appendChild(count);
+            }
+
+            list.appendChild(item);
+        }
+
+        sectionDiv.appendChild(list);
+        elements.progressionContent.appendChild(sectionDiv);
     }
 }
 
