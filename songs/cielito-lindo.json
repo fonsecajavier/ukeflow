@@ -1,0 +1,93 @@
+{
+  "title": "Cielito Lindo",
+  "artist": "Traditional Mexican",
+  "key": "C",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "De la sierra morena",
+      "chords": [
+        { "chord": "C", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Cielito lindo vienen bajando",
+      "chords": [
+        { "chord": "G7", "position": 0 },
+        { "chord": "C", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "Un par de ojitos negros",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "Cielito lindo de contrabando",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G7", "position": 14 },
+        { "chord": "C", "position": 26 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Ay ay ay ay",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G7", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "Canta y no llores",
+      "chords": [
+        { "chord": "C", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Porque cantando se alegran",
+      "chords": [
+        { "chord": "G7", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Cielito lindo los corazones",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G7", "position": 14 },
+        { "chord": "C", "position": 26 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Ese lunar que tienes",
+      "chords": [
+        { "chord": "C", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Cielito lindo junto a la boca",
+      "chords": [
+        { "chord": "G7", "position": 0 },
+        { "chord": "C", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "No se lo des a nadie",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "Cielito lindo que a mí me toca",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G7", "position": 14 },
+        { "chord": "C", "position": 26 }
+      ]
+    }
+  ]
+}

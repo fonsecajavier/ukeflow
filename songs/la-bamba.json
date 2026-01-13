@@ -1,0 +1,90 @@
+{
+  "title": "La Bamba",
+  "artist": "Traditional / Ritchie Valens",
+  "key": "C",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Para bailar la bamba",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 10 },
+        { "chord": "G", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "Para bailar la bamba se necesita",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 10 },
+        { "chord": "G", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "Una poca de gracia",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 10 },
+        { "chord": "G", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "Una poca de gracia pa' mi pa' ti",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 10 },
+        { "chord": "G", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "Y arriba y arriba",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 10 },
+        { "chord": "G", "position": 14 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Bamba bamba",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 6 },
+        { "chord": "G", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "Bamba bamba",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 6 },
+        { "chord": "G", "position": 10 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Yo no soy marinero",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 10 },
+        { "chord": "G", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "Yo no soy marinero, soy capitán",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 10 },
+        { "chord": "G", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "Soy capitán, soy capitán",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 14 },
+        { "chord": "G", "position": 20 }
+      ]
+    }
+  ]
+}

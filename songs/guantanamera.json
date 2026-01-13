@@ -1,0 +1,84 @@
+{
+  "title": "Guantanamera",
+  "artist": "Traditional Cuban",
+  "key": "C",
+  "lines": [
+    { "section": "Chorus" },
+    {
+      "lyrics": "Guantanamera, guajira guantanamera",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 15 },
+        { "chord": "G", "position": 23 },
+        { "chord": "C", "position": 35 }
+      ]
+    },
+    {
+      "lyrics": "Guantanamera, guajira guantanamera",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 15 },
+        { "chord": "G", "position": 23 },
+        { "chord": "C", "position": 35 }
+      ]
+    },
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Yo soy un hombre sincero",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "De donde crece la palma",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "Y antes de morirme quiero",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "Echar mis versos del alma",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 12 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Mi verso es de un verde claro",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "Y de un carmín encendido",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "Mi verso es un ciervo herido",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "Que busca en el monte amparo",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 14 }
+      ]
+    }
+  ]
+}
