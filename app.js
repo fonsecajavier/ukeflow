@@ -255,11 +255,18 @@ function createChordDiagram(chordData, large = false, displayName = null) {
     const name = document.createElement('div');
     name.className = 'chord-name';
     const chordName = displayName || chordData.name;
-    const transposedKey = transposeKey(state.currentSong.key, state.transpose);
-    name.textContent = state.showAsNumbers && state.currentSong
-        ? getScaleDegree(chordName, transposedKey)
-        : chordName;
+    name.textContent = chordName;
     container.appendChild(name);
+
+    // Add scale degree below chord name
+    if (state.currentSong) {
+        const transposedKey = transposeKey(state.currentSong.key, state.transpose);
+        const scaleDegree = getScaleDegree(chordName, transposedKey);
+        const degreeDiv = document.createElement('div');
+        degreeDiv.className = 'chord-degree';
+        degreeDiv.textContent = scaleDegree;
+        container.appendChild(degreeDiv);
+    }
 
     const svg = createChordSVG(chordData, large);
     container.appendChild(svg);

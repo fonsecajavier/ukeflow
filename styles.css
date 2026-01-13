@@ -172,7 +172,13 @@ body {
     font-size: 1rem;
     font-weight: bold;
     color: #f39c12;
-    margin-bottom: 8px;
+    margin-bottom: 2px;
+}
+
+.chord-diagram .chord-degree {
+    font-size: 0.8rem;
+    color: #3498db;
+    margin-bottom: 6px;
 }
 
 .chord-diagram svg {
