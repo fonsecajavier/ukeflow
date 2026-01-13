@@ -62,7 +62,15 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
 - Click any chord in the lyrics section
 - Shows a popup/modal with the chord diagram
 - Displays finger positions clearly
-- Easy to dismiss (click outside or X button)
+- Easy to dismiss (click outside, X button, or Escape key)
+
+### 4a. Chord Audio Playback
+- Play button on each chord diagram to hear the chord
+- Uses Karplus-Strong synthesis for realistic plucked ukulele sound
+- Plays notes as arpeggio (strings plucked sequentially)
+- Based on standard ukulele tuning (G4-C4-E4-A4)
+- No external audio files required - generated in real-time
+- Visual feedback when playing (button pulses)
 
 ### 5. Progression Toggle
 - Button to switch between:

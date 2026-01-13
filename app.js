@@ -293,6 +293,16 @@ function setupEventListeners() {
     elements.toggleBtn.addEventListener('click', handleToggleProgression);
     elements.modalOverlay.addEventListener('click', handleModalClose);
     elements.modalClose.addEventListener('click', closeModal);
+    document.addEventListener('keydown', handleKeyDown);
+}
+
+/**
+ * Handle keyboard events
+ */
+function handleKeyDown(e) {
+    if (e.key === 'Escape' && elements.modalOverlay.classList.contains('active')) {
+        closeModal();
+    }
 }
 
 /**
