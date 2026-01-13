@@ -1,0 +1,122 @@
+{
+  "title": "Mad World",
+  "artist": "Tears for Fears / Gary Jules",
+  "key": "Em",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "All around me are familiar faces",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "Worn out places, worn out faces",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Bright and early for the daily races",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "Going nowhere, going nowhere",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 16 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Their tears are filling up their glasses",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "No expression, no expression",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "Hide my head I wanna drown my sorrow",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "No tomorrow, no tomorrow",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 15 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "And I find it kind of funny",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "I find it kind of sad",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "The dreams in which I'm dying",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "Are the best I've ever had",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "I find it hard to tell you",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "I find it hard to take",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "When people run in circles it's a very very",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "Mad world, mad world",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 11 }
+      ]
+    }
+  ]
+}

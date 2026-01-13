@@ -1147,8 +1147,8 @@ function transposeKey(key, semitones) {
     return transposeChord(key, semitones);
 }
 
-// Scale degree mappings for different keys
-const SCALE_DEGREES = {
+// Scale degree mappings for major keys
+const SCALE_DEGREES_MAJOR = {
     'C':  ['C', 'Dm', 'Em', 'F', 'G', 'Am', 'Bdim'],
     'G':  ['G', 'Am', 'Bm', 'C', 'D', 'Em', 'F#dim'],
     'D':  ['D', 'Em', 'F#m', 'G', 'A', 'Bm', 'C#dim'],
@@ -1156,13 +1156,44 @@ const SCALE_DEGREES = {
     'E':  ['E', 'F#m', 'G#m', 'A', 'B', 'C#m', 'D#dim'],
     'B':  ['B', 'C#m', 'D#m', 'E', 'F#', 'G#m', 'A#dim'],
     'F':  ['F', 'Gm', 'Am', 'Bb', 'C', 'Dm', 'Edim'],
+    'F#': ['F#', 'G#m', 'A#m', 'B', 'C#', 'D#m', 'E#dim'],
     'Bb': ['Bb', 'Cm', 'Dm', 'Eb', 'F', 'Gm', 'Adim'],
     'Eb': ['Eb', 'Fm', 'Gm', 'Ab', 'Bb', 'Cm', 'Ddim'],
-    'Ab': ['Ab', 'Bbm', 'Cm', 'Db', 'Eb', 'Fm', 'Gdim']
+    'Ab': ['Ab', 'Bbm', 'Cm', 'Db', 'Eb', 'Fm', 'Gdim'],
+    'C#': ['C#', 'D#m', 'E#m', 'F#', 'G#', 'A#m', 'B#dim'],
+    'Db': ['Db', 'Ebm', 'Fm', 'Gb', 'Ab', 'Bbm', 'Cdim']
 };
 
-// Roman numeral representations
-const ROMAN_NUMERALS = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°'];
+// Scale degree mappings for minor keys (natural minor)
+const SCALE_DEGREES_MINOR = {
+    'Am':  ['Am', 'Bdim', 'C', 'Dm', 'Em', 'F', 'G'],
+    'Em':  ['Em', 'F#dim', 'G', 'Am', 'Bm', 'C', 'D'],
+    'Bm':  ['Bm', 'C#dim', 'D', 'Em', 'F#m', 'G', 'A'],
+    'F#m': ['F#m', 'G#dim', 'A', 'Bm', 'C#m', 'D', 'E'],
+    'C#m': ['C#m', 'D#dim', 'E', 'F#m', 'G#m', 'A', 'B'],
+    'G#m': ['G#m', 'A#dim', 'B', 'C#m', 'D#m', 'E', 'F#'],
+    'Dm':  ['Dm', 'Edim', 'F', 'Gm', 'Am', 'Bb', 'C'],
+    'Gm':  ['Gm', 'Adim', 'Bb', 'Cm', 'Dm', 'Eb', 'F'],
+    'Cm':  ['Cm', 'Ddim', 'Eb', 'Fm', 'Gm', 'Ab', 'Bb'],
+    'Fm':  ['Fm', 'Gdim', 'Ab', 'Bbm', 'Cm', 'Db', 'Eb'],
+    'Bbm': ['Bbm', 'Cdim', 'Db', 'Ebm', 'Fm', 'Gb', 'Ab'],
+    'Ebm': ['Ebm', 'Fdim', 'Gb', 'Abm', 'Bbm', 'Cb', 'Db']
+};
+
+// Roman numeral representations for major keys
+const ROMAN_NUMERALS_MAJOR = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°'];
+
+// Roman numeral representations for minor keys
+const ROMAN_NUMERALS_MINOR = ['i', 'ii°', 'III', 'iv', 'v', 'VI', 'VII'];
+
+/**
+ * Check if a key is minor
+ * @param {string} key - The key (e.g., "Am", "C", "F#m")
+ * @returns {boolean} - True if minor key
+ */
+function isMinorKey(key) {
+    return key.endsWith('m') && !key.endsWith('dim');
+}
 
 /**
  * Get the scale degree (roman numeral) for a chord in a given key
@@ -1171,7 +1202,10 @@ const ROMAN_NUMERALS = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°'];
  * @returns {string} - The roman numeral or the original chord if not found
  */
 function getScaleDegree(chord, key) {
-    const scale = SCALE_DEGREES[key];
+    const isMinor = isMinorKey(key);
+    const scale = isMinor ? SCALE_DEGREES_MINOR[key] : SCALE_DEGREES_MAJOR[key];
+    const romanNumerals = isMinor ? ROMAN_NUMERALS_MINOR : ROMAN_NUMERALS_MAJOR;
+
     if (!scale) return chord;
 
     // Normalize chord for comparison (handle 7ths, maj7, etc.)
@@ -1185,7 +1219,7 @@ function getScaleDegree(chord, key) {
 
     if (index === -1) return chord;
 
-    let roman = ROMAN_NUMERALS[index];
+    let roman = romanNumerals[index];
 
     // Add suffix for 7th chords
     if (suffix.includes('7')) {

@@ -34,8 +34,9 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
 ### 5. Progression Toggle
 - Button to switch between:
   - **Chord Names**: C, Am, F, G
-  - **Scale Degrees**: I, vi, IV, V
+  - **Scale Degrees**: I, vi, IV, V (major keys) or i, ii°, III, iv, v, VI, VII (minor keys)
 - Based on the song's key
+- Supports both major and minor keys with appropriate roman numeral notation
 
 ### 6. Transpose Feature
 - Dropdown to transpose song up or down by semitones (-5 to +6)
@@ -61,7 +62,9 @@ ukeflow/
     ├── somewhere-over-the-rainbow.json
     ├── riptide.json
     ├── im-yours.json
-    └── stand-by-me.json
+    ├── stand-by-me.json
+    ├── house-of-the-rising-sun.json  # Minor key (Am)
+    └── mad-world.json                 # Minor key (Em)
 ```
 
 ## Data Structures
@@ -149,6 +152,7 @@ ukeflow/
 
 For converting chords to scale degrees based on key:
 
+### Major Keys
 | Key | I | ii | iii | IV | V | vi | vii° |
 |-----|---|-----|-----|----|----|-----|------|
 | C   | C | Dm  | Em  | F  | G  | Am  | Bdim |
@@ -157,6 +161,14 @@ For converting chords to scale degrees based on key:
 | A   | A | Bm  | C#m | D  | E  | F#m | G#dim|
 | E   | E | F#m | G#m | A  | B  | C#m | D#dim|
 | F   | F | Gm  | Am  | Bb | C  | Dm  | Edim |
+
+### Minor Keys (Natural Minor)
+| Key | i | ii° | III | iv | v | VI | VII |
+|-----|---|-----|-----|----|----|-----|-----|
+| Am  | Am | Bdim | C  | Dm | Em | F   | G   |
+| Em  | Em | F#dim| G  | Am | Bm | C   | D   |
+| Dm  | Dm | Edim | F  | Gm | Am | Bb  | C   |
+| Bm  | Bm | C#dim| D  | Em | F#m| G   | A   |
 
 ## UI Mockup
 
