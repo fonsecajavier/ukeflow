@@ -12,7 +12,6 @@ The app needs to be served via a local web server (browser security prevents loa
 
 **Option 1: Python (recommended)**
 ```bash
-cd /Users/javier.fonseca/dev/ukeflow
 python3 -m http.server 8000
 ```
 Open http://localhost:8000
