@@ -2,6 +2,10 @@
 
 A simple HTML/JS app for learning ukulele chord progressions. View chord diagrams, see chords above lyrics, and toggle between chord names and scale degrees.
 
+## Disclaimer
+
+All songs included in this project are the property of their respective authors, composers, and copyright holders. The chord progressions and lyrics are provided for educational and personal practice purposes only. This project does not claim ownership of any musical compositions.
+
 ## Quick Start
 
 The app needs to be served via a local web server (browser security prevents loading JSON files directly).
