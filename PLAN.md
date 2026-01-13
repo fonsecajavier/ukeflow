@@ -148,6 +148,7 @@ ukeflow/
     ├── whenever-wherever.json         # Shakira, Minor key (Bm)
     ├── la-tortura.json                # Shakira, Minor key (Am)
     ├── ojos-asi.json                  # Shakira 90s, Minor key (F#m)
+    ├── bamboleo.json                  # Gipsy Kings, Flamenco (Em)
     ├── estoy-aqui.json                # Shakira 90s, Minor key (Em)
     ├── ciega-sordomuda.json           # Shakira 90s, Minor key (Am)
     └── antologia.json                 # Shakira 90s (G)

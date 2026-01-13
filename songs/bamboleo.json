@@ -1,0 +1,194 @@
+{
+  "title": "Bamboleo",
+  "artist": "Gipsy Kings",
+  "key": "Em",
+  "lines": [
+    { "section": "Intro" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Em", "position": 0 }
+      ]
+    },
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Este amor llega asi esta manera",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "B7", "position": 16 },
+        { "chord": "Em", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "No tiene la culpa",
+      "chords": [
+        { "chord": "B7", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Caballo le ven sabana",
+      "chords": []
+    },
+    {
+      "lyrics": "Porque muy depreciado,",
+      "chords": []
+    },
+    {
+      "lyrics": "Por eso no te perdon de llorar",
+      "chords": [
+        { "chord": "Em", "position": 0 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Este amor llega asi esta manera",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "B7", "position": 16 },
+        { "chord": "Em", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "No tiene la culpa",
+      "chords": [
+        { "chord": "B7", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Amor de comprementa",
+      "chords": []
+    },
+    {
+      "lyrics": "Amor del mes pasado",
+      "chords": []
+    },
+    {
+      "lyrics": "Bebele, bembele, bembele",
+      "chords": []
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Bamboleo, bambolea",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "Am", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "Porque mi vida, yo la prefiero vivir asi",
+      "chords": [
+        { "chord": "B7", "position": 0 },
+        { "chord": "Em", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "Bamboleo, bambolea",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "Am", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "Porque mi vida, yo la prefiero vivir asi",
+      "chords": [
+        { "chord": "B7", "position": 0 },
+        { "chord": "Em", "position": 30 }
+      ]
+    },
+    { "section": "Bridge" },
+    {
+      "lyrics": "No tiene pardon de dios",
+      "chords": [
+        { "chord": "Am7", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Tu eres mi vida, la fortuna del destino",
+      "chords": [
+        { "chord": "D7", "position": 0 },
+        { "chord": "Gmaj7", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "Pero el destino tendressa para dos",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "Am", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "Lo mismo yo que ayer",
+      "chords": [
+        { "chord": "B7", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Lo mismo soy yo",
+      "chords": [
+        { "chord": "Em", "position": 0 }
+      ]
+    },
+    { "section": "Bridge 2" },
+    {
+      "lyrics": "No te encuentro a labandon",
+      "chords": [
+        { "chord": "Am7", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Es imposible no te encuentro de verdad",
+      "chords": [
+        { "chord": "D7", "position": 0 },
+        { "chord": "Gmaj7", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "Por eso un dia no cuentro si de nada",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "Am", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "Lo mismo you que ayer",
+      "chords": [
+        { "chord": "B7", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Yo pienso en ti",
+      "chords": [
+        { "chord": "Em", "position": 0 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Bamboleo, bambolea",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "Am", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "Porque mi vida, yo la prefiero vivir asi",
+      "chords": [
+        { "chord": "B7", "position": 0 },
+        { "chord": "Em", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "Bamboleo, bambolea",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "Am", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "Porque mi vida, yo la prefiero vivir asi",
+      "chords": [
+        { "chord": "B7", "position": 0 },
+        { "chord": "Em", "position": 30 }
+      ]
+    }
+  ]
+}
