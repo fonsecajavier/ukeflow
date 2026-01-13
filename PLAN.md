@@ -22,8 +22,16 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
 ### 3. Chord Reference Section (Top of Page)
 - Display all chords used in the current song
 - Each chord shows a mini diagram with finger positions
+- Chord name displayed with scale degree below (e.g., "Am" with "i" below)
 - Located prominently at the top for quick reference
 - Click any chord to see enlarged popup
+
+### 3a. Scale Reference (Collapsible)
+- Collapsible section showing all 7 diatonic chords in the current key
+- Displays roman numeral above each chord name
+- Uses native HTML `<details>`/`<summary>` for expand/collapse
+- Updates when transposing to show the new key's scale
+- Shows warning for uncommon keys (e.g., A#m) with suggestion to use enharmonic equivalent (e.g., Bbm)
 
 ### 4. Interactive Chord Popups
 - Click any chord in the lyrics section
@@ -37,6 +45,7 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - **Scale Degrees**: I, vi, IV, V (major keys) or i, ii°, III, iv, v, VI, VII (minor keys)
 - Based on the song's key
 - Supports both major and minor keys with appropriate roman numeral notation
+- Minor keys include borrowed chords: major IV (from Dorian) and major V (from harmonic minor)
 
 ### 6. Transpose Feature
 - Dropdown to transpose song up or down by semitones (-5 to +6)
@@ -162,13 +171,21 @@ For converting chords to scale degrees based on key:
 | E   | E | F#m | G#m | A  | B  | C#m | D#dim|
 | F   | F | Gm  | Am  | Bb | C  | Dm  | Edim |
 
-### Minor Keys (Natural Minor)
-| Key | i | ii° | III | iv | v | VI | VII |
-|-----|---|-----|-----|----|----|-----|-----|
-| Am  | Am | Bdim | C  | Dm | Em | F   | G   |
-| Em  | Em | F#dim| G  | Am | Bm | C   | D   |
-| Dm  | Dm | Edim | F  | Gm | Am | Bb  | C   |
-| Bm  | Bm | C#dim| D  | Em | F#m| G   | A   |
+### Minor Keys (Natural Minor + Borrowed Chords)
+| Key | i | ii° | III | iv | v | VI | VII | IV | V |
+|-----|---|-----|-----|----|----|-----|-----|----|----|
+| Am  | Am | Bdim | C  | Dm | Em | F   | G   | D  | E  |
+| Em  | Em | F#dim| G  | Am | Bm | C   | D   | A  | B  |
+| Dm  | Dm | Edim | F  | Gm | Am | Bb  | C   | G  | A  |
+| Bm  | Bm | C#dim| D  | Em | F#m| G   | A   | E  | F# |
+
+*IV and V are borrowed chords commonly used in minor keys*
+
+### Enharmonic Keys
+Uncommon keys are supported but display a notice suggesting the common equivalent:
+- A# → Bb, D# → Eb, G# → Ab
+- A#m → Bbm, D#m → Ebm, G#m → Abm
+- Cb → B, Fb → E
 
 ## UI Mockup
 
