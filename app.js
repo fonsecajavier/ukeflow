@@ -210,8 +210,9 @@ function createChordDiagram(chordData, large = false, displayName = null) {
  * @param {boolean} large - Large size flag
  */
 function createChordSVG(chord, large = false) {
+    const numFrets = 5; // Show 5 frets to support all chord shapes
     const width = large ? 120 : 70;
-    const height = large ? 140 : 85;
+    const height = large ? 160 : 100;
     const stringSpacing = large ? 24 : 14;
     const fretSpacing = large ? 24 : 14;
     const startX = large ? 24 : 14;
@@ -234,7 +235,7 @@ function createChordSVG(chord, large = false) {
     svg.appendChild(nut);
 
     // Draw frets (horizontal lines)
-    for (let i = 0; i <= 4; i++) {
+    for (let i = 0; i <= numFrets; i++) {
         const fret = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         fret.setAttribute('x1', startX);
         fret.setAttribute('y1', startY + i * fretSpacing);
@@ -251,7 +252,7 @@ function createChordSVG(chord, large = false) {
         string.setAttribute('x1', startX + i * stringSpacing);
         string.setAttribute('y1', startY);
         string.setAttribute('x2', startX + i * stringSpacing);
-        string.setAttribute('y2', startY + fretSpacing * 4);
+        string.setAttribute('y2', startY + fretSpacing * numFrets);
         string.setAttribute('stroke', '#888');
         string.setAttribute('stroke-width', i === 0 ? 2 : 1);
         svg.appendChild(string);
