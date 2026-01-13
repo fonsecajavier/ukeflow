@@ -1164,27 +1164,29 @@ const SCALE_DEGREES_MAJOR = {
     'Db': ['Db', 'Ebm', 'Fm', 'Gb', 'Ab', 'Bbm', 'Cdim']
 };
 
-// Scale degree mappings for minor keys (natural minor)
+// Scale degree mappings for minor keys (natural minor + common borrowed chords)
+// Includes major IV (from Dorian) and major V (from harmonic minor) as these are extremely common
 const SCALE_DEGREES_MINOR = {
-    'Am':  ['Am', 'Bdim', 'C', 'Dm', 'Em', 'F', 'G'],
-    'Em':  ['Em', 'F#dim', 'G', 'Am', 'Bm', 'C', 'D'],
-    'Bm':  ['Bm', 'C#dim', 'D', 'Em', 'F#m', 'G', 'A'],
-    'F#m': ['F#m', 'G#dim', 'A', 'Bm', 'C#m', 'D', 'E'],
-    'C#m': ['C#m', 'D#dim', 'E', 'F#m', 'G#m', 'A', 'B'],
-    'G#m': ['G#m', 'A#dim', 'B', 'C#m', 'D#m', 'E', 'F#'],
-    'Dm':  ['Dm', 'Edim', 'F', 'Gm', 'Am', 'Bb', 'C'],
-    'Gm':  ['Gm', 'Adim', 'Bb', 'Cm', 'Dm', 'Eb', 'F'],
-    'Cm':  ['Cm', 'Ddim', 'Eb', 'Fm', 'Gm', 'Ab', 'Bb'],
-    'Fm':  ['Fm', 'Gdim', 'Ab', 'Bbm', 'Cm', 'Db', 'Eb'],
-    'Bbm': ['Bbm', 'Cdim', 'Db', 'Ebm', 'Fm', 'Gb', 'Ab'],
-    'Ebm': ['Ebm', 'Fdim', 'Gb', 'Abm', 'Bbm', 'Cb', 'Db']
+    'Am':  ['Am', 'Bdim', 'C', 'Dm', 'Em', 'F', 'G', 'D', 'E'],
+    'Em':  ['Em', 'F#dim', 'G', 'Am', 'Bm', 'C', 'D', 'A', 'B'],
+    'Bm':  ['Bm', 'C#dim', 'D', 'Em', 'F#m', 'G', 'A', 'E', 'F#'],
+    'F#m': ['F#m', 'G#dim', 'A', 'Bm', 'C#m', 'D', 'E', 'B', 'C#'],
+    'C#m': ['C#m', 'D#dim', 'E', 'F#m', 'G#m', 'A', 'B', 'F#', 'G#'],
+    'G#m': ['G#m', 'A#dim', 'B', 'C#m', 'D#m', 'E', 'F#', 'C#', 'D#'],
+    'Dm':  ['Dm', 'Edim', 'F', 'Gm', 'Am', 'Bb', 'C', 'G', 'A'],
+    'Gm':  ['Gm', 'Adim', 'Bb', 'Cm', 'Dm', 'Eb', 'F', 'C', 'D'],
+    'Cm':  ['Cm', 'Ddim', 'Eb', 'Fm', 'Gm', 'Ab', 'Bb', 'F', 'G'],
+    'Fm':  ['Fm', 'Gdim', 'Ab', 'Bbm', 'Cm', 'Db', 'Eb', 'Bb', 'C'],
+    'Bbm': ['Bbm', 'Cdim', 'Db', 'Ebm', 'Fm', 'Gb', 'Ab', 'Eb', 'F'],
+    'Ebm': ['Ebm', 'Fdim', 'Gb', 'Abm', 'Bbm', 'Cb', 'Db', 'Ab', 'Bb']
 };
 
 // Roman numeral representations for major keys
 const ROMAN_NUMERALS_MAJOR = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°'];
 
 // Roman numeral representations for minor keys
-const ROMAN_NUMERALS_MINOR = ['i', 'ii°', 'III', 'iv', 'v', 'VI', 'VII'];
+// Indices 7 and 8 are for borrowed major IV and major V chords
+const ROMAN_NUMERALS_MINOR = ['i', 'ii°', 'III', 'iv', 'v', 'VI', 'VII', 'IV', 'V'];
 
 /**
  * Check if a key is minor
