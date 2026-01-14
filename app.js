@@ -383,32 +383,82 @@ function playStrum(stringFreqs, direction, startTime) {
 
 /**
  * Play a muted chunk sound (percussive)
+ * Simulates the sound of palm-muting strings on a ukulele
  */
 function playChunk(startTime) {
     const ctx = getAudioContext();
-    const duration = 0.08;
+    const duration = 0.12;
     const sampleRate = ctx.sampleRate;
     const samples = Math.ceil(sampleRate * duration);
     const buffer = ctx.createBuffer(1, samples, sampleRate);
     const data = buffer.getChannelData(0);
 
-    // Create a short noise burst for percussive chunk
+    // Muted string frequencies (deadened but still have some pitch)
+    const mutedFreqs = [392, 262, 330, 440]; // G, C, E, A but muted
+
     for (let i = 0; i < samples; i++) {
-        const envelope = Math.exp(-i / (sampleRate * 0.02));
-        data[i] = (Math.random() * 2 - 1) * envelope * 0.3;
+        const t = i / sampleRate;
+
+        // Fast initial attack, quick decay
+        const attackEnv = 1 - Math.exp(-i / (sampleRate * 0.001));
+        const decayEnv = Math.exp(-i / (sampleRate * 0.025));
+        const envelope = attackEnv * decayEnv;
+
+        // Layer 1: Muted strings - very short pitched content
+        let mutedStrings = 0;
+        for (let s = 0; s < 4; s++) {
+            const stringDecay = Math.exp(-i / (sampleRate * (0.015 + s * 0.005)));
+            mutedStrings += Math.sin(2 * Math.PI * mutedFreqs[s] * t) * stringDecay * 0.15;
+        }
+
+        // Layer 2: Body thump (low frequency)
+        const thumpFreq = 150;
+        const thumpDecay = Math.exp(-i / (sampleRate * 0.03));
+        const bodyThump = Math.sin(2 * Math.PI * thumpFreq * t) * thumpDecay * 0.25;
+
+        // Layer 3: High-frequency "click" from fingers hitting strings
+        const clickDecay = Math.exp(-i / (sampleRate * 0.008));
+        const click = (Math.random() * 2 - 1) * clickDecay * 0.3;
+
+        // Layer 4: Mid-range woody resonance
+        const woodyFreq = 450;
+        const woodyDecay = Math.exp(-i / (sampleRate * 0.035));
+        const woody = Math.sin(2 * Math.PI * woodyFreq * t + Math.random() * 0.5) * woodyDecay * 0.15;
+
+        // Combine all layers
+        data[i] = (mutedStrings + bodyThump + click + woody) * envelope * 0.7;
+    }
+
+    // Apply a gentle saturation for warmth
+    for (let i = 0; i < samples; i++) {
+        data[i] = Math.tanh(data[i] * 1.5) * 0.8;
     }
 
     const source = ctx.createBufferSource();
     source.buffer = buffer;
 
-    // Add a bandpass filter for that woody chunk sound
-    const filter = ctx.createBiquadFilter();
-    filter.type = 'bandpass';
-    filter.frequency.value = 800;
-    filter.Q.value = 1;
+    // Shape the final sound with filters
+    const highpass = ctx.createBiquadFilter();
+    highpass.type = 'highpass';
+    highpass.frequency.value = 80;
+    highpass.Q.value = 0.7;
 
-    source.connect(filter);
-    filter.connect(ctx.destination);
+    const lowpass = ctx.createBiquadFilter();
+    lowpass.type = 'lowpass';
+    lowpass.frequency.value = 3000;
+    lowpass.Q.value = 0.7;
+
+    // Add slight resonance at body frequency
+    const bodyResonance = ctx.createBiquadFilter();
+    bodyResonance.type = 'peaking';
+    bodyResonance.frequency.value = 400;
+    bodyResonance.Q.value = 2;
+    bodyResonance.gain.value = 3;
+
+    source.connect(highpass);
+    highpass.connect(lowpass);
+    lowpass.connect(bodyResonance);
+    bodyResonance.connect(ctx.destination);
     source.start(startTime);
 }
 
