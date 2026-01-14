@@ -221,20 +221,24 @@ ukeflow/
     ├── estoy-aqui.json                # Shakira 90s, Minor key (Em)
     ├── ciega-sordomuda.json           # Shakira 90s, Minor key (Am)
     ├── antologia.json                 # Shakira 90s (G)
-    └── andar-conmigo.json             # Julieta Venegas (C)
+    ├── andar-conmigo.json             # Julieta Venegas (C)
+    ├── i-really-want-to-stay-at-your-house.json  # Cyberpunk 2077 (B)
+    └── a-la-nanita-nana.json          # Traditional Spanish lullaby (A)
 ```
 
 ## Data Structures
 
-### songs.json (Index File)
+### songs.json (Index File with Metadata)
 ```json
 {
   "songs": [
-    "songs/somewhere-over-the-rainbow.json",
-    "songs/riptide.json"
+    { "path": "songs/somewhere-over-the-rainbow.json", "title": "Somewhere Over the Rainbow", "artist": "Israel Kamakawiwo'ole" },
+    { "path": "songs/riptide.json", "title": "Riptide", "artist": "Vance Joy" }
   ]
 }
 ```
+- Title and artist in index enables lazy loading (songs fetched only when selected)
+- Song data cached after first load to avoid re-fetching
 
 ### Individual Song File Format
 ```json

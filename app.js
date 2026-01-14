@@ -4,7 +4,8 @@
 
 // Application State
 const state = {
-    songs: [],
+    songIndex: [],      // Metadata only (title, artist, path)
+    songCache: {},      // Cache for loaded song data (keyed by path)
     currentSong: null,
     showAsNumbers: false,
     transpose: 0,
@@ -791,7 +792,7 @@ async function init() {
     populatePlayStyleSelector();
     updatePatternDisplay();
     setupEventListeners();
-    loadFromURL();
+    await loadFromURL();
 }
 
 /**
@@ -819,18 +820,21 @@ function populatePlayStyleSelector() {
 /**
  * Load song from URL parameters
  */
-function loadFromURL() {
+async function loadFromURL() {
     const params = new URLSearchParams(window.location.search);
     const songParam = params.get('song');
     const transposeParam = params.get('transpose');
 
     if (songParam) {
-        // Find song by slug
-        const song = state.songs.find(song => slugify(song.title) === songParam);
-        if (song) {
-            elements.songSelector.value = `${song.title} - ${song.artist}`;
+        // Find song metadata by slug
+        const songMeta = state.songIndex.find(s => slugify(s.title) === songParam);
+        if (songMeta) {
+            elements.songSelector.value = `${songMeta.title} - ${songMeta.artist}`;
             updateClearButtonVisibility();
-            state.currentSong = song;
+
+            // Load full song data
+            const songData = await loadSongData(songMeta);
+            state.currentSong = songData;
 
             // Apply transpose if specified
             if (transposeParam) {
@@ -883,22 +887,31 @@ function slugify(text) {
  */
 async function loadSongs() {
     try {
-        // Load the index file that lists all song files
+        // Load only the index file with metadata (no individual song files yet)
         const indexResponse = await fetch('songs.json');
         const indexData = await indexResponse.json();
-
-        // Load each individual song file
-        const songPromises = indexData.songs.map(async (songPath) => {
-            const response = await fetch(songPath);
-            return response.json();
-        });
-
-        state.songs = await Promise.all(songPromises);
+        state.songIndex = indexData.songs;
         populateSongSelector();
     } catch (error) {
         console.error('Error loading songs:', error);
-        elements.welcomeMessage.innerHTML = '<p>Error loading songs. Make sure songs.json and song files exist.</p>';
+        elements.welcomeMessage.innerHTML = '<p>Error loading songs. Make sure songs.json exists.</p>';
     }
+}
+
+/**
+ * Load a song's full data (lazy loading with cache)
+ */
+async function loadSongData(songMeta) {
+    // Return from cache if already loaded
+    if (state.songCache[songMeta.path]) {
+        return state.songCache[songMeta.path];
+    }
+
+    // Fetch and cache the song data
+    const response = await fetch(songMeta.path);
+    const songData = await response.json();
+    state.songCache[songMeta.path] = songData;
+    return songData;
 }
 
 /**
@@ -906,7 +919,7 @@ async function loadSongs() {
  */
 function populateSongSelector() {
     // Sort songs alphabetically by title
-    const sortedSongs = [...state.songs].sort((a, b) =>
+    const sortedSongs = [...state.songIndex].sort((a, b) =>
         a.title.localeCompare(b.title)
     );
 
@@ -1012,7 +1025,7 @@ function clearSongSelector() {
 /**
  * Handle song selection
  */
-function handleSongSelect(e) {
+async function handleSongSelect(e) {
     const inputValue = e.target.value.trim();
     updateClearButtonVisibility();
 
@@ -1022,17 +1035,19 @@ function handleSongSelect(e) {
         return;
     }
 
-    // Find song by matching "Title - Artist" format
-    const song = state.songs.find(s => `${s.title} - ${s.artist}` === inputValue);
+    // Find song metadata by matching "Title - Artist" format
+    const songMeta = state.songIndex.find(s => `${s.title} - ${s.artist}` === inputValue);
 
-    if (song) {
+    if (songMeta) {
         // Reset transpose and relative key when switching songs
         state.transpose = 0;
         state.useRelativeKey = false;
         elements.transposeSelect.value = '0';
         elements.toggleRelativeKey.classList.remove('active');
 
-        state.currentSong = song;
+        // Load full song data (lazy load with cache)
+        const songData = await loadSongData(songMeta);
+        state.currentSong = songData;
         displaySong();
         updateURL();
     }
