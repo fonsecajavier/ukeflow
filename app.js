@@ -235,8 +235,8 @@ function getNoteFrequency(stringIndex, fret) {
 }
 
 /**
- * Karplus-Strong plucked string synthesis
- * Creates a realistic plucked string sound
+ * Karplus-Strong plucked string synthesis with ukulele body resonance
+ * Creates a warm, bright nylon string ukulele sound
  */
 function pluckString(frequency, duration = 1.5, volume = 0.3) {
     const ctx = getAudioContext();
@@ -249,60 +249,102 @@ function pluckString(frequency, duration = 1.5, volume = 0.3) {
     const delayLength = Math.round(sampleRate / frequency);
     const delayLine = new Float32Array(delayLength);
 
-    // Initialize delay line with noise burst (shaped for ukulele character)
+    // Initialize delay line with shaped noise burst for nylon string character
+    // Ukuleles have a bright attack with warm sustain
     for (let i = 0; i < delayLength; i++) {
-        // Mix of noise and slight sine component for ukulele brightness
-        delayLine[i] = (Math.random() * 2 - 1) * 0.5 +
-                       Math.sin(2 * Math.PI * i / delayLength) * 0.5;
+        const t = i / delayLength;
+        // Blend of noise, fundamental, and 2nd harmonic for that nylon "ping"
+        const noise = (Math.random() * 2 - 1) * 0.4;
+        const fundamental = Math.sin(2 * Math.PI * t) * 0.35;
+        const harmonic2 = Math.sin(4 * Math.PI * t) * 0.15;
+        const harmonic3 = Math.sin(6 * Math.PI * t) * 0.08;
+        // Shape the initial burst - stronger in the middle
+        const burstShape = Math.sin(Math.PI * t);
+        delayLine[i] = (noise + fundamental + harmonic2 + harmonic3) * (0.7 + 0.3 * burstShape);
     }
 
-    // Damping factor (controls decay rate) - ukulele has quick decay
-    const damping = 0.996;
-    // Brightness filter coefficient
-    const brightness = 0.4;
+    // Damping factor - ukulele nylon strings have moderate sustain
+    const damping = 0.9975;
+    // Brightness - nylon strings are warmer than steel
+    const brightness = 0.35;
+    // Body resonance frequencies (typical ukulele body resonance ~400-500Hz)
+    const bodyResonance1 = 420;
+    const bodyResonance2 = 520;
 
     let delayIndex = 0;
     let prevSample = 0;
+    let prevSample2 = 0;
+
+    // Body resonance state variables (simple 2-pole resonator simulation)
+    let bodyState1 = 0, bodyState1Prev = 0;
+    let bodyState2 = 0, bodyState2Prev = 0;
+    const bodyDecay1 = 0.995;
+    const bodyDecay2 = 0.992;
+    const bodyFreq1 = 2 * Math.PI * bodyResonance1 / sampleRate;
+    const bodyFreq2 = 2 * Math.PI * bodyResonance2 / sampleRate;
 
     // Generate samples using Karplus-Strong algorithm
     for (let i = 0; i < samples; i++) {
         // Get current sample from delay line
         const currentSample = delayLine[delayIndex];
 
-        // Low-pass filter: average with previous sample
-        // This simulates string damping and creates the decaying tone
+        // Low-pass filter with slight allpass character for nylon warmth
         const nextIndex = (delayIndex + 1) % delayLength;
         const filtered = damping * (
             brightness * delayLine[delayIndex] +
             (1 - brightness) * delayLine[nextIndex]
         );
 
-        // Additional smoothing for warmer ukulele tone
-        const smoothed = 0.5 * filtered + 0.5 * prevSample;
+        // Two-sample averaging for warmer tone
+        const smoothed = 0.4 * filtered + 0.4 * prevSample + 0.2 * prevSample2;
+        prevSample2 = prevSample;
         prevSample = filtered;
 
         // Store filtered sample back in delay line
         delayLine[delayIndex] = smoothed;
 
-        // Output the sample
-        data[i] = currentSample * volume;
+        // Add body resonance (subtle coloration)
+        // Simple resonator: adds warmth without being boomy
+        const excitation = currentSample * 0.08;
+        bodyState1 = bodyDecay1 * (bodyState1 * Math.cos(bodyFreq1) - bodyState1Prev * Math.sin(bodyFreq1)) + excitation;
+        bodyState1Prev = bodyState1;
+        bodyState2 = bodyDecay2 * (bodyState2 * Math.cos(bodyFreq2) - bodyState2Prev * Math.sin(bodyFreq2)) + excitation;
+        bodyState2Prev = bodyState2;
+
+        // Mix string sound with body resonance
+        const bodySound = (bodyState1 + bodyState2) * 0.15;
+
+        // Output the sample with body coloration
+        data[i] = (currentSample + bodySound) * volume;
 
         // Move to next position in delay line
         delayIndex = nextIndex;
     }
 
     // Apply amplitude envelope for natural attack and release
-    const attackTime = 0.005 * sampleRate;
-    const releaseStart = samples - 0.1 * sampleRate;
+    const attackTime = 0.003 * sampleRate; // Faster attack for pluck
+    const releaseStart = samples - 0.15 * sampleRate;
 
     for (let i = 0; i < samples; i++) {
         if (i < attackTime) {
-            // Quick attack
-            data[i] *= i / attackTime;
+            // Quick attack with slight curve
+            const t = i / attackTime;
+            data[i] *= t * t; // Quadratic attack
         } else if (i > releaseStart) {
             // Smooth release
-            data[i] *= (samples - i) / (samples - releaseStart);
+            const t = (samples - i) / (samples - releaseStart);
+            data[i] *= t * t; // Quadratic release
         }
+    }
+
+    // Add subtle "woody" character with a soft high-frequency roll-off
+    // Simple one-pole lowpass
+    let lpState = 0;
+    const lpCoef = 0.85; // Gentle roll-off
+    for (let i = 0; i < samples; i++) {
+        lpState = lpCoef * lpState + (1 - lpCoef) * data[i];
+        // Mix original with filtered for brightness control
+        data[i] = 0.6 * data[i] + 0.4 * lpState;
     }
 
     return buffer;
@@ -1034,14 +1076,23 @@ function renderHarmonicAnalysis() {
         // Scale degree
         const degreeCell = document.createElement('td');
         degreeCell.className = 'degree-cell';
-        const degree = getScaleDegree(chord, transposedKey);
+        let degree = getScaleDegree(chord, transposedKey);
+
+        // Check for secondary dominant if degree is unknown
+        if (degree === '?') {
+            const secondaryDom = detectSecondaryDominant(chord, transposedKey, isMinor);
+            if (secondaryDom) {
+                // Extract just the Roman numeral part (e.g., "V/vi" from "V/vi (Secondary Dominant)")
+                degree = secondaryDom.split(' ')[0];
+            }
+        }
         degreeCell.textContent = degree;
         row.appendChild(degreeCell);
 
         // Harmonic function
         const functionCell = document.createElement('td');
         functionCell.className = 'function-cell';
-        const func = getHarmonicFunction(chord, degree, transposedKey, isMinor);
+        const func = getHarmonicFunction(chord, getScaleDegree(chord, transposedKey), transposedKey, isMinor);
         functionCell.textContent = func.name;
         functionCell.classList.add(func.class);
         row.appendChild(functionCell);
@@ -1203,13 +1254,84 @@ function getHarmonicFunction(chord, degree, key, isMinor) {
         funcName += ` [${modifiers.join(', ')}]`;
     }
 
-    // Handle unknown degrees
+    // Handle unknown degrees - check for secondary dominants first
     if (degree === '?') {
-        funcName = 'Non-diatonic';
-        funcClass = 'function-borrowed';
+        // Check for secondary dominants (V/x)
+        const secondaryDom = detectSecondaryDominant(chord, key, isMinor);
+        if (secondaryDom) {
+            funcName = secondaryDom;
+            funcClass = 'function-dominant';
+        } else {
+            funcName = 'Non-diatonic';
+            funcClass = 'function-borrowed';
+        }
     }
 
     return { name: funcName, class: funcClass };
+}
+
+/**
+ * Detect if a chord is a secondary dominant (V/x)
+ * @param {string} chord - The chord name
+ * @param {string} key - The current key
+ * @param {boolean} isMinor - Whether the key is minor
+ * @returns {string|null} - Description like "V/vi" or null if not a secondary dominant
+ */
+function detectSecondaryDominant(chord, key, isMinor) {
+    const chordRoot = chord.replace(/m7?|maj7|7|dim|aug|sus[24]?|add\d+|9/g, '');
+    const isMinorChord = chord.includes('m') && !chord.includes('maj');
+
+    // Secondary dominants are typically major or dominant 7th chords
+    if (isMinorChord) return null;
+
+    const chromaticScale = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+    const flatScale = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+
+    // Get key root
+    const keyRoot = key.replace('m', '');
+    let keyIndex = chromaticScale.indexOf(keyRoot);
+    if (keyIndex === -1) keyIndex = flatScale.indexOf(keyRoot);
+    if (keyIndex === -1) return null;
+
+    // Get chord root index
+    let chordIndex = chromaticScale.indexOf(chordRoot);
+    if (chordIndex === -1) chordIndex = flatScale.indexOf(chordRoot);
+    if (chordIndex === -1) return null;
+
+    // Calculate interval from key root to chord root
+    const interval = (chordIndex - keyIndex + 12) % 12;
+
+    if (isMinor) {
+        // Minor key secondary dominants
+        // V/III (dominant of relative major) - would be at interval 7 (a fifth above relative major root)
+        // V/iv - at interval 5
+        // V/v - at interval 7
+        // V/VI - at interval 8
+        // V/VII - at interval 10
+        switch (interval) {
+            case 2: return 'V/III (→ Relative Major)';
+            case 5: return 'V/iv';
+            case 7: return 'V/v';
+            case 9: return 'V/VI';
+            case 11: return 'V/VII';
+        }
+    } else {
+        // Major key secondary dominants
+        // V/ii - at interval 9 (A in key of C)
+        // V/iii - at interval 11 (B in key of C)
+        // V/IV - at interval 0 (C in key of C) - but this is the tonic
+        // V/V - at interval 2 (D in key of C)
+        // V/vi - at interval 4 (E in key of C)
+        switch (interval) {
+            case 2: return 'V/V (Secondary Dominant)';
+            case 4: return 'V/vi (Secondary Dominant)';
+            case 6: return 'V/vii° (Secondary Dominant)';
+            case 9: return 'V/ii (Secondary Dominant)';
+            case 11: return 'V/iii (Secondary Dominant)';
+        }
+    }
+
+    return null;
 }
 
 /**
@@ -1653,9 +1775,21 @@ function renderLyrics() {
                     // Transpose the chord
                     const transposedChord = transposeChord(c.chord, state.transpose);
 
-                    const displayChord = state.showAsNumbers
-                        ? getScaleDegree(transposedChord, transposedKey)
-                        : transposedChord;
+                    let displayChord;
+                    if (state.showAsNumbers) {
+                        let degree = getScaleDegree(transposedChord, transposedKey);
+                        // Check for secondary dominant if degree is unknown
+                        if (degree === '?') {
+                            const isMinor = isMinorKey(transposedKey);
+                            const secondaryDom = detectSecondaryDominant(transposedChord, transposedKey, isMinor);
+                            if (secondaryDom) {
+                                degree = secondaryDom.split(' ')[0]; // Extract "V/vi" from "V/vi (Secondary Dominant)"
+                            }
+                        }
+                        displayChord = degree;
+                    } else {
+                        displayChord = transposedChord;
+                    }
 
                     // Create a placeholder for the chord marker
                     const markerPlaceholder = `{{CHORD:${transposedChord}:${displayChord}}}`;
@@ -1783,8 +1917,16 @@ function openChordModal(chordName) {
     const nameDiv = document.createElement('div');
     nameDiv.className = 'chord-name modal-chord-title';
     const transposedKey = getDisplayKey();
+    let modalDegree = getScaleDegree(chordName, transposedKey);
+    if (modalDegree === '?' && state.showAsNumbers) {
+        const isMinor = isMinorKey(transposedKey);
+        const secondaryDom = detectSecondaryDominant(chordName, transposedKey, isMinor);
+        if (secondaryDom) {
+            modalDegree = secondaryDom.split(' ')[0];
+        }
+    }
     nameDiv.textContent = state.showAsNumbers
-        ? `${getScaleDegree(chordName, transposedKey)} (${chordName})`
+        ? `${modalDegree} (${chordName})`
         : chordName;
     elements.modalChord.appendChild(nameDiv);
 

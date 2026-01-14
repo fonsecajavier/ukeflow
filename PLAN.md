@@ -78,6 +78,12 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - Dorian IV in minor keys
   - Natural vs harmonic minor dominant
   - Borrowed chord sources (Mixolydian, Parallel Minor)
+- **Secondary Dominant Detection**:
+  - Identifies non-diatonic major chords functioning as V/x
+  - Major keys: V/ii, V/iii, V/IV, V/V, V/vi, V/vii°
+  - Minor keys: V/III, V/iv, V/v, V/VI, V/VII
+  - Displayed in both Harmonic Analysis table and lyrics (when "Show as Numbers" enabled)
+  - Example: E major in key of C shown as "V/vi (Secondary Dominant)"
 
 ### 4. Interactive Chord Popups
 - Click any chord in the lyrics section
@@ -91,6 +97,12 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
 - Based on standard ukulele tuning (G4-C4-E4-A4)
 - No external audio files required - generated in real-time
 - Visual feedback when playing (button pulses)
+- **Ukulele-specific sound design**:
+  - Nylon string character with harmonic-rich initial pluck
+  - Body resonance simulation at ~420Hz and ~520Hz
+  - Warm sustain with two-sample averaging
+  - Quadratic attack/release envelopes for natural feel
+  - Subtle high-frequency roll-off for woody tone
 
 - **Play Style Selector** with grouped options:
 
@@ -123,6 +135,15 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - Shows visual representation of selected pattern
   - Strums: ↓ ↑ ✕ arrows (down, up, muted)
   - Arpeggios: G → C → E → A string sequence
+
+### 4b. Alternative Chord Voicings
+- Chords with multiple voicings show a "+N" indicator badge
+- Click chord to open modal showing all available voicings side-by-side
+- Default voicing highlighted with green border
+- Each voicing has its own play button
+- High position chords (fret > 5) show fret number indicator (e.g., "6fr")
+- Voicings include descriptions (e.g., "Barre chord shape", "Higher position")
+- Currently supported: C, Am, F, G, D, A, E, Em, Dm, Bm, A#m, F#, G#, C7, G7
 
 ### 5. Progression Toggle
 - Button to switch between:
@@ -172,14 +193,15 @@ ukeflow/
     ├── cielito-lindo.json             # Latin American (C)
     ├── besame-mucho.json              # Latin American, Minor key (Dm)
     ├── waka-waka.json                 # Shakira (G)
-    ├── hips-dont-lie.json             # Shakira, Minor key (Am)
+    ├── hips-dont-lie.json             # Shakira, Minor key (A#m)
     ├── whenever-wherever.json         # Shakira, Minor key (Bm)
     ├── la-tortura.json                # Shakira, Minor key (Am)
     ├── ojos-asi.json                  # Shakira 90s, Minor key (F#m)
     ├── bamboleo.json                  # Gipsy Kings, Flamenco (Em)
     ├── estoy-aqui.json                # Shakira 90s, Minor key (Em)
     ├── ciega-sordomuda.json           # Shakira 90s, Minor key (Am)
-    └── antologia.json                 # Shakira 90s (G)
+    ├── antologia.json                 # Shakira 90s (G)
+    └── andar-conmigo.json             # Julieta Venegas (C)
 ```
 
 ## Data Structures
@@ -228,6 +250,21 @@ ukeflow/
     "fingers": [1, 1, 1, 1],
     "barre": { "fret": 2, "strings": [0, 1, 2, 3] }
   }
+}
+```
+
+### Chord Variations Format
+```javascript
+const CHORD_VARIATIONS = {
+  "C": [
+    {
+      "name": "C (high)",
+      "description": "Higher position",
+      "frets": [5, 4, 3, 3],
+      "fingers": [4, 3, 1, 1],
+      "barre": { "fret": 3, "fromString": 2, "toString": 3 }
+    }
+  ]
 }
 ```
 

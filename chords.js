@@ -1530,7 +1530,7 @@ function getScaleDegree(chord, key) {
         return scaleBase === baseChord || c === baseChord;
     });
 
-    if (index === -1) return chord;
+    if (index === -1) return '?';
 
     let roman = romanNumerals[index];
 
