@@ -21,6 +21,7 @@
     { "path": "songs/bamboleo.json", "title": "Bamboleo", "artist": "Gipsy Kings" },
     { "path": "songs/andar-conmigo.json", "title": "Andar Conmigo", "artist": "Julieta Venegas" },
     { "path": "songs/i-really-want-to-stay-at-your-house.json", "title": "I Really Want to Stay at Your House", "artist": "Rosa Walton & Hallie Coggins" },
-    { "path": "songs/a-la-nanita-nana.json", "title": "A la Nanita Nana", "artist": "Villancicos Populares" }
+    { "path": "songs/a-la-nanita-nana.json", "title": "A la Nanita Nana", "artist": "Villancicos Populares" },
+    { "path": "songs/good-riddance.json", "title": "Good Riddance (Time of Your Life)", "artist": "Green Day" }
   ]
 }

@@ -144,6 +144,7 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - Spanish Roll - rasgueado-inspired
   - Jazz Comp - jazz comping style
   - Island Roll - Hawaiian style
+  - Good Riddance - classic fingerpicking (G-E-C-A-C-E-C-A)
 
 - **Tempo Selector** (80-160 BPM):
   - Controls timing for both strums and arpeggios
@@ -223,7 +224,8 @@ ukeflow/
     ├── antologia.json                 # Shakira 90s (G)
     ├── andar-conmigo.json             # Julieta Venegas (C)
     ├── i-really-want-to-stay-at-your-house.json  # Cyberpunk 2077 (B)
-    └── a-la-nanita-nana.json          # Traditional Spanish lullaby (A)
+    ├── a-la-nanita-nana.json          # Traditional Spanish lullaby (A)
+    └── good-riddance.json             # Green Day (G)
 ```
 
 ## Data Structures

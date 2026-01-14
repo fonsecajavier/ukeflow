@@ -1,0 +1,199 @@
+{
+  "title": "Good Riddance (Time of Your Life)",
+  "artist": "Green Day",
+  "key": "G",
+  "lines": [
+    { "section": "Intro" },
+    {
+      "lyrics": "[Gx][-][Gx][-]",
+      "chords": []
+    },
+    {
+      "lyrics": "[G][G][C][D]  x2",
+      "chords": []
+    },
+    { "section": "Verse 1" },
+    {
+      "lyrics": " Another turning point, a fork stuck in the road",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "G", "position": 9 },
+        { "chord": "C", "position": 25 },
+        { "chord": "D", "position": 42 }
+      ]
+    },
+    {
+      "lyrics": " Time grabs you by the wrist, directs you where to go",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "G", "position": 16 },
+        { "chord": "C", "position": 32 },
+        { "chord": "D", "position": 51 }
+      ]
+    },
+    {
+      "lyrics": " So make the best of this test, and don't ask why",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "D", "position": 13 },
+        { "chord": "C", "position": 26 },
+        { "chord": "G", "position": 46 }
+      ]
+    },
+    {
+      "lyrics": " It's not a question, but a lesson learned in time",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "D", "position": 12 },
+        { "chord": "C", "position": 28 },
+        { "chord": "G", "position": 46 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "It's something unpredictable, but in the end it's right.",
+      "chords": [
+        { "chord": "Em", "position": 5 },
+        { "chord": "G", "position": 18 },
+        { "chord": "Em", "position": 32 },
+        { "chord": "G", "position": 47 }
+      ]
+    },
+    {
+      "lyrics": "I hope you had the time of your life.",
+      "chords": [
+        { "chord": "Em", "position": 2 },
+        { "chord": "D", "position": 18 },
+        { "chord": "G", "position": 29 },
+        { "chord": "G", "position": 38 },
+        { "chord": "C", "position": 43 },
+        { "chord": "D", "position": 48 }
+      ]
+    },
+    {
+      "lyrics": "[G][G][C][D]",
+      "chords": []
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": " So take the photographs, and still frames in your mind",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "G", "position": 13 },
+        { "chord": "C", "position": 30 },
+        { "chord": "D", "position": 52 }
+      ]
+    },
+    {
+      "lyrics": " Hang it on a shelf in good health and good time",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "G", "position": 9 },
+        { "chord": "C", "position": 23 },
+        { "chord": "D", "position": 45 }
+      ]
+    },
+    {
+      "lyrics": " Tattoos of memories and dead skin on trial",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "D", "position": 12 },
+        { "chord": "C", "position": 25 },
+        { "chord": "G", "position": 38 }
+      ]
+    },
+    {
+      "lyrics": " For what it's worth it was worth all the while",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "D", "position": 15 },
+        { "chord": "C", "position": 28 },
+        { "chord": "G", "position": 42 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "It's something unpredictable, but in the end it's right.",
+      "chords": [
+        { "chord": "Em", "position": 5 },
+        { "chord": "G", "position": 19 },
+        { "chord": "Em", "position": 32 },
+        { "chord": "G", "position": 47 }
+      ]
+    },
+    {
+      "lyrics": "I hope you had the time of your life.",
+      "chords": [
+        { "chord": "Em", "position": 2 },
+        { "chord": "D", "position": 18 },
+        { "chord": "G", "position": 29 },
+        { "chord": "G", "position": 38 },
+        { "chord": "C", "position": 43 },
+        { "chord": "D", "position": 48 }
+      ]
+    },
+    { "section": "Solo" },
+    {
+      "lyrics": "[G][G][C][D]  x3",
+      "chords": []
+    },
+    {
+      "lyrics": "[Em][D][C][G]  x2",
+      "chords": []
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "It's something unpredictable, but in the end it's right.",
+      "chords": [
+        { "chord": "Em", "position": 5 },
+        { "chord": "G", "position": 19 },
+        { "chord": "Em", "position": 32 },
+        { "chord": "G", "position": 47 }
+      ]
+    },
+    {
+      "lyrics": "I hope you had the time of your life.",
+      "chords": [
+        { "chord": "Em", "position": 2 },
+        { "chord": "D", "position": 18 },
+        { "chord": "G", "position": 29 },
+        { "chord": "G", "position": 38 },
+        { "chord": "C", "position": 43 },
+        { "chord": "D", "position": 48 }
+      ]
+    },
+    {
+      "lyrics": "[G][G][C][D]",
+      "chords": []
+    },
+    { "section": "Outro Chorus (let ring)" },
+    {
+      "lyrics": "It's something unpredictable, but in the end it's right.",
+      "chords": [
+        { "chord": "Em", "position": 5 },
+        { "chord": "G", "position": 20 },
+        { "chord": "Em", "position": 34 },
+        { "chord": "G", "position": 50 }
+      ]
+    },
+    {
+      "lyrics": "I hope you had the time of your life.",
+      "chords": [
+        { "chord": "Em", "position": 2 },
+        { "chord": "D", "position": 18 },
+        { "chord": "G", "position": 36 },
+        { "chord": "G", "position": 45 },
+        { "chord": "C", "position": 50 },
+        { "chord": "D", "position": 55 }
+      ]
+    },
+    {
+      "lyrics": "[G][G][C][D]",
+      "chords": []
+    },
+    {
+      "lyrics": "[G] (let ring)",
+      "chords": []
+    }
+  ]
+}

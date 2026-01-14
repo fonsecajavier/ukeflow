@@ -436,6 +436,13 @@ const PLAY_STYLES = {
                 // Hawaiian style
                 pattern: [0, 2, 3, 2, 1, 2, 3, 2],
                 delay: 0.09
+            },
+            'arp-good-riddance': {
+                name: 'Good Riddance',
+                type: 'arpeggio',
+                // Classic fingerpicking: G-E-C-A-C-E-C-A (thumb on G, then alternating)
+                pattern: [0, 2, 1, 3, 1, 2, 1, 3],
+                delay: 0.12
             }
         }
     }
