@@ -113,8 +113,9 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - Rock (D D U D) - driving rhythm
   - Calypso (D U U D U) - Caribbean feel
   - Chunk/Muted (D x U x) - percussive with muted hits
-    - Realistic palm-mute sound with muted string pitches
-    - Body thump, finger click, and woody resonance layers
+    - Soft, subtle palm-mute sound
+    - Mutes currently ringing strings (realistic palm behavior)
+    - Gentle body thump and woody resonance
   - Reggae Chunk (x U x U) - off-beat with chunks
   - Ska Upstroke (x U x U) - ska style
   - Funky Chunk (D x D U x U) - syncopated funk

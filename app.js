@@ -14,6 +14,39 @@ const state = {
 // Audio Context for chord playback
 let audioContext = null;
 
+// Track active audio sources for muting
+let activeSources = [];
+
+/**
+ * Track an audio source for potential muting
+ * @param {AudioBufferSourceNode} source - The audio source to track
+ * @param {number} endTime - When the source will finish playing
+ */
+function trackSource(source, endTime) {
+    activeSources.push({ source, endTime });
+    // Clean up when source ends
+    source.onended = () => {
+        activeSources = activeSources.filter(s => s.source !== source);
+    };
+}
+
+/**
+ * Stop all active audio sources (for muting when chunk is played)
+ * @param {number} stopTime - When to stop the sources (defaults to now)
+ */
+function stopAllSources(stopTime) {
+    const ctx = getAudioContext();
+    const time = stopTime || ctx.currentTime;
+    activeSources.forEach(({ source }) => {
+        try {
+            source.stop(time);
+        } catch (e) {
+            // Source may have already stopped
+        }
+    });
+    activeSources = [];
+}
+
 /**
  * Get or create the audio context (must be initialized after user interaction)
  */
@@ -535,7 +568,10 @@ function playStrum(stringFreqs, direction, startTime) {
             const source = ctx.createBufferSource();
             source.buffer = buffer;
             source.connect(ctx.destination);
-            source.start(startTime + i * strumSpeed);
+            const sourceStartTime = startTime + i * strumSpeed;
+            source.start(sourceStartTime);
+            // Track source for muting by chunk
+            trackSource(source, sourceStartTime + 0.8);
         }
     });
 }
@@ -543,9 +579,14 @@ function playStrum(stringFreqs, direction, startTime) {
 /**
  * Play a muted chunk sound (percussive)
  * Simulates the sound of palm-muting strings on a ukulele
+ * Also stops all currently ringing strings (real palm mute behavior)
  */
 function playChunk(startTime) {
     const ctx = getAudioContext();
+
+    // Stop all currently ringing strings at the moment the chunk plays
+    // This is what a real palm mute does
+    stopAllSources(startTime);
     const duration = 0.12;
     const sampleRate = ctx.sampleRate;
     const samples = Math.ceil(sampleRate * duration);
@@ -558,61 +599,61 @@ function playChunk(startTime) {
     for (let i = 0; i < samples; i++) {
         const t = i / sampleRate;
 
-        // Fast initial attack, quick decay
-        const attackEnv = 1 - Math.exp(-i / (sampleRate * 0.001));
-        const decayEnv = Math.exp(-i / (sampleRate * 0.025));
+        // Soft attack, gentle decay - more like a soft palm touch
+        const attackEnv = 1 - Math.exp(-i / (sampleRate * 0.003));
+        const decayEnv = Math.exp(-i / (sampleRate * 0.04));
         const envelope = attackEnv * decayEnv;
 
-        // Layer 1: Muted strings - very short pitched content
+        // Layer 1: Muted strings - very subtle pitched content
         let mutedStrings = 0;
         for (let s = 0; s < 4; s++) {
-            const stringDecay = Math.exp(-i / (sampleRate * (0.015 + s * 0.005)));
-            mutedStrings += Math.sin(2 * Math.PI * mutedFreqs[s] * t) * stringDecay * 0.15;
+            const stringDecay = Math.exp(-i / (sampleRate * (0.02 + s * 0.005)));
+            mutedStrings += Math.sin(2 * Math.PI * mutedFreqs[s] * t) * stringDecay * 0.06;
         }
 
-        // Layer 2: Body thump (low frequency)
-        const thumpFreq = 150;
-        const thumpDecay = Math.exp(-i / (sampleRate * 0.03));
-        const bodyThump = Math.sin(2 * Math.PI * thumpFreq * t) * thumpDecay * 0.25;
+        // Layer 2: Soft body thump (low frequency, gentle)
+        const thumpFreq = 120;
+        const thumpDecay = Math.exp(-i / (sampleRate * 0.05));
+        const bodyThump = Math.sin(2 * Math.PI * thumpFreq * t) * thumpDecay * 0.12;
 
-        // Layer 3: High-frequency "click" from fingers hitting strings
-        const clickDecay = Math.exp(-i / (sampleRate * 0.008));
-        const click = (Math.random() * 2 - 1) * clickDecay * 0.3;
+        // Layer 3: Very subtle high-frequency texture (almost no click)
+        const clickDecay = Math.exp(-i / (sampleRate * 0.015));
+        const click = (Math.random() * 2 - 1) * clickDecay * 0.05;
 
-        // Layer 4: Mid-range woody resonance
-        const woodyFreq = 450;
-        const woodyDecay = Math.exp(-i / (sampleRate * 0.035));
-        const woody = Math.sin(2 * Math.PI * woodyFreq * t + Math.random() * 0.5) * woodyDecay * 0.15;
+        // Layer 4: Soft woody resonance
+        const woodyFreq = 380;
+        const woodyDecay = Math.exp(-i / (sampleRate * 0.045));
+        const woody = Math.sin(2 * Math.PI * woodyFreq * t) * woodyDecay * 0.08;
 
-        // Combine all layers
-        data[i] = (mutedStrings + bodyThump + click + woody) * envelope * 0.7;
+        // Combine all layers - softer overall
+        data[i] = (mutedStrings + bodyThump + click + woody) * envelope * 0.5;
     }
 
-    // Apply a gentle saturation for warmth
+    // Very gentle saturation for warmth
     for (let i = 0; i < samples; i++) {
-        data[i] = Math.tanh(data[i] * 1.5) * 0.8;
+        data[i] = Math.tanh(data[i] * 1.2) * 0.5;
     }
 
     const source = ctx.createBufferSource();
     source.buffer = buffer;
 
-    // Shape the final sound with filters
+    // Shape the final sound with filters - softer, rounder
     const highpass = ctx.createBiquadFilter();
     highpass.type = 'highpass';
-    highpass.frequency.value = 80;
-    highpass.Q.value = 0.7;
+    highpass.frequency.value = 60;
+    highpass.Q.value = 0.5;
 
     const lowpass = ctx.createBiquadFilter();
     lowpass.type = 'lowpass';
-    lowpass.frequency.value = 3000;
-    lowpass.Q.value = 0.7;
+    lowpass.frequency.value = 1800; // Roll off more highs for softer sound
+    lowpass.Q.value = 0.5;
 
-    // Add slight resonance at body frequency
+    // Gentle body resonance
     const bodyResonance = ctx.createBiquadFilter();
     bodyResonance.type = 'peaking';
-    bodyResonance.frequency.value = 400;
-    bodyResonance.Q.value = 2;
-    bodyResonance.gain.value = 3;
+    bodyResonance.frequency.value = 350;
+    bodyResonance.Q.value = 1.5;
+    bodyResonance.gain.value = 2;
 
     source.connect(highpass);
     highpass.connect(lowpass);
@@ -656,7 +697,10 @@ function playChord(chordData) {
                     const source = ctx.createBufferSource();
                     source.buffer = buffer;
                     source.connect(ctx.destination);
-                    source.start(now + stepIndex * delay);
+                    const sourceStartTime = now + stepIndex * delay;
+                    source.start(sourceStartTime);
+                    // Track source for muting by chunk
+                    trackSource(source, sourceStartTime + 1.2);
                 }
             });
 
