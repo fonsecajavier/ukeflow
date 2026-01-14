@@ -125,6 +125,8 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - Flamenco (D x x U D U x D) - passionate style
   - Waltz (D D D) - 3/4 time
   - Reggae Skank (x U x U) - off-beat style
+  - Merengue (D U x U) - fast Dominican 2/4 feel
+  - Salsa (D x U D x U x D) - montuno-style with clave feel
 
   **Arpeggios** (fingerpicking patterns):
   - Down Roll - G→C→E→A (default)

@@ -294,6 +294,44 @@ const PLAY_STYLES = {
                     { dir: 'x', beat: 2.5 },
                     { dir: 'U', beat: 3.5 }
                 ]
+            },
+            'strum-merengue': {
+                name: 'Merengue',
+                type: 'strum',
+                // Fast 2/4 feel: D-U-x-U repeated, driving rhythm
+                pattern: [
+                    { dir: 'D', beat: 0 },
+                    { dir: 'U', beat: 0.25 },
+                    { dir: 'x', beat: 0.5 },
+                    { dir: 'U', beat: 0.75 },
+                    { dir: 'D', beat: 1 },
+                    { dir: 'U', beat: 1.25 },
+                    { dir: 'x', beat: 1.5 },
+                    { dir: 'U', beat: 1.75 },
+                    { dir: 'D', beat: 2 },
+                    { dir: 'U', beat: 2.25 },
+                    { dir: 'x', beat: 2.5 },
+                    { dir: 'U', beat: 2.75 },
+                    { dir: 'D', beat: 3 },
+                    { dir: 'U', beat: 3.25 },
+                    { dir: 'x', beat: 3.5 },
+                    { dir: 'U', beat: 3.75 }
+                ]
+            },
+            'strum-salsa': {
+                name: 'Salsa',
+                type: 'strum',
+                // Montuno-style: syncopated with clave feel
+                pattern: [
+                    { dir: 'D', beat: 0 },
+                    { dir: 'x', beat: 0.5 },
+                    { dir: 'U', beat: 1 },
+                    { dir: 'D', beat: 1.5 },
+                    { dir: 'x', beat: 2 },
+                    { dir: 'U', beat: 2.5 },
+                    { dir: 'x', beat: 3 },
+                    { dir: 'D', beat: 3.5 }
+                ]
             }
         }
     },
