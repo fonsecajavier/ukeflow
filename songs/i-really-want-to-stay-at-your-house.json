@@ -1,387 +1,387 @@
 {
   "title": "I Really Want to Stay at Your House",
   "artist": "Rosa Walton & Hallie Coggins",
-  "key": "C",
+  "key": "B",
   "lines": [
     { "section": "Verse 1" },
     {
       "lyrics": "I couldn't wait for you to come clear the cupboards",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 11 },
-        { "chord": "Em", "position": 38 },
-        { "chord": "D", "position": 48 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 11 },
+        { "chord": "D#m", "position": 38 },
+        { "chord": "C#", "position": 48 }
       ]
     },
     {
       "lyrics": "But now you're gone and leaving nothing but a sign",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 15 },
-        { "chord": "Em", "position": 42 },
-        { "chord": "D", "position": 47 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 15 },
+        { "chord": "D#m", "position": 42 },
+        { "chord": "C#", "position": 47 }
       ]
     },
     {
       "lyrics": "Another evening I'll be sitting reading in-between your lines",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 8 },
-        { "chord": "Em", "position": 36 },
-        { "chord": "D", "position": 56 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 8 },
+        { "chord": "D#m", "position": 36 },
+        { "chord": "C#", "position": 56 }
       ]
     },
     {
       "lyrics": "Because I miss you all the time",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 10 },
-        { "chord": "Em", "position": 19 },
-        { "chord": "D", "position": 27 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 10 },
+        { "chord": "D#m", "position": 19 },
+        { "chord": "C#", "position": 27 }
       ]
     },
     { "section": "Bridge" },
     {
       "lyrics": "So, get away",
       "chords": [
-        { "chord": "C", "position": 0 }
+        { "chord": "B", "position": 0 }
       ]
     },
     {
       "lyrics": "Another way to feel what you didn't want yourself to know",
       "chords": [
-        { "chord": "G", "position": 0 },
-        { "chord": "Em", "position": 29 }
+        { "chord": "F#", "position": 0 },
+        { "chord": "D#m", "position": 29 }
       ]
     },
     {
       "lyrics": "And let yourself go",
       "chords": [
-        { "chord": "D", "position": 0 }
+        { "chord": "C#", "position": 0 }
       ]
     },
     {
       "lyrics": "You know you didn't lose your self-control",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 13 },
-        { "chord": "Em", "position": 28 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 13 },
+        { "chord": "D#m", "position": 28 }
       ]
     },
     {
       "lyrics": "Let's start at the rainbow",
       "chords": [
-        { "chord": "D", "position": 0 }
+        { "chord": "C#", "position": 0 }
       ]
     },
     {
       "lyrics": "Turn away",
       "chords": [
-        { "chord": "C", "position": 0 }
+        { "chord": "B", "position": 0 }
       ]
     },
     {
       "lyrics": "Another way to be where you didn't want yourself to go",
       "chords": [
-        { "chord": "G", "position": 0 },
-        { "chord": "Em", "position": 26 }
+        { "chord": "F#", "position": 0 },
+        { "chord": "D#m", "position": 26 }
       ]
     },
     {
       "lyrics": "Let yourself go",
       "chords": [
-        { "chord": "D", "position": 0 }
+        { "chord": "C#", "position": 0 }
       ]
     },
     {
       "lyrics": "Is that a compromise",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 10 },
-        { "chord": "Em", "position": 15 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 10 },
+        { "chord": "D#m", "position": 15 }
       ]
     },
     { "section": "Chorus" },
     {
       "lyrics": "So what do you wanna do, what's your point-of-view",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 25 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 25 }
       ]
     },
     {
       "lyrics": "There's a party soon, do you wanna go?",
       "chords": [
-        { "chord": "Em", "position": 0 },
-        { "chord": "D", "position": 25 }
+        { "chord": "D#m", "position": 0 },
+        { "chord": "C#", "position": 25 }
       ]
     },
     {
       "lyrics": "A handshake with you, what's your point-of-view?",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 28 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 28 }
       ]
     },
     {
       "lyrics": "I'm on top of you, I don't wanna go",
       "chords": [
-        { "chord": "Em", "position": 0 },
-        { "chord": "D", "position": 24 }
+        { "chord": "D#m", "position": 0 },
+        { "chord": "C#", "position": 24 }
       ]
     },
     {
       "lyrics": "'Cause I really wanna stay at your house",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 16 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 16 }
       ]
     },
     {
       "lyrics": "And I hope this works out",
       "chords": [
-        { "chord": "Em", "position": 0 },
-        { "chord": "D", "position": 11 }
+        { "chord": "D#m", "position": 0 },
+        { "chord": "C#", "position": 11 }
       ]
     },
     {
       "lyrics": "But you know how much you broke me apart",
       "chords": [
-        { "chord": "C", "position": 0 }
+        { "chord": "B", "position": 0 }
       ]
     },
     {
       "lyrics": "I'm done with you, I'm ignoring you",
       "chords": [
-        { "chord": "G", "position": 0 },
-        { "chord": "Em", "position": 18 }
+        { "chord": "F#", "position": 0 },
+        { "chord": "D#m", "position": 18 }
       ]
     },
     {
       "lyrics": "I don't wanna know",
       "chords": [
-        { "chord": "D", "position": 0 }
+        { "chord": "C#", "position": 0 }
       ]
     },
     { "section": "Verse 2" },
     {
       "lyrics": "And I'm aware that you were lying in the gutter",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 8 },
-        { "chord": "Em", "position": 38 },
-        { "chord": "D", "position": 45 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 8 },
+        { "chord": "D#m", "position": 38 },
+        { "chord": "C#", "position": 45 }
       ]
     },
     {
       "lyrics": "'Cause I did everything to be there by your side",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 12 },
-        { "chord": "Em", "position": 40 },
-        { "chord": "D", "position": 45 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 12 },
+        { "chord": "D#m", "position": 40 },
+        { "chord": "C#", "position": 45 }
       ]
     },
     {
       "lyrics": "So when you tell me I'm the reason I just can't believe the lies",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 12 },
-        { "chord": "Em", "position": 42 },
-        { "chord": "D", "position": 60 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 12 },
+        { "chord": "D#m", "position": 42 },
+        { "chord": "C#", "position": 60 }
       ]
     },
     {
       "lyrics": "And why do I so want to call you",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 14 },
-        { "chord": "Em", "position": 25 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 14 },
+        { "chord": "D#m", "position": 25 }
       ]
     },
     { "section": "Chorus" },
     {
       "lyrics": "So what do you wanna do, what's your point-of-view",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 25 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 25 }
       ]
     },
     {
       "lyrics": "There's a party soon, do you wanna go?",
       "chords": [
-        { "chord": "Em", "position": 0 },
-        { "chord": "D", "position": 25 }
+        { "chord": "D#m", "position": 0 },
+        { "chord": "C#", "position": 25 }
       ]
     },
     {
       "lyrics": "A handshake with you, what's your point-of-view?",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 28 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 28 }
       ]
     },
     {
       "lyrics": "I'm on top of you, I don't wanna go",
       "chords": [
-        { "chord": "Em", "position": 0 },
-        { "chord": "D", "position": 24 }
+        { "chord": "D#m", "position": 0 },
+        { "chord": "C#", "position": 24 }
       ]
     },
     {
       "lyrics": "'Cause I really wanna stay at your house",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 16 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 16 }
       ]
     },
     {
       "lyrics": "And I hope this works out",
       "chords": [
-        { "chord": "Em", "position": 0 },
-        { "chord": "D", "position": 11 }
+        { "chord": "D#m", "position": 0 },
+        { "chord": "C#", "position": 11 }
       ]
     },
     {
       "lyrics": "But you know how much you broke me apart",
       "chords": [
-        { "chord": "C", "position": 0 }
+        { "chord": "B", "position": 0 }
       ]
     },
     {
       "lyrics": "I'm done with you, I'm ignoring you",
       "chords": [
-        { "chord": "G", "position": 0 },
-        { "chord": "Em", "position": 18 }
+        { "chord": "F#", "position": 0 },
+        { "chord": "D#m", "position": 18 }
       ]
     },
     {
       "lyrics": "I don't wanna know",
       "chords": [
-        { "chord": "D", "position": 0 }
+        { "chord": "C#", "position": 0 }
       ]
     },
     { "section": "Bridge" },
     {
       "lyrics": "So, get away",
       "chords": [
-        { "chord": "C", "position": 0 }
+        { "chord": "B", "position": 0 }
       ]
     },
     {
       "lyrics": "Another way to feel what you didn't want yourself to know",
       "chords": [
-        { "chord": "G", "position": 0 },
-        { "chord": "Em", "position": 29 }
+        { "chord": "F#", "position": 0 },
+        { "chord": "D#m", "position": 29 }
       ]
     },
     {
       "lyrics": "And let yourself go",
       "chords": [
-        { "chord": "D", "position": 0 }
+        { "chord": "C#", "position": 0 }
       ]
     },
     {
       "lyrics": "You know you didn't lose your self-control",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 13 },
-        { "chord": "Em", "position": 28 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 13 },
+        { "chord": "D#m", "position": 28 }
       ]
     },
     {
       "lyrics": "Let's start at the rainbow",
       "chords": [
-        { "chord": "D", "position": 0 }
+        { "chord": "C#", "position": 0 }
       ]
     },
     {
       "lyrics": "Turn away",
       "chords": [
-        { "chord": "C", "position": 0 }
+        { "chord": "B", "position": 0 }
       ]
     },
     {
       "lyrics": "Another way to be where you didn't want yourself to go",
       "chords": [
-        { "chord": "G", "position": 0 },
-        { "chord": "Em", "position": 26 }
+        { "chord": "F#", "position": 0 },
+        { "chord": "D#m", "position": 26 }
       ]
     },
     {
       "lyrics": "Let yourself go",
       "chords": [
-        { "chord": "D", "position": 0 }
+        { "chord": "C#", "position": 0 }
       ]
     },
     {
       "lyrics": "Is that a compromise",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 10 },
-        { "chord": "Em", "position": 15 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 10 },
+        { "chord": "D#m", "position": 15 }
       ]
     },
     { "section": "Chorus" },
     {
       "lyrics": "So what do you wanna do, what's your point-of-view",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 25 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 25 }
       ]
     },
     {
       "lyrics": "There's a party soon, do you wanna go?",
       "chords": [
-        { "chord": "Em", "position": 0 },
-        { "chord": "D", "position": 25 }
+        { "chord": "D#m", "position": 0 },
+        { "chord": "C#", "position": 25 }
       ]
     },
     {
       "lyrics": "A handshake with you, what's your point-of-view?",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 28 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 28 }
       ]
     },
     {
       "lyrics": "I'm on top of you, I don't wanna go",
       "chords": [
-        { "chord": "Em", "position": 0 },
-        { "chord": "D", "position": 24 }
+        { "chord": "D#m", "position": 0 },
+        { "chord": "C#", "position": 24 }
       ]
     },
     {
       "lyrics": "'Cause I really wanna stay at your house",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 16 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 16 }
       ]
     },
     {
       "lyrics": "And I hope this works out",
       "chords": [
-        { "chord": "Em", "position": 0 },
-        { "chord": "D", "position": 11 }
+        { "chord": "D#m", "position": 0 },
+        { "chord": "C#", "position": 11 }
       ]
     },
     {
       "lyrics": "But you know how much you broke me apart",
       "chords": [
-        { "chord": "C", "position": 0 }
+        { "chord": "B", "position": 0 }
       ]
     },
     {
       "lyrics": "I'm done with you, I'm ignoring you",
       "chords": [
-        { "chord": "G", "position": 0 },
-        { "chord": "Em", "position": 18 }
+        { "chord": "F#", "position": 0 },
+        { "chord": "D#m", "position": 18 }
       ]
     },
     {
       "lyrics": "I don't wanna know",
       "chords": [
-        { "chord": "D", "position": 0 }
+        { "chord": "C#", "position": 0 }
       ]
     }
   ]
