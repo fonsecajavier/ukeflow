@@ -1350,8 +1350,9 @@ function renderChordReference() {
  * @param {boolean} large - Whether to render a large version
  * @param {string} displayName - Override name to display
  * @param {boolean} showPlayButton - Whether to show the play button
+ * @param {boolean} showVariationIndicator - Whether to show indicator for variations
  */
-function createChordDiagram(chordData, large = false, displayName = null, showPlayButton = true) {
+function createChordDiagram(chordData, large = false, displayName = null, showPlayButton = true, showVariationIndicator = true) {
     const container = document.createElement('div');
     container.className = 'chord-diagram';
 
@@ -1373,6 +1374,18 @@ function createChordDiagram(chordData, large = false, displayName = null, showPl
 
     const svg = createChordSVG(chordData, large);
     container.appendChild(svg);
+
+    // Add variation indicator if this chord has alternatives
+    if (showVariationIndicator) {
+        const variations = getChordVariations(chordName);
+        if (variations.length > 1) {
+            const varIndicator = document.createElement('div');
+            varIndicator.className = 'variation-indicator';
+            varIndicator.title = `${variations.length} voicings available`;
+            varIndicator.textContent = `+${variations.length - 1}`;
+            container.appendChild(varIndicator);
+        }
+    }
 
     // Add play button
     if (showPlayButton) {
@@ -1409,19 +1422,38 @@ function createChordSVG(chord, large = false) {
     const dotRadius = large ? 8 : 5;
     const fontSize = large ? 12 : 8;
 
+    // Calculate the starting fret (for chords played higher up the neck)
+    const frettedPositions = chord.frets.filter(f => f > 0);
+    const minFret = frettedPositions.length > 0 ? Math.min(...frettedPositions) : 1;
+    const startingFret = minFret > 5 ? minFret : 1;
+    const isHighPosition = startingFret > 1;
+
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('width', width);
     svg.setAttribute('height', height);
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
 
-    // Draw nut (thick line at top)
-    const nut = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-    nut.setAttribute('x', startX - 2);
-    nut.setAttribute('y', startY - 4);
-    nut.setAttribute('width', stringSpacing * 3 + 4);
-    nut.setAttribute('height', large ? 5 : 3);
-    nut.setAttribute('fill', '#e4e4e4');
-    svg.appendChild(nut);
+    // Draw nut (thick line at top) - only show if at first position
+    if (!isHighPosition) {
+        const nut = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        nut.setAttribute('x', startX - 2);
+        nut.setAttribute('y', startY - 4);
+        nut.setAttribute('width', stringSpacing * 3 + 4);
+        nut.setAttribute('height', large ? 5 : 3);
+        nut.setAttribute('fill', '#e4e4e4');
+        svg.appendChild(nut);
+    } else {
+        // Show fret position number for high position chords
+        const fretLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        fretLabel.setAttribute('x', startX - (large ? 14 : 10));
+        fretLabel.setAttribute('y', startY + fretSpacing * 0.5 + fontSize / 3);
+        fretLabel.setAttribute('text-anchor', 'middle');
+        fretLabel.setAttribute('font-size', large ? 14 : 10);
+        fretLabel.setAttribute('fill', '#f39c12');
+        fretLabel.setAttribute('font-weight', 'bold');
+        fretLabel.textContent = startingFret + 'fr';
+        svg.appendChild(fretLabel);
+    }
 
     // Draw frets (horizontal lines)
     for (let i = 0; i <= numFrets; i++) {
@@ -1447,9 +1479,10 @@ function createChordSVG(chord, large = false) {
         svg.appendChild(string);
     }
 
-    // Draw barre if present
+    // Draw barre if present (adjusted for starting fret)
     if (chord.barre) {
-        const barreY = startY + (chord.barre.fret - 0.5) * fretSpacing;
+        const adjustedBarreFret = chord.barre.fret - startingFret + 1;
+        const barreY = startY + (adjustedBarreFret - 0.5) * fretSpacing;
         const barreX1 = startX + chord.barre.fromString * stringSpacing;
         const barreX2 = startX + chord.barre.toString * stringSpacing;
 
@@ -1465,20 +1498,22 @@ function createChordSVG(chord, large = false) {
         svg.appendChild(barre);
     }
 
-    // Draw finger positions
+    // Draw finger positions (adjusted for starting fret)
     chord.frets.forEach((fret, stringIndex) => {
         const x = startX + stringIndex * stringSpacing;
 
         if (fret === 0) {
-            // Open string - draw circle above nut
-            const open = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-            open.setAttribute('cx', x);
-            open.setAttribute('cy', startY - (large ? 12 : 8));
-            open.setAttribute('r', dotRadius - 2);
-            open.setAttribute('fill', 'none');
-            open.setAttribute('stroke', '#888');
-            open.setAttribute('stroke-width', 1.5);
-            svg.appendChild(open);
+            // Open string - draw circle above nut (only if at first position)
+            if (!isHighPosition) {
+                const open = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                open.setAttribute('cx', x);
+                open.setAttribute('cy', startY - (large ? 12 : 8));
+                open.setAttribute('r', dotRadius - 2);
+                open.setAttribute('fill', 'none');
+                open.setAttribute('stroke', '#888');
+                open.setAttribute('stroke-width', 1.5);
+                svg.appendChild(open);
+            }
         } else if (fret === -1) {
             // Muted string - draw X above nut
             const xSize = dotRadius - 1;
@@ -1501,6 +1536,9 @@ function createChordSVG(chord, large = false) {
             line2.setAttribute('stroke-width', 1.5);
             svg.appendChild(line2);
         } else if (fret > 0) {
+            // Adjust fret position relative to starting fret
+            const adjustedFret = fret - startingFret + 1;
+
             // Skip if this position is covered by a barre
             const isBarre = chord.barre &&
                 fret === chord.barre.fret &&
@@ -1509,7 +1547,7 @@ function createChordSVG(chord, large = false) {
 
             if (!isBarre) {
                 // Fretted note - draw filled circle with finger number
-                const y = startY + (fret - 0.5) * fretSpacing;
+                const y = startY + (adjustedFret - 0.5) * fretSpacing;
 
                 const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
                 dot.setAttribute('cx', x);
@@ -1536,9 +1574,10 @@ function createChordSVG(chord, large = false) {
         }
     });
 
-    // Add barre finger number
+    // Add barre finger number (adjusted for starting fret)
     if (chord.barre) {
-        const barreY = startY + (chord.barre.fret - 0.5) * fretSpacing;
+        const adjustedBarreFret = chord.barre.fret - startingFret + 1;
+        const barreY = startY + (adjustedBarreFret - 0.5) * fretSpacing;
         const barreX = startX + chord.barre.fromString * stringSpacing;
 
         const fingerIndex = chord.frets.findIndex((f, i) =>
@@ -1728,7 +1767,7 @@ function updateKeyDisplay() {
 }
 
 /**
- * Open chord modal
+ * Open chord modal with all variations
  */
 function openChordModal(chordName) {
     const chordData = CHORDS[chordName];
@@ -1736,28 +1775,73 @@ function openChordModal(chordName) {
 
     elements.modalChord.innerHTML = '';
 
+    // Get all variations for this chord
+    const variations = getChordVariations(chordName);
+    const hasVariations = variations.length > 1;
+
+    // Title with chord name
     const nameDiv = document.createElement('div');
-    nameDiv.className = 'chord-name';
+    nameDiv.className = 'chord-name modal-chord-title';
     const transposedKey = getDisplayKey();
     nameDiv.textContent = state.showAsNumbers
         ? `${getScaleDegree(chordName, transposedKey)} (${chordName})`
         : chordName;
     elements.modalChord.appendChild(nameDiv);
 
-    const svg = createChordSVG(chordData, true);
-    elements.modalChord.appendChild(svg);
+    if (hasVariations) {
+        // Create a container for all variations
+        const variationsContainer = document.createElement('div');
+        variationsContainer.className = 'variations-container';
 
-    // Add play button for modal
-    const playBtn = document.createElement('button');
-    playBtn.className = 'chord-play-btn modal-play-btn';
-    playBtn.innerHTML = '&#9654; Play';
-    playBtn.title = 'Play chord arpeggio';
-    playBtn.addEventListener('click', () => {
-        playChordArpeggio(chordData);
-        playBtn.classList.add('playing');
-        setTimeout(() => playBtn.classList.remove('playing'), 400);
-    });
-    elements.modalChord.appendChild(playBtn);
+        variations.forEach((variation, index) => {
+            const variationItem = document.createElement('div');
+            variationItem.className = 'variation-item';
+            if (index === 0) variationItem.classList.add('default');
+
+            // Variation label
+            const label = document.createElement('div');
+            label.className = 'variation-label';
+            label.textContent = variation.description || (index === 0 ? 'Default' : `Variation ${index}`);
+            variationItem.appendChild(label);
+
+            // SVG diagram
+            const svg = createChordSVG(variation, true);
+            variationItem.appendChild(svg);
+
+            // Play button for this variation
+            const playBtn = document.createElement('button');
+            playBtn.className = 'chord-play-btn variation-play-btn';
+            playBtn.innerHTML = '&#9654;';
+            playBtn.title = 'Play this voicing';
+            playBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                playChordArpeggio(variation);
+                playBtn.classList.add('playing');
+                setTimeout(() => playBtn.classList.remove('playing'), 400);
+            });
+            variationItem.appendChild(playBtn);
+
+            variationsContainer.appendChild(variationItem);
+        });
+
+        elements.modalChord.appendChild(variationsContainer);
+    } else {
+        // Single chord (no variations) - show as before
+        const svg = createChordSVG(chordData, true);
+        elements.modalChord.appendChild(svg);
+
+        // Add play button for modal
+        const playBtn = document.createElement('button');
+        playBtn.className = 'chord-play-btn modal-play-btn';
+        playBtn.innerHTML = '&#9654; Play';
+        playBtn.title = 'Play chord';
+        playBtn.addEventListener('click', () => {
+            playChordArpeggio(chordData);
+            playBtn.classList.add('playing');
+            setTimeout(() => playBtn.classList.remove('playing'), 400);
+        });
+        elements.modalChord.appendChild(playBtn);
+    }
 
     elements.modalOverlay.classList.add('active');
 }

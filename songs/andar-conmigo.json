@@ -1,0 +1,232 @@
+{
+  "title": "Andar Conmigo",
+  "artist": "Julieta Venegas",
+  "key": "C",
+  "lines": [
+    { "section": "Intro" },
+    {
+      "lyrics": "",
+      "chords": [
+        { "chord": "C9", "position": 0 },
+        { "chord": "F", "position": 4 }
+      ]
+    },
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Hay tanto que quiero contarte",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "hay tanto que quiero saber de ti",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "ya podemos empezar poco a poco",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "cuéntame que te trae por aquí",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "No te asustes de decirme la verdad",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "eso nunca puede estar así tan mal",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "yo también tengo secretos para darte",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 15 },
+        { "chord": "C", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "y que sepas que ya no me sirven más",
+      "chords": [
+        { "chord": "E", "position": 0 },
+        { "chord": "F", "position": 17 }
+      ]
+    },
+    { "section": "Pre-Chorus" },
+    {
+      "lyrics": "Hay tantos caminos por andar...",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 14 },
+        { "chord": "F", "position": 24 },
+        { "chord": "G", "position": 28 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Dime si, quisieras andar conmigo...",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 17 },
+        { "chord": "F", "position": 27 },
+        { "chord": "G", "position": 31 }
+      ]
+    },
+    {
+      "lyrics": "Cuéntame, si quisieras andar conmigo...",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 19 },
+        { "chord": "F", "position": 29 },
+        { "chord": "G", "position": 33 }
+      ]
+    },
+    {
+      "lyrics": "Dime si, quisieras andar conmigo...",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 17 },
+        { "chord": "F", "position": 27 },
+        { "chord": "G", "position": 31 }
+      ]
+    },
+    {
+      "lyrics": "Cuéntame, si quisieras andar conmigo...",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 19 },
+        { "chord": "F", "position": 29 },
+        { "chord": "G", "position": 33 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Estoy ansiosa por soltarlo todo",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 23 }
+      ]
+    },
+    {
+      "lyrics": "desde el principio hasta llegar al día de hoy",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "una historia tengo en mi para entregarte",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "una historia todavía sin final",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Podríamos decirnos cualquier cosa",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "incluso darnos para siempre, un siempre no",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "pero ahora frente a frente aquí sentados",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "festejemos que la vida nos cruzó",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 13 },
+        { "chord": "C", "position": 15 }
+      ]
+    },
+    { "section": "Pre-Chorus" },
+    {
+      "lyrics": "Hay tantos caminos por andar...",
+      "chords": [
+        { "chord": "E", "position": 0 },
+        { "chord": "F", "position": 17 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Dime si, quisieras andar conmigo...",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 17 },
+        { "chord": "F", "position": 27 },
+        { "chord": "G", "position": 31 }
+      ]
+    },
+    {
+      "lyrics": "Cuéntame, si quisieras andar conmigo...",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 19 },
+        { "chord": "F", "position": 29 },
+        { "chord": "G", "position": 33 }
+      ]
+    },
+    {
+      "lyrics": "Dime si, quisieras andar conmigo...",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 17 },
+        { "chord": "F", "position": 27 },
+        { "chord": "G", "position": 31 }
+      ]
+    },
+    {
+      "lyrics": "Cuéntame, si quisieras andar conmigo...",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 19 },
+        { "chord": "F", "position": 29 },
+        { "chord": "G", "position": 33 }
+      ]
+    },
+    { "section": "Outro" },
+    {
+      "lyrics": "Si quisieras andar conmigo... (x4)",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 18 },
+        { "chord": "G", "position": 22 }
+      ]
+    }
+  ]
+}

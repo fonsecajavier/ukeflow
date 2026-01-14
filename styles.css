@@ -706,9 +706,10 @@ body {
 .chord-diagram {
     background: rgba(255, 255, 255, 0.08);
     border-radius: 10px;
-    padding: 10px;
+    padding: 12px 18px;
     text-align: center;
     transition: transform 0.2s ease;
+    min-width: 100px;
 }
 
 .chord-diagram:hover {
@@ -888,6 +889,77 @@ body {
 .progression-number {
     color: #e74c3c;
     font-weight: bold;
+}
+
+/* Chord Variation Indicator */
+.variation-indicator {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: rgba(52, 152, 219, 0.3);
+    color: #3498db;
+    font-size: 0.65rem;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.chord-diagram {
+    position: relative;
+}
+
+/* Modal with Variations */
+.modal-chord-title {
+    margin-bottom: 20px !important;
+}
+
+.variations-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.variation-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    min-width: 100px;
+    position: relative;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.variation-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.variation-item.default {
+    border-color: rgba(46, 204, 113, 0.4);
+}
+
+.variation-label {
+    font-size: 0.75rem;
+    color: #888;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.variation-item.default .variation-label {
+    color: #2ecc71;
+}
+
+.variation-play-btn {
+    width: auto !important;
+    padding: 6px 12px !important;
+    margin-top: 8px !important;
+}
+
+/* Wider modal for variations */
+.modal-overlay.active .modal-content:has(.variations-container) {
+    max-width: 500px;
 }
 
 /* Responsive */

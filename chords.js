@@ -858,6 +858,50 @@ const CHORDS = {
         baseFret: 1
     },
 
+    // Add9 Chords
+    'C9': {
+        name: 'C9',
+        frets: [0, 2, 0, 3],
+        fingers: [0, 2, 0, 3],
+        barre: null,
+        baseFret: 1
+    },
+    'Cadd9': {
+        name: 'Cadd9',
+        frets: [0, 2, 0, 3],
+        fingers: [0, 2, 0, 3],
+        barre: null,
+        baseFret: 1
+    },
+    'G9': {
+        name: 'G9',
+        frets: [2, 2, 1, 2],
+        fingers: [2, 3, 1, 4],
+        barre: null,
+        baseFret: 1
+    },
+    'Gadd9': {
+        name: 'Gadd9',
+        frets: [0, 2, 3, 0],
+        fingers: [0, 1, 2, 0],
+        barre: null,
+        baseFret: 1
+    },
+    'D9': {
+        name: 'D9',
+        frets: [2, 4, 2, 3],
+        fingers: [1, 3, 1, 2],
+        barre: { fret: 2, fromString: 0, toString: 2 },
+        baseFret: 1
+    },
+    'Dadd9': {
+        name: 'Dadd9',
+        frets: [2, 2, 0, 0],
+        fingers: [1, 2, 0, 0],
+        barre: null,
+        baseFret: 1
+    },
+
     // Suspended Chords
     'Csus2': {
         name: 'Csus2',
@@ -1173,6 +1217,235 @@ const ENHARMONIC_EQUIVALENTS = {
 function getEnharmonicEquivalent(key) {
     return ENHARMONIC_EQUIVALENTS[key] || null;
 }
+
+/**
+ * Alternative chord voicings/variations
+ * Each chord can have multiple ways to play it
+ * The main CHORDS object contains the default (usually easiest) voicing
+ * This object contains additional variations with descriptions
+ */
+const CHORD_VARIATIONS = {
+    'C': [
+        {
+            name: 'C (high)',
+            description: 'Higher position',
+            frets: [5, 4, 3, 3],
+            fingers: [4, 3, 1, 1],
+            barre: { fret: 3, fromString: 2, toString: 3 },
+            baseFret: 1
+        },
+        {
+            name: 'C (bar)',
+            description: 'Barre at 3rd fret',
+            frets: [5, 4, 3, 3],
+            fingers: [4, 3, 1, 2],
+            barre: null,
+            baseFret: 1
+        }
+    ],
+    'Am': [
+        {
+            name: 'Am (bar)',
+            description: 'Barre chord shape',
+            frets: [5, 5, 5, 5],
+            fingers: [1, 1, 1, 1],
+            barre: { fret: 5, fromString: 0, toString: 3 },
+            baseFret: 1
+        },
+        {
+            name: 'Am (high)',
+            description: 'Higher voicing',
+            frets: [2, 4, 5, 3],
+            fingers: [1, 3, 4, 2],
+            barre: null,
+            baseFret: 1
+        }
+    ],
+    'F': [
+        {
+            name: 'F (bar)',
+            description: 'Barre at 5th fret',
+            frets: [5, 5, 5, 8],
+            fingers: [1, 1, 1, 4],
+            barre: { fret: 5, fromString: 0, toString: 2 },
+            baseFret: 1
+        },
+        {
+            name: 'F (alt)',
+            description: 'Alternative fingering',
+            frets: [5, 5, 6, 5],
+            fingers: [1, 1, 2, 1],
+            barre: { fret: 5, fromString: 0, toString: 3 },
+            baseFret: 1
+        }
+    ],
+    'G': [
+        {
+            name: 'G (easy)',
+            description: 'Two finger version',
+            frets: [0, 2, 3, 0],
+            fingers: [0, 1, 2, 0],
+            barre: null,
+            baseFret: 1
+        },
+        {
+            name: 'G (bar)',
+            description: 'Barre at 7th fret',
+            frets: [7, 7, 7, 10],
+            fingers: [1, 1, 1, 4],
+            barre: { fret: 7, fromString: 0, toString: 2 },
+            baseFret: 1
+        }
+    ],
+    'D': [
+        {
+            name: 'D (alt)',
+            description: 'Higher position',
+            frets: [7, 7, 7, 5],
+            fingers: [2, 3, 4, 1],
+            barre: null,
+            baseFret: 1
+        }
+    ],
+    'A': [
+        {
+            name: 'A (bar)',
+            description: 'Barre shape',
+            frets: [4, 4, 4, 4],
+            fingers: [1, 1, 1, 1],
+            barre: { fret: 4, fromString: 0, toString: 3 },
+            baseFret: 5
+        },
+        {
+            name: 'A (alt)',
+            description: 'One finger version',
+            frets: [2, 1, 0, 0],
+            fingers: [2, 1, 0, 0],
+            barre: null,
+            baseFret: 1
+        }
+    ],
+    'E': [
+        {
+            name: 'E (easy)',
+            description: 'Simplified',
+            frets: [4, 4, 4, 2],
+            fingers: [2, 3, 4, 1],
+            barre: null,
+            baseFret: 1
+        }
+    ],
+    'Em': [
+        {
+            name: 'Em (easy)',
+            description: 'Open position',
+            frets: [0, 4, 3, 2],
+            fingers: [0, 3, 2, 1],
+            barre: null,
+            baseFret: 1
+        },
+        {
+            name: 'Em (bar)',
+            description: 'Barre at 7th fret',
+            frets: [7, 7, 7, 7],
+            fingers: [1, 1, 1, 1],
+            barre: { fret: 7, fromString: 0, toString: 3 },
+            baseFret: 1
+        }
+    ],
+    'Dm': [
+        {
+            name: 'Dm (bar)',
+            description: 'Barre at 5th fret',
+            frets: [5, 5, 5, 5],
+            fingers: [1, 1, 1, 1],
+            barre: { fret: 5, fromString: 0, toString: 3 },
+            baseFret: 1
+        }
+    ],
+    'Bm': [
+        {
+            name: 'Bm (4th)',
+            description: 'At 4th fret',
+            frets: [4, 2, 2, 2],
+            fingers: [4, 1, 1, 1],
+            barre: { fret: 2, fromString: 1, toString: 3 },
+            baseFret: 1
+        }
+    ],
+    'A#m': [
+        {
+            name: 'A#m (6th)',
+            description: 'Higher position',
+            frets: [6, 6, 6, 6],
+            fingers: [1, 1, 1, 1],
+            barre: { fret: 6, fromString: 0, toString: 3 },
+            baseFret: 1
+        }
+    ],
+    'F#': [
+        {
+            name: 'F# (easy)',
+            description: 'Easier fingering',
+            frets: [3, 1, 2, 1],
+            fingers: [3, 1, 2, 1],
+            barre: { fret: 1, fromString: 1, toString: 3 },
+            baseFret: 1
+        }
+    ],
+    'G#': [
+        {
+            name: 'G# (4th)',
+            description: 'At 4th fret',
+            frets: [1, 3, 4, 3],
+            fingers: [1, 2, 4, 3],
+            barre: null,
+            baseFret: 1
+        }
+    ],
+    'C7': [
+        {
+            name: 'C7 (bar)',
+            description: 'Barre version',
+            frets: [3, 3, 3, 3],
+            fingers: [1, 1, 1, 1],
+            barre: { fret: 3, fromString: 0, toString: 3 },
+            baseFret: 1
+        }
+    ],
+    'G7': [
+        {
+            name: 'G7 (alt)',
+            description: 'Alternative',
+            frets: [0, 2, 1, 2],
+            fingers: [0, 2, 1, 3],
+            barre: null,
+            baseFret: 1
+        }
+    ]
+};
+
+/**
+ * Get all variations for a chord (including the default)
+ * @param {string} chordName - The chord name
+ * @returns {Array} - Array of chord data objects
+ */
+function getChordVariations(chordName) {
+    const defaultChord = CHORDS[chordName];
+    if (!defaultChord) return [];
+
+    const variations = [{ ...defaultChord, description: 'Default' }];
+
+    if (CHORD_VARIATIONS[chordName]) {
+        variations.push(...CHORD_VARIATIONS[chordName]);
+    }
+
+    return variations;
+}
+
+// Expose to global scope for access from app.js
+window.getChordVariations = getChordVariations;
+window.CHORD_VARIATIONS = CHORD_VARIATIONS;
 
 // Scale degree mappings for major keys
 const SCALE_DEGREES_MAJOR = {
