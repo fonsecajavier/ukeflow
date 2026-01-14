@@ -7,7 +7,8 @@ const state = {
     songs: [],
     currentSong: null,
     showAsNumbers: false,
-    transpose: 0
+    transpose: 0,
+    useRelativeKey: false
 };
 
 // Audio Context for chord playback
@@ -433,6 +434,7 @@ const elements = {
     tempoSelect: document.getElementById('tempo-select'),
     patternDisplay: document.getElementById('pattern-display'),
     toggleBtn: document.getElementById('toggle-progression'),
+    toggleRelativeKey: document.getElementById('toggle-relative-key'),
     chordReference: document.getElementById('chord-reference'),
     scaleGrid: document.getElementById('scale-grid'),
     progressionContent: document.getElementById('progression-content'),
@@ -592,6 +594,7 @@ function setupEventListeners() {
     elements.arpeggioSelect.addEventListener('change', handleArpeggioChange);
     elements.tempoSelect.addEventListener('change', handleTempoChange);
     elements.toggleBtn.addEventListener('click', handleToggleProgression);
+    elements.toggleRelativeKey.addEventListener('click', handleToggleRelativeKey);
     elements.modalOverlay.addEventListener('click', handleModalClose);
     elements.modalClose.addEventListener('click', closeModal);
     document.addEventListener('keydown', handleKeyDown);
@@ -690,9 +693,11 @@ function handleSongSelect(e) {
     const song = state.songs.find(s => `${s.title} - ${s.artist}` === inputValue);
 
     if (song) {
-        // Reset transpose when switching songs
+        // Reset transpose and relative key when switching songs
         state.transpose = 0;
+        state.useRelativeKey = false;
         elements.transposeSelect.value = '0';
+        elements.toggleRelativeKey.classList.remove('active');
 
         state.currentSong = song;
         displaySong();
@@ -722,8 +727,7 @@ function displaySong() {
     elements.songArtist.textContent = state.currentSong.artist;
 
     // Show transposed key
-    const displayKey = transposeKey(state.currentSong.key, state.transpose);
-    elements.songKey.textContent = displayKey;
+    updateKeyDisplay();
 
     // Show sections
     elements.songInfo.style.display = 'flex';
@@ -744,7 +748,7 @@ function displaySong() {
  * Render the scale reference (all chords in the key)
  */
 function renderScaleReference() {
-    const transposedKey = transposeKey(state.currentSong.key, state.transpose);
+    const transposedKey = getDisplayKey();
     const isMinor = isMinorKey(transposedKey);
     const scale = isMinor ? SCALE_DEGREES_MINOR[transposedKey] : SCALE_DEGREES_MAJOR[transposedKey];
     const romanNumerals = isMinor ? ROMAN_NUMERALS_MINOR : ROMAN_NUMERALS_MAJOR;
@@ -813,7 +817,7 @@ function renderScaleReference() {
  * Render the progression summary (chord sequences used in the song)
  */
 function renderProgressionSummary() {
-    const transposedKey = transposeKey(state.currentSong.key, state.transpose);
+    const transposedKey = getDisplayKey();
     elements.progressionContent.innerHTML = '';
 
     // Extract chord sequences from each section
@@ -894,7 +898,7 @@ function renderProgressionSummary() {
  * Render music trivia section
  */
 function renderMusicTrivia() {
-    const transposedKey = transposeKey(state.currentSong.key, state.transpose);
+    const transposedKey = getDisplayKey();
     const isMinor = isMinorKey(transposedKey);
     const usedChords = getUsedChords();
 
@@ -971,7 +975,7 @@ function renderMusicTrivia() {
  * Render harmonic analysis table showing chord, scale degree, and function
  */
 function renderHarmonicAnalysis() {
-    const transposedKey = transposeKey(state.currentSong.key, state.transpose);
+    const transposedKey = getDisplayKey();
     const isMinor = isMinorKey(transposedKey);
     const usedChords = getUsedChords();
 
@@ -1359,7 +1363,7 @@ function createChordDiagram(chordData, large = false, displayName = null, showPl
 
     // Add scale degree below chord name
     if (state.currentSong) {
-        const transposedKey = transposeKey(state.currentSong.key, state.transpose);
+        const transposedKey = getDisplayKey();
         const scaleDegree = getScaleDegree(chordName, transposedKey);
         const degreeDiv = document.createElement('div');
         degreeDiv.className = 'chord-degree';
@@ -1599,7 +1603,7 @@ function renderLyrics() {
                 const sortedChords = [...line.chords].sort((a, b) => a.position - b.position);
 
                 // Get transposed key for scale degree calculation
-                const transposedKey = transposeKey(state.currentSong.key, state.transpose);
+                const transposedKey = getDisplayKey();
 
                 sortedChords.forEach(c => {
                     // Add spaces to reach the chord position
@@ -1671,6 +1675,59 @@ function handleToggleProgression() {
 }
 
 /**
+ * Handle toggle between original key and relative key
+ */
+function handleToggleRelativeKey() {
+    if (!state.currentSong) return;
+
+    state.useRelativeKey = !state.useRelativeKey;
+    elements.toggleRelativeKey.classList.toggle('active', state.useRelativeKey);
+
+    // Update key display
+    updateKeyDisplay();
+
+    // Re-render all sections that depend on key
+    renderScaleReference();
+    renderProgressionSummary();
+    renderMusicTrivia();
+    renderHarmonicAnalysis();
+    renderChordReference();
+    renderLyrics();
+}
+
+/**
+ * Get the current display key (considering relative key toggle)
+ */
+function getDisplayKey() {
+    if (!state.currentSong) return null;
+    const transposedKey = transposeKey(state.currentSong.key, state.transpose);
+    if (state.useRelativeKey) {
+        return getRelativeKey(transposedKey);
+    }
+    return transposedKey;
+}
+
+/**
+ * Update the key display in the UI
+ */
+function updateKeyDisplay() {
+    if (!state.currentSong) return;
+    const transposedKey = transposeKey(state.currentSong.key, state.transpose);
+    const displayKey = getDisplayKey();
+
+    if (state.useRelativeKey) {
+        const originalType = isMinorKey(transposedKey) ? 'minor' : 'major';
+        const relativeType = isMinorKey(displayKey) ? 'minor' : 'major';
+        elements.songKey.textContent = `${displayKey} (rel. ${relativeType})`;
+        elements.toggleRelativeKey.title = `Switch back to ${transposedKey}`;
+    } else {
+        elements.songKey.textContent = displayKey;
+        const relativeKey = getRelativeKey(transposedKey);
+        elements.toggleRelativeKey.title = `Switch to relative key (${relativeKey})`;
+    }
+}
+
+/**
  * Open chord modal
  */
 function openChordModal(chordName) {
@@ -1681,7 +1738,7 @@ function openChordModal(chordName) {
 
     const nameDiv = document.createElement('div');
     nameDiv.className = 'chord-name';
-    const transposedKey = transposeKey(state.currentSong.key, state.transpose);
+    const transposedKey = getDisplayKey();
     nameDiv.textContent = state.showAsNumbers
         ? `${getScaleDegree(chordName, transposedKey)} (${chordName})`
         : chordName;

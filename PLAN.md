@@ -137,6 +137,14 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
 - Updates key display, chord reference, and all chords in lyrics
 - Resets to original when switching songs
 
+### 6a. Relative Key Toggle
+- Button (↔) next to key display to switch between original key and relative major/minor
+- Example: C major ↔ Am (relative minor), or Em ↔ G (relative major)
+- Updates all harmonic analysis (roman numerals, functions) without changing chord names
+- Useful for songs that could be analyzed in either key
+- Visual indicator when viewing relative key
+- Resets when switching songs
+
 ### 7. URL Bookmarking
 - URL updates when selecting a song (e.g., `?song=somewhere-over-the-rainbow`)
 - Transpose value included in URL when not 0 (e.g., `?song=riptide&transpose=2`)
