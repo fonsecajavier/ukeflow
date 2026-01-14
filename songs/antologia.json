@@ -1,101 +1,210 @@
 {
   "title": "Antología",
   "artist": "Shakira",
-  "key": "G",
+  "key": "C",
   "lines": [
+    { "section": "Intro" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "Am", "position": 2 },
+        { "chord": "F", "position": 5 },
+        { "chord": "G", "position": 7 }
+      ]
+    },
     { "section": "Verse 1" },
     {
       "lyrics": "Para amarte necesito una razón",
       "chords": [
-        { "chord": "G", "position": 0 },
-        { "chord": "D", "position": 20 }
+        { "chord": "C", "position": 0 },
+        { "chord": "Am", "position": 17 }
       ]
     },
     {
-      "lyrics": "Y es difícil creer que no exista una",
+      "lyrics": "y es difícil creer que no exista una más que este amor.",
       "chords": [
-        { "chord": "Em", "position": 0 },
-        { "chord": "C", "position": 22 }
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 44 }
       ]
     },
     {
-      "lyrics": "Más que este amor",
-      "chords": [
-        { "chord": "G", "position": 0 },
-        { "chord": "D", "position": 10 }
-      ]
-    },
-    { "section": "Verse 2" },
-    {
-      "lyrics": "Para amarte necesito una razón",
-      "chords": [
-        { "chord": "G", "position": 0 },
-        { "chord": "D", "position": 20 }
-      ]
-    },
-    {
-      "lyrics": "Y es difícil creer",
-      "chords": [
-        { "chord": "Em", "position": 0 }
-      ]
-    },
-    {
-      "lyrics": "Que no exista otra más que tu boca",
+      "lyrics": "Sobra tanto dentro de este corazón",
       "chords": [
         { "chord": "C", "position": 0 },
-        { "chord": "D", "position": 20 }
+        { "chord": "Am", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "que a pesar de que dicen que los años son sabios todavía se siente el dolor.",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 54 }
       ]
     },
     { "section": "Pre-Chorus" },
     {
-      "lyrics": "Tu boca de labios partidos",
+      "lyrics": "Por qué todo el tiempo que pasé junto a tiii iiii",
       "chords": [
-        { "chord": "Em", "position": 0 },
-        { "chord": "D", "position": 14 }
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 20 },
+        { "chord": "C", "position": 40 },
+        { "chord": "G", "position": 47 }
       ]
     },
     {
-      "lyrics": "Que besa tan suave y que habla así",
+      "lyrics": "dejo tejido su hilo dentro de miii iiiii",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "D", "position": 22 }
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 8 },
+        { "chord": "Dm", "position": 33 },
+        { "chord": "G", "position": 38 }
       ]
     },
     { "section": "Chorus" },
     {
-      "lyrics": "Soy una más de tu antología",
+      "lyrics": "Y aprendí a quitarle al tiempo los segundos,",
       "chords": [
-        { "chord": "G", "position": 0 },
-        { "chord": "D", "position": 14 }
+        { "chord": "C", "position": 0 }
       ]
     },
     {
-      "lyrics": "Qué más da que sea",
+      "lyrics": "tú me hiciste ver el cielo aún más profundo;",
       "chords": [
-        { "chord": "Em", "position": 0 },
-        { "chord": "C", "position": 10 }
+        { "chord": "Am", "position": 0 }
       ]
     },
     {
-      "lyrics": "Una más, qué le hace",
+      "lyrics": "junto a ti creo que aumenté más de 3 kilos,",
       "chords": [
-        { "chord": "G", "position": 0 },
-        { "chord": "D", "position": 10 }
+        { "chord": "F", "position": 0 }
       ]
     },
     {
-      "lyrics": "Solo quiero ser",
+      "lyrics": "con tus tantos dulces besos repartidos;",
       "chords": [
-        { "chord": "Em", "position": 0 },
-        { "chord": "C", "position": 10 }
+        { "chord": "G", "position": 0 }
       ]
     },
     {
-      "lyrics": "La última más",
+      "lyrics": "Desarrollaste mi sentido del olfato",
       "chords": [
-        { "chord": "G", "position": 0 },
-        { "chord": "D", "position": 8 },
-        { "chord": "G", "position": 14 }
+        { "chord": "C", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "y fue por ti que aprendí a querer los gatos,",
+      "chords": [
+        { "chord": "Am", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "despegaste del cemento mis zapatos",
+      "chords": [
+        { "chord": "F", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "para escapar los dos volando un rato.",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    { "section": "Pre-Chorus" },
+    {
+      "lyrics": "Pero olvidaste una final instruccioooo oooon,",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 12 },
+        { "chord": "C", "position": 38 },
+        { "chord": "G", "position": 46 }
+      ]
+    },
+    {
+      "lyrics": "porque aún no sé cómo vivir sin tu amooo oooor.",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 16 },
+        { "chord": "Dm", "position": 40 },
+        { "chord": "G", "position": 47 }
+      ]
+    },
+    { "section": "Chorus 2" },
+    {
+      "lyrics": "Y descubrí lo que significa una rosa,",
+      "chords": [
+        { "chord": "C", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "me enseñaste a decir mentiras piadosas",
+      "chords": [
+        { "chord": "Am", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "para poder a verte a horas no adecuadas",
+      "chords": [
+        { "chord": "F", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "y a reemplazar palabras por miradas.",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Y fue por ti que escribí más de 100 canciones",
+      "chords": [
+        { "chord": "C", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "y hasta perdoné tus equivocaciones",
+      "chords": [
+        { "chord": "Am", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "y conocí más de mil formas de besar",
+      "chords": [
+        { "chord": "F", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "y fue por ti que descubrí lo que es amar...",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    { "section": "Outro" },
+    {
+      "lyrics": "Lo que es amaaar...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "Am", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "Lo que es amaaar... aaah aahh",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "Lo que es amaaar...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "Am", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "Lo que es amaaar... aaah aahh",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 11 }
       ]
     }
   ]
