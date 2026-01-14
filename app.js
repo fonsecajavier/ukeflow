@@ -124,7 +124,7 @@ const PLAY_STYLES = {
                 ]
             },
             'strum-chunk': {
-                name: 'Chunk (Muted)',
+                name: 'Chunk (D-x-U-x)',
                 type: 'strum',
                 // Percussive with mutes
                 pattern: [
@@ -136,6 +136,109 @@ const PLAY_STYLES = {
                     { dir: 'x', beat: 2.5 },
                     { dir: 'U', beat: 3 },
                     { dir: 'x', beat: 3.5 }
+                ]
+            },
+            'strum-reggae-chunk': {
+                name: 'Reggae Chunk',
+                type: 'strum',
+                // Off-beat emphasis with chunks: x-U-x-U
+                pattern: [
+                    { dir: 'x', beat: 0 },
+                    { dir: 'U', beat: 0.5 },
+                    { dir: 'x', beat: 1 },
+                    { dir: 'U', beat: 1.5 },
+                    { dir: 'x', beat: 2 },
+                    { dir: 'U', beat: 2.5 },
+                    { dir: 'x', beat: 3 },
+                    { dir: 'U', beat: 3.5 }
+                ]
+            },
+            'strum-ska': {
+                name: 'Ska Upstroke',
+                type: 'strum',
+                // Ska style: x on beat, U on off-beat
+                pattern: [
+                    { dir: 'x', beat: 0 },
+                    { dir: 'U', beat: 0.5 },
+                    { dir: 'x', beat: 1 },
+                    { dir: 'U', beat: 1.5 },
+                    { dir: 'x', beat: 2 },
+                    { dir: 'U', beat: 2.5 },
+                    { dir: 'x', beat: 3 },
+                    { dir: 'U', beat: 3.5 }
+                ]
+            },
+            'strum-funky': {
+                name: 'Funky Chunk',
+                type: 'strum',
+                // Syncopated funk: D-x-D-U-x-U
+                pattern: [
+                    { dir: 'D', beat: 0 },
+                    { dir: 'x', beat: 0.5 },
+                    { dir: 'D', beat: 1 },
+                    { dir: 'U', beat: 1.5 },
+                    { dir: 'x', beat: 2 },
+                    { dir: 'U', beat: 2.5 },
+                    { dir: 'D', beat: 3 },
+                    { dir: 'x', beat: 3.5 }
+                ]
+            },
+            'strum-bossa': {
+                name: 'Bossa Nova',
+                type: 'strum',
+                // Brazilian feel: D-x-D-U-D-x
+                pattern: [
+                    { dir: 'D', beat: 0 },
+                    { dir: 'x', beat: 0.75 },
+                    { dir: 'D', beat: 1.5 },
+                    { dir: 'U', beat: 2 },
+                    { dir: 'D', beat: 2.5 },
+                    { dir: 'x', beat: 3.25 }
+                ]
+            },
+            'strum-shuffle': {
+                name: 'Shuffle',
+                type: 'strum',
+                // Swing feel with chunks
+                pattern: [
+                    { dir: 'D', beat: 0 },
+                    { dir: 'x', beat: 0.67 },
+                    { dir: 'D', beat: 1 },
+                    { dir: 'x', beat: 1.67 },
+                    { dir: 'D', beat: 2 },
+                    { dir: 'x', beat: 2.67 },
+                    { dir: 'D', beat: 3 },
+                    { dir: 'x', beat: 3.67 }
+                ]
+            },
+            'strum-latin': {
+                name: 'Latin Fire',
+                type: 'strum',
+                // Energetic Latin: D-D-x-U-x-U-D-x
+                pattern: [
+                    { dir: 'D', beat: 0 },
+                    { dir: 'D', beat: 0.5 },
+                    { dir: 'x', beat: 1 },
+                    { dir: 'U', beat: 1.5 },
+                    { dir: 'x', beat: 2 },
+                    { dir: 'U', beat: 2.5 },
+                    { dir: 'D', beat: 3 },
+                    { dir: 'x', beat: 3.5 }
+                ]
+            },
+            'strum-flamenco': {
+                name: 'Flamenco',
+                type: 'strum',
+                // Passionate flamenco: D-x-x-U-D-U-x-D
+                pattern: [
+                    { dir: 'D', beat: 0 },
+                    { dir: 'x', beat: 0.33 },
+                    { dir: 'x', beat: 0.67 },
+                    { dir: 'U', beat: 1 },
+                    { dir: 'D', beat: 1.5 },
+                    { dir: 'U', beat: 2 },
+                    { dir: 'x', beat: 2.5 },
+                    { dir: 'D', beat: 3 }
                 ]
             },
             'strum-waltz': {
@@ -204,6 +307,62 @@ const PLAY_STYLES = {
                 name: 'Campanella',
                 type: 'arpeggio',
                 pattern: [0, 3, 1, 2, 0, 2, 1, 3],
+                delay: 0.09
+            },
+            'arp-classical': {
+                name: 'Classical',
+                type: 'arpeggio',
+                // p-i-m-a-m-i pattern
+                pattern: [0, 2, 3, 1, 3, 2],
+                delay: 0.1
+            },
+            'arp-waltz': {
+                name: 'Waltz Arpeggio',
+                type: 'arpeggio',
+                // Bass then chord roll (3/4 feel)
+                pattern: [0, [1, 2, 3], [1, 2, 3]],
+                delay: 0.15
+            },
+            'arp-folk': {
+                name: 'Folk Pattern',
+                type: 'arpeggio',
+                // Alternating bass with melody
+                pattern: [0, 3, 1, 3, 0, 2, 1, 2],
+                delay: 0.1
+            },
+            'arp-tremolo': {
+                name: 'Tremolo',
+                type: 'arpeggio',
+                // Rapid repeated high string
+                pattern: [0, 3, 3, 3, 0, 3, 3, 3],
+                delay: 0.06
+            },
+            'arp-cascade': {
+                name: 'Cascade',
+                type: 'arpeggio',
+                // Flowing waterfall pattern
+                pattern: [0, 1, 2, 3, 2, 1, 0, 1],
+                delay: 0.08
+            },
+            'arp-spanish': {
+                name: 'Spanish Roll',
+                type: 'arpeggio',
+                // Rasgueado-inspired
+                pattern: [3, 2, 1, 0, [0, 1, 2, 3]],
+                delay: 0.07
+            },
+            'arp-jazz': {
+                name: 'Jazz Comp',
+                type: 'arpeggio',
+                // Jazz comping style
+                pattern: [[0, 3], 2, [1, 3], 2],
+                delay: 0.12
+            },
+            'arp-island': {
+                name: 'Island Roll',
+                type: 'arpeggio',
+                // Hawaiian style
+                pattern: [0, 2, 3, 2, 1, 2, 3, 2],
                 delay: 0.09
             }
         }

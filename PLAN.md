@@ -115,6 +115,13 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - Chunk/Muted (D x U x) - percussive with muted hits
     - Realistic palm-mute sound with muted string pitches
     - Body thump, finger click, and woody resonance layers
+  - Reggae Chunk (x U x U) - off-beat with chunks
+  - Ska Upstroke (x U x U) - ska style
+  - Funky Chunk (D x D U x U) - syncopated funk
+  - Bossa Nova (D x D U D x) - Brazilian feel
+  - Shuffle (D x D x) - swing feel with chunks
+  - Latin Fire (D D x U x U D x) - energetic Latin
+  - Flamenco (D x x U D U x D) - passionate style
   - Waltz (D D D) - 3/4 time
   - Reggae Skank (x U x U) - off-beat style
 
@@ -126,6 +133,14 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - Fingerpick (p-i-m-i) - thumb, index, middle, index
   - Fingerpick (p-i-m-a) - thumb, index, middle, ring
   - Campanella - bell-like cascading pattern
+  - Classical - p-i-m-a-m-i pattern
+  - Waltz Arpeggio - bass then chord (3/4 feel)
+  - Folk Pattern - alternating bass with melody
+  - Tremolo - rapid repeated high string
+  - Cascade - flowing waterfall pattern
+  - Spanish Roll - rasgueado-inspired
+  - Jazz Comp - jazz comping style
+  - Island Roll - Hawaiian style
 
 - **Tempo Selector** (80-160 BPM):
   - Controls timing for both strums and arpeggios
