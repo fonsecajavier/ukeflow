@@ -1,0 +1,418 @@
+/**
+ * UkeFlow - UI Module
+ * DOM elements, rendering functions, and UI utilities
+ */
+
+// DOM Elements
+const elements = {
+    appTitle: document.getElementById('app-title'),
+    songSelector: document.getElementById('song-selector'),
+    songSelectorWrapper: document.querySelector('.song-selector-wrapper'),
+    songSelectorClear: document.getElementById('song-selector-clear'),
+    songDropdown: document.getElementById('song-dropdown'),
+    songInfo: document.getElementById('song-info'),
+    songTitle: document.getElementById('song-title'),
+    songArtist: document.getElementById('song-artist'),
+    songKey: document.getElementById('song-key'),
+    transposeSelect: document.getElementById('transpose-select'),
+    arpeggioSelect: document.getElementById('arpeggio-select'),
+    tempoSelect: document.getElementById('tempo-select'),
+    patternDisplay: document.getElementById('pattern-display'),
+    toggleBtn: document.getElementById('toggle-progression'),
+    toggleRelativeKey: document.getElementById('toggle-relative-key'),
+    chordReference: document.getElementById('chord-reference'),
+    scaleGrid: document.getElementById('scale-grid'),
+    progressionContent: document.getElementById('progression-content'),
+    triviaContent: document.getElementById('trivia-content'),
+    harmonicContent: document.getElementById('harmonic-content'),
+    spotifySection: document.getElementById('spotify-section'),
+    spotifyEmbed: document.getElementById('spotify-embed'),
+    chordGrid: document.getElementById('chord-grid'),
+    lyricsSection: document.getElementById('lyrics-section'),
+    lyricsContainer: document.getElementById('lyrics-container'),
+    welcomeMessage: document.getElementById('welcome-message'),
+    modalOverlay: document.getElementById('modal-overlay'),
+    modalContent: document.getElementById('modal-content'),
+    modalChord: document.getElementById('modal-chord'),
+    modalClose: document.getElementById('modal-close')
+};
+
+/**
+ * Populate the play style selector with optgroups
+ */
+function populatePlayStyleSelector() {
+    Object.entries(PLAY_STYLES).forEach(([groupKey, group]) => {
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = group.label;
+
+        Object.entries(group.patterns).forEach(([key, config]) => {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = config.name;
+            if (key === currentPlayStyle) {
+                option.selected = true;
+            }
+            optgroup.appendChild(option);
+        });
+
+        elements.arpeggioSelect.appendChild(optgroup);
+    });
+}
+
+/**
+ * Update the pattern display to show current pattern
+ */
+function updatePatternDisplay() {
+    const styleConfig = getPlayStyle(currentPlayStyle);
+    const pattern = styleConfig.pattern;
+    let displayText = '';
+
+    if (styleConfig.type === 'strum') {
+        // Show strum pattern: D ↓ U ↑ x ✕
+        displayText = pattern.map(s => {
+            if (s.dir === 'D') return '↓';
+            if (s.dir === 'U') return '↑';
+            if (s.dir === 'x') return '✕';
+            return s.dir;
+        }).join(' ');
+    } else {
+        // Show arpeggio pattern with string names
+        const stringNames = ['G', 'C', 'E', 'A'];
+        displayText = pattern.map(step => {
+            if (Array.isArray(step)) {
+                return step.map(i => stringNames[i]).join('+');
+            }
+            return stringNames[step];
+        }).join(' → ');
+    }
+
+    elements.patternDisplay.textContent = displayText;
+}
+
+/**
+ * Highlight matching text in search results
+ */
+function highlightMatch(text, query) {
+    if (!query) return escapeHtml(text);
+    const regex = new RegExp(`(${escapeRegex(query)})`, 'gi');
+    return escapeHtml(text).replace(regex, '<mark>$1</mark>');
+}
+
+/**
+ * Escape special regex characters
+ */
+function escapeRegex(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/**
+ * Escape HTML to prevent XSS
+ */
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+/**
+ * Set highlighted item in dropdown
+ */
+function setHighlightedItem(index) {
+    const items = elements.songDropdown.querySelectorAll('li');
+    items.forEach((item, i) => {
+        item.classList.toggle('highlighted', i === index);
+    });
+    state.highlightedIndex = index;
+
+    // Scroll highlighted item into view
+    if (items[index]) {
+        items[index].scrollIntoView({ block: 'nearest' });
+    }
+}
+
+/**
+ * Update clear button visibility based on input content
+ */
+function updateClearButtonVisibility() {
+    if (elements.songSelector.value.trim()) {
+        elements.songSelectorWrapper.classList.add('has-text');
+    } else {
+        elements.songSelectorWrapper.classList.remove('has-text');
+    }
+}
+
+/**
+ * Create a chord diagram element
+ * @param {Object} chordData - Chord definition object
+ * @param {boolean} large - Whether to render a large version
+ * @param {string} displayName - Override name to display
+ * @param {boolean} showPlayButton - Whether to show the play button
+ * @param {boolean} showVariationIndicator - Whether to show indicator for variations
+ */
+function createChordDiagram(chordData, large = false, displayName = null, showPlayButton = true, showVariationIndicator = true) {
+    const container = document.createElement('div');
+    container.className = 'chord-diagram';
+
+    const name = document.createElement('div');
+    name.className = 'chord-name';
+    const chordName = displayName || chordData.name;
+    name.textContent = chordName;
+    container.appendChild(name);
+
+    // Add scale degree below chord name
+    if (state.currentSong) {
+        const transposedKey = getDisplayKey();
+        const scaleDegree = getScaleDegree(chordName, transposedKey);
+        const degreeDiv = document.createElement('div');
+        degreeDiv.className = 'chord-degree';
+        degreeDiv.textContent = scaleDegree;
+        container.appendChild(degreeDiv);
+    }
+
+    const svg = createChordSVG(chordData, large);
+    container.appendChild(svg);
+
+    // Add variation indicator if this chord has alternatives
+    if (showVariationIndicator) {
+        const variations = getChordVariations(chordName);
+        if (variations.length > 1) {
+            const varIndicator = document.createElement('div');
+            varIndicator.className = 'variation-indicator';
+            varIndicator.title = `${variations.length} voicings available`;
+            varIndicator.textContent = `+${variations.length - 1}`;
+            container.appendChild(varIndicator);
+        }
+    }
+
+    // Add play button
+    if (showPlayButton) {
+        const playBtn = document.createElement('button');
+        playBtn.className = 'chord-play-btn';
+        playBtn.innerHTML = '&#9654;'; // Play triangle symbol
+        playBtn.title = 'Play chord';
+        playBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Don't trigger chord modal
+            playChordArpeggio(chordData);
+            // Visual feedback
+            playBtn.classList.add('playing');
+            setTimeout(() => playBtn.classList.remove('playing'), 400);
+        });
+        container.appendChild(playBtn);
+    }
+
+    return container;
+}
+
+/**
+ * Create SVG chord diagram
+ * @param {Object} chord - Chord definition
+ * @param {boolean} large - Large size flag
+ */
+function createChordSVG(chord, large = false) {
+    const numFrets = 5; // Show 5 frets to support all chord shapes
+    const width = large ? 120 : 70;
+    const height = large ? 160 : 100;
+    const stringSpacing = large ? 24 : 14;
+    const fretSpacing = large ? 24 : 14;
+    const startX = large ? 24 : 14;
+    const startY = large ? 24 : 14;
+    const dotRadius = large ? 8 : 5;
+    const fontSize = large ? 12 : 8;
+
+    // Calculate the starting fret (for chords played higher up the neck)
+    const frettedPositions = chord.frets.filter(f => f > 0);
+    const minFret = frettedPositions.length > 0 ? Math.min(...frettedPositions) : 1;
+    const startingFret = minFret > 5 ? minFret : 1;
+    const isHighPosition = startingFret > 1;
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', width);
+    svg.setAttribute('height', height);
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+
+    // Draw nut (thick line at top) - only show if at first position
+    if (!isHighPosition) {
+        const nut = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        nut.setAttribute('x', startX - 2);
+        nut.setAttribute('y', startY - 4);
+        nut.setAttribute('width', stringSpacing * 3 + 4);
+        nut.setAttribute('height', large ? 5 : 3);
+        nut.setAttribute('fill', '#e4e4e4');
+        svg.appendChild(nut);
+    } else {
+        // Show fret position number for high position chords
+        const fretLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        fretLabel.setAttribute('x', startX - (large ? 14 : 10));
+        fretLabel.setAttribute('y', startY + fretSpacing * 0.5 + fontSize / 3);
+        fretLabel.setAttribute('text-anchor', 'middle');
+        fretLabel.setAttribute('font-size', large ? 14 : 10);
+        fretLabel.setAttribute('fill', '#f39c12');
+        fretLabel.setAttribute('font-weight', 'bold');
+        fretLabel.textContent = startingFret + 'fr';
+        svg.appendChild(fretLabel);
+    }
+
+    // Draw frets (horizontal lines)
+    for (let i = 0; i <= numFrets; i++) {
+        const fret = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        fret.setAttribute('x1', startX);
+        fret.setAttribute('y1', startY + i * fretSpacing);
+        fret.setAttribute('x2', startX + stringSpacing * 3);
+        fret.setAttribute('y2', startY + i * fretSpacing);
+        fret.setAttribute('stroke', '#666');
+        fret.setAttribute('stroke-width', 1);
+        svg.appendChild(fret);
+    }
+
+    // Draw strings (vertical lines) - G, C, E, A
+    for (let i = 0; i < 4; i++) {
+        const string = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        string.setAttribute('x1', startX + i * stringSpacing);
+        string.setAttribute('y1', startY);
+        string.setAttribute('x2', startX + i * stringSpacing);
+        string.setAttribute('y2', startY + fretSpacing * numFrets);
+        string.setAttribute('stroke', '#888');
+        string.setAttribute('stroke-width', i === 0 ? 2 : 1);
+        svg.appendChild(string);
+    }
+
+    // Draw barre if present (adjusted for starting fret)
+    if (chord.barre) {
+        const adjustedBarreFret = chord.barre.fret - startingFret + 1;
+        const barreY = startY + (adjustedBarreFret - 0.5) * fretSpacing;
+        const barreX1 = startX + chord.barre.fromString * stringSpacing;
+        const barreX2 = startX + chord.barre.toString * stringSpacing;
+
+        const barre = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        barre.setAttribute('x', barreX1 - dotRadius);
+        barre.setAttribute('y', barreY - dotRadius);
+        barre.setAttribute('width', barreX2 - barreX1 + dotRadius * 2);
+        barre.setAttribute('height', dotRadius * 2);
+        barre.setAttribute('rx', dotRadius);
+        barre.setAttribute('fill', '#1a1a2e');
+        barre.setAttribute('stroke', '#e4e4e4');
+        barre.setAttribute('stroke-width', '0.75');
+        svg.appendChild(barre);
+    }
+
+    // Draw finger positions (adjusted for starting fret)
+    chord.frets.forEach((fret, stringIndex) => {
+        const x = startX + stringIndex * stringSpacing;
+
+        if (fret === 0) {
+            // Open string - draw circle above nut (only if at first position)
+            if (!isHighPosition) {
+                const open = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                open.setAttribute('cx', x);
+                open.setAttribute('cy', startY - (large ? 12 : 8));
+                open.setAttribute('r', dotRadius - 2);
+                open.setAttribute('fill', 'none');
+                open.setAttribute('stroke', '#888');
+                open.setAttribute('stroke-width', 1.5);
+                svg.appendChild(open);
+            }
+        } else if (fret === -1) {
+            // Muted string - draw X above nut
+            const xSize = dotRadius - 1;
+            const xY = startY - (large ? 12 : 8);
+            const line1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line1.setAttribute('x1', x - xSize);
+            line1.setAttribute('y1', xY - xSize);
+            line1.setAttribute('x2', x + xSize);
+            line1.setAttribute('y2', xY + xSize);
+            line1.setAttribute('stroke', '#888');
+            line1.setAttribute('stroke-width', 1.5);
+            svg.appendChild(line1);
+
+            const line2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line2.setAttribute('x1', x + xSize);
+            line2.setAttribute('y1', xY - xSize);
+            line2.setAttribute('x2', x - xSize);
+            line2.setAttribute('y2', xY + xSize);
+            line2.setAttribute('stroke', '#888');
+            line2.setAttribute('stroke-width', 1.5);
+            svg.appendChild(line2);
+        } else if (fret > 0) {
+            // Adjust fret position relative to starting fret
+            const adjustedFret = fret - startingFret + 1;
+
+            // Skip if this position is covered by a barre
+            const isBarre = chord.barre &&
+                fret === chord.barre.fret &&
+                stringIndex >= chord.barre.fromString &&
+                stringIndex <= chord.barre.toString;
+
+            if (!isBarre) {
+                // Fretted note - draw filled circle with finger number
+                const y = startY + (adjustedFret - 0.5) * fretSpacing;
+
+                const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                dot.setAttribute('cx', x);
+                dot.setAttribute('cy', y);
+                dot.setAttribute('r', dotRadius);
+                dot.setAttribute('fill', '#1a1a2e');
+                dot.setAttribute('stroke', '#e4e4e4');
+                dot.setAttribute('stroke-width', '0.75');
+                svg.appendChild(dot);
+
+                // Add finger number
+                if (chord.fingers[stringIndex] > 0) {
+                    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    text.setAttribute('x', x);
+                    text.setAttribute('y', y + fontSize / 3);
+                    text.setAttribute('text-anchor', 'middle');
+                    text.setAttribute('font-size', fontSize);
+                    text.setAttribute('fill', '#fff');
+                    text.setAttribute('font-weight', 'bold');
+                    text.textContent = chord.fingers[stringIndex];
+                    svg.appendChild(text);
+                }
+            }
+        }
+    });
+
+    // Add barre finger number (adjusted for starting fret)
+    if (chord.barre) {
+        const adjustedBarreFret = chord.barre.fret - startingFret + 1;
+        const barreY = startY + (adjustedBarreFret - 0.5) * fretSpacing;
+        const barreX = startX + chord.barre.fromString * stringSpacing;
+
+        const fingerIndex = chord.frets.findIndex((f, i) =>
+            f === chord.barre.fret && i >= chord.barre.fromString && i <= chord.barre.toString
+        );
+
+        if (fingerIndex >= 0 && chord.fingers[fingerIndex] > 0) {
+            const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            text.setAttribute('x', barreX);
+            text.setAttribute('y', barreY + fontSize / 3);
+            text.setAttribute('text-anchor', 'middle');
+            text.setAttribute('font-size', fontSize);
+            text.setAttribute('fill', '#fff');
+            text.setAttribute('font-weight', 'bold');
+            text.textContent = chord.fingers[fingerIndex];
+            svg.appendChild(text);
+        }
+    }
+
+    // String labels
+    const strings = ['G', 'C', 'E', 'A'];
+    strings.forEach((s, i) => {
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', startX + i * stringSpacing);
+        label.setAttribute('y', height - 2);
+        label.setAttribute('text-anchor', 'middle');
+        label.setAttribute('font-size', fontSize);
+        label.setAttribute('fill', '#666');
+        label.textContent = s;
+        svg.appendChild(label);
+    });
+
+    return svg;
+}
+
+/**
+ * Close chord modal
+ */
+function closeModal() {
+    elements.modalOverlay.classList.remove('active');
+}

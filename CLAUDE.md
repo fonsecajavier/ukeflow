@@ -4,13 +4,34 @@
 UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No build tools or dependencies - vanilla JS only.
 
 ## File Structure
+
+### Core Files
 - `index.html` - Main HTML structure
-- `app.js` - Core application logic, audio synthesis, rendering
 - `styles.css` - All styling
-- `chords.js` - Chord definitions (frets, fingers, barre positions)
 - `songs.json` - Index of song files
 - `songs/*.json` - Individual song files
 - `PLAN.md` - Feature documentation and implementation details
+
+### JavaScript Modules (loaded in this order)
+| File | Contents |
+|------|----------|
+| `chords.js` | CHORDS definitions, SCALE_DEGREES_MAJOR/MINOR, CHORD_VARIATIONS, transposeChord(), transposeKey(), getScaleDegree(), isMinorKey(), getChordVariations() |
+| `state.js` | `state` object (songIndex, songCache, currentSong, transpose, etc.), slugify(), getDisplayKey() |
+| `patterns.js` | PLAY_STYLES (strums/arpeggios), currentBPM, currentPlayStyle, getBeat(), getPlayStyle() |
+| `audio.js` | audioContext, UKULELE_TUNING, pluckString(), playStrum(), playChunk(), playChord(), playChordArpeggio() |
+| `analysis.js` | getRelativeKey(), detectFamousProgressions(), detectBorrowedChords(), getUsedChords(), getHarmonicFunction(), detectSecondaryDominant() |
+| `ui.js` | `elements` object (DOM refs), createChordDiagram(), createChordSVG(), populatePlayStyleSelector(), updatePatternDisplay(), highlightMatch(), escapeHtml(), closeModal() |
+| `app.js` | init(), setupEventListeners(), displaySong(), renderLyrics(), renderChordReference(), renderScaleReference(), openChordModal(), all event handlers |
+
+### Where to Find Things
+- **Add a new chord**: `chords.js` → CHORDS object
+- **Add chord variations**: `chords.js` → CHORD_VARIATIONS object
+- **Modify audio/synthesis**: `audio.js` → pluckString(), playChunk()
+- **Add strum/arpeggio pattern**: `patterns.js` → PLAY_STYLES
+- **Modify song rendering**: `app.js` → renderLyrics(), displaySong()
+- **Modify chord diagrams**: `ui.js` → createChordSVG()
+- **Add harmonic analysis**: `analysis.js` → getHarmonicFunction()
+- **Modify UI elements**: `ui.js` → elements object, then `app.js` for logic
 
 ## Song File Format
 ```json
@@ -18,6 +39,7 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
   "title": "Song Name",
   "artist": "Artist",
   "key": "Am",
+  "spotify": "https://open.spotify.com/track/TRACK_ID",
   "lines": [
     { "section": "Verse 1" },
     {
@@ -35,7 +57,7 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
 
 ## Adding Songs
 1. Create `songs/song-name.json` with correct format
-2. Add path to `songs.json` array
+2. Add entry to `songs.json` array with path, title, artist
 3. Update `PLAN.md` file structure section
 4. **Always search the web** for the correct Spotify track URL and add it to the song JSON as `"spotify": "https://open.spotify.com/track/TRACK_ID"`. Prefer original studio versions over live/remix versions.
 
@@ -72,18 +94,23 @@ Bamboleo, bambolea
 ## Audio
 - Uses Karplus-Strong synthesis (no external audio files)
 - Standard ukulele tuning: G4-C4-E4-A4
+- Audio code is in `audio.js`
 
 ## Music Theory
 - Minor keys use lowercase roman numerals (i, iv, v)
 - Major keys use uppercase (I, IV, V)
 - Support for borrowed chords and extended chords (7, maj7, m7, dim, aug)
+- Scale/theory data in `chords.js`, analysis functions in `analysis.js`
 
 ## When Adding Features
 1. Update `PLAN.md` with feature documentation
-2. Commit with descriptive message
+2. Add code to the appropriate module (see table above)
+3. Commit with descriptive message
 
 ## Common Tasks
-- **Add chord**: Edit `chords.js`, add frets/fingers/barre definition
-- **Add song**: Create JSON file, add to `songs.json`
+- **Add chord**: Edit `chords.js`, add to CHORDS object with frets/fingers/barre
+- **Add chord variation**: Edit `chords.js`, add to CHORD_VARIATIONS object
+- **Add song**: Create JSON file in songs/, add to `songs.json`
+- **Add play style**: Edit `patterns.js`, add to PLAY_STYLES.strums or .arpeggios
 - **Add collapsible section**: Follow pattern in index.html (details/summary), add matching CSS
 - **Add Spotify link**: Add `"spotify": "https://open.spotify.com/track/TRACK_ID"` to song JSON. **Always search the web** to find the correct Spotify track URL - do not guess or make up track IDs.

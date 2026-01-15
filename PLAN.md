@@ -213,8 +213,13 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
 ukeflow/
 ├── index.html      # Main HTML structure
 ├── styles.css      # Styling for chord diagrams, layout
-├── app.js          # Core application logic
-├── chords.js       # Chord definitions (fingerings, positions)
+├── chords.js       # Chord definitions, music theory data (scales, transposition)
+├── state.js        # Application state management
+├── patterns.js     # Play styles (strums, arpeggios) and tempo settings
+├── audio.js        # Audio synthesis (Karplus-Strong) and playback
+├── analysis.js     # Music theory analysis (progressions, harmonic functions)
+├── ui.js           # UI utilities, DOM elements, chord diagram rendering
+├── app.js          # Main application logic, event handlers, rendering
 ├── songs.json      # Index file pointing to individual song files
 └── songs/          # Individual song JSON files
     ├── somewhere-over-the-rainbow.json
@@ -241,6 +246,29 @@ ukeflow/
     ├── a-la-nanita-nana.json          # Traditional Spanish lullaby (A)
     └── good-riddance.json             # Green Day (G)
 ```
+
+### JavaScript Module Organization
+
+The application JavaScript is split into modules for maintainability:
+
+| Module | Purpose |
+|--------|---------|
+| `chords.js` | Chord definitions (CHORDS), scale degrees, transposition functions, chord variations |
+| `state.js` | Application state object, slugify utility, getDisplayKey |
+| `patterns.js` | PLAY_STYLES (strums/arpeggios), tempo (currentBPM), getPlayStyle |
+| `audio.js` | AudioContext, Karplus-Strong synthesis, playChord, playStrum, playChunk |
+| `analysis.js` | getRelativeKey, detectFamousProgressions, getHarmonicFunction, detectSecondaryDominant, getUsedChords |
+| `ui.js` | DOM elements, createChordDiagram, createChordSVG, populatePlayStyleSelector, updatePatternDisplay |
+| `app.js` | Main app: init, event handlers, rendering functions (displaySong, renderLyrics, etc.) |
+
+Scripts are loaded in dependency order in `index.html`:
+1. `chords.js` - Core data
+2. `state.js` - App state (depends on nothing)
+3. `patterns.js` - Play patterns (depends on nothing)
+4. `audio.js` - Audio (depends on patterns.js globals)
+5. `analysis.js` - Analysis (depends on state.js, chords.js)
+6. `ui.js` - UI (depends on state.js, patterns.js, chords.js)
+7. `app.js` - Main app (depends on all above)
 
 ## Data Structures
 
