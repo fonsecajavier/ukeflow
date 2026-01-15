@@ -91,6 +91,12 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - Displayed in both Harmonic Analysis table and lyrics (when "Show as Numbers" enabled)
   - Example: E major in key of C shown as "V/vi (Secondary Dominant)"
 
+### 3e. Spotify Integration
+- Embedded Spotify player for songs with a `spotify` field
+- Displays above "Chords Used" section when available
+- Supports various Spotify URL formats (open.spotify.com, spotify: URI)
+- 152px height compact player with playback controls
+
 ### 4. Interactive Chord Popups
 - Click any chord in the lyrics section
 - Shows a popup/modal with the chord diagram
@@ -254,6 +260,7 @@ ukeflow/
   "title": "Song Name",
   "artist": "Artist Name",
   "key": "C",
+  "spotify": "https://open.spotify.com/track/TRACK_ID",
   "lines": [
     { "section": "Verse 1" },
     {
@@ -266,6 +273,7 @@ ukeflow/
   ]
 }
 ```
+- `spotify`: Optional Spotify track URL for embedded player
 
 ### Chord Definition Format
 ```javascript

@@ -683,6 +683,26 @@ body {
     font-style: italic;
 }
 
+/* Spotify Section */
+.spotify-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+}
+
+.spotify-title {
+    font-size: 1rem;
+    color: #1DB954;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 12px 0;
+}
+
+.spotify-embed iframe {
+    border-radius: 12px;
+}
+
 .chords-title {
     font-size: 1rem;
     color: #888;

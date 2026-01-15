@@ -783,6 +783,8 @@ const elements = {
     progressionContent: document.getElementById('progression-content'),
     triviaContent: document.getElementById('trivia-content'),
     harmonicContent: document.getElementById('harmonic-content'),
+    spotifySection: document.getElementById('spotify-section'),
+    spotifyEmbed: document.getElementById('spotify-embed'),
     chordGrid: document.getElementById('chord-grid'),
     lyricsSection: document.getElementById('lyrics-section'),
     lyricsContainer: document.getElementById('lyrics-container'),
@@ -1266,13 +1268,54 @@ function displaySong() {
     elements.lyricsSection.style.display = 'block';
     elements.welcomeMessage.style.display = 'none';
 
-    // Render scale reference, progression summary, trivia, harmonic analysis, chord reference and lyrics
+    // Render scale reference, progression summary, trivia, harmonic analysis, Spotify, chord reference and lyrics
     renderScaleReference();
     renderProgressionSummary();
     renderMusicTrivia();
     renderHarmonicAnalysis();
+    renderSpotifyEmbed();
     renderChordReference();
     renderLyrics();
+}
+
+/**
+ * Render the Spotify embed if the song has a spotify field
+ */
+function renderSpotifyEmbed() {
+    if (!state.currentSong.spotify) {
+        elements.spotifySection.style.display = 'none';
+        return;
+    }
+
+    // Extract track ID from various Spotify URL formats
+    const spotifyUrl = state.currentSong.spotify;
+    let embedUrl = '';
+
+    if (spotifyUrl.includes('open.spotify.com')) {
+        // Convert open.spotify.com URL to embed URL
+        embedUrl = spotifyUrl.replace('open.spotify.com', 'open.spotify.com/embed');
+    } else if (spotifyUrl.startsWith('spotify:')) {
+        // Convert URI format (spotify:track:ID) to embed URL
+        const parts = spotifyUrl.split(':');
+        if (parts.length >= 3) {
+            embedUrl = `https://open.spotify.com/embed/${parts[1]}/${parts[2]}`;
+        }
+    } else {
+        // Assume it's already an embed URL or just the track ID
+        embedUrl = spotifyUrl;
+    }
+
+    elements.spotifyEmbed.innerHTML = `
+        <iframe
+            src="${embedUrl}"
+            width="100%"
+            height="152"
+            frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+        </iframe>
+    `;
+    elements.spotifySection.style.display = 'block';
 }
 
 /**
