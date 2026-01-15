@@ -15,6 +15,8 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - Highlights matching text in results
   - Keyboard navigation (Arrow Up/Down, Enter, Escape)
   - Works on all browsers (replaces native datalist)
+- Home page displays clickable list of all songs when no song is selected
+- Clicking the header title returns to home
 - Songs filtered and sorted alphabetically as you type
 - Clear button (×) to reset song selection
 

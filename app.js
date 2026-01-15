@@ -763,6 +763,7 @@ function playChordArpeggio(chordData) {
 
 // DOM Elements
 const elements = {
+    appTitle: document.getElementById('app-title'),
     songSelector: document.getElementById('song-selector'),
     songSelectorWrapper: document.querySelector('.song-selector-wrapper'),
     songSelectorClear: document.getElementById('song-selector-clear'),
@@ -899,10 +900,44 @@ async function loadSongs() {
         const indexResponse = await fetch('songs.json');
         const indexData = await indexResponse.json();
         state.songIndex = indexData.songs;
+        displaySongList();
     } catch (error) {
         console.error('Error loading songs:', error);
         elements.welcomeMessage.innerHTML = '<p>Error loading songs. Make sure songs.json exists.</p>';
     }
+}
+
+/**
+ * Display all songs as a clickable list on the home page
+ */
+function displaySongList() {
+    const sortedSongs = [...state.songIndex].sort((a, b) =>
+        a.title.localeCompare(b.title)
+    );
+
+    const html = `
+        <p>Select a song to start learning ukulele progressions!</p>
+        <ul class="song-list-home">
+            ${sortedSongs.map(song => `
+                <li data-path="${song.path}">
+                    <span class="song-title">${song.title}</span>
+                    <span class="song-artist">— ${song.artist}</span>
+                </li>
+            `).join('')}
+        </ul>
+    `;
+
+    elements.welcomeMessage.innerHTML = html;
+
+    // Add click handlers
+    elements.welcomeMessage.querySelectorAll('.song-list-home li').forEach(li => {
+        li.addEventListener('click', () => {
+            const songMeta = state.songIndex.find(s => s.path === li.dataset.path);
+            if (songMeta) {
+                selectSongFromDropdown(songMeta);
+            }
+        });
+    });
 }
 
 /**
@@ -1076,6 +1111,7 @@ function handleClickOutside(e) {
  * Setup event listeners
  */
 function setupEventListeners() {
+    elements.appTitle.addEventListener('click', goHome);
     elements.songSelector.addEventListener('input', handleSongInput);
     elements.songSelector.addEventListener('keydown', handleDropdownKeyboard);
     elements.songSelector.addEventListener('focus', () => {
@@ -1170,6 +1206,17 @@ function clearSongSelector() {
     hideSong();
     updateURL();
     elements.songSelector.focus();
+}
+
+/**
+ * Go back to home (no song selected)
+ */
+function goHome() {
+    elements.songSelector.value = '';
+    elements.songDropdown.classList.remove('active');
+    updateClearButtonVisibility();
+    hideSong();
+    updateURL();
 }
 
 /**

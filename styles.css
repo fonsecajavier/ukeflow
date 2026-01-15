@@ -32,6 +32,7 @@ body {
 .app-header h1 {
     font-size: 1.8rem;
     color: #f39c12;
+    cursor: pointer;
 }
 
 .song-selector-wrapper {
@@ -881,9 +882,46 @@ body {
 /* Welcome Message */
 .welcome-message {
     text-align: center;
-    padding: 60px 20px;
+    padding: 40px 20px;
     color: #888;
     font-size: 1.2rem;
+}
+
+.welcome-message p {
+    margin-bottom: 20px;
+}
+
+/* Song List on Home Page */
+.song-list-home {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 600px;
+    text-align: left;
+}
+
+.song-list-home li {
+    padding: 12px 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.song-list-home li:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.song-list-home .song-title {
+    color: #e4e4e4;
+    font-weight: 500;
+}
+
+.song-list-home .song-artist {
+    color: #888;
+    font-size: 0.9rem;
 }
 
 /* Modal */
