@@ -10,7 +10,7 @@
     { "path": "songs/guantanamera.json", "title": "Guantanamera", "artist": "Traditional Cuban" },
     { "path": "songs/cielito-lindo.json", "title": "Cielito Lindo", "artist": "Traditional Mexican" },
     { "path": "songs/besame-mucho.json", "title": "Besame Mucho", "artist": "Consuelo Velazquez" },
-    { "path": "songs/waka-waka.json", "title": "Waka Waka", "artist": "Shakira" },
+    { "path": "songs/waka-waka.json", "title": "Waka Waka (This Time for Africa)", "artist": "Shakira" },
     { "path": "songs/hips-dont-lie.json", "title": "Hips Don't Lie", "artist": "Shakira" },
     { "path": "songs/whenever-wherever.json", "title": "Whenever, Wherever", "artist": "Shakira" },
     { "path": "songs/la-tortura.json", "title": "La Tortura", "artist": "Shakira" },

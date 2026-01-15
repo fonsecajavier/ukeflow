@@ -858,13 +858,28 @@ async function loadFromURL() {
 
             displaySong();
         }
+    } else {
+        // No song selected - show home
+        state.currentSong = null;
+        state.transpose = 0;
+        elements.songSelector.value = '';
+        elements.transposeSelect.value = '0';
+        updateClearButtonVisibility();
+        hideSong();
     }
+}
+
+/**
+ * Handle browser back/forward navigation
+ */
+async function handlePopState() {
+    await loadFromURL();
 }
 
 /**
  * Update URL with current song state
  */
-function updateURL() {
+function updateURL(usePushState = true) {
     const params = new URLSearchParams();
 
     if (state.currentSong) {
@@ -878,7 +893,14 @@ function updateURL() {
         ? `${window.location.pathname}?${params.toString()}`
         : window.location.pathname;
 
-    window.history.replaceState({}, '', newURL);
+    // Only push if URL actually changed
+    if (newURL !== window.location.pathname + window.location.search) {
+        if (usePushState) {
+            window.history.pushState({}, '', newURL);
+        } else {
+            window.history.replaceState({}, '', newURL);
+        }
+    }
 }
 
 /**
@@ -886,9 +908,11 @@ function updateURL() {
  */
 function slugify(text) {
     return text
+        .normalize('NFD')                    // Decompose accents (é → e + ́)
+        .replace(/[\u0300-\u036f]/g, '')     // Remove combining diacritical marks
         .toLowerCase()
-        .replace(/[^\w\s-]/g, '')
-        .replace(/\s+/g, '-')
+        .replace(/[^\w\s-]/g, '')            // Remove non-word chars except spaces/hyphens
+        .replace(/\s+/g, '-')                // Replace spaces with hyphens
         .trim();
 }
 
@@ -1131,6 +1155,7 @@ function setupEventListeners() {
     elements.modalClose.addEventListener('click', closeModal);
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('click', handleClickOutside);
+    window.addEventListener('popstate', handlePopState);
 }
 
 /**
@@ -2363,7 +2388,7 @@ function renderLyrics() {
 function handleTranspose(e) {
     state.transpose = parseInt(e.target.value, 10);
     displaySong();
-    updateURL();
+    updateURL(false); // Use replaceState for transpose changes
 }
 
 /**
