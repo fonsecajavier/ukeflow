@@ -9,7 +9,8 @@ const state = {
     currentSong: null,
     showAsNumbers: false,
     transpose: 0,
-    useRelativeKey: false
+    useRelativeKey: false,
+    highlightedIndex: -1  // For dropdown keyboard navigation
 };
 
 // Audio Context for chord playback
@@ -765,7 +766,7 @@ const elements = {
     songSelector: document.getElementById('song-selector'),
     songSelectorWrapper: document.querySelector('.song-selector-wrapper'),
     songSelectorClear: document.getElementById('song-selector-clear'),
-    songList: document.getElementById('song-list'),
+    songDropdown: document.getElementById('song-dropdown'),
     songInfo: document.getElementById('song-info'),
     songTitle: document.getElementById('song-title'),
     songArtist: document.getElementById('song-artist'),
@@ -898,7 +899,6 @@ async function loadSongs() {
         const indexResponse = await fetch('songs.json');
         const indexData = await indexResponse.json();
         state.songIndex = indexData.songs;
-        populateSongSelector();
     } catch (error) {
         console.error('Error loading songs:', error);
         elements.welcomeMessage.innerHTML = '<p>Error loading songs. Make sure songs.json exists.</p>';
@@ -922,26 +922,167 @@ async function loadSongData(songMeta) {
 }
 
 /**
- * Populate the song selector datalist
+ * Filter and display matching songs in dropdown
  */
-function populateSongSelector() {
-    // Sort songs alphabetically by title
-    const sortedSongs = [...state.songIndex].sort((a, b) =>
-        a.title.localeCompare(b.title)
-    );
+function filterSongDropdown(query) {
+    const dropdown = elements.songDropdown;
+    dropdown.innerHTML = '';
+    state.highlightedIndex = -1;
 
-    sortedSongs.forEach((song) => {
-        const option = document.createElement('option');
-        option.value = `${song.title} - ${song.artist}`;
-        elements.songList.appendChild(option);
+    if (!query.trim()) {
+        dropdown.classList.remove('active');
+        return;
+    }
+
+    const lowerQuery = query.toLowerCase();
+    const matches = state.songIndex
+        .filter(song =>
+            song.title.toLowerCase().includes(lowerQuery) ||
+            song.artist.toLowerCase().includes(lowerQuery)
+        )
+        .sort((a, b) => a.title.localeCompare(b.title))
+        .slice(0, 10);
+
+    if (matches.length === 0) {
+        dropdown.classList.remove('active');
+        return;
+    }
+
+    matches.forEach((song, index) => {
+        const li = document.createElement('li');
+        li.setAttribute('role', 'option');
+        li.dataset.index = index;
+        li.dataset.path = song.path;
+
+        const titleHtml = highlightMatch(song.title, lowerQuery);
+        const artistHtml = highlightMatch(song.artist, lowerQuery);
+
+        li.innerHTML = `<span class="song-title">${titleHtml}</span><span class="song-artist">— ${artistHtml}</span>`;
+
+        li.addEventListener('click', () => selectSongFromDropdown(song));
+        li.addEventListener('mouseenter', () => {
+            setHighlightedItem(index);
+        });
+
+        dropdown.appendChild(li);
     });
+
+    dropdown.classList.add('active');
+}
+
+/**
+ * Highlight matching text in search results
+ */
+function highlightMatch(text, query) {
+    if (!query) return escapeHtml(text);
+    const regex = new RegExp(`(${escapeRegex(query)})`, 'gi');
+    return escapeHtml(text).replace(regex, '<mark>$1</mark>');
+}
+
+/**
+ * Escape special regex characters
+ */
+function escapeRegex(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/**
+ * Escape HTML to prevent XSS
+ */
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+/**
+ * Set highlighted item in dropdown
+ */
+function setHighlightedItem(index) {
+    const items = elements.songDropdown.querySelectorAll('li');
+    items.forEach((item, i) => {
+        item.classList.toggle('highlighted', i === index);
+    });
+    state.highlightedIndex = index;
+
+    // Scroll highlighted item into view
+    if (items[index]) {
+        items[index].scrollIntoView({ block: 'nearest' });
+    }
+}
+
+/**
+ * Select a song from the dropdown
+ */
+async function selectSongFromDropdown(songMeta) {
+    elements.songSelector.value = `${songMeta.title} - ${songMeta.artist}`;
+    elements.songDropdown.classList.remove('active');
+    updateClearButtonVisibility();
+
+    // Reset transpose and relative key when switching songs
+    state.transpose = 0;
+    state.useRelativeKey = false;
+    elements.transposeSelect.value = '0';
+    elements.toggleRelativeKey.classList.remove('active');
+
+    // Load full song data (lazy load with cache)
+    const songData = await loadSongData(songMeta);
+    state.currentSong = songData;
+    displaySong();
+    updateURL();
+}
+
+/**
+ * Handle keyboard navigation in dropdown
+ */
+function handleDropdownKeyboard(e) {
+    const dropdown = elements.songDropdown;
+    if (!dropdown.classList.contains('active')) return;
+
+    const items = dropdown.querySelectorAll('li');
+    if (items.length === 0) return;
+
+    switch (e.key) {
+        case 'ArrowDown':
+            e.preventDefault();
+            setHighlightedItem(Math.min(state.highlightedIndex + 1, items.length - 1));
+            break;
+        case 'ArrowUp':
+            e.preventDefault();
+            setHighlightedItem(Math.max(state.highlightedIndex - 1, 0));
+            break;
+        case 'Enter':
+            e.preventDefault();
+            if (state.highlightedIndex >= 0 && items[state.highlightedIndex]) {
+                items[state.highlightedIndex].click();
+            }
+            break;
+        case 'Escape':
+            dropdown.classList.remove('active');
+            break;
+    }
+}
+
+/**
+ * Close dropdown when clicking outside
+ */
+function handleClickOutside(e) {
+    if (!elements.songSelectorWrapper.contains(e.target)) {
+        elements.songDropdown.classList.remove('active');
+    }
 }
 
 /**
  * Setup event listeners
  */
 function setupEventListeners() {
-    elements.songSelector.addEventListener('input', handleSongSelect);
+    elements.songSelector.addEventListener('input', handleSongInput);
+    elements.songSelector.addEventListener('keydown', handleDropdownKeyboard);
+    elements.songSelector.addEventListener('focus', () => {
+        if (elements.songSelector.value.trim()) {
+            filterSongDropdown(elements.songSelector.value);
+        }
+    });
     elements.songSelectorClear.addEventListener('click', clearSongSelector);
     elements.transposeSelect.addEventListener('change', handleTranspose);
     elements.arpeggioSelect.addEventListener('change', handleArpeggioChange);
@@ -951,6 +1092,7 @@ function setupEventListeners() {
     elements.modalOverlay.addEventListener('click', handleModalClose);
     elements.modalClose.addEventListener('click', closeModal);
     document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('click', handleClickOutside);
 }
 
 /**
@@ -1023,6 +1165,7 @@ function updateClearButtonVisibility() {
  */
 function clearSongSelector() {
     elements.songSelector.value = '';
+    elements.songDropdown.classList.remove('active');
     updateClearButtonVisibility();
     hideSong();
     updateURL();
@@ -1030,34 +1173,20 @@ function clearSongSelector() {
 }
 
 /**
- * Handle song selection
+ * Handle song input (typing in search box)
  */
-async function handleSongSelect(e) {
-    const inputValue = e.target.value.trim();
+function handleSongInput(e) {
+    const inputValue = e.target.value;
     updateClearButtonVisibility();
 
-    if (inputValue === '') {
+    if (inputValue.trim() === '') {
+        elements.songDropdown.classList.remove('active');
         hideSong();
         updateURL();
         return;
     }
 
-    // Find song metadata by matching "Title - Artist" format
-    const songMeta = state.songIndex.find(s => `${s.title} - ${s.artist}` === inputValue);
-
-    if (songMeta) {
-        // Reset transpose and relative key when switching songs
-        state.transpose = 0;
-        state.useRelativeKey = false;
-        elements.transposeSelect.value = '0';
-        elements.toggleRelativeKey.classList.remove('active');
-
-        // Load full song data (lazy load with cache)
-        const songData = await loadSongData(songMeta);
-        state.currentSong = songData;
-        displaySong();
-        updateURL();
-    }
+    filterSongDropdown(inputValue);
 }
 
 /**

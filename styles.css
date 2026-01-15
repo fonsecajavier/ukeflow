@@ -82,6 +82,62 @@ body {
     display: block;
 }
 
+/* Custom Song Dropdown (Safari-compatible autocomplete) */
+.song-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: #2d3a4f;
+    border-radius: 0 0 8px 8px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 100;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.song-dropdown.active {
+    display: block;
+}
+
+.song-dropdown li {
+    padding: 10px 15px;
+    cursor: pointer;
+    color: #e4e4e4;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.song-dropdown li:last-child {
+    border-bottom: none;
+}
+
+.song-dropdown li:hover,
+.song-dropdown li.highlighted {
+    background: #3d4a5f;
+}
+
+.song-dropdown li .song-title {
+    font-weight: 500;
+}
+
+.song-dropdown li .song-artist {
+    color: #888;
+    font-size: 0.85rem;
+    margin-left: 8px;
+}
+
+.song-dropdown mark {
+    background: rgba(243, 156, 18, 0.3);
+    color: #f39c12;
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
 /* Song Info */
 .song-info {
     display: flex;
