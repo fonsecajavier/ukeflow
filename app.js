@@ -404,12 +404,22 @@ function displaySong() {
 
 /**
  * Render the Spotify embed if the song has a spotify field
+ * Only re-renders if the URL has changed to avoid interrupting playback
  */
+let currentSpotifyUrl = null;
+
 function renderSpotifyEmbed() {
     if (!state.currentSong.spotify) {
         elements.spotifySection.style.display = 'none';
+        currentSpotifyUrl = null;
         return;
     }
+
+    // Skip re-render if URL hasn't changed (e.g., during transpose)
+    if (state.currentSong.spotify === currentSpotifyUrl) {
+        return;
+    }
+    currentSpotifyUrl = state.currentSong.spotify;
 
     // Extract track ID from various Spotify URL formats
     const spotifyUrl = state.currentSong.spotify;
