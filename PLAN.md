@@ -234,7 +234,7 @@ ukeflow/
     ├── besame-mucho.json              # Latin American, Minor key (Dm)
     ├── waka-waka.json                 # Shakira (G)
     ├── hips-dont-lie.json             # Shakira, Minor key (A#m)
-    ├── whenever-wherever.json         # Shakira, Minor key (Bm)
+    ├── whenever-wherever.json         # Shakira, Minor key (G#m)
     ├── la-tortura.json                # Shakira, Minor key (Am)
     ├── ojos-asi.json                  # Shakira 90s, Minor key (F#m)
     ├── bamboleo.json                  # Gipsy Kings, Flamenco (Em)
