@@ -1,6 +1,6 @@
 # UkeFlow
 
-A simple HTML/JS app for learning ukulele chord progressions. View chord diagrams, see chords above lyrics, and toggle between chord names and scale degrees.
+A single-page HTML/JS app for learning ukulele chord progressions. View chord diagrams, see chords above lyrics, play chords with realistic ukulele sounds, and learn music theory.
 
 ## Disclaimer
 
@@ -28,10 +28,34 @@ php -S localhost:8000
 
 ## Features
 
+### Chord Display
 - **Chord diagrams** with finger positions (1-4) and barre indicators
 - **Interactive chords** - click any chord in the lyrics to see its diagram
+- **Alternative voicings** - chords with multiple voicings show a "+N" badge; click to see all positions
+- **High position indicator** - shows fret number for positions above fret 5
+
+### Audio Playback
+- **Play any chord** - click the play button to hear realistic ukulele sound
+- **Karplus-Strong synthesis** - no audio files, generated in real-time
+- **Multiple play styles**:
+  - **Strums**: Down, Island, Basic, Rock, Calypso, Chunk/Muted, Reggae, Ska, Funk, Bossa Nova, Waltz, and more
+  - **Arpeggios**: Down/Up Roll, Travis Pick, Fingerpicking patterns, Tremolo, and more
+- **Tempo control** - adjustable BPM (80-160)
+
+### Music Theory Tools
 - **Progression toggle** - switch between chord names (C, Am, F) and scale degrees (I, vi, IV)
-- **Key display** - shows the song's key at the top
+- **Transpose** - shift song key up or down by semitones
+- **Relative key toggle** - analyze in relative major/minor
+- **Scale reference** - shows all 7 diatonic chords in the current key
+- **Harmonic analysis** - color-coded table showing chord functions (Tonic, Dominant, Subdominant)
+- **Secondary dominant detection** - identifies V/x relationships
+- **Famous progression detection** - recognizes patterns like I-V-vi-IV, ii-V-I, Andalusian cadence
+
+### Song Features
+- **Embedded Spotify player** - listen along with the original track
+- **URL bookmarking** - shareable links with song and transpose settings
+- **Browser navigation** - back/forward buttons work naturally
+- **Song search** - type to filter by title or artist
 
 ## Adding Songs
 
@@ -42,6 +66,7 @@ php -S localhost:8000
   "title": "Song Title",
   "artist": "Artist Name",
   "key": "C",
+  "spotify": "https://open.spotify.com/track/TRACK_ID",
   "lines": [
     { "section": "Verse 1" },
     {
@@ -55,13 +80,12 @@ php -S localhost:8000
 }
 ```
 
-2. Add the path to `songs.json`:
+2. Add the entry to `songs.json`:
 
 ```json
 {
   "songs": [
-    "songs/existing-song.json",
-    "songs/your-new-song.json"
+    { "path": "songs/your-song.json", "title": "Song Title", "artist": "Artist Name" }
   ]
 }
 ```
@@ -69,6 +93,7 @@ php -S localhost:8000
 ### Song Format
 
 - `title`, `artist`, `key` - Song metadata
+- `spotify` - Optional Spotify track URL for embedded player
 - `lines` - Array of lyric lines or section markers
 - `section` - Optional section label (Verse, Chorus, etc.)
 - `lyrics` - The lyric text
@@ -80,13 +105,25 @@ php -S localhost:8000
 
 ```
 ukeflow/
-├── index.html      # Main page
-├── styles.css      # Styling
-├── chords.js       # Chord definitions (150+ chords)
-├── app.js          # Application logic
-├── songs.json      # Song index
-└── songs/          # Individual song files
+├── index.html      # Main HTML structure
+├── styles.css      # All styling
+├── songs.json      # Song index with metadata
+├── songs/          # Individual song JSON files (23 songs)
+├── chords.js       # Chord definitions, scale degrees, transposition
+├── state.js        # Application state management
+├── patterns.js     # Play styles (strums, arpeggios) and tempo
+├── audio.js        # Karplus-Strong synthesis and playback
+├── analysis.js     # Music theory analysis functions
+├── ui.js           # DOM utilities and chord diagram rendering
+└── app.js          # Main application logic and event handlers
 ```
+
+## Technical Notes
+
+- Pure vanilla JavaScript - no build tools or dependencies
+- SVG-based chord diagrams (scalable, crisp)
+- Web Audio API for sound synthesis
+- Mobile-friendly responsive design
 
 ## License
 
