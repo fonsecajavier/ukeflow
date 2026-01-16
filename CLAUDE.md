@@ -61,6 +61,11 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
 3. Update `PLAN.md` file structure section
 4. **Always search the web** for the correct Spotify track URL and add it to the song JSON as `"spotify": "https://open.spotify.com/track/TRACK_ID"`. Prefer original studio versions over live/remix versions.
 
+## Modifying Songs
+When making any changes to existing songs (transposing, editing lyrics, fixing chords, etc.):
+1. Make the changes to the song JSON file
+2. Update `PLAN.md` to reflect the current state of the song (e.g., update the key if transposed)
+
 ## Parsing Lyrics from User Input
 When the user provides lyrics with chords, the format is typically:
 - **Odd lines**: Chord names (positioned above lyrics)
