@@ -1,0 +1,211 @@
+{
+  "title": "En el Muelle de San Blas",
+  "artist": "Maná",
+  "key": "Em",
+  "spotify": "https://open.spotify.com/track/0mvocLIWUnT10znvIXwHGr",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Ella Despidio a su amor el partio en un barco en el muelle de San Blas",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 21 },
+        { "chord": "D", "position": 42 },
+        { "chord": "G", "position": 67 }
+      ]
+    },
+    {
+      "lyrics": "El juro y que volveria y empapada en llanto ella juro que esperaria",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 21 },
+        { "chord": "D", "position": 42 },
+        { "chord": "G", "position": 67 }
+      ]
+    },
+    {
+      "lyrics": "Miles de lunas pasaron y siempre ella estaba en el muelle esperando",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 21 },
+        { "chord": "D", "position": 42 },
+        { "chord": "G", "position": 63 }
+      ]
+    },
+    {
+      "lyrics": "Muchas tardes se anidaron se anidaron en su pelo y en sus labios.",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 21 },
+        { "chord": "D", "position": 42 },
+        { "chord": "G", "position": 63 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Llevaba el mismo vestido y por si el volviera no se fuera a equivocar",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 21 },
+        { "chord": "D", "position": 42 },
+        { "chord": "G", "position": 68 }
+      ]
+    },
+    {
+      "lyrics": "Los cangrejos le mordian sus ropajes, su tristeza y su ilusion",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 21 },
+        { "chord": "D", "position": 46 },
+        { "chord": "G", "position": 63 }
+      ]
+    },
+    {
+      "lyrics": "Y el tiempo se escurrio y sus ojos se le llenaron de amaneceres",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 23 },
+        { "chord": "D", "position": 44 },
+        { "chord": "G", "position": 62 }
+      ]
+    },
+    {
+      "lyrics": "Y del mar se enamoro y su cuerpo se enrraizo en el muelle.",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 21 },
+        { "chord": "D", "position": 42 },
+        { "chord": "G", "position": 57 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Sola, sola, en el olvido. Sola, sola, con su espiritu",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 18 },
+        { "chord": "D", "position": 27 },
+        { "chord": "A", "position": 45 }
+      ]
+    },
+    {
+      "lyrics": "Sola, sola, con su amor. Sola, en el muelle de San Blas.",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 17 },
+        { "chord": "G", "position": 26 },
+        { "chord": "A", "position": 28 },
+        { "chord": "D", "position": 56 }
+      ]
+    },
+    { "section": "Verse 3" },
+    {
+      "lyrics": "Su cabello se blanqueo pero ningun barco a su amor le devolvia",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 21 },
+        { "chord": "D", "position": 40 },
+        { "chord": "G", "position": 62 }
+      ]
+    },
+    {
+      "lyrics": "Y en el pueblo le decian, le decian la loca del muelle de San Blas",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 22 },
+        { "chord": "D", "position": 45 },
+        { "chord": "G", "position": 66 }
+      ]
+    },
+    {
+      "lyrics": "Y una tarde de abril la trataron transladar al manicomio",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 20 },
+        { "chord": "D", "position": 42 },
+        { "chord": "G", "position": 56 }
+      ]
+    },
+    {
+      "lyrics": "Nadie la pudo arrancar y del mar nunca jamas la separaron.",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A", "position": 22 },
+        { "chord": "D", "position": 42 },
+        { "chord": "G", "position": 58 }
+      ]
+    },
+    { "section": "Chorus 2" },
+    {
+      "lyrics": "Sola. sola en el olvido. Sola, sola con su espiritu.",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 17 },
+        { "chord": "D", "position": 27 },
+        { "chord": "A", "position": 44 }
+      ]
+    },
+    {
+      "lyrics": "Sola, sola con el sol y el mar. Sola",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 25 },
+        { "chord": "G", "position": 31 },
+        { "chord": "A", "position": 33 }
+      ]
+    },
+    {
+      "lyrics": "Sola, sola en el olvido, Sola, sola con su espiritu.",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 17 },
+        { "chord": "D", "position": 27 },
+        { "chord": "A", "position": 44 }
+      ]
+    },
+    {
+      "lyrics": "Sola, sola con su amor el mar. Sola, en el muelle de San Blas.",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 23 },
+        { "chord": "G", "position": 32 },
+        { "chord": "A", "position": 34 },
+        { "chord": "D", "position": 61 }
+      ]
+    },
+    { "section": "Outro" },
+    {
+      "lyrics": "Se quedo, se quedo, sola, sola.",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Se quedo, se quedo, con el sol y con el mar",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "Se quedo ahi, se quedo hasta el fin.",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Se quedo ahi, se quedo, en el muelle de San Blas",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "D", "position": 35 }
+      ]
+    },
+    {
+      "lyrics": "Sola, Sola se quedo.",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    }
+  ]
+}

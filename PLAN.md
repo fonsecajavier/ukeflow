@@ -227,7 +227,7 @@ ukeflow/
     ├── im-yours.json
     ├── stand-by-me.json
     ├── house-of-the-rising-sun.json  # Minor key (Am)
-    ├── mad-world.json                 # Minor key (Em)
+    ├── mad-world.json                 # Minor key (Fm)
     ├── la-bamba.json                  # Latin American (C)
     ├── guantanamera.json              # Latin American (C)
     ├── cielito-lindo.json             # Latin American (C)
@@ -244,7 +244,8 @@ ukeflow/
     ├── andar-conmigo.json             # Julieta Venegas (C)
     ├── i-really-want-to-stay-at-your-house.json  # Cyberpunk 2077 (B)
     ├── a-la-nanita-nana.json          # Traditional Spanish lullaby (A)
-    └── good-riddance.json             # Green Day (G)
+    ├── good-riddance.json             # Green Day (G)
+    └── en-el-muelle-de-san-blas.json  # Maná, Minor key (Em)
 ```
 
 ### JavaScript Module Organization
