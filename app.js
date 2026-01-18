@@ -392,11 +392,12 @@ function displaySong() {
     elements.lyricsSection.style.display = 'block';
     elements.welcomeMessage.style.display = 'none';
 
-    // Render scale reference, progression summary, trivia, harmonic analysis, Spotify, chord reference and lyrics
+    // Render scale reference, progression summary, trivia, harmonic analysis, circle of fifths, Spotify, chord reference and lyrics
     renderScaleReference();
     renderProgressionSummary();
     renderMusicTrivia();
     renderHarmonicAnalysis();
+    renderCircleOfFifths();
     renderSpotifyEmbed();
     renderChordReference();
     renderLyrics();
@@ -768,6 +769,142 @@ function renderHarmonicAnalysis() {
 
     table.appendChild(tbody);
     elements.harmonicContent.appendChild(table);
+}
+
+/**
+ * Render Circle of Fifths
+ */
+function renderCircleOfFifths() {
+    const transposedKey = getDisplayKey();
+    elements.circleContainer.innerHTML = '';
+
+    const svg = createCircleOfFifthsSVG(transposedKey, (majorKey, minorKey) => {
+        openKeyModal(majorKey, minorKey);
+    });
+
+    elements.circleContainer.appendChild(svg);
+}
+
+/**
+ * Open a modal showing all chords in a key with option to transpose
+ */
+function openKeyModal(majorKey, minorKey) {
+    elements.modalChord.innerHTML = '';
+
+    const currentKey = getDisplayKey();
+    const isCurrentKeyMinor = isMinorKey(currentKey);
+
+    // Create modal content
+    const content = document.createElement('div');
+    content.className = 'key-modal-content';
+
+    // Title (major key)
+    const title = document.createElement('div');
+    title.className = 'key-modal-title';
+    title.textContent = `Key of ${majorKey}`;
+    content.appendChild(title);
+
+    // Subtitle (relative minor)
+    const subtitle = document.createElement('div');
+    subtitle.className = 'key-modal-subtitle';
+    subtitle.textContent = `Relative minor: ${minorKey}`;
+    content.appendChild(subtitle);
+
+    // Diatonic chords for major key
+    const chordsContainer = document.createElement('div');
+    chordsContainer.className = 'key-modal-chords';
+
+    const majorScale = SCALE_DEGREES_MAJOR[majorKey];
+    const romanNumerals = ROMAN_NUMERALS_MAJOR;
+
+    if (majorScale) {
+        for (let i = 0; i < 7; i++) {
+            const chord = majorScale[i];
+            const numeral = romanNumerals[i];
+
+            const chordItem = document.createElement('div');
+            chordItem.className = 'key-modal-chord';
+
+            // Check if chord exists in library
+            const chordData = CHORDS[chord];
+            if (chordData) {
+                chordItem.addEventListener('click', () => {
+                    openChordModal(chord);
+                });
+            }
+
+            const degree = document.createElement('span');
+            degree.className = 'chord-degree';
+            degree.textContent = numeral;
+            chordItem.appendChild(degree);
+
+            const name = document.createElement('span');
+            name.className = 'chord-name';
+            name.textContent = chord;
+            chordItem.appendChild(name);
+
+            chordsContainer.appendChild(chordItem);
+        }
+    }
+
+    content.appendChild(chordsContainer);
+
+    // Transpose button (only show if a song is loaded)
+    if (state.currentSong) {
+        const transposeBtn = document.createElement('button');
+        transposeBtn.className = 'key-modal-transpose-btn';
+
+        // Calculate semitone difference
+        const originalKey = transposeKey(state.currentSong.key, state.transpose);
+        const targetKey = isCurrentKeyMinor ? minorKey : majorKey;
+
+        // Get the root note for comparison
+        const getNoteIndex = (key) => {
+            const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+            const altNotes = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+            const root = key.replace('m', '').replace('dim', '').replace('aug', '').replace('7', '').replace('maj', '');
+            let idx = notes.indexOf(root);
+            if (idx === -1) idx = altNotes.indexOf(root);
+            return idx;
+        };
+
+        const currentNoteIdx = getNoteIndex(originalKey);
+        const targetNoteIdx = getNoteIndex(targetKey);
+
+        let semitones = targetNoteIdx - currentNoteIdx;
+        if (semitones > 6) semitones -= 12;
+        if (semitones < -5) semitones += 12;
+
+        // Calculate total transpose from original
+        const newTranspose = state.transpose + semitones;
+
+        // Normalize to -5 to +6 range
+        let normalizedTranspose = newTranspose;
+        while (normalizedTranspose > 6) normalizedTranspose -= 12;
+        while (normalizedTranspose < -5) normalizedTranspose += 12;
+
+        if (semitones === 0) {
+            transposeBtn.textContent = 'Already in this key';
+            transposeBtn.disabled = true;
+        } else {
+            transposeBtn.textContent = `Transpose to ${targetKey}`;
+            transposeBtn.addEventListener('click', () => {
+                // Set transpose
+                state.transpose = normalizedTranspose;
+                elements.transposeSelect.value = normalizedTranspose.toString();
+
+                // Close modal and update display
+                closeModal();
+                displaySong();
+                updateURL(false);
+            });
+        }
+
+        content.appendChild(transposeBtn);
+    }
+
+    elements.modalChord.appendChild(content);
+    elements.modalOverlay.classList.add('active');
 }
 
 /**

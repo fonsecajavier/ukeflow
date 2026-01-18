@@ -683,6 +683,180 @@ body {
     font-style: italic;
 }
 
+/* Circle of Fifths */
+.circle-of-fifths {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.circle-of-fifths summary {
+    padding: 12px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.circle-of-fifths summary::-webkit-details-marker {
+    display: none;
+}
+
+.circle-of-fifths summary::before {
+    content: '▶';
+    font-size: 0.7rem;
+    transition: transform 0.2s ease;
+}
+
+.circle-of-fifths[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.circle-of-fifths summary:hover {
+    color: #e4e4e4;
+}
+
+.circle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.circle-container svg {
+    max-width: 100%;
+    height: auto;
+}
+
+.circle-key-group {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.circle-key-group:hover {
+    transform: scale(1.08);
+}
+
+.circle-key-group:hover .circle-key-bg {
+    fill: rgba(255, 255, 255, 0.15);
+}
+
+.circle-key-bg {
+    fill: rgba(255, 255, 255, 0.05);
+    transition: fill 0.2s ease;
+}
+
+.circle-key-major {
+    fill: #f39c12;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.circle-key-minor {
+    fill: #3498db;
+    font-size: 12px;
+}
+
+.circle-key-group.active .circle-key-bg {
+    fill: rgba(243, 156, 18, 0.3);
+    stroke: #f39c12;
+    stroke-width: 2;
+}
+
+.circle-key-group.active .circle-key-major {
+    fill: #fff;
+}
+
+.circle-key-group.active-minor .circle-key-bg {
+    fill: rgba(52, 152, 219, 0.3);
+    stroke: #3498db;
+    stroke-width: 2;
+}
+
+.circle-key-group.active-minor .circle-key-minor {
+    fill: #fff;
+}
+
+/* Key Modal (for Circle of Fifths) */
+.key-modal-content {
+    text-align: center;
+}
+
+.key-modal-title {
+    font-size: 1.5rem;
+    color: #f39c12;
+    margin-bottom: 5px;
+}
+
+.key-modal-subtitle {
+    font-size: 0.9rem;
+    color: #3498db;
+    margin-bottom: 20px;
+}
+
+.key-modal-chords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.key-modal-chord {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.key-modal-chord:hover {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.key-modal-chord .chord-degree {
+    font-size: 0.75rem;
+    color: #3498db;
+    margin-bottom: 2px;
+}
+
+.key-modal-chord .chord-name {
+    font-size: 0.95rem;
+    color: #f39c12;
+    font-weight: bold;
+}
+
+.key-modal-transpose-btn {
+    padding: 12px 24px;
+    font-size: 1rem;
+    border: 2px solid #2ecc71;
+    border-radius: 8px;
+    background: transparent;
+    color: #2ecc71;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+}
+
+.key-modal-transpose-btn:hover {
+    background: #2ecc71;
+    color: #1a1a2e;
+}
+
+.key-modal-transpose-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 /* Spotify Section */
 .spotify-section {
     margin-bottom: 20px;

@@ -25,6 +25,7 @@ const elements = {
     progressionContent: document.getElementById('progression-content'),
     triviaContent: document.getElementById('trivia-content'),
     harmonicContent: document.getElementById('harmonic-content'),
+    circleContainer: document.getElementById('circle-container'),
     spotifySection: document.getElementById('spotify-section'),
     spotifyEmbed: document.getElementById('spotify-embed'),
     chordGrid: document.getElementById('chord-grid'),
@@ -406,6 +407,165 @@ function createChordSVG(chord, large = false) {
         label.textContent = s;
         svg.appendChild(label);
     });
+
+    return svg;
+}
+
+/**
+ * Create Circle of Fifths SVG
+ * @param {string} currentKey - The current song's key to highlight
+ * @param {function} onKeyClick - Callback when a key is clicked
+ */
+function createCircleOfFifthsSVG(currentKey, onKeyClick) {
+    const size = 300;
+    const centerX = size / 2;
+    const centerY = size / 2;
+    const outerRadius = 130;
+    const innerRadius = 85;
+    const textRadiusMajor = 107;
+    const textRadiusMinor = 60;
+
+    // Circle of fifths order (clockwise from top)
+    const majorKeys = ['C', 'G', 'D', 'A', 'E', 'B', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F'];
+    const minorKeys = ['Am', 'Em', 'Bm', 'F#m', 'C#m', 'G#m', 'Ebm', 'Bbm', 'Fm', 'Cm', 'Gm', 'Dm'];
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', size);
+    svg.setAttribute('height', size);
+    svg.setAttribute('viewBox', `0 0 ${size} ${size}`);
+
+    // Draw background circles
+    const outerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    outerCircle.setAttribute('cx', centerX);
+    outerCircle.setAttribute('cy', centerY);
+    outerCircle.setAttribute('r', outerRadius);
+    outerCircle.setAttribute('fill', 'none');
+    outerCircle.setAttribute('stroke', 'rgba(255, 255, 255, 0.1)');
+    outerCircle.setAttribute('stroke-width', '1');
+    svg.appendChild(outerCircle);
+
+    const middleCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    middleCircle.setAttribute('cx', centerX);
+    middleCircle.setAttribute('cy', centerY);
+    middleCircle.setAttribute('r', innerRadius);
+    middleCircle.setAttribute('fill', 'none');
+    middleCircle.setAttribute('stroke', 'rgba(255, 255, 255, 0.1)');
+    middleCircle.setAttribute('stroke-width', '1');
+    svg.appendChild(middleCircle);
+
+    const innerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    innerCircle.setAttribute('cx', centerX);
+    innerCircle.setAttribute('cy', centerY);
+    innerCircle.setAttribute('r', 35);
+    innerCircle.setAttribute('fill', 'rgba(255, 255, 255, 0.02)');
+    innerCircle.setAttribute('stroke', 'rgba(255, 255, 255, 0.1)');
+    innerCircle.setAttribute('stroke-width', '1');
+    svg.appendChild(innerCircle);
+
+    // Normalize key for comparison (handle enharmonics)
+    const normalizeKey = (key) => {
+        const enharmonics = {
+            'F#': 'Gb', 'Gb': 'Gb',
+            'C#': 'Db', 'Db': 'Db',
+            'G#': 'Ab', 'Ab': 'Ab',
+            'D#': 'Eb', 'Eb': 'Eb',
+            'A#': 'Bb', 'Bb': 'Bb',
+            'F#m': 'F#m', 'Gbm': 'F#m',
+            'C#m': 'C#m', 'Dbm': 'C#m',
+            'G#m': 'G#m', 'Abm': 'G#m',
+            'D#m': 'Ebm', 'Ebm': 'Ebm',
+            'A#m': 'Bbm', 'Bbm': 'Bbm'
+        };
+        return enharmonics[key] || key;
+    };
+
+    const normalizedCurrentKey = normalizeKey(currentKey);
+    const isCurrentKeyMinor = isMinorKey(currentKey);
+
+    // Draw key segments
+    for (let i = 0; i < 12; i++) {
+        const angle = (i * 30 - 90) * (Math.PI / 180); // Start at top (C)
+        const majorKey = majorKeys[i];
+        const minorKey = minorKeys[i];
+
+        // Create group for each key pair
+        const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        group.setAttribute('class', 'circle-key-group');
+
+        // Check if this is the active key
+        const isMajorActive = !isCurrentKeyMinor && normalizeKey(majorKey) === normalizedCurrentKey;
+        const isMinorActive = isCurrentKeyMinor && normalizeKey(minorKey) === normalizedCurrentKey;
+
+        if (isMajorActive) {
+            group.classList.add('active');
+        } else if (isMinorActive) {
+            group.classList.add('active-minor');
+        }
+
+        // Draw segment background (pie slice)
+        const startAngle = (i * 30 - 105) * (Math.PI / 180);
+        const endAngle = (i * 30 - 75) * (Math.PI / 180);
+
+        const x1Outer = centerX + outerRadius * Math.cos(startAngle);
+        const y1Outer = centerY + outerRadius * Math.sin(startAngle);
+        const x2Outer = centerX + outerRadius * Math.cos(endAngle);
+        const y2Outer = centerY + outerRadius * Math.sin(endAngle);
+        const x1Inner = centerX + 35 * Math.cos(startAngle);
+        const y1Inner = centerY + 35 * Math.sin(startAngle);
+        const x2Inner = centerX + 35 * Math.cos(endAngle);
+        const y2Inner = centerY + 35 * Math.sin(endAngle);
+
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const d = `M ${x1Inner} ${y1Inner}
+                   L ${x1Outer} ${y1Outer}
+                   A ${outerRadius} ${outerRadius} 0 0 1 ${x2Outer} ${y2Outer}
+                   L ${x2Inner} ${y2Inner}
+                   A 35 35 0 0 0 ${x1Inner} ${y1Inner} Z`;
+        path.setAttribute('d', d);
+        path.setAttribute('class', 'circle-key-bg');
+        group.appendChild(path);
+
+        // Major key text (outer ring)
+        const majorX = centerX + textRadiusMajor * Math.cos(angle);
+        const majorY = centerY + textRadiusMajor * Math.sin(angle);
+
+        const majorText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        majorText.setAttribute('x', majorX);
+        majorText.setAttribute('y', majorY + 5);
+        majorText.setAttribute('text-anchor', 'middle');
+        majorText.setAttribute('class', 'circle-key-major');
+        majorText.textContent = majorKey;
+        group.appendChild(majorText);
+
+        // Minor key text (inner ring)
+        const minorX = centerX + textRadiusMinor * Math.cos(angle);
+        const minorY = centerY + textRadiusMinor * Math.sin(angle);
+
+        const minorText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        minorText.setAttribute('x', minorX);
+        minorText.setAttribute('y', minorY + 4);
+        minorText.setAttribute('text-anchor', 'middle');
+        minorText.setAttribute('class', 'circle-key-minor');
+        minorText.textContent = minorKey;
+        group.appendChild(minorText);
+
+        // Click handler
+        group.addEventListener('click', () => {
+            onKeyClick(majorKey, minorKey);
+        });
+
+        svg.appendChild(group);
+    }
+
+    // Center label
+    const centerLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    centerLabel.setAttribute('x', centerX);
+    centerLabel.setAttribute('y', centerY + 4);
+    centerLabel.setAttribute('text-anchor', 'middle');
+    centerLabel.setAttribute('font-size', '10');
+    centerLabel.setAttribute('fill', '#666');
+    centerLabel.textContent = '5ths';
+    svg.appendChild(centerLabel);
 
     return svg;
 }
