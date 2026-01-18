@@ -142,9 +142,9 @@ const CHORDS = {
     },
     'Bm': {
         name: 'Bm',
-        frets: [2, 2, 2, 2],
-        fingers: [1, 1, 1, 1],
-        barre: { fret: 2, fromString: 0, toString: 3 },
+        frets: [4, 2, 2, 2],
+        fingers: [4, 1, 1, 1],
+        barre: { fret: 2, fromString: 1, toString: 3 },
         baseFret: 1
     },
     'Cm': {
@@ -1365,11 +1365,11 @@ const CHORD_VARIATIONS = {
     ],
     'Bm': [
         {
-            name: 'Bm (4th)',
-            description: 'At 4th fret',
-            frets: [4, 2, 2, 2],
-            fingers: [4, 1, 1, 1],
-            barre: { fret: 2, fromString: 1, toString: 3 },
+            name: 'Bm7',
+            description: 'Bm7 (2nd fret barre)',
+            frets: [2, 2, 2, 2],
+            fingers: [1, 1, 1, 1],
+            barre: { fret: 2, fromString: 0, toString: 3 },
             baseFret: 1
         }
     ],
