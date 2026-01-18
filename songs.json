@@ -24,6 +24,7 @@
     { "path": "songs/a-la-nanita-nana.json", "title": "A la Nanita Nana", "artist": "Villancicos Populares" },
     { "path": "songs/good-riddance.json", "title": "Good Riddance (Time of Your Life)", "artist": "Green Day" },
     { "path": "songs/en-el-muelle-de-san-blas.json", "title": "En el Muelle de San Blas", "artist": "Maná" },
-    { "path": "songs/cant-help-falling-in-love.json", "title": "Can't Help Falling in Love", "artist": "Elvis Presley" }
+    { "path": "songs/cant-help-falling-in-love.json", "title": "Can't Help Falling in Love", "artist": "Elvis Presley" },
+    { "path": "songs/whats-up.json", "title": "What's Up", "artist": "4 Non Blondes" }
   ]
 }

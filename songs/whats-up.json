@@ -1,0 +1,305 @@
+{
+  "title": "What's Up",
+  "artist": "4 Non Blondes",
+  "key": "A",
+  "spotify": "https://open.spotify.com/track/7kpHlADyt7Hvela1KiNpq5",
+  "lines": [
+    { "section": "Intro" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "Bm", "position": 2 },
+        { "chord": "D", "position": 5 },
+        { "chord": "A", "position": 7 }
+      ]
+    },
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Twenty-five years and my life is still",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Trying to get up that great big hill",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Of hope for a destination",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "I realized quickly when I knew I should",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "That the world was made of this brotherhood",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Of man, for whatever that means",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 9 }
+      ]
+    },
+    { "section": "Pre-Chorus" },
+    {
+      "lyrics": "And so I cry sometimes when I'm lying in bed",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Just to get it all out, what's in my head",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "and I - I am feeling a little peculiar",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "And so I wake in the morning and I step outside",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "and I take a deep breath and I get real high and",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "I scream at the top of my lungs \"What's going on?\"",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 35 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "And I said \"Heyeyeyeyey Heyeyey\"",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "Bm", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "I said \"Hey, what's going on?\"",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "And I said \"Heyeyeyeyey Heyeyey\"",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "Bm", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "I said \"Hey, what's going on?\"",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 8 }
+      ]
+    },
+    { "section": "Interlude" },
+    {
+      "lyrics": "Ooh, Ooh Ooh",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "Bm", "position": 5 },
+        { "chord": "D", "position": 9 },
+        { "chord": "A", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "Ooh, Ooh Ooh",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "Bm", "position": 5 },
+        { "chord": "D", "position": 9 },
+        { "chord": "A", "position": 13 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "And I try, oh my God do I try",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "Bm", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "I try all the time, in this institution",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "And I pray, oh my god do I pray",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "Bm", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "I pray every single day",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "For a revolution",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    { "section": "Pre-Chorus 2" },
+    {
+      "lyrics": "And so I cry sometimes when I'm lying in bed",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Just to get it all out, what's in my head",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "and I - I am feeling a little peculiar",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "And so I wake in the morning and I step outside",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "and I take a deep breath and I get real high and",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "I scream at the top of my lungs \"What's going on?\"",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 35 }
+      ]
+    },
+    { "section": "Chorus 2" },
+    {
+      "lyrics": "And I said \"Heyeyeyeyey Heyeyey\"",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "Bm", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "I said \"Hey, what's going on?\"",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "And I said \"Heyeyeyeyey Heyeyey\"",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "Bm", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "I said \"Hey, what's going on?\"",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 8 }
+      ]
+    },
+    { "section": "Chorus 3" },
+    {
+      "lyrics": "And I said \"Heyeyeyeyey Heyeyey\"",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "Bm", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "I said \"Hey, what's going on?\"",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "And I said \"Heyeyeyeyey HeyeYEYEYE\"",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "Bm", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "I said \"Hey, what's going on?\"",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 8 }
+      ]
+    },
+    { "section": "Interlude 2" },
+    {
+      "lyrics": "Ooh, Ooh Ooh",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "Bm", "position": 5 },
+        { "chord": "D", "position": 9 },
+        { "chord": "A", "position": 13 }
+      ]
+    },
+    { "section": "Outro" },
+    {
+      "lyrics": "Twenty-five years and my life is still",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Trying to get up that great big hill of hope",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "D", "position": 38 }
+      ]
+    },
+    {
+      "lyrics": "For a destination",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    }
+  ]
+}
