@@ -595,8 +595,22 @@ function createDominant7thCircleSVG(currentKey, onChordClick) {
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
 
     // Get diatonic chords for the current key
-    const baseKey = currentKey.replace('m', '');
-    const scale = SCALE_DEGREES_MAJOR[baseKey] || SCALE_DEGREES_MAJOR['C'];
+    // For minor keys, show the relative major
+    const isMinor = currentKey.endsWith('m') && !currentKey.endsWith('dim');
+    let displayKey;
+    if (isMinor) {
+        // Get relative major (3 semitones up from minor root)
+        const minorRoot = currentKey.replace('m', '');
+        const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+        const altNotes = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+        let idx = notes.indexOf(minorRoot);
+        if (idx === -1) idx = altNotes.indexOf(minorRoot);
+        const relativeMajorIdx = (idx + 3) % 12;
+        displayKey = notes[relativeMajorIdx];
+    } else {
+        displayKey = currentKey.replace('m', '');
+    }
+    const scale = SCALE_DEGREES_MAJOR[displayKey] || SCALE_DEGREES_MAJOR['C'];
 
     // Chord positions in the arc (from left to right)
     // Structure: [degree, roman numeral, ring (0=inner, 1=middle, 2=outer), angle offset from center]
@@ -782,6 +796,18 @@ function createDominant7thCircleSVG(currentKey, onChordClick) {
         label.textContent = pos.text;
         svg.appendChild(label);
     });
+
+    // Add note for minor keys showing relative major
+    if (isMinor) {
+        const note = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        note.setAttribute('x', centerX);
+        note.setAttribute('y', height - 5);
+        note.setAttribute('text-anchor', 'middle');
+        note.setAttribute('font-size', '11');
+        note.setAttribute('fill', '#666');
+        note.textContent = `Showing relative major: ${displayKey}`;
+        svg.appendChild(note);
+    }
 
     return svg;
 }
