@@ -27,6 +27,7 @@ const elements = {
     harmonicContent: document.getElementById('harmonic-content'),
     circleContainer: document.getElementById('circle-container'),
     dom7CircleContainer: document.getElementById('dom7-circle-container'),
+    chordLibraryContent: document.getElementById('chord-library-content'),
     spotifySection: document.getElementById('spotify-section'),
     spotifyEmbed: document.getElementById('spotify-embed'),
     chordGrid: document.getElementById('chord-grid'),

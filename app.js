@@ -399,6 +399,7 @@ function displaySong() {
     renderHarmonicAnalysis();
     renderCircleOfFifths();
     renderDominant7thCircle();
+    renderChordLibrary();
     renderSpotifyEmbed();
     renderChordReference();
     renderLyrics();
@@ -808,6 +809,83 @@ function renderDominant7thCircle() {
     });
 
     elements.dom7CircleContainer.appendChild(svg);
+}
+
+/**
+ * Render chord library - all available chords grouped by type
+ */
+let chordLibraryRendered = false;
+
+function renderChordLibrary() {
+    // Only render once since it doesn't change
+    if (chordLibraryRendered) return;
+    chordLibraryRendered = true;
+
+    elements.chordLibraryContent.innerHTML = '';
+
+    // Group chords by type
+    const groups = {
+        'Major': [],
+        'Minor': [],
+        '7th': [],
+        'Major 7th': [],
+        'Minor 7th': [],
+        'Diminished': [],
+        'Augmented': [],
+        'Suspended': [],
+        'Other': []
+    };
+
+    // Categorize each chord
+    Object.keys(CHORDS).sort().forEach(chordName => {
+        if (chordName.includes('dim')) {
+            groups['Diminished'].push(chordName);
+        } else if (chordName.includes('aug')) {
+            groups['Augmented'].push(chordName);
+        } else if (chordName.includes('sus')) {
+            groups['Suspended'].push(chordName);
+        } else if (chordName.includes('maj7')) {
+            groups['Major 7th'].push(chordName);
+        } else if (chordName.includes('m7')) {
+            groups['Minor 7th'].push(chordName);
+        } else if (chordName.includes('7')) {
+            groups['7th'].push(chordName);
+        } else if (chordName.includes('m') && !chordName.includes('maj')) {
+            groups['Minor'].push(chordName);
+        } else if (/^[A-G][#b]?$/.test(chordName)) {
+            groups['Major'].push(chordName);
+        } else {
+            groups['Other'].push(chordName);
+        }
+    });
+
+    // Render each group
+    Object.entries(groups).forEach(([groupName, chords]) => {
+        if (chords.length === 0) return;
+
+        const groupDiv = document.createElement('div');
+        groupDiv.className = 'chord-library-group';
+
+        const title = document.createElement('div');
+        title.className = 'chord-library-group-title';
+        title.textContent = groupName;
+        groupDiv.appendChild(title);
+
+        const grid = document.createElement('div');
+        grid.className = 'chord-library-grid';
+
+        chords.forEach(chordName => {
+            const chordData = CHORDS[chordName];
+            const item = document.createElement('div');
+            item.className = 'chord-library-item';
+            item.textContent = chordName;
+            item.addEventListener('click', () => openChordModal(chordName));
+            grid.appendChild(item);
+        });
+
+        groupDiv.appendChild(grid);
+        elements.chordLibraryContent.appendChild(groupDiv);
+    });
 }
 
 /**

@@ -1361,6 +1361,85 @@ body {
     max-width: 500px;
 }
 
+/* Chord Library */
+.chord-library {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.chord-library summary {
+    padding: 12px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.chord-library summary::-webkit-details-marker {
+    display: none;
+}
+
+.chord-library summary::before {
+    content: '▶';
+    font-size: 0.7rem;
+    transition: transform 0.2s ease;
+}
+
+.chord-library[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.chord-library summary:hover {
+    color: #e4e4e4;
+}
+
+.chord-library-content {
+    padding: 10px 15px 15px;
+}
+
+.chord-library-group {
+    margin-bottom: 15px;
+}
+
+.chord-library-group:last-child {
+    margin-bottom: 0;
+}
+
+.chord-library-group-title {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.chord-library-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chord-library-item {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #f39c12;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.chord-library-item:hover {
+    background: rgba(243, 156, 18, 0.2);
+    transform: scale(1.05);
+}
+
 /* Responsive */
 @media (max-width: 600px) {
     .app-header {

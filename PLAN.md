@@ -84,17 +84,31 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - Inner ring: Relative minors (ii, vi, iii)
   - Middle ring: Primary chords (IV, I, V/V7)
   - Outer extensions: Secondary dominants (II7, VI7, III7)
-- Shows the classic I → vi → ii → V7 turnaround progression at bottom
+- I chord emphasized with subtle dotted border
 - Click any chord to see:
-  - Chord diagram
+  - Chord diagram (V/V7 shows both options side by side)
   - Roman numeral function
   - Explanation of harmonic role (tonic, dominant, subdominant, etc.)
+- Minor keys: Shows relative major with note at bottom (e.g., "Showing relative major: C" when in Am)
 - Useful for:
   - Understanding chord relationships within a key
-  - Building progressions using the turnaround pattern
+  - Building progressions using common patterns
   - Adding secondary dominants for jazzy color
 
-### 3f. Harmonic Analysis (Collapsible)
+### 3f. Chord Library (Collapsible)
+- Browsable library of all available chords in the app
+- Grouped by type for easy navigation:
+  - Major (C, D, E, F, G, A, B)
+  - Minor (Cm, Dm, Em, etc.)
+  - 7th (C7, D7, G7, etc.)
+  - Major 7th (Cmaj7, Dmaj7, etc.)
+  - Minor 7th (Cm7, Dm7, etc.)
+  - Diminished, Augmented, Suspended, Other
+- Click any chord to open modal with diagram and variations
+- Useful for experimenting with alternative chords while playing a song
+- Only renders once (cached) since library doesn't change per song
+
+### 3g. Harmonic Analysis (Collapsible)
 - Collapsible table showing detailed harmonic analysis of each chord in the song
 - **Columns**:
   - Chord: Clickable chord name (opens diagram modal)
@@ -120,7 +134,7 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - Displayed in both Harmonic Analysis table and lyrics (when "Show as Numbers" enabled)
   - Example: E major in key of C shown as "V/vi (Secondary Dominant)"
 
-### 3g. Spotify Integration
+### 3h. Spotify Integration
 - Embedded Spotify player for songs with a `spotify` field
 - Displays above "Chords Used" section when available
 - Supports various Spotify URL formats (open.spotify.com, spotify: URI)
