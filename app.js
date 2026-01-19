@@ -398,6 +398,7 @@ function displaySong() {
     renderMusicTrivia();
     renderHarmonicAnalysis();
     renderCircleOfFifths();
+    renderDominant7thCircle();
     renderSpotifyEmbed();
     renderChordReference();
     renderLyrics();
@@ -783,6 +784,148 @@ function renderCircleOfFifths() {
     });
 
     elements.circleContainer.appendChild(svg);
+}
+
+/**
+ * Render Dominant 7th Circle
+ */
+function renderDominant7thCircle() {
+    const transposedKey = getDisplayKey();
+    elements.dom7CircleContainer.innerHTML = '';
+
+    const svg = createDominant7thCircleSVG(transposedKey, (chord, chord7OrRoman, romanOrUndefined) => {
+        // Handle both signatures:
+        // - Dual chord: (chord, chord7, roman) - e.g., ('G', 'G7', 'V / V7')
+        // - Single chord: (chord, null, roman) - e.g., ('C', null, 'I')
+        // - Secondary dominant: (chord, roman) - e.g., ('D7', 'II(7)')
+        if (romanOrUndefined !== undefined) {
+            // 3-argument call: (chord, chord7, roman)
+            openDom7Modal(chord, chord7OrRoman, romanOrUndefined);
+        } else {
+            // 2-argument call: (chord, roman)
+            openDom7Modal(chord, null, chord7OrRoman);
+        }
+    });
+
+    elements.dom7CircleContainer.appendChild(svg);
+}
+
+/**
+ * Open modal showing chord from songwriter's circle
+ * @param {string} chordName - Primary chord name (e.g., 'G')
+ * @param {string|null} chord7Name - Secondary chord name for dual display (e.g., 'G7'), or null
+ * @param {string} romanNumeral - Roman numeral label (e.g., 'V / V7' or 'I')
+ */
+function openDom7Modal(chordName, chord7Name, romanNumeral) {
+    elements.modalChord.innerHTML = '';
+
+    const content = document.createElement('div');
+    content.className = 'key-modal-content';
+
+    // Title - show both chords for dual display
+    const title = document.createElement('div');
+    title.className = 'key-modal-title';
+    title.textContent = chord7Name ? `${chordName} / ${chord7Name}` : chordName;
+    content.appendChild(title);
+
+    // Subtitle with roman numeral
+    const subtitle = document.createElement('div');
+    subtitle.className = 'key-modal-subtitle';
+    subtitle.textContent = romanNumeral;
+    content.appendChild(subtitle);
+
+    // Chord diagrams container
+    const chordsContainer = document.createElement('div');
+    chordsContainer.className = 'key-modal-chords';
+    chordsContainer.style.justifyContent = 'center';
+
+    // Helper function to create chord item
+    const createChordItem = (name) => {
+        const chordData = CHORDS[name];
+        if (!chordData) return null;
+
+        const chordItem = document.createElement('div');
+        chordItem.className = 'key-modal-chord';
+        chordItem.style.cursor = 'pointer';
+        chordItem.addEventListener('click', () => openChordModal(name));
+
+        // Add chord name label
+        const labelDiv = document.createElement('div');
+        labelDiv.className = 'chord-degree';
+        labelDiv.style.marginBottom = '5px';
+        labelDiv.style.color = '#f39c12';
+        labelDiv.textContent = name;
+        chordItem.appendChild(labelDiv);
+
+        const chordSvg = createChordSVG(chordData, true);
+        chordItem.appendChild(chordSvg);
+
+        return chordItem;
+    };
+
+    if (chord7Name) {
+        // Dual display: show both chords with their names
+        const chord1Item = createChordItem(chordName);
+        const chord2Item = createChordItem(chord7Name);
+
+        if (chord1Item) chordsContainer.appendChild(chord1Item);
+        if (chord2Item) chordsContainer.appendChild(chord2Item);
+
+        if (!chord1Item && !chord2Item) {
+            const noChord = document.createElement('div');
+            noChord.style.color = '#888';
+            noChord.textContent = 'No diagrams available';
+            chordsContainer.appendChild(noChord);
+        }
+    } else {
+        // Single chord display
+        const chordData = CHORDS[chordName];
+        if (chordData) {
+            const chordItem = document.createElement('div');
+            chordItem.className = 'key-modal-chord';
+            chordItem.style.cursor = 'pointer';
+            chordItem.addEventListener('click', () => openChordModal(chordName));
+
+            const chordSvg = createChordSVG(chordData, true);
+            chordItem.appendChild(chordSvg);
+
+            chordsContainer.appendChild(chordItem);
+        } else {
+            const noChord = document.createElement('div');
+            noChord.style.color = '#888';
+            noChord.textContent = 'No diagram available';
+            chordsContainer.appendChild(noChord);
+        }
+    }
+
+    content.appendChild(chordsContainer);
+
+    // Explanation based on function
+    const explanation = document.createElement('div');
+    explanation.style.marginTop = '15px';
+    explanation.style.fontSize = '0.85rem';
+    explanation.style.color = '#888';
+    explanation.style.lineHeight = '1.5';
+
+    const explanations = {
+        'I': 'The <strong>tonic</strong> - home base, the key center. Songs typically start and end here.',
+        'IV': 'The <strong>subdominant</strong> - creates movement away from tonic. Common in verse progressions.',
+        'V': 'The <strong>dominant</strong> - creates tension that wants to resolve to I. Use the triad for a softer resolution.',
+        'V7': 'The <strong>dominant 7th</strong> - maximum tension! The added 7th creates a stronger pull to resolve to I.',
+        'V / V7': 'The <strong>dominant</strong> - creates tension that resolves to I. Use the triad (V) for a softer feel, or the 7th (V7) for maximum pull!',
+        'ii': 'The <strong>supertonic</strong> - often precedes V in the classic ii-V-I progression.',
+        'vi': 'The <strong>submediant</strong> - relative minor, creates a melancholic feel. Start of I-vi-ii-V.',
+        'iii': 'The <strong>mediant</strong> - bridges tonic and dominant families.',
+        'II(7)': '<strong>Secondary dominant</strong> (V/V) - leads strongly to V. Creates the classic turnaround.',
+        'VI(7)': '<strong>Secondary dominant</strong> (V/ii) - leads to ii. Adds chromatic color.',
+        'III(7)': '<strong>Secondary dominant</strong> (V/vi) - leads to vi. Common in jazz and soul.',
+    };
+
+    explanation.innerHTML = explanations[romanNumeral] || `${romanNumeral} chord in the current key.`;
+    content.appendChild(explanation);
+
+    elements.modalChord.appendChild(content);
+    elements.modalOverlay.classList.add('active');
 }
 
 /**

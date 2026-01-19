@@ -78,7 +78,23 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - "Transpose to this key" button to quickly transpose the song
 - Useful for understanding key relationships and planning transpositions
 
-### 3e. Harmonic Analysis (Collapsible)
+### 3e. Songwriter's Circle (Collapsible)
+- Arc-shaped "chord wheel" showing diatonic chords and their relationships
+- Structure (from left to right):
+  - Inner ring: Relative minors (ii, vi, iii)
+  - Middle ring: Primary chords (IV, I, V/V7)
+  - Outer extensions: Secondary dominants (II7, VI7, III7)
+- Shows the classic I → vi → ii → V7 turnaround progression at bottom
+- Click any chord to see:
+  - Chord diagram
+  - Roman numeral function
+  - Explanation of harmonic role (tonic, dominant, subdominant, etc.)
+- Useful for:
+  - Understanding chord relationships within a key
+  - Building progressions using the turnaround pattern
+  - Adding secondary dominants for jazzy color
+
+### 3f. Harmonic Analysis (Collapsible)
 - Collapsible table showing detailed harmonic analysis of each chord in the song
 - **Columns**:
   - Chord: Clickable chord name (opens diagram modal)
@@ -104,7 +120,7 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - Displayed in both Harmonic Analysis table and lyrics (when "Show as Numbers" enabled)
   - Example: E major in key of C shown as "V/vi (Secondary Dominant)"
 
-### 3f. Spotify Integration
+### 3g. Spotify Integration
 - Embedded Spotify player for songs with a `spotify` field
 - Displays above "Chords Used" section when available
 - Supports various Spotify URL formats (open.spotify.com, spotify: URI)

@@ -739,7 +739,7 @@ body {
 }
 
 .circle-key-group:hover {
-    transform: scale(1.08);
+    transform: scale(1.04);
 }
 
 .circle-key-group:hover .circle-key-bg {
@@ -779,6 +779,117 @@ body {
 }
 
 .circle-key-group.active-minor .circle-key-minor {
+    fill: #fff;
+}
+
+/* Dominant 7th Circle */
+.dominant-seventh-circle {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.dominant-seventh-circle summary {
+    padding: 12px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dominant-seventh-circle summary::-webkit-details-marker {
+    display: none;
+}
+
+.dominant-seventh-circle summary::before {
+    content: '▶';
+    font-size: 0.7rem;
+    transition: transform 0.2s ease;
+}
+
+.dominant-seventh-circle[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.dominant-seventh-circle summary:hover {
+    color: #e4e4e4;
+}
+
+.dom7-circle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.dom7-circle-container svg {
+    max-width: 100%;
+    height: auto;
+}
+
+.dom7-segment {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.dom7-segment:hover {
+    transform: scale(1.02);
+}
+
+.dom7-segment:hover .dom7-bg {
+    fill: rgba(255, 255, 255, 0.15);
+}
+
+.dom7-bg {
+    fill: rgba(255, 255, 255, 0.05);
+    transition: fill 0.2s ease;
+}
+
+.dom7-chord {
+    fill: #e74c3c;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.dom7-tonic-bg {
+    stroke: rgba(243, 156, 18, 0.5);
+    stroke-width: 1.5;
+    stroke-dasharray: 4 3;
+}
+
+.dom7-target {
+    fill: #2ecc71;
+    font-size: 12px;
+}
+
+.dom7-arrow {
+    stroke: #888;
+    stroke-width: 1.5;
+    fill: none;
+}
+
+.dom7-segment.active .dom7-bg {
+    fill: rgba(231, 76, 60, 0.3);
+    stroke: #e74c3c;
+    stroke-width: 2;
+}
+
+.dom7-segment.active .dom7-chord {
+    fill: #fff;
+}
+
+.dom7-segment.active-target .dom7-bg {
+    fill: rgba(46, 204, 113, 0.3);
+    stroke: #2ecc71;
+    stroke-width: 2;
+}
+
+.dom7-segment.active-target .dom7-target {
     fill: #fff;
 }
 

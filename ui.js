@@ -26,6 +26,7 @@ const elements = {
     triviaContent: document.getElementById('trivia-content'),
     harmonicContent: document.getElementById('harmonic-content'),
     circleContainer: document.getElementById('circle-container'),
+    dom7CircleContainer: document.getElementById('dom7-circle-container'),
     spotifySection: document.getElementById('spotify-section'),
     spotifyEmbed: document.getElementById('spotify-embed'),
     chordGrid: document.getElementById('chord-grid'),
@@ -566,6 +567,221 @@ function createCircleOfFifthsSVG(currentKey, onKeyClick) {
     centerLabel.setAttribute('fill', '#666');
     centerLabel.textContent = '5ths';
     svg.appendChild(centerLabel);
+
+    return svg;
+}
+
+/**
+ * Create Songwriter's Circle SVG
+ * Shows diatonic chords with secondary dominants - the "chord wheel"
+ * Arc layout: IV - I - V(7) with relative minors and secondary dominants
+ * @param {string} currentKey - The current song's key to highlight
+ * @param {function} onChordClick - Callback when a chord is clicked
+ */
+function createDominant7thCircleSVG(currentKey, onChordClick) {
+    const width = 420;
+    const height = 280;
+    const centerX = width / 2;
+    const centerY = height - 40;
+
+    // Radii for the different rings
+    const outerRadius = 180;      // Secondary dominants (II7, VI7, III7)
+    const middleRadius = 130;     // Major chords (IV, I, V/V7)
+    const innerRadius = 85;       // Relative minors (ii, vi, iii)
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', width);
+    svg.setAttribute('height', height);
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+
+    // Get diatonic chords for the current key
+    const baseKey = currentKey.replace('m', '');
+    const scale = SCALE_DEGREES_MAJOR[baseKey] || SCALE_DEGREES_MAJOR['C'];
+
+    // Chord positions in the arc (from left to right)
+    // Structure: [degree, roman numeral, ring (0=inner, 1=middle, 2=outer), angle offset from center]
+    // Note: SCALE_DEGREES_MAJOR already contains minor chords with 'm' suffix (e.g., 'Dm', 'Em', 'Am')
+    // For V/V7, we use a special 'dual' flag to show both options
+    const chordPositions = [
+        // Left side - subdominant family
+        { chord: scale[3], roman: 'IV', ring: 1, angle: -62 },           // IV (F in C)
+        { chord: scale[1], roman: 'ii', ring: 0, angle: -62 },           // ii (Dm in C) - below IV
+
+        // Center - tonic family
+        { chord: scale[0], roman: 'I', ring: 1, angle: -31 },            // I (C in C)
+        { chord: scale[5], roman: 'vi', ring: 0, angle: -31 },           // vi (Am in C) - below I
+
+        // Right side - dominant family (V/V7 combined in one cell)
+        { chord: scale[4], chord7: scale[4] + '7', roman: 'V / V7', ring: 1, angle: 5, dual: true },  // V/V7 (G/G7 in C)
+        { chord: scale[2], roman: 'iii', ring: 0, angle: 5, wide: true },  // iii (Em in C) - below V, wide to match V/V7
+    ];
+
+    // Secondary dominants extending outward (these lead back around the circle)
+    // II(7) starts where V/V7 ends (angle 5 + half of 38 = 24, plus half of segment width 20/2 = 10, so 34)
+    const secondaryDominants = [
+        { chord: getSecondaryDominant(scale[4]), roman: 'II(7)', ring: 2, angle: 34, target: scale[4] },   // II7 → V
+        { chord: getSecondaryDominant(scale[1]), roman: 'VI(7)', ring: 2, angle: 56, target: scale[1] },   // VI7 → ii
+        { chord: getSecondaryDominant(scale[2]), roman: 'III(7)', ring: 2, angle: 78, target: scale[2] },  // III7 → iii
+    ];
+
+    // Helper to get secondary dominant
+    function getSecondaryDominant(targetChord) {
+        // Find the V7 of the target chord
+        const target = targetChord.replace('m', '');
+        const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+        const altNotes = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+        let idx = notes.indexOf(target);
+        if (idx === -1) idx = altNotes.indexOf(target);
+        if (idx === -1) return target + '7';
+        // V is 7 semitones up
+        const dominantIdx = (idx + 7) % 12;
+        return notes[dominantIdx] + '7';
+    }
+
+    // Draw arc backgrounds
+    const drawArcSegment = (startAngle, endAngle, innerR, outerR, className) => {
+        const startRad = (startAngle - 90) * Math.PI / 180;
+        const endRad = (endAngle - 90) * Math.PI / 180;
+
+        const x1Inner = centerX + innerR * Math.cos(startRad);
+        const y1Inner = centerY + innerR * Math.sin(startRad);
+        const x2Inner = centerX + innerR * Math.cos(endRad);
+        const y2Inner = centerY + innerR * Math.sin(endRad);
+        const x1Outer = centerX + outerR * Math.cos(startRad);
+        const y1Outer = centerY + outerR * Math.sin(startRad);
+        const x2Outer = centerX + outerR * Math.cos(endRad);
+        const y2Outer = centerY + outerR * Math.sin(endRad);
+
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const largeArc = Math.abs(endAngle - startAngle) > 180 ? 1 : 0;
+        const d = `M ${x1Inner} ${y1Inner}
+                   L ${x1Outer} ${y1Outer}
+                   A ${outerR} ${outerR} 0 ${largeArc} 1 ${x2Outer} ${y2Outer}
+                   L ${x2Inner} ${y2Inner}
+                   A ${innerR} ${innerR} 0 ${largeArc} 0 ${x1Inner} ${y1Inner} Z`;
+        path.setAttribute('d', d);
+        path.setAttribute('class', className);
+        return path;
+    };
+
+    // Draw main arc segments for each chord
+    chordPositions.forEach((pos, idx) => {
+        const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        group.setAttribute('class', 'dom7-segment');
+
+        // Determine radii based on ring
+        let innerR, outerR;
+        if (pos.ring === 0) {
+            innerR = 50;
+            outerR = innerRadius;
+        } else {
+            innerR = innerRadius;
+            outerR = middleRadius;
+        }
+
+        // Calculate segment angles - wider for dual chords or wide flag
+        const segmentWidth = (pos.dual || pos.wide) ? 38 : 28;
+        const startAngle = pos.angle - segmentWidth/2;
+        const endAngle = pos.angle + segmentWidth/2;
+
+        const bg = drawArcSegment(startAngle, endAngle, innerR, outerR, 'dom7-bg');
+        group.appendChild(bg);
+
+        // Add chord text
+        const textAngle = (pos.angle - 90) * Math.PI / 180;
+        const textRadius = (innerR + outerR) / 2;
+        const textX = centerX + textRadius * Math.cos(textAngle);
+        const textY = centerY + textRadius * Math.sin(textAngle);
+
+        const chordText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        chordText.setAttribute('x', textX);
+        chordText.setAttribute('y', textY + 4);
+        chordText.setAttribute('text-anchor', 'middle');
+        chordText.setAttribute('class', pos.ring === 0 ? 'dom7-target' : 'dom7-chord');
+        chordText.setAttribute('fill', pos.ring === 0 ? '#3498db' : '#f39c12');
+        // Show "V / V7" style for dual chords
+        chordText.textContent = pos.dual ? `${pos.chord} / ${pos.chord7}` : pos.chord;
+
+        // Add dotted border to I chord cell
+        if (pos.roman === 'I') {
+            bg.setAttribute('class', 'dom7-bg dom7-tonic-bg');
+        }
+        group.appendChild(chordText);
+
+        // Click handler - for dual chords, pass both
+        group.addEventListener('click', () => {
+            if (pos.dual) {
+                onChordClick(pos.chord, pos.chord7, pos.roman);
+            } else {
+                onChordClick(pos.chord, null, pos.roman);
+            }
+        });
+
+        svg.appendChild(group);
+    });
+
+    // Draw secondary dominants extending outward
+    secondaryDominants.forEach(pos => {
+        const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        group.setAttribute('class', 'dom7-segment');
+
+        const segmentWidth = 20;
+        const startAngle = pos.angle - segmentWidth/2;
+        const endAngle = pos.angle + segmentWidth/2;
+
+        const bg = drawArcSegment(startAngle, endAngle, middleRadius, outerRadius, 'dom7-bg');
+        group.appendChild(bg);
+
+        // Add chord text
+        const textAngle = (pos.angle - 90) * Math.PI / 180;
+        const textRadius = (middleRadius + outerRadius) / 2;
+        const textX = centerX + textRadius * Math.cos(textAngle);
+        const textY = centerY + textRadius * Math.sin(textAngle);
+
+        const chordText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        chordText.setAttribute('x', textX);
+        chordText.setAttribute('y', textY + 4);
+        chordText.setAttribute('text-anchor', 'middle');
+        chordText.setAttribute('class', 'dom7-chord');
+        chordText.setAttribute('fill', '#e74c3c');
+        chordText.textContent = pos.chord;
+        group.appendChild(chordText);
+
+        // Click handler
+        group.addEventListener('click', () => {
+            onChordClick(pos.chord, pos.roman);
+        });
+
+        svg.appendChild(group);
+    });
+
+    // Add roman numeral labels outside the arc
+    const labelPositions = [
+        { text: 'IV', angle: -62, radius: middleRadius + 20 },
+        { text: 'I', angle: -31, radius: middleRadius + 20 },
+        { text: 'V / V7', angle: 5, radius: middleRadius + 20 },
+        { text: 'ii', angle: -62, radius: 40 },
+        { text: 'vi', angle: -31, radius: 40 },
+        { text: 'iii', angle: 5, radius: 40 },
+        { text: 'II(7)', angle: 34, radius: outerRadius + 18 },
+        { text: 'VI(7)', angle: 56, radius: outerRadius + 18 },
+        { text: 'III(7)', angle: 78, radius: outerRadius + 18 },
+    ];
+
+    labelPositions.forEach(pos => {
+        const textAngle = (pos.angle - 90) * Math.PI / 180;
+        const textX = centerX + pos.radius * Math.cos(textAngle);
+        const textY = centerY + pos.radius * Math.sin(textAngle);
+
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', textX);
+        label.setAttribute('y', textY + 4);
+        label.setAttribute('text-anchor', 'middle');
+        label.setAttribute('font-size', '11');
+        label.setAttribute('fill', '#888');
+        label.textContent = pos.text;
+        svg.appendChild(label);
+    });
 
     return svg;
 }
