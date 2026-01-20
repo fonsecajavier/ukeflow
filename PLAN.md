@@ -303,7 +303,7 @@ ukeflow/
     ├── bamboleo.json                  # Gipsy Kings, Flamenco (Em)
     ├── estoy-aqui.json                # Shakira 90s, Minor key (Em)
     ├── ciega-sordomuda.json           # Shakira 90s, Minor key (Am)
-    ├── antologia.json                 # Shakira 90s (G)
+    ├── antologia.json                 # Shakira 90s (C)
     ├── andar-conmigo.json             # Julieta Venegas (C)
     ├── i-really-want-to-stay-at-your-house.json  # Cyberpunk 2077 (B)
     ├── a-la-nanita-nana.json          # Traditional Spanish lullaby (A)

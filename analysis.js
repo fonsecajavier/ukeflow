@@ -306,7 +306,9 @@ function analyzeKeyConfidence(key) {
     // Get all chords in order, tracking section boundaries
     const allChords = [];
     const sectionEndChords = [];
+    const sectionStartChords = [];
     let lastChordBeforeSection = null;
+    let expectingSectionStart = true; // First chord is a section start
 
     state.currentSong.lines.forEach(line => {
         if (line.section) {
@@ -314,6 +316,7 @@ function analyzeKeyConfidence(key) {
             if (lastChordBeforeSection) {
                 sectionEndChords.push(lastChordBeforeSection);
             }
+            expectingSectionStart = true;
         }
         if (line.chords && line.chords.length > 0) {
             const sortedChords = [...line.chords].sort((a, b) => a.position - b.position);
@@ -321,6 +324,12 @@ function analyzeKeyConfidence(key) {
                 const transposed = transposeChord(c.chord, state.transpose);
                 allChords.push(transposed);
                 lastChordBeforeSection = transposed;
+
+                // Track first chord after section marker
+                if (expectingSectionStart) {
+                    sectionStartChords.push(transposed);
+                    expectingSectionStart = false;
+                }
             });
         }
     });
@@ -335,6 +344,19 @@ function analyzeKeyConfidence(key) {
     indicators.firstChord = allChords[0];
     indicators.lastChord = allChords[allChords.length - 1];
     indicators.sectionEndings = sectionEndChords;
+    indicators.sectionOpenings = sectionStartChords;
+
+    // Detect "tension ending" pattern: sections end on X but start on Y
+    // This suggests Y is the tonic (resolution) and X is tension
+    const endingsResolveToDifferentChord = sectionEndChords.length > 0 &&
+        sectionStartChords.length > 0 &&
+        sectionEndChords.every(end => {
+            const endBase = end.replace(/7|maj7|m7/, '');
+            return sectionStartChords.some(start => {
+                const startBase = start.replace(/7|maj7|m7/, '');
+                return startBase !== endBase;
+            });
+        });
 
     // Most frequent chord
     const chordCounts = {};
@@ -458,12 +480,27 @@ function analyzeKeyConfidence(key) {
             reasons.push(`ii-V-I to ${candidateKey} (${iiViTo[candidateKey]}×)`);
         }
 
-        // Section endings
+        // Section openings (strong indicator - where sections "land")
+        const sectionStartsOnCandidate = sectionStartChords.filter(c =>
+            c.replace(/7|maj7|m7/, '') === candidateRoot).length;
+        if (sectionStartsOnCandidate > 0) {
+            score += 2 * sectionStartsOnCandidate;
+            reasons.push(`Sections start on ${candidateRoot} (${sectionStartsOnCandidate}×)`);
+        }
+
+        // Section endings (weaker if endings ≠ openings, indicating tension)
         const sectionEndsOnCandidate = sectionEndChords.filter(c =>
             c.replace(/7|maj7|m7/, '') === candidateRoot).length;
         if (sectionEndsOnCandidate > 0) {
-            score += sectionEndsOnCandidate;
-            reasons.push(`Sections resolve to ${candidateRoot} (${sectionEndsOnCandidate}×)`);
+            // If sections end on this chord but start on a different chord,
+            // this is likely tension, not resolution - give less weight
+            if (endingsResolveToDifferentChord && sectionStartsOnCandidate === 0) {
+                // This chord is used for tension, not resolution
+                // Don't add points, and note it's a tension chord
+            } else {
+                score += sectionEndsOnCandidate;
+                reasons.push(`Sections end on ${candidateRoot} (${sectionEndsOnCandidate}×)`);
+            }
         }
 
         // Has dominant chord present
@@ -480,22 +517,31 @@ function analyzeKeyConfidence(key) {
     for (const majorKey of allMajorKeys) {
         const minorKey = transposeChord(majorKey, -3) + 'm';  // Relative minor
         const minorRoot = minorKey.replace('m', '');
+        const minorChordName = minorRoot + 'm';
 
         let score = 0;
         const reasons = [];
 
         // First chord
         const firstBase = indicators.firstChord.replace(/7|maj7|m7/, '');
-        if (firstBase === minorRoot + 'm' || indicators.firstChord === minorKey) {
+        if (firstBase === minorChordName || indicators.firstChord === minorKey) {
             score += 1;
             reasons.push(`Opens on ${indicators.firstChord}`);
         }
 
         // Last chord
         const lastBase = indicators.lastChord.replace(/7|maj7|m7/, '');
-        if (lastBase === minorRoot + 'm' || indicators.lastChord === minorKey) {
+        if (lastBase === minorChordName || indicators.lastChord === minorKey) {
             score += 2;
             reasons.push(`Ends on ${indicators.lastChord}`);
+        }
+
+        // Section openings (strong indicator)
+        const sectionStartsOnMinor = sectionStartChords.filter(c =>
+            c.replace(/7|maj7|m7/, '') === minorChordName).length;
+        if (sectionStartsOnMinor > 0) {
+            score += 2 * sectionStartsOnMinor;
+            reasons.push(`Sections start on ${minorChordName} (${sectionStartsOnMinor}×)`);
         }
 
         if (score > 0) {

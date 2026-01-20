@@ -728,6 +728,12 @@ function renderMusicTrivia() {
             icon: '🎭',
             text: `Uses borrowed chord${borrowedChords.length > 1 ? 's' : ''}: <strong>${borrowedChords.join(', ')}</strong>. These add color by borrowing from ${isMinor ? 'major modes' : 'minor modes'}.`
         });
+    } else if (usedChords.length >= 3 && keyAnalysis.confidence === 'strong') {
+        // All chords are diatonic - strong key confirmation
+        trivia.push({
+            icon: '✅',
+            text: `All ${usedChords.length} chords are diatonic (belong to the scale) to <strong>${transposedKey}</strong> — the key fits perfectly!`
+        });
     }
 
     // Chord variety assessment
