@@ -508,6 +508,39 @@ function analyzeKeyConfidence(key) {
             score += 1;
         }
 
+        // Check how many song chords are diatonic to this candidate key
+        // Diatonic chords in major: I, ii(m), iii(m), IV, V, vi(m), vii(dim)
+        const diatonicChords = [
+            candidateRoot,                              // I
+            transposeChord(candidateRoot, 2) + 'm',     // ii
+            transposeChord(candidateRoot, 4) + 'm',     // iii
+            transposeChord(candidateRoot, 5),           // IV
+            transposeChord(candidateRoot, 7),           // V
+            transposeChord(candidateRoot, 9) + 'm',     // vi
+            transposeChord(candidateRoot, 11) + 'dim'   // vii°
+        ];
+        // Also accept bVII as common borrowed chord
+        const bVII = transposeChord(candidateRoot, 10);
+        diatonicChords.push(bVII);
+
+        // Count non-diatonic chords
+        let nonDiatonicCount = 0;
+        for (const chord of uniqueChords) {
+            const chordBase = chord.replace(/7|maj7|m7|dim|aug/, '');
+            const isDiatonic = diatonicChords.some(d => {
+                const dBase = d.replace(/dim/, '');
+                return chordBase === dBase || chordBase === d;
+            });
+            if (!isDiatonic) {
+                nonDiatonicCount++;
+            }
+        }
+
+        // Penalize keys with non-diatonic chords (-2 per non-diatonic chord)
+        if (nonDiatonicCount > 0) {
+            score -= 2 * nonDiatonicCount;
+        }
+
         if (score > 0) {
             keyScores[candidateKey] = { score, reasons };
         }
