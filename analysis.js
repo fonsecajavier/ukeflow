@@ -575,6 +575,17 @@ function analyzeKeyConfidence(key) {
         const candidateTonicInSong = uniqueChords.includes(candidateTonic) ||
             uniqueChords.includes(candidateKey.replace('m', ''));
 
+        // Also check if the candidate key's dominant is in the song
+        // A key without its V chord is very unlikely to be correct
+        const candidateRoot = candidateKey.replace('m', '');
+        const candidateDominant = transposeChord(candidateRoot, 7);
+        const candidateDominantInSong = uniqueChords.includes(candidateDominant);
+
+        // Reject candidate if its dominant is missing (strong disqualifier)
+        if (!candidateDominantInSong) {
+            continue;
+        }
+
         if (data.score > bestScore && candidateTonicInSong) {
             bestKey = candidateKey;
             bestScore = data.score;
