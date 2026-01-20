@@ -25,6 +25,7 @@
     { "path": "songs/good-riddance.json", "title": "Good Riddance (Time of Your Life)", "artist": "Green Day" },
     { "path": "songs/en-el-muelle-de-san-blas.json", "title": "En el Muelle de San Blas", "artist": "Maná" },
     { "path": "songs/cant-help-falling-in-love.json", "title": "Can't Help Falling in Love", "artist": "Elvis Presley" },
-    { "path": "songs/whats-up.json", "title": "What's Up", "artist": "4 Non Blondes" }
+    { "path": "songs/whats-up.json", "title": "What's Up", "artist": "4 Non Blondes" },
+    { "path": "songs/ill-be-there-for-you.json", "title": "I'll Be There For You", "artist": "The Rembrandts" }
   ]
 }

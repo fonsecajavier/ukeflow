@@ -1,0 +1,284 @@
+{
+  "title": "I'll Be There For You",
+  "artist": "The Rembrandts",
+  "key": "A",
+  "spotify": "https://open.spotify.com/track/5SlKhhXtzd3Cj74HYmHZNz",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "So no one told you life was gonna be this way",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "G", "position": 43 }
+      ]
+    },
+    {
+      "lyrics": "Your jobs a joke your broke, your love lifes doa",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "C#m", "position": 46 }
+      ]
+    },
+    {
+      "lyrics": "Its like your always stuck in second gear",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Bm", "position": 16 },
+        { "chord": "A", "position": 38 }
+      ]
+    },
+    {
+      "lyrics": "When it hasent been your day your week or month or even your year",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "D", "position": 18 },
+        { "chord": "E", "position": 48 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "But I'll be there for you when the rain starts to pour",
+      "chords": [
+        { "chord": "A", "position": 4 },
+        { "chord": "D", "position": 12 },
+        { "chord": "E", "position": 20 },
+        { "chord": "G", "position": 45 }
+      ]
+    },
+    {
+      "lyrics": "I'll be there for you like i've been there before",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "D", "position": 8 },
+        { "chord": "E", "position": 16 },
+        { "chord": "G", "position": 42 }
+      ]
+    },
+    {
+      "lyrics": "I'll be there for you 'cause your there for me too",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "D", "position": 8 },
+        { "chord": "E", "position": 16 },
+        { "chord": "G", "position": 42 },
+        { "chord": "A", "position": 48 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "you're still in bed at ten & work began at 8",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "G", "position": 43 }
+      ]
+    },
+    {
+      "lyrics": "you've burntyour breakfast so far this are going great",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "C#m", "position": 49 }
+      ]
+    },
+    {
+      "lyrics": "your mother warned you there'd be days like these",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Bm", "position": 17 },
+        { "chord": "A", "position": 36 }
+      ]
+    },
+    {
+      "lyrics": "But she didn't tell you when the world has brought you down to your knees",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "D", "position": 19 },
+        { "chord": "E", "position": 52 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "But I'll be there for you when the rain starts to pour",
+      "chords": [
+        { "chord": "A", "position": 4 },
+        { "chord": "D", "position": 12 },
+        { "chord": "E", "position": 20 },
+        { "chord": "G", "position": 45 }
+      ]
+    },
+    {
+      "lyrics": "I'll be there for you like i've been there before",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "D", "position": 8 },
+        { "chord": "E", "position": 16 },
+        { "chord": "G", "position": 42 }
+      ]
+    },
+    {
+      "lyrics": "I'll be there for you 'cause your there for me too",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "D", "position": 8 },
+        { "chord": "E", "position": 16 },
+        { "chord": "G", "position": 42 },
+        { "chord": "A", "position": 48 }
+      ]
+    },
+    { "section": "Bridge" },
+    {
+      "lyrics": "No one could ever know me",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "No one could ever see me",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "sometimes the only one who knows what it's like to be me",
+      "chords": [
+        { "chord": "F#m", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "someone to face the day with",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "make it through all the mess with",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "some one i'll always laugh with",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "even under the worst i'm best with you",
+      "chords": [
+        { "chord": "E", "position": 0 },
+        { "chord": "D", "position": 19 },
+        { "chord": "E", "position": 28 },
+        { "chord": "F#m", "position": 37 }
+      ]
+    },
+    { "section": "Interlude" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    { "section": "Verse 3" },
+    {
+      "lyrics": "Its like your always stuck in second gear",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Bm", "position": 16 },
+        { "chord": "A", "position": 38 }
+      ]
+    },
+    {
+      "lyrics": "when it has'nt been your day your week or month or even your year",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "D", "position": 18 },
+        { "chord": "E", "position": 48 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "But I'll be there for you when the rain starts to pour",
+      "chords": [
+        { "chord": "A", "position": 4 },
+        { "chord": "D", "position": 12 },
+        { "chord": "E", "position": 20 },
+        { "chord": "G", "position": 45 }
+      ]
+    },
+    {
+      "lyrics": "I'll be there for you like i've been there before",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "D", "position": 8 },
+        { "chord": "E", "position": 16 },
+        { "chord": "G", "position": 42 }
+      ]
+    },
+    {
+      "lyrics": "I'll be there for you 'cause your there for me too",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "D", "position": 8 },
+        { "chord": "E", "position": 16 },
+        { "chord": "G", "position": 42 },
+        { "chord": "A", "position": 48 }
+      ]
+    },
+    {
+      "lyrics": "I'll be there for you",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "D", "position": 8 },
+        { "chord": "E", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "I'll be there for you",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "D", "position": 8 },
+        { "chord": "E", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "I'll be there for you",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "D", "position": 8 },
+        { "chord": "E", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "I'll be there for you",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "D", "position": 8 },
+        { "chord": "E", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "I'll be there for you",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "D", "position": 8 },
+        { "chord": "E", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "I'll be there for you 'cause your there for me too",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "D", "position": 8 },
+        { "chord": "E", "position": 16 },
+        { "chord": "G", "position": 42 },
+        { "chord": "A", "position": 48 }
+      ]
+    },
+    { "section": "Outro" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    }
+  ]
+}
