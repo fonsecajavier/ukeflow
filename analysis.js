@@ -536,9 +536,15 @@ function analyzeKeyConfidence(key) {
             }
         }
 
-        // Penalize keys with non-diatonic chords (-2 per non-diatonic chord)
+        // Penalize keys with non-diatonic chords
+        // This is a strong indicator - if E major exists when Em is expected,
+        // that key is likely wrong. Scale penalty by total chords.
         if (nonDiatonicCount > 0) {
-            score -= 2 * nonDiatonicCount;
+            // Base penalty plus scaled by how many chords don't fit
+            const nonDiatonicRatio = nonDiatonicCount / uniqueChords.length;
+            // If 25%+ of chords are non-diatonic, heavily penalize
+            const penalty = nonDiatonicCount * 3 + (nonDiatonicRatio > 0.25 ? 10 : 0);
+            score -= penalty;
         }
 
         if (score > 0) {
