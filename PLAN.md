@@ -55,6 +55,16 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
 - Collapsible section with educational information about the song's chords
 - **Key Information**: Displays whether song is in major or minor key
 - **Relative Key**: Shows the relative major/minor key
+- **Key Confidence Analysis**: Intelligent analysis to validate/suggest the correct key:
+  - 🎯 Shows opening and closing chords
+  - 📊 Identifies most frequent chord
+  - 🔄 Detects V→I cadences and what key they resolve to
+  - 🎹 Detects ii-V-I progressions (strongest key indicator) - requires minor ii chord
+  - 🚫 Warns if tonic chord is missing from the song
+  - ⚠️ Warns if dominant (V) chord is missing
+  - 💡 Suggests alternative key when evidence points elsewhere
+  - Confidence levels: strong, ambiguous, likely different, weak
+  - Analysis updates when switching to relative key view
 - **Famous Progressions Detection**: Identifies well-known chord patterns:
   - I-V-vi-IV "Axis of Awesome" progression
   - vi-IV-I-V "Sensitive Female" progression
@@ -70,12 +80,17 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
 ### 3d. Circle of Fifths (Collapsible)
 - Interactive SVG circle showing all 12 major keys arranged clockwise (C at top)
 - Inner ring displays relative minor keys
-- Current song's key highlighted with glow effect
+- Current song's key highlighted with orange/blue glow effect
+- **Suggested key highlighting**: When analysis suggests a different key:
+  - Current key shown with dimmed highlight
+  - Suggested key shown with green highlight
+  - Note at bottom: "💡 Analysis suggests: [key]"
 - Click any key to open modal showing:
   - Key name and relative minor
   - All 7 diatonic chords with roman numerals
   - Each chord clickable to view its diagram
   - "Transpose to this key" button to quickly transpose the song
+- Updates when toggling relative key view
 - Useful for understanding key relationships and planning transpositions
 
 ### 3e. Songwriter's Circle (Collapsible)
@@ -84,16 +99,23 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - Inner ring: Relative minors (ii, vi, iii)
   - Middle ring: Primary chords (IV, I, V/V7)
   - Outer extensions: Secondary dominants (II7, VI7, III7)
-- I chord emphasized with subtle dotted border
+- **Current key highlighting**: The actual selected key's chord is highlighted with orange dotted border
+  - For minor keys (e.g., Em), highlights the vi position (not I) since that's where the minor key sits
+- **Suggested key highlighting**: When analysis suggests a different key:
+  - Current key shown with dimmed dotted border
+  - Suggested key shown with green dotted border and fill
+  - Note at bottom: "💡 Analysis suggests: [key]"
 - Click any chord to see:
   - Chord diagram (V/V7 shows both options side by side)
   - Roman numeral function
   - Explanation of harmonic role (tonic, dominant, subdominant, etc.)
-- Minor keys: Shows relative major with note at bottom (e.g., "Showing relative major: C" when in Am)
+- Minor keys: Shows relative major with note at bottom (e.g., "Showing relative major: G" when in Em)
+- Updates when toggling relative key view
 - Useful for:
   - Understanding chord relationships within a key
   - Building progressions using common patterns
   - Adding secondary dominants for jazzy color
+  - Visualizing why the analysis suggests a different key
 
 ### 3f. Chord Library (Collapsible)
 - Browsable library of all available chords in the app
@@ -286,7 +308,7 @@ ukeflow/
     ├── i-really-want-to-stay-at-your-house.json  # Cyberpunk 2077 (B)
     ├── a-la-nanita-nana.json          # Traditional Spanish lullaby (A)
     ├── good-riddance.json             # Green Day (G)
-    ├── en-el-muelle-de-san-blas.json  # Maná, Minor key (Em)
+    ├── en-el-muelle-de-san-blas.json  # Maná (D)
     ├── cant-help-falling-in-love.json # Elvis Presley (D)
     └── whats-up.json                  # 4 Non Blondes (A)
 ```
@@ -301,7 +323,7 @@ The application JavaScript is split into modules for maintainability:
 | `state.js` | Application state object, slugify utility, getDisplayKey |
 | `patterns.js` | PLAY_STYLES (strums/arpeggios), tempo (currentBPM), getPlayStyle |
 | `audio.js` | AudioContext, Karplus-Strong synthesis, playChord, playStrum, playChunk |
-| `analysis.js` | getRelativeKey, detectFamousProgressions, getHarmonicFunction, detectSecondaryDominant, getUsedChords |
+| `analysis.js` | getRelativeKey, detectFamousProgressions, getHarmonicFunction, detectSecondaryDominant, getUsedChords, analyzeKeyConfidence |
 | `ui.js` | DOM elements, createChordDiagram, createChordSVG, populatePlayStyleSelector, updatePatternDisplay |
 | `app.js` | Main app: init, event handlers, rendering functions (displaySong, renderLyrics, etc.) |
 

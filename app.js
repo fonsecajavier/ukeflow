@@ -624,6 +624,86 @@ function renderMusicTrivia() {
         text: `This song is in <strong>${transposedKey}</strong> (${keyType}). Its relative ${isMinor ? 'major' : 'minor'} is <strong>${relativeKey}</strong>.`
     });
 
+    // Key confidence analysis - analyze the displayed key (accounts for relative toggle)
+    const keyToAnalyze = state.useRelativeKey
+        ? getRelativeKey(state.currentSong.key)
+        : state.currentSong.key;
+    const keyAnalysis = analyzeKeyConfidence(keyToAnalyze);
+
+    // Show key indicators
+    if (keyAnalysis.firstChord && keyAnalysis.lastChord) {
+        const indicators = [];
+        if (keyAnalysis.firstChord === keyAnalysis.lastChord) {
+            indicators.push(`Opens and closes on <strong>${keyAnalysis.firstChord}</strong>`);
+        } else {
+            indicators.push(`Opens on <strong>${keyAnalysis.firstChord}</strong>, closes on <strong>${keyAnalysis.lastChord}</strong>`);
+        }
+        trivia.push({
+            icon: '🎯',
+            text: indicators.join('. ') + '.'
+        });
+    }
+
+    // Most frequent chord
+    if (keyAnalysis.mostFrequent) {
+        trivia.push({
+            icon: '📊',
+            text: `Most frequent chord: <strong>${keyAnalysis.mostFrequent}</strong> (appears ${keyAnalysis.mostFrequentCount}×).`
+        });
+    }
+
+    // Cadences
+    if (keyAnalysis.cadences.length > 0) {
+        const cadenceTargets = [...new Set(keyAnalysis.cadences.map(c => c.target))];
+        trivia.push({
+            icon: '🔄',
+            text: `V→I cadence${keyAnalysis.cadences.length > 1 ? 's' : ''} detected resolving to: <strong>${cadenceTargets.join(', ')}</strong>.`
+        });
+    }
+
+    // ii-V-I progressions (strong key indicator)
+    if (keyAnalysis.iiVI && keyAnalysis.iiVI.length > 0) {
+        const iiViTargets = [...new Set(keyAnalysis.iiVI.map(c => c.target))];
+        trivia.push({
+            icon: '🎹',
+            text: `<strong>ii-V-I progression</strong> detected to: <strong>${iiViTargets.join(', ')}</strong>. This is a very strong key indicator!`
+        });
+    }
+
+    // Missing tonic chord warning (major red flag!)
+    if (keyAnalysis.missingTonic) {
+        trivia.push({
+            icon: '🚫',
+            text: `No <strong>${keyAnalysis.missingTonicChord}</strong> (tonic) chord found! The key's main chord doesn't appear in the song.`
+        });
+    }
+
+    // Missing dominant chord warning
+    if (keyAnalysis.missingDominant) {
+        trivia.push({
+            icon: '⚠️',
+            text: `No <strong>${keyAnalysis.missingDominantChord}</strong> (V chord) found. Songs typically use their dominant chord to establish the key.`
+        });
+    }
+
+    // Key confidence
+    if (keyAnalysis.confidence === 'ambiguous' && keyAnalysis.alternativeKey) {
+        trivia.push({
+            icon: '🤔',
+            text: `<strong>Ambiguous key</strong>: Could be interpreted as <strong>${transposedKey}</strong> or <strong>${keyAnalysis.alternativeKey}</strong>.`
+        });
+    } else if (keyAnalysis.confidence === 'likely different' && keyAnalysis.alternativeKey) {
+        trivia.push({
+            icon: '💡',
+            text: `<strong>Suggested key: ${keyAnalysis.alternativeKey}</strong> — ${keyAnalysis.alternativeReasons.slice(0, 3).join(', ')}.`
+        });
+    } else if (keyAnalysis.confidence === 'likely relative' && keyAnalysis.alternativeKey) {
+        trivia.push({
+            icon: '💡',
+            text: `This might actually be in <strong>${keyAnalysis.alternativeKey}</strong>: ${keyAnalysis.alternativeReasons.join(', ')}.`
+        });
+    }
+
     // Chord count
     trivia.push({
         icon: '🎸',
@@ -780,9 +860,18 @@ function renderCircleOfFifths() {
     const transposedKey = getDisplayKey();
     elements.circleContainer.innerHTML = '';
 
+    // Get suggested tonic from key analysis (if different from displayed key)
+    const keyToAnalyze = state.useRelativeKey
+        ? getRelativeKey(state.currentSong.key)
+        : state.currentSong.key;
+    const keyAnalysis = analyzeKeyConfidence(keyToAnalyze);
+    const suggestedTonic = (keyAnalysis.confidence === 'likely different' && keyAnalysis.alternativeKey)
+        ? keyAnalysis.alternativeKey
+        : null;
+
     const svg = createCircleOfFifthsSVG(transposedKey, (majorKey, minorKey) => {
         openKeyModal(majorKey, minorKey);
-    });
+    }, suggestedTonic);
 
     elements.circleContainer.appendChild(svg);
 }
@@ -793,6 +882,15 @@ function renderCircleOfFifths() {
 function renderDominant7thCircle() {
     const transposedKey = getDisplayKey();
     elements.dom7CircleContainer.innerHTML = '';
+
+    // Get suggested tonic from key analysis (if different from displayed key)
+    const keyToAnalyze = state.useRelativeKey
+        ? getRelativeKey(state.currentSong.key)
+        : state.currentSong.key;
+    const keyAnalysis = analyzeKeyConfidence(keyToAnalyze);
+    const suggestedTonic = (keyAnalysis.confidence === 'likely different' && keyAnalysis.alternativeKey)
+        ? keyAnalysis.alternativeKey
+        : null;
 
     const svg = createDominant7thCircleSVG(transposedKey, (chord, chord7OrRoman, romanOrUndefined) => {
         // Handle both signatures:
@@ -806,7 +904,7 @@ function renderDominant7thCircle() {
             // 2-argument call: (chord, roman)
             openDom7Modal(chord, null, chord7OrRoman);
         }
-    });
+    }, suggestedTonic);
 
     elements.dom7CircleContainer.appendChild(svg);
 }
@@ -1285,6 +1383,8 @@ function handleToggleRelativeKey() {
     renderHarmonicAnalysis();
     renderChordReference();
     renderLyrics();
+    renderCircleOfFifths();
+    renderDominant7thCircle();
 }
 
 /**
@@ -1295,13 +1395,26 @@ function updateKeyDisplay() {
     const transposedKey = transposeKey(state.currentSong.key, state.transpose);
     const displayKey = getDisplayKey();
 
+    // Get key confidence
+    const keyAnalysis = analyzeKeyConfidence(state.currentSong.key);
+    let confidenceIndicator = '';
+    if (keyAnalysis.confidence === 'ambiguous') {
+        confidenceIndicator = ' ⚖️';
+    } else if (keyAnalysis.confidence === 'likely relative') {
+        confidenceIndicator = ' 🔀';
+    } else if (keyAnalysis.confidence === 'likely different') {
+        confidenceIndicator = ` 💡→${keyAnalysis.alternativeKey}?`;
+    } else if (keyAnalysis.confidence === 'weak') {
+        confidenceIndicator = ' ❓';
+    }
+
     if (state.useRelativeKey) {
         const originalType = isMinorKey(transposedKey) ? 'minor' : 'major';
         const relativeType = isMinorKey(displayKey) ? 'minor' : 'major';
-        elements.songKey.textContent = `${displayKey} (rel. ${relativeType})`;
+        elements.songKey.textContent = `${displayKey} (rel. ${relativeType})${confidenceIndicator}`;
         elements.toggleRelativeKey.title = `Switch back to ${transposedKey}`;
     } else {
-        elements.songKey.textContent = displayKey;
+        elements.songKey.textContent = displayKey + confidenceIndicator;
         const relativeKey = getRelativeKey(transposedKey);
         elements.toggleRelativeKey.title = `Switch to relative key (${relativeKey})`;
     }

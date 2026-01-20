@@ -276,6 +276,301 @@ function getHarmonicFunction(chord, degree, key, isMinor) {
 }
 
 /**
+ * Analyze key confidence - helps determine if the assigned key is correct
+ * Returns indicators about what key the song appears to be in
+ */
+function analyzeKeyConfidence(key) {
+    const transposedKey = transposeKey(key, state.transpose);
+    const isMinor = isMinorKey(transposedKey);
+    const relativeKey = getRelativeKey(transposedKey);
+
+    const indicators = {
+        firstChord: null,
+        lastChord: null,
+        mostFrequent: null,
+        mostFrequentCount: 0,
+        cadences: [],
+        iiVI: [],           // ii-V-I progressions (strong key indicator)
+        sectionEndings: [], // Where sections resolve to
+        missingTonic: false,    // Key indicator: tonic chord not present!
+        missingDominant: false, // Key indicator: no V chord present
+        confidence: 'strong',
+        alternativeKey: null,
+        reasons: []
+    };
+
+    // All 12 major keys for scanning
+    const allMajorKeys = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+    const flatEquivalents = { 'C#': 'Db', 'D#': 'Eb', 'F#': 'Gb', 'G#': 'Ab', 'A#': 'Bb' };
+
+    // Get all chords in order, tracking section boundaries
+    const allChords = [];
+    const sectionEndChords = [];
+    let lastChordBeforeSection = null;
+
+    state.currentSong.lines.forEach(line => {
+        if (line.section) {
+            // Track what chord ended the previous section
+            if (lastChordBeforeSection) {
+                sectionEndChords.push(lastChordBeforeSection);
+            }
+        }
+        if (line.chords && line.chords.length > 0) {
+            const sortedChords = [...line.chords].sort((a, b) => a.position - b.position);
+            sortedChords.forEach(c => {
+                const transposed = transposeChord(c.chord, state.transpose);
+                allChords.push(transposed);
+                lastChordBeforeSection = transposed;
+            });
+        }
+    });
+    // Add the final chord as a section ending too
+    if (lastChordBeforeSection) {
+        sectionEndChords.push(lastChordBeforeSection);
+    }
+
+    if (allChords.length === 0) return indicators;
+
+    // First and last chords
+    indicators.firstChord = allChords[0];
+    indicators.lastChord = allChords[allChords.length - 1];
+    indicators.sectionEndings = sectionEndChords;
+
+    // Most frequent chord
+    const chordCounts = {};
+    allChords.forEach(chord => {
+        const base = chord.replace(/7|maj7|m7/, ''); // Normalize
+        chordCounts[base] = (chordCounts[base] || 0) + 1;
+    });
+
+    let maxCount = 0;
+    Object.entries(chordCounts).forEach(([chord, count]) => {
+        if (count > maxCount) {
+            maxCount = count;
+            indicators.mostFrequent = chord;
+            indicators.mostFrequentCount = count;
+        }
+    });
+
+    // Key roots
+    const keyRoot = transposedKey.replace('m', '');
+    const relativeRoot = relativeKey.replace('m', '');
+
+    // Get dominant chord for stated key
+    const dominant = transposeChord(keyRoot, 7);
+
+    // Check if tonic and dominant chords are present in the song
+    const uniqueChords = [...new Set(allChords.map(c => c.replace(/7|maj7|m7/, '')))];
+
+    // Check for tonic chord (e.g., "Em" for E minor, "E" for E major)
+    const tonicChord = isMinor ? keyRoot + 'm' : keyRoot;
+    const hasTonic = uniqueChords.includes(tonicChord) || uniqueChords.includes(keyRoot);
+
+    if (!hasTonic) {
+        indicators.missingTonic = true;
+        indicators.missingTonicChord = tonicChord;
+    }
+
+    // Check for dominant chord
+    const hasDominant = uniqueChords.includes(dominant);
+
+    if (!hasDominant) {
+        indicators.missingDominant = true;
+        indicators.missingDominantChord = dominant;
+    }
+
+    // Scan for V→I cadences and ii-V-I progressions to ANY major key
+    const cadencesTo = {};  // Count cadences to each key
+    const iiViTo = {};      // Count ii-V-I progressions to each key
+
+    for (let i = 0; i < allChords.length - 1; i++) {
+        const current = allChords[i].replace(/7|maj7|m7/, '');
+        const next = allChords[i + 1].replace(/7|maj7|m7/, '');
+
+        // Check V→I to every major key
+        for (const targetKey of allMajorKeys) {
+            const targetDominant = transposeChord(targetKey, 7);
+            if (current === targetDominant && next === targetKey) {
+                cadencesTo[targetKey] = (cadencesTo[targetKey] || 0) + 1;
+                indicators.cadences.push({ type: 'V→I', target: targetKey });
+            }
+        }
+
+        // Check ii-V-I to every major key
+        if (i < allChords.length - 2) {
+            const nextNext = allChords[i + 2].replace(/7|maj7|m7/, '');
+
+            for (const targetKey of allMajorKeys) {
+                const targetDominant = transposeChord(targetKey, 7);  // V
+                const targetSupertonic = transposeChord(targetKey, 2); // ii
+
+                // ii (minor) → V → I - the ii must be minor!
+                if (current === targetSupertonic + 'm' &&
+                    next === targetDominant &&
+                    nextNext === targetKey) {
+                    iiViTo[targetKey] = (iiViTo[targetKey] || 0) + 1;
+                    indicators.iiVI.push({ target: targetKey });
+                }
+            }
+        }
+    }
+
+    // Score all candidate keys
+    const keyScores = {};
+
+    for (const candidateKey of allMajorKeys) {
+        const candidateRoot = candidateKey;
+        const candidateMinor = candidateKey + 'm';
+        const candidateDominant = transposeChord(candidateKey, 7);
+
+        let score = 0;
+        const reasons = [];
+
+        // First chord
+        const firstBase = indicators.firstChord.replace(/7|maj7|m7/, '');
+        if (firstBase === candidateRoot) {
+            score += 1;
+            reasons.push(`Opens on ${indicators.firstChord}`);
+        }
+
+        // Last chord (stronger weight)
+        const lastBase = indicators.lastChord.replace(/7|maj7|m7/, '');
+        if (lastBase === candidateRoot) {
+            score += 2;
+            reasons.push(`Ends on ${indicators.lastChord}`);
+        }
+
+        // Most frequent
+        if (indicators.mostFrequent === candidateRoot) {
+            score += 1;
+            reasons.push(`${indicators.mostFrequent} most frequent`);
+        }
+
+        // V→I cadences (strong)
+        if (cadencesTo[candidateKey]) {
+            score += 2 * cadencesTo[candidateKey];
+            reasons.push(`V→I cadence to ${candidateKey} (${cadencesTo[candidateKey]}×)`);
+        }
+
+        // ii-V-I progressions (very strong!)
+        if (iiViTo[candidateKey]) {
+            score += 3 * iiViTo[candidateKey];
+            reasons.push(`ii-V-I to ${candidateKey} (${iiViTo[candidateKey]}×)`);
+        }
+
+        // Section endings
+        const sectionEndsOnCandidate = sectionEndChords.filter(c =>
+            c.replace(/7|maj7|m7/, '') === candidateRoot).length;
+        if (sectionEndsOnCandidate > 0) {
+            score += sectionEndsOnCandidate;
+            reasons.push(`Sections resolve to ${candidateRoot} (${sectionEndsOnCandidate}×)`);
+        }
+
+        // Has dominant chord present
+        if (uniqueChords.includes(candidateDominant)) {
+            score += 1;
+        }
+
+        if (score > 0) {
+            keyScores[candidateKey] = { score, reasons };
+        }
+    }
+
+    // Also score minor keys (relative minors of the major keys)
+    for (const majorKey of allMajorKeys) {
+        const minorKey = transposeChord(majorKey, -3) + 'm';  // Relative minor
+        const minorRoot = minorKey.replace('m', '');
+
+        let score = 0;
+        const reasons = [];
+
+        // First chord
+        const firstBase = indicators.firstChord.replace(/7|maj7|m7/, '');
+        if (firstBase === minorRoot + 'm' || indicators.firstChord === minorKey) {
+            score += 1;
+            reasons.push(`Opens on ${indicators.firstChord}`);
+        }
+
+        // Last chord
+        const lastBase = indicators.lastChord.replace(/7|maj7|m7/, '');
+        if (lastBase === minorRoot + 'm' || indicators.lastChord === minorKey) {
+            score += 2;
+            reasons.push(`Ends on ${indicators.lastChord}`);
+        }
+
+        if (score > 0) {
+            keyScores[minorKey] = { score, reasons };
+        }
+    }
+
+    // Find the best scoring key
+    // For minor keys, look up the full key (e.g., "Dm") not just the root (e.g., "D")
+    const statedKeyLookup = isMinor ? transposedKey : keyRoot;
+    let bestKey = transposedKey;
+    let bestScore = keyScores[statedKeyLookup]?.score || 0;
+    let bestReasons = keyScores[statedKeyLookup]?.reasons || [];
+
+    // Penalize stated key if missing tonic or dominant
+    // Missing tonic is a HUGE red flag (-5), missing dominant is significant (-2)
+    if (indicators.missingTonic) {
+        bestScore -= 5;
+    }
+    if (indicators.missingDominant) {
+        bestScore -= 2;
+    }
+
+    for (const [candidateKey, data] of Object.entries(keyScores)) {
+        // Skip if this is the stated key
+        if (candidateKey === keyRoot || candidateKey === statedKeyLookup) continue;
+
+        // Only consider keys whose tonic chord is actually in the song
+        const candidateIsMinor = candidateKey.endsWith('m');
+        const candidateTonic = candidateIsMinor ? candidateKey : candidateKey;
+        const candidateTonicInSong = uniqueChords.includes(candidateTonic) ||
+            uniqueChords.includes(candidateKey.replace('m', ''));
+
+        if (data.score > bestScore && candidateTonicInSong) {
+            bestKey = candidateKey;
+            bestScore = data.score;
+            bestReasons = data.reasons;
+        }
+    }
+
+    // Build reasons for stated key
+    const statedKeyScore = keyScores[statedKeyLookup]?.score || 0;
+    let penalty = 0;
+    if (indicators.missingTonic) penalty += 5;
+    if (indicators.missingDominant) penalty += 2;
+    indicators.reasons = keyScores[statedKeyLookup]?.reasons || [];
+    indicators.tonicScore = statedKeyScore - penalty;
+
+    // Determine confidence
+    const scoreDiff = bestScore - indicators.tonicScore;
+
+    if (bestKey === keyRoot || bestKey === transposedKey) {
+        indicators.confidence = 'strong';
+    } else if (scoreDiff >= 3) {
+        // Strong evidence for a different key
+        indicators.confidence = 'likely different';
+        indicators.alternativeKey = bestKey;
+        indicators.alternativeReasons = bestReasons;
+        indicators.alternativeScore = bestScore;
+    } else if (scoreDiff >= 1) {
+        // Some evidence for different key
+        indicators.confidence = 'ambiguous';
+        indicators.alternativeKey = bestKey;
+        indicators.alternativeReasons = bestReasons;
+        indicators.alternativeScore = bestScore;
+    } else if (indicators.missingDominant) {
+        indicators.confidence = 'weak';
+    } else {
+        indicators.confidence = 'strong';
+    }
+
+    return indicators;
+}
+
+/**
  * Detect if a chord is a secondary dominant (V/x)
  * @param {string} chord - The chord name
  * @param {string} key - The current key

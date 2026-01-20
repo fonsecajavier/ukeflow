@@ -418,7 +418,7 @@ function createChordSVG(chord, large = false) {
  * @param {string} currentKey - The current song's key to highlight
  * @param {function} onKeyClick - Callback when a key is clicked
  */
-function createCircleOfFifthsSVG(currentKey, onKeyClick) {
+function createCircleOfFifthsSVG(currentKey, onKeyClick, suggestedTonic = null) {
     const size = 300;
     const centerX = size / 2;
     const centerY = size / 2;
@@ -483,6 +483,8 @@ function createCircleOfFifthsSVG(currentKey, onKeyClick) {
 
     const normalizedCurrentKey = normalizeKey(currentKey);
     const isCurrentKeyMinor = isMinorKey(currentKey);
+    const normalizedSuggestedTonic = suggestedTonic ? normalizeKey(suggestedTonic) : null;
+    const isSuggestedMinor = suggestedTonic ? isMinorKey(suggestedTonic) : false;
 
     // Draw key segments
     for (let i = 0; i < 12; i++) {
@@ -494,14 +496,21 @@ function createCircleOfFifthsSVG(currentKey, onKeyClick) {
         const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
         group.setAttribute('class', 'circle-key-group');
 
-        // Check if this is the active key
+        // Check if this is the active (displayed) key
         const isMajorActive = !isCurrentKeyMinor && normalizeKey(majorKey) === normalizedCurrentKey;
         const isMinorActive = isCurrentKeyMinor && normalizeKey(minorKey) === normalizedCurrentKey;
 
+        // Check if this is the suggested key
+        const isMajorSuggested = normalizedSuggestedTonic && !isSuggestedMinor && normalizeKey(majorKey) === normalizedSuggestedTonic;
+        const isMinorSuggested = normalizedSuggestedTonic && isSuggestedMinor && normalizeKey(minorKey) === normalizedSuggestedTonic;
+
+        if (isMajorSuggested || isMinorSuggested) {
+            group.classList.add('suggested');
+        }
         if (isMajorActive) {
-            group.classList.add('active');
+            group.classList.add(suggestedTonic ? 'active-dim' : 'active');
         } else if (isMinorActive) {
-            group.classList.add('active-minor');
+            group.classList.add(suggestedTonic ? 'active-minor-dim' : 'active-minor');
         }
 
         // Draw segment background (pie slice)
@@ -569,6 +578,18 @@ function createCircleOfFifthsSVG(currentKey, onKeyClick) {
     centerLabel.textContent = '5ths';
     svg.appendChild(centerLabel);
 
+    // Add note for suggested tonic
+    if (suggestedTonic) {
+        const suggestedNote = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        suggestedNote.setAttribute('x', centerX);
+        suggestedNote.setAttribute('y', size - 5);
+        suggestedNote.setAttribute('text-anchor', 'middle');
+        suggestedNote.setAttribute('font-size', '11');
+        suggestedNote.setAttribute('fill', '#2ecc71');
+        suggestedNote.textContent = `💡 Analysis suggests: ${suggestedTonic}`;
+        svg.appendChild(suggestedNote);
+    }
+
     return svg;
 }
 
@@ -579,7 +600,7 @@ function createCircleOfFifthsSVG(currentKey, onKeyClick) {
  * @param {string} currentKey - The current song's key to highlight
  * @param {function} onChordClick - Callback when a chord is clicked
  */
-function createDominant7thCircleSVG(currentKey, onChordClick) {
+function createDominant7thCircleSVG(currentKey, onChordClick, suggestedTonic = null) {
     const width = 420;
     const height = 280;
     const centerX = width / 2;
@@ -717,9 +738,19 @@ function createDominant7thCircleSVG(currentKey, onChordClick) {
         // Show "V / V7" style for dual chords
         chordText.textContent = pos.dual ? `${pos.chord} / ${pos.chord7}` : pos.chord;
 
-        // Add dotted border to I chord cell
-        if (pos.roman === 'I') {
-            bg.setAttribute('class', 'dom7-bg dom7-tonic-bg');
+        // Highlight current key and suggested tonic with different styles
+        const chordBase = pos.chord.replace(/7|m7|maj7/, '');
+        const currentKeyBase = currentKey.replace(/7|m7|maj7/, '');
+        const isSuggestedTonic = suggestedTonic && chordBase === suggestedTonic.replace(/m$/, '');
+        // Match the actual current key (e.g., Em matches Em, not just I position)
+        const isCurrentKey = chordBase === currentKeyBase;
+
+        if (isSuggestedTonic && !isCurrentKey) {
+            // Suggested tonic (different from current) - green highlight
+            bg.setAttribute('class', 'dom7-bg dom7-suggested-bg');
+        } else if (isCurrentKey) {
+            // Current key's chord - dotted border (dimmer if there's a different suggestion)
+            bg.setAttribute('class', suggestedTonic ? 'dom7-bg dom7-tonic-dim-bg' : 'dom7-bg dom7-tonic-bg');
         }
         group.appendChild(chordText);
 
@@ -798,11 +829,27 @@ function createDominant7thCircleSVG(currentKey, onChordClick) {
         svg.appendChild(label);
     });
 
-    // Add note for minor keys showing relative major
+    // Add notes at the bottom
+    let noteY = height - 5;
+
+    // Note for suggested tonic (if different from displayed)
+    if (suggestedTonic) {
+        const suggestedNote = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        suggestedNote.setAttribute('x', centerX);
+        suggestedNote.setAttribute('y', noteY);
+        suggestedNote.setAttribute('text-anchor', 'middle');
+        suggestedNote.setAttribute('font-size', '11');
+        suggestedNote.setAttribute('fill', '#2ecc71');
+        suggestedNote.textContent = `💡 Analysis suggests: ${suggestedTonic}`;
+        svg.appendChild(suggestedNote);
+        noteY -= 16;
+    }
+
+    // Note for minor keys showing relative major
     if (isMinor) {
         const note = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         note.setAttribute('x', centerX);
-        note.setAttribute('y', height - 5);
+        note.setAttribute('y', noteY);
         note.setAttribute('text-anchor', 'middle');
         note.setAttribute('font-size', '11');
         note.setAttribute('fill', '#666');

@@ -782,6 +782,29 @@ body {
     fill: #fff;
 }
 
+.circle-key-group.suggested .circle-key-bg {
+    fill: rgba(46, 204, 113, 0.25);
+    stroke: #2ecc71;
+    stroke-width: 2;
+}
+
+.circle-key-group.suggested .circle-key-major,
+.circle-key-group.suggested .circle-key-minor {
+    fill: #2ecc71;
+}
+
+.circle-key-group.active-dim .circle-key-bg {
+    fill: rgba(243, 156, 18, 0.15);
+    stroke: rgba(243, 156, 18, 0.5);
+    stroke-width: 1;
+}
+
+.circle-key-group.active-minor-dim .circle-key-bg {
+    fill: rgba(52, 152, 219, 0.15);
+    stroke: rgba(52, 152, 219, 0.5);
+    stroke-width: 1;
+}
+
 /* Dominant 7th Circle */
 .dominant-seventh-circle {
     margin-bottom: 20px;
@@ -860,6 +883,19 @@ body {
     stroke: rgba(243, 156, 18, 0.5);
     stroke-width: 1.5;
     stroke-dasharray: 4 3;
+}
+
+.dom7-tonic-dim-bg {
+    stroke: rgba(243, 156, 18, 0.25);
+    stroke-width: 1;
+    stroke-dasharray: 4 3;
+}
+
+.dom7-suggested-bg {
+    stroke: rgba(46, 204, 113, 0.7);
+    stroke-width: 2;
+    stroke-dasharray: 4 3;
+    fill: rgba(46, 204, 113, 0.1);
 }
 
 .dom7-target {
