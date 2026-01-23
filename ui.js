@@ -561,10 +561,26 @@ function createCircleOfFifthsSVG(currentKey, onKeyClick, suggestedTonic = null) 
 
         const minorText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         minorText.setAttribute('x', minorX);
-        minorText.setAttribute('y', minorY + 4);
         minorText.setAttribute('text-anchor', 'middle');
         minorText.setAttribute('class', 'circle-key-minor');
-        minorText.textContent = minorDisplay;
+
+        // Show D#m/Ebm on two lines to fit
+        if (isEnharmonicPosition) {
+            minorText.setAttribute('y', minorY - 4);
+            const tspan1 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+            tspan1.setAttribute('x', minorX);
+            tspan1.textContent = 'D#m';
+            minorText.appendChild(tspan1);
+
+            const tspan2 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+            tspan2.setAttribute('x', minorX);
+            tspan2.setAttribute('dy', '14');
+            tspan2.textContent = 'Ebm';
+            minorText.appendChild(tspan2);
+        } else {
+            minorText.setAttribute('y', minorY + 4);
+            minorText.textContent = minorDisplay;
+        }
         group.appendChild(minorText);
 
         // Click handler

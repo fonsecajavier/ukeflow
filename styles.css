@@ -754,12 +754,12 @@ body {
 .circle-key-major {
     fill: #f39c12;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .circle-key-minor {
     fill: #3498db;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .circle-key-group.active .circle-key-bg {
