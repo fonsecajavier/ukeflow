@@ -296,6 +296,9 @@ function setupEventListeners() {
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('click', handleClickOutside);
     window.addEventListener('popstate', handlePopState);
+
+    // Setup chord finder
+    setupChordFinderListeners();
 }
 
 /**
@@ -1601,6 +1604,181 @@ function openChordModal(chordName) {
 function handleModalClose(e) {
     if (e.target === elements.modalOverlay) {
         closeModal();
+    }
+}
+
+// ============================================
+// Chord Finder Feature
+// ============================================
+
+// State for chord finder: [G, C, E, A] - null means unset, 0 = open, -1 = muted, 1-12 = fret
+// Default to all open strings (shows C6 chord initially)
+let chordFinderState = [0, 0, 0, 0];
+let chordFinderRendered = false;
+
+/**
+ * Initialize and render the chord finder fretboard
+ */
+function renderChordFinder() {
+    if (!elements.fretboardWrapper) return;
+
+    elements.fretboardWrapper.innerHTML = '';
+
+    const svg = createFretboardSVG(chordFinderState, {
+        onFretClick: handleChordFinderFretClick,
+        onOpenClick: handleChordFinderOpenClick
+    });
+
+    elements.fretboardWrapper.appendChild(svg);
+
+    // Update result display
+    updateChordFinderResult();
+
+    // Update play button state
+    updateChordFinderPlayButton();
+}
+
+/**
+ * Handle fret click in chord finder
+ * @param {number} stringIndex - String index (0=G, 1=C, 2=E, 3=A)
+ * @param {number} fret - Fret number (1-12)
+ */
+function handleChordFinderFretClick(stringIndex, fret) {
+    // Toggle: if same fret is clicked, clear it; otherwise set it
+    if (chordFinderState[stringIndex] === fret) {
+        chordFinderState[stringIndex] = null;
+    } else {
+        chordFinderState[stringIndex] = fret;
+    }
+    renderChordFinder();
+}
+
+/**
+ * Handle open/muted click in chord finder
+ * Cycles through: null -> 0 (open) -> -1 (muted) -> null
+ * @param {number} stringIndex - String index (0=G, 1=C, 2=E, 3=A)
+ */
+function handleChordFinderOpenClick(stringIndex) {
+    const current = chordFinderState[stringIndex];
+    if (current === null || current > 0) {
+        // Set to open
+        chordFinderState[stringIndex] = 0;
+    } else if (current === 0) {
+        // Set to muted
+        chordFinderState[stringIndex] = -1;
+    } else {
+        // Clear
+        chordFinderState[stringIndex] = null;
+    }
+    renderChordFinder();
+}
+
+/**
+ * Clear all chord finder selections (reset to all open)
+ */
+function clearChordFinder() {
+    chordFinderState = [0, 0, 0, 0];
+    renderChordFinder();
+}
+
+/**
+ * Update the chord finder result display
+ */
+function updateChordFinderResult() {
+    if (!elements.chordFinderResult) return;
+
+    elements.chordFinderResult.innerHTML = '';
+
+    // Check if any fret is set
+    const hasInput = chordFinderState.some(f => f !== null);
+    if (!hasInput) {
+        const text = document.createElement('span');
+        text.className = 'chord-finder-result-text';
+        text.textContent = 'Click on the fretboard to find a chord';
+        elements.chordFinderResult.appendChild(text);
+        return;
+    }
+
+    // Find matching chords
+    const matches = findChordByFrets(chordFinderState);
+
+    if (matches.length === 0) {
+        const text = document.createElement('span');
+        text.className = 'chord-finder-no-match';
+        text.textContent = 'No matching chord found';
+        elements.chordFinderResult.appendChild(text);
+    } else {
+        // Show matching chords as clickable chips
+        matches.forEach(chordName => {
+            const chip = document.createElement('button');
+            chip.className = 'chord-finder-match';
+            chip.textContent = chordName;
+            chip.addEventListener('click', () => {
+                openChordModal(chordName);
+            });
+            elements.chordFinderResult.appendChild(chip);
+        });
+    }
+}
+
+/**
+ * Update play button enabled state
+ */
+function updateChordFinderPlayButton() {
+    if (!elements.chordFinderPlay) return;
+
+    // Enable play button only if at least one string has a value
+    const hasInput = chordFinderState.some(f => f !== null && f >= 0);
+    elements.chordFinderPlay.disabled = !hasInput;
+}
+
+/**
+ * Play the current chord finder fingering
+ */
+function playChordFinderChord() {
+    // Create a temporary chord data object for playback
+    const frets = chordFinderState.map(f => f === null ? -1 : f);
+
+    // Check if we have at least one playable string
+    const hasPlayableString = frets.some(f => f >= 0);
+    if (!hasPlayableString) return;
+
+    // Create chord data structure for audio playback
+    const tempChord = {
+        name: 'Custom',
+        frets: frets,
+        fingers: [0, 0, 0, 0], // Not needed for playback
+        barre: null,
+        baseFret: 1
+    };
+
+    playChordArpeggio(tempChord);
+
+    // Visual feedback
+    elements.chordFinderPlay.classList.add('playing');
+    setTimeout(() => elements.chordFinderPlay.classList.remove('playing'), 400);
+}
+
+/**
+ * Setup chord finder event listeners
+ */
+function setupChordFinderListeners() {
+    if (elements.chordFinderClear) {
+        elements.chordFinderClear.addEventListener('click', clearChordFinder);
+    }
+    if (elements.chordFinderPlay) {
+        elements.chordFinderPlay.addEventListener('click', playChordFinderChord);
+    }
+
+    // Render chord finder when the details element is opened
+    const chordFinderDetails = document.getElementById('chord-finder');
+    if (chordFinderDetails) {
+        chordFinderDetails.addEventListener('toggle', () => {
+            if (chordFinderDetails.open && !chordFinderRendered) {
+                renderChordFinder();
+                chordFinderRendered = true;
+            }
+        });
     }
 }
 

@@ -37,7 +37,13 @@ const elements = {
     modalOverlay: document.getElementById('modal-overlay'),
     modalContent: document.getElementById('modal-content'),
     modalChord: document.getElementById('modal-chord'),
-    modalClose: document.getElementById('modal-close')
+    modalClose: document.getElementById('modal-close'),
+    // Chord Finder elements
+    chordFinderContainer: document.getElementById('chord-finder-container'),
+    fretboardWrapper: document.getElementById('fretboard-wrapper'),
+    chordFinderClear: document.getElementById('chord-finder-clear'),
+    chordFinderPlay: document.getElementById('chord-finder-play'),
+    chordFinderResult: document.getElementById('chord-finder-result')
 };
 
 /**
@@ -878,6 +884,228 @@ function createDominant7thCircleSVG(currentKey, onChordClick, suggestedTonic = n
         note.setAttribute('fill', '#666');
         note.textContent = `Showing relative major: ${displayKey}`;
         svg.appendChild(note);
+    }
+
+    return svg;
+}
+
+/**
+ * Create interactive fretboard SVG for Chord Finder
+ * @param {Array} fretState - Array of 4 values [G, C, E, A], each can be: null, 0 (open), -1 (muted), or 1-12 (fret)
+ * @param {Object} callbacks - Object with onFretClick(string, fret) and onOpenClick(string)
+ * @returns {SVGElement} - The SVG fretboard
+ */
+function createFretboardSVG(fretState, callbacks) {
+    const numFrets = 12;
+    const numStrings = 4;
+
+    // Dimensions
+    const width = 480;
+    const height = 180;
+    const leftPadding = 35;  // Space for string labels
+    const topPadding = 30;   // Space for open/muted markers
+    const rightPadding = 20;
+    const bottomPadding = 25; // Space for fret numbers
+
+    const fretboardWidth = width - leftPadding - rightPadding;
+    const fretboardHeight = height - topPadding - bottomPadding;
+    const fretSpacing = fretboardWidth / numFrets;
+    const stringSpacing = fretboardHeight / (numStrings - 1);
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', width);
+    svg.setAttribute('height', height);
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+
+    // Background
+    const bg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    bg.setAttribute('x', 0);
+    bg.setAttribute('y', 0);
+    bg.setAttribute('width', width);
+    bg.setAttribute('height', height);
+    bg.setAttribute('fill', '#1a1a2e');
+    svg.appendChild(bg);
+
+    // Draw nut (thick line before fret 1)
+    const nut = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    nut.setAttribute('x1', leftPadding);
+    nut.setAttribute('y1', topPadding - 5);
+    nut.setAttribute('x2', leftPadding);
+    nut.setAttribute('y2', topPadding + fretboardHeight + 5);
+    nut.setAttribute('class', 'fretboard-nut');
+    svg.appendChild(nut);
+
+    // Draw frets (vertical lines)
+    for (let f = 1; f <= numFrets; f++) {
+        const x = leftPadding + f * fretSpacing;
+        const fret = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        fret.setAttribute('x1', x);
+        fret.setAttribute('y1', topPadding);
+        fret.setAttribute('x2', x);
+        fret.setAttribute('y2', topPadding + fretboardHeight);
+        fret.setAttribute('class', 'fretboard-fret');
+        svg.appendChild(fret);
+    }
+
+    // Draw strings (horizontal lines) - G, C, E, A from top to bottom
+    const stringLabels = ['G', 'C', 'E', 'A'];
+    for (let s = 0; s < numStrings; s++) {
+        const y = topPadding + s * stringSpacing;
+        const string = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        string.setAttribute('x1', leftPadding);
+        string.setAttribute('y1', y);
+        string.setAttribute('x2', leftPadding + fretboardWidth);
+        string.setAttribute('y2', y);
+        string.setAttribute('class', s === 0 ? 'fretboard-string fretboard-string-first' : 'fretboard-string');
+        svg.appendChild(string);
+
+        // String label on the left
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', leftPadding - 15);
+        label.setAttribute('y', y + 4);
+        label.setAttribute('text-anchor', 'middle');
+        label.setAttribute('class', 'fretboard-label');
+        label.textContent = stringLabels[s];
+        svg.appendChild(label);
+    }
+
+    // Draw fret markers (dots at 3, 5, 7, 9, 12)
+    const markerFrets = [3, 5, 7, 9];
+    markerFrets.forEach(f => {
+        const x = leftPadding + (f - 0.5) * fretSpacing;
+        const y = topPadding + fretboardHeight / 2;
+        const marker = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        marker.setAttribute('cx', x);
+        marker.setAttribute('cy', y);
+        marker.setAttribute('r', 4);
+        marker.setAttribute('class', 'fretboard-marker');
+        svg.appendChild(marker);
+    });
+
+    // Double dot at fret 12
+    const x12 = leftPadding + 11.5 * fretSpacing;
+    const dot1 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    dot1.setAttribute('cx', x12);
+    dot1.setAttribute('cy', topPadding + stringSpacing * 0.75);
+    dot1.setAttribute('r', 4);
+    dot1.setAttribute('class', 'fretboard-marker');
+    svg.appendChild(dot1);
+
+    const dot2 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    dot2.setAttribute('cx', x12);
+    dot2.setAttribute('cy', topPadding + stringSpacing * 2.25);
+    dot2.setAttribute('r', 4);
+    dot2.setAttribute('class', 'fretboard-marker');
+    svg.appendChild(dot2);
+
+    // Draw fret numbers
+    [1, 3, 5, 7, 9, 12].forEach(f => {
+        const x = leftPadding + (f - 0.5) * fretSpacing;
+        const fretNum = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        fretNum.setAttribute('x', x);
+        fretNum.setAttribute('y', height - 8);
+        fretNum.setAttribute('text-anchor', 'middle');
+        fretNum.setAttribute('class', 'fretboard-fret-number');
+        fretNum.textContent = f;
+        svg.appendChild(fretNum);
+    });
+
+    // Create clickable areas and display markers for each string
+    for (let s = 0; s < numStrings; s++) {
+        const y = topPadding + s * stringSpacing;
+        const currentValue = fretState[s];
+
+        // Open/muted marker area (above nut)
+        const openGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        openGroup.style.cursor = 'pointer';
+
+        const openArea = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        openArea.setAttribute('x', leftPadding - 12);
+        openArea.setAttribute('y', y - 10);
+        openArea.setAttribute('width', 24);
+        openArea.setAttribute('height', 20);
+        openArea.setAttribute('fill', 'transparent');
+        openGroup.appendChild(openArea);
+
+        // Check if any string has a fret value (to know if we should show implied opens)
+        const hasAnyFret = fretState.some(f => f !== null && f > 0);
+
+        // Show open (O) or muted (X) marker
+        if (currentValue === 0) {
+            // Explicitly set open string - solid green circle
+            const openCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            openCircle.setAttribute('cx', leftPadding);
+            openCircle.setAttribute('cy', y);
+            openCircle.setAttribute('r', 6);
+            openCircle.setAttribute('class', 'fretboard-open');
+            openGroup.appendChild(openCircle);
+        } else if (currentValue === -1) {
+            // Muted string - X
+            const line1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line1.setAttribute('x1', leftPadding - 5);
+            line1.setAttribute('y1', y - 5);
+            line1.setAttribute('x2', leftPadding + 5);
+            line1.setAttribute('y2', y + 5);
+            line1.setAttribute('class', 'fretboard-muted');
+            openGroup.appendChild(line1);
+
+            const line2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line2.setAttribute('x1', leftPadding + 5);
+            line2.setAttribute('y1', y - 5);
+            line2.setAttribute('x2', leftPadding - 5);
+            line2.setAttribute('y2', y + 5);
+            line2.setAttribute('class', 'fretboard-muted');
+            openGroup.appendChild(line2);
+        } else if (currentValue === null && hasAnyFret) {
+            // Implied open string (when another string has a fret) - dimmed circle
+            const impliedOpen = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            impliedOpen.setAttribute('cx', leftPadding);
+            impliedOpen.setAttribute('cy', y);
+            impliedOpen.setAttribute('r', 6);
+            impliedOpen.setAttribute('class', 'fretboard-open-implied');
+            openGroup.appendChild(impliedOpen);
+        }
+
+        openGroup.addEventListener('click', () => {
+            callbacks.onOpenClick(s);
+        });
+        svg.appendChild(openGroup);
+
+        // Clickable fret positions
+        for (let f = 1; f <= numFrets; f++) {
+            const x = leftPadding + (f - 0.5) * fretSpacing;
+
+            // Create clickable area
+            const clickArea = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            clickArea.setAttribute('x', leftPadding + (f - 1) * fretSpacing);
+            clickArea.setAttribute('y', y - stringSpacing / 2);
+            clickArea.setAttribute('width', fretSpacing);
+            clickArea.setAttribute('height', stringSpacing);
+            clickArea.setAttribute('class', 'fretboard-position');
+            clickArea.addEventListener('click', () => {
+                callbacks.onFretClick(s, f);
+            });
+            svg.appendChild(clickArea);
+
+            // Draw finger dot if this fret is selected
+            if (currentValue === f) {
+                const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                dot.setAttribute('cx', x);
+                dot.setAttribute('cy', y);
+                dot.setAttribute('r', 10);
+                dot.setAttribute('class', 'fretboard-dot');
+                svg.appendChild(dot);
+
+                // Add fret number inside dot
+                const fretText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                fretText.setAttribute('x', x);
+                fretText.setAttribute('y', y + 4);
+                fretText.setAttribute('text-anchor', 'middle');
+                fretText.setAttribute('class', 'fretboard-dot-text');
+                fretText.textContent = f;
+                svg.appendChild(fretText);
+            }
+        }
     }
 
     return svg;

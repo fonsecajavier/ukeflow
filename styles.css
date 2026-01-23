@@ -1518,6 +1518,234 @@ body {
     transform: scale(1.05);
 }
 
+/* Chord Finder */
+.chord-finder {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.chord-finder summary {
+    padding: 12px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.chord-finder summary::-webkit-details-marker {
+    display: none;
+}
+
+.chord-finder summary::before {
+    content: '▶';
+    font-size: 0.7rem;
+    transition: transform 0.2s ease;
+}
+
+.chord-finder[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.chord-finder summary:hover {
+    color: #e4e4e4;
+}
+
+.chord-finder-container {
+    padding: 15px;
+    padding-top: 5px;
+}
+
+.fretboard-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+    overflow-x: auto;
+}
+
+.fretboard-wrapper svg {
+    max-width: 100%;
+    height: auto;
+}
+
+.fretboard-string {
+    stroke: #888;
+    stroke-width: 1.5;
+}
+
+.fretboard-string-first {
+    stroke-width: 2.5;
+}
+
+.fretboard-fret {
+    stroke: #555;
+    stroke-width: 1;
+}
+
+.fretboard-nut {
+    stroke: #e4e4e4;
+    stroke-width: 4;
+}
+
+.fretboard-position {
+    fill: transparent;
+    cursor: pointer;
+    transition: fill 0.15s ease;
+}
+
+.fretboard-position:hover {
+    fill: rgba(243, 156, 18, 0.2);
+}
+
+.fretboard-dot {
+    fill: #f39c12;
+    pointer-events: none;
+}
+
+.fretboard-dot-text {
+    fill: #1a1a2e;
+    font-size: 11px;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.fretboard-open {
+    fill: none;
+    stroke: #2ecc71;
+    stroke-width: 2;
+    cursor: pointer;
+}
+
+.fretboard-open:hover {
+    stroke: #58d68d;
+}
+
+.fretboard-open-implied {
+    fill: none;
+    stroke: #2ecc71;
+    stroke-width: 1.5;
+    stroke-dasharray: 3, 2;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.fretboard-muted {
+    stroke: #e74c3c;
+    stroke-width: 2;
+    cursor: pointer;
+}
+
+.fretboard-muted:hover {
+    stroke: #ec7063;
+}
+
+.fretboard-marker {
+    fill: rgba(255, 255, 255, 0.15);
+}
+
+.fretboard-label {
+    fill: #888;
+    font-size: 12px;
+}
+
+.fretboard-fret-number {
+    fill: #666;
+    font-size: 10px;
+}
+
+.chord-finder-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.chord-finder-clear,
+.chord-finder-play {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chord-finder-clear {
+    background: rgba(231, 76, 60, 0.2);
+    border: 1px solid #e74c3c;
+    color: #e74c3c;
+}
+
+.chord-finder-clear:hover {
+    background: rgba(231, 76, 60, 0.4);
+}
+
+.chord-finder-play {
+    background: rgba(46, 204, 113, 0.2);
+    border: 1px solid #2ecc71;
+    color: #2ecc71;
+}
+
+.chord-finder-play:hover:not(:disabled) {
+    background: rgba(46, 204, 113, 0.4);
+}
+
+.chord-finder-play:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.chord-finder-play.playing {
+    background: #2ecc71;
+    color: #1a1a2e;
+}
+
+.chord-finder-result {
+    text-align: center;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.chord-finder-result-text {
+    color: #888;
+    font-size: 0.95rem;
+}
+
+.chord-finder-match {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(243, 156, 18, 0.2);
+    border: 1px solid #f39c12;
+    border-radius: 6px;
+    color: #f39c12;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chord-finder-match:hover {
+    background: rgba(243, 156, 18, 0.4);
+    transform: scale(1.05);
+}
+
+.chord-finder-no-match {
+    color: #888;
+    font-style: italic;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
     .app-header {

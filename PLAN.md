@@ -129,7 +129,30 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - Adding secondary dominants for jazzy color
   - Visualizing why the analysis suggests a different key
 
-### 3f. Chord Library (Collapsible)
+### 3f. Chord Finder (Collapsible)
+- Interactive fretboard tool to identify chords by clicking on fret positions
+- **Visual fretboard**: 12 frets × 4 strings (G, C, E, A) displayed horizontally
+- **Click interactions**:
+  - Click any fret position to place/remove a finger dot
+  - Click on string near the nut to cycle through: open (O) → muted (X) → open
+  - Unspecified strings default to **open** (shown with solid green circles)
+- **Real-time chord matching**:
+  - Searches CHORDS library and CHORD_VARIATIONS as you click
+  - Displays all matching chord names below the fretboard
+  - Click any match to open its chord diagram modal
+- **Controls**:
+  - **Clear** button: Resets to all open strings
+  - **Play** button: Hear the current fingering
+- **Visual indicators**:
+  - Orange filled dots for fretted positions (shows fret number inside)
+  - Green hollow circles for explicitly open strings
+  - Red X for muted strings
+  - Fret markers at positions 3, 5, 7, 9 (single dot) and 12 (double dot)
+  - Fret numbers displayed below (1, 3, 5, 7, 9, 12)
+- **Initial state**: All strings open (shows Am7 chord)
+- Uses same audio synthesis as other chord playback features
+
+### 3h. Chord Library (Collapsible)
 - Browsable library of all available chords in the app
 - Grouped by type for easy navigation:
   - Major (C, D, E, F, G, A, B)
@@ -142,7 +165,7 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
 - Useful for experimenting with alternative chords while playing a song
 - Only renders once (cached) since library doesn't change per song
 
-### 3g. Harmonic Analysis (Collapsible)
+### 3i. Harmonic Analysis (Collapsible)
 - Collapsible table showing detailed harmonic analysis of each chord in the song
 - **Columns**:
   - Chord: Clickable chord name (opens diagram modal)
@@ -168,7 +191,7 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - Displayed in both Harmonic Analysis table and lyrics (when "Show as Numbers" enabled)
   - Example: E major in key of C shown as "V/vi (Secondary Dominant)"
 
-### 3h. Spotify Integration
+### 3j. Spotify Integration
 - Embedded Spotify player for songs with a `spotify` field
 - Displays above "Chords Used" section when available
 - Supports various Spotify URL formats (open.spotify.com, spotify: URI)

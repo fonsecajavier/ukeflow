@@ -1541,3 +1541,72 @@ function getScaleDegree(chord, key) {
 
     return roman;
 }
+
+/**
+ * Find chords that match the given fret positions
+ * @param {Array} inputFrets - Array of 4 fret numbers [G, C, E, A], null for unspecified, 0 for open, -1 for muted
+ * @returns {Array} - Array of matching chord names
+ */
+function findChordByFrets(inputFrets) {
+    const matches = [];
+
+    // Check if at least one string has a value
+    const hasInput = inputFrets.some(f => f !== null);
+    if (!hasInput) return matches;
+
+    // For ukulele, unspecified strings default to open (0)
+    // This makes the tool more intuitive - if you only press fret 3 on A string,
+    // it assumes G, C, E are open (which is a C chord)
+    const normalizedInput = inputFrets.map(f => f === null ? 0 : f);
+
+    for (const [name, chord] of Object.entries(CHORDS)) {
+        const baseFret = chord.baseFret || 1;
+
+        // Calculate actual fret positions (accounting for baseFret)
+        const chordFrets = chord.frets.map(f => {
+            if (f <= 0) return f; // Open (0) or muted (-1) stays as is
+            return f + baseFret - 1; // Add baseFret offset
+        });
+
+        // Compare normalized input with chord frets
+        let isMatch = true;
+        for (let i = 0; i < 4; i++) {
+            if (normalizedInput[i] !== chordFrets[i]) {
+                isMatch = false;
+                break;
+            }
+        }
+
+        if (isMatch) {
+            matches.push(name);
+        }
+    }
+
+    // Also check variations
+    for (const [baseName, variations] of Object.entries(CHORD_VARIATIONS)) {
+        for (const variation of variations) {
+            const baseFret = variation.baseFret || 1;
+            const chordFrets = variation.frets.map(f => {
+                if (f <= 0) return f;
+                return f + baseFret - 1;
+            });
+
+            let isMatch = true;
+            for (let i = 0; i < 4; i++) {
+                if (normalizedInput[i] !== chordFrets[i]) {
+                    isMatch = false;
+                    break;
+                }
+            }
+
+            if (isMatch && !matches.includes(variation.name)) {
+                matches.push(variation.name);
+            }
+        }
+    }
+
+    return matches;
+}
+
+// Expose to global scope
+window.findChordByFrets = findChordByFrets;
