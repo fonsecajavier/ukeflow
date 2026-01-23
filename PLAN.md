@@ -60,9 +60,15 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - 📊 Identifies most frequent chord
   - 🔄 Detects V→I cadences and what key they resolve to
   - 🎹 Detects ii-V-I progressions (strongest key indicator) - requires minor ii chord
+  - 🎵 Tracks section openings (stronger indicator than endings for key detection)
+  - 🎭 Detects "tension pattern" when sections end on different chord than they start
   - 🚫 Warns if tonic chord is missing from the song
   - ⚠️ Warns if dominant (V) chord is missing
   - 💡 Suggests alternative key when evidence points elsewhere
+  - ✅ Confirms when all chords are diatonic (belong to the scale)
+  - **Candidate key validation**:
+    - Requires candidate key's dominant (V) chord to exist in song
+    - Penalizes keys with non-diatonic chords (-3 per chord, -10 if >25% chromatic)
   - Confidence levels: strong, ambiguous, likely different, weak
   - Analysis updates when switching to relative key view
 - **Famous Progressions Detection**: Identifies well-known chord patterns:
@@ -78,8 +84,11 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
 - Only shows trivia items that are relevant to the current song
 
 ### 3d. Circle of Fifths (Collapsible)
-- Interactive SVG circle showing all 12 major keys arranged clockwise (C at top)
+- Interactive SVG circle (480px) showing all 12 major keys arranged clockwise (C at top)
 - Inner ring displays relative minor keys
+- **Ukulele-friendly notation**: Uses F# instead of Gb at 6 o'clock (sharps preferred)
+  - Displays "F#/Gb" and "D#m/Ebm" (stacked on two lines) to show both options
+- **Larger fonts**: Major keys 22px, minor keys 16px for better readability
 - Current song's key highlighted with orange/blue glow effect
 - **Suggested key highlighting**: When analysis suggests a different key:
   - Current key shown with dimmed highlight
@@ -88,6 +97,9 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
 - Click any key to open modal showing:
   - Key name and relative minor
   - All 7 diatonic chords with roman numerals
+  - **Play button** under each chord to hear it
+  - **Keyboard shortcuts**: Press 1-7 to play corresponding diatonic chord
+  - **Enharmonic chord support**: Chords like Cb display as "Cb/B" and are playable
   - Each chord clickable to view its diagram
   - "Transpose to this key" button to quickly transpose the song
 - Updates when toggling relative key view
