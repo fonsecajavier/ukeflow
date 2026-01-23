@@ -574,7 +574,7 @@ function createCircleOfFifthsSVG(currentKey, onKeyClick, suggestedTonic = null) 
 
             const tspan2 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
             tspan2.setAttribute('x', minorX);
-            tspan2.setAttribute('dy', '18');
+            tspan2.setAttribute('dy', '22');
             tspan2.textContent = 'Ebm';
             minorText.appendChild(tspan2);
         } else {
