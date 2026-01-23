@@ -1,0 +1,101 @@
+{
+  "title": "Sálvame",
+  "artist": "RBD",
+  "key": "G#m",
+  "spotify": "https://open.spotify.com/track/1j195AbtkgEuQQ9KfD90qp",
+  "lines": [
+    { "section": "Intro" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "C#", "position": 0 },
+        { "chord": "G#m", "position": 3 },
+        { "chord": "B", "position": 7 },
+        { "chord": "D#m", "position": 10 }
+      ]
+    },
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Extrañarte es mi necesidad",
+      "chords": [
+        { "chord": "C#", "position": 0 },
+        { "chord": "G#m", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "Vivo en la desesperanza",
+      "chords": [
+        { "chord": "B", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Desde que tú ya no vuelves más.",
+      "chords": [
+        { "chord": "D#m", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Sobrevivo por pura ansiedad",
+      "chords": [
+        { "chord": "C#", "position": 0 },
+        { "chord": "G#m", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "con el nudo en la garganta",
+      "chords": [
+        { "chord": "B", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "y es que no te dejo de pensar",
+      "chords": [
+        { "chord": "D#m", "position": 0 }
+      ]
+    },
+    { "section": "Pre-Chorus" },
+    {
+      "lyrics": "Poco a poco el corazón",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "C#", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "va perdiendo la fe, perdiendo la voz",
+      "chords": [
+        { "chord": "E", "position": 0 },
+        { "chord": "B", "position": 18 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Sálvame del olvido, sálvame de la soledad,",
+      "chords": [
+        { "chord": "G#", "position": 0 },
+        { "chord": "D#m", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "Sálvame del vacío, estoy echa a tu voluntad",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "A#m", "position": 21 }
+      ]
+    },
+    {
+      "lyrics": "Sálvame del olvido, sálvame de la oscuridad",
+      "chords": [
+        { "chord": "G#", "position": 0 },
+        { "chord": "D#m", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "Sálvame del vacío, no me dejes caer jamás",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "A#m", "position": 21 }
+      ]
+    }
+  ]
+}
