@@ -131,25 +131,35 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
 
 ### 3f. Chord Finder (Collapsible)
 - Interactive fretboard tool to identify chords by clicking on fret positions
-- **Visual fretboard**: 12 frets × 4 strings (G, C, E, A) displayed horizontally
+- **Visual fretboard**: 12 frets × 4 strings displayed horizontally
+  - Default view: A-E-C-G (high to low, top to bottom)
+  - Flip button toggles to G-C-E-A orientation
 - **Click interactions**:
-  - Click any fret position to place/remove a finger dot
-  - Click on string near the nut to cycle through: open (O) → muted (X) → open
-  - Unspecified strings default to **open** (shown with solid green circles)
-- **Real-time chord matching**:
-  - Searches CHORDS library and CHORD_VARIATIONS as you click
-  - Displays all matching chord names below the fretboard
-  - Click any match to open its chord diagram modal
+  - Click any fret position to place a finger dot (click again to remove)
+  - Click on string near the nut to toggle: open (O) ↔ muted (X)
+  - All strings default to **open** (green circles)
+- **Notes display**:
+  - Shows which note is playing on each string (e.g., "G: G  C: C  E: E  A: A")
+  - Muted strings show × and appear dimmed
+  - Updates in real-time as you click
+- **Two-tier chord matching**:
+  - **From Library**: Exact matches from the CHORDS database (clickable to open modal)
+  - **Computed**: Music theory analysis identifying chords by interval patterns
+    - Analyzes all possible roots and matches against chord patterns
+    - Supports: major, minor, 7, m7, maj7, 6, m6, dim, aug, sus2, sus4, dim7, m7b5, add9
+    - Prioritizes root position chords over inversions
+    - Subsumption filtering: hides simpler chords when extended version matches (e.g., shows Am7, not Am)
 - **Controls**:
-  - **Clear** button: Resets to all open strings
-  - **Play** button: Hear the current fingering
+  - **Flip** button (purple): Toggle string order between A-E-C-G and G-C-E-A
+  - **Clear** button (red): Resets to all open strings
+  - **Play** button (green): Hear the current fingering
 - **Visual indicators**:
   - Orange filled dots for fretted positions (shows fret number inside)
-  - Green hollow circles for explicitly open strings
+  - Green filled circles for open strings
   - Red X for muted strings
   - Fret markers at positions 3, 5, 7, 9 (single dot) and 12 (double dot)
   - Fret numbers displayed below (1, 3, 5, 7, 9, 12)
-- **Initial state**: All strings open (shows Am7 chord)
+- **Initial state**: All strings open (shows Am7 in computed, C6 in library)
 - Uses same audio synthesis as other chord playback features
 
 ### 3h. Chord Library (Collapsible)

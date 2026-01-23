@@ -1665,6 +1665,7 @@ body {
     margin-bottom: 15px;
 }
 
+.chord-finder-flip,
 .chord-finder-clear,
 .chord-finder-play {
     padding: 8px 20px;
@@ -1672,6 +1673,16 @@ body {
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
+}
+
+.chord-finder-flip {
+    background: rgba(155, 89, 182, 0.2);
+    border: 1px solid #9b59b6;
+    color: #9b59b6;
+}
+
+.chord-finder-flip:hover {
+    background: rgba(155, 89, 182, 0.4);
 }
 
 .chord-finder-clear {
@@ -1744,6 +1755,71 @@ body {
 .chord-finder-no-match {
     color: #888;
     font-style: italic;
+}
+
+.chord-finder-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.chord-finder-section-label {
+    color: #888;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.chord-finder-notes {
+    margin-bottom: 10px;
+}
+
+.chord-finder-notes-display {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.chord-finder-note {
+    font-family: monospace;
+    font-size: 0.95rem;
+    color: #f39c12;
+    background: rgba(243, 156, 18, 0.15);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.chord-finder-note.muted {
+    color: #666;
+    background: rgba(102, 102, 102, 0.15);
+}
+
+.chord-finder-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.chord-finder-match-computed {
+    background: rgba(52, 152, 219, 0.2);
+    border-color: #3498db;
+    color: #3498db;
+}
+
+.chord-finder-match-computed:hover {
+    background: rgba(52, 152, 219, 0.4);
+}
+
+.chord-finder-match-computed.no-diagram {
+    cursor: default;
+    opacity: 0.7;
+}
+
+.chord-finder-match-computed.no-diagram:hover {
+    transform: none;
 }
 
 /* Responsive */

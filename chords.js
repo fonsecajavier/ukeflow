@@ -1608,5 +1608,222 @@ function findChordByFrets(inputFrets) {
     return matches;
 }
 
+/**
+ * Compute chord name(s) from fret positions using music theory
+ * Analyzes the actual notes being played and identifies the chord type
+ * @param {Array} inputFrets - Array of 4 fret numbers [G, C, E, A]
+ * @returns {Array} - Array of possible chord names (root position chords prioritized)
+ */
+function computeChordFromFrets(inputFrets) {
+    // Ukulele open string notes (in semitones from C)
+    // G4=7, C4=0, E4=4, A4=9
+    const openStrings = [7, 0, 4, 9]; // G, C, E, A
+    const noteNames = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+
+    // Get the actual notes being played
+    const playedNotes = [];
+    const playedSemitones = [];
+
+    for (let i = 0; i < 4; i++) {
+        const fret = inputFrets[i];
+        if (fret === null || fret === -1) continue; // Skip null/muted
+        const semitone = (openStrings[i] + fret) % 12;
+        if (!playedSemitones.includes(semitone)) {
+            playedSemitones.push(semitone);
+            playedNotes.push(noteNames[semitone]);
+        }
+    }
+
+    if (playedNotes.length < 2) return []; // Need at least 2 notes
+
+    // Get bass note (lowest string that's not muted)
+    let bassSemitone = null;
+    let bassNote = null;
+    for (let i = 0; i < 4; i++) {
+        const fret = inputFrets[i];
+        if (fret !== null && fret !== -1) {
+            bassSemitone = (openStrings[i] + fret) % 12;
+            bassNote = noteNames[bassSemitone];
+            break;
+        }
+    }
+
+    // Sort semitones for interval analysis
+    const sortedSemitones = [...playedSemitones].sort((a, b) => a - b);
+
+    // Chord patterns (intervals from root) - ordered by priority (simpler first)
+    const chordPatterns = [
+        ['major', [0, 4, 7]],
+        ['minor', [0, 3, 7]],
+        ['7', [0, 4, 7, 10]],
+        ['m7', [0, 3, 7, 10]],
+        ['maj7', [0, 4, 7, 11]],
+        ['6', [0, 4, 7, 9]],
+        ['m6', [0, 3, 7, 9]],
+        ['dim', [0, 3, 6]],
+        ['aug', [0, 4, 8]],
+        ['sus2', [0, 2, 7]],
+        ['sus4', [0, 5, 7]],
+        ['dim7', [0, 3, 6, 9]],
+        ['m7b5', [0, 3, 6, 10]],
+        ['add9', [0, 2, 4, 7]],
+    ];
+
+    const rootPositionChords = [];  // Chords where bass = root
+    const inversionChords = [];     // Chords where bass ≠ root
+
+    // Try each note as potential root
+    for (const rootSemitone of playedSemitones) {
+        const rootNote = noteNames[rootSemitone];
+        const isRootPosition = rootSemitone === bassSemitone;
+
+        // Calculate intervals from this root
+        const intervals = playedSemitones.map(s => (s - rootSemitone + 12) % 12).sort((a, b) => a - b);
+
+        // Check against chord patterns
+        for (const [chordType, pattern] of chordPatterns) {
+            // Check if all pattern intervals are present (and not too many extra notes)
+            const hasAllIntervals = pattern.every(interval => intervals.includes(interval % 12));
+            const extraNotes = intervals.filter(i => i !== 0 && !pattern.includes(i)).length;
+
+            // Only match if we have all required intervals and at most 1 extra note
+            if (hasAllIntervals && extraNotes <= 1) {
+                let chordName;
+                if (chordType === 'major') {
+                    chordName = rootNote;
+                } else if (chordType === 'minor') {
+                    chordName = rootNote + 'm';
+                } else {
+                    chordName = rootNote + chordType;
+                }
+
+                // For ukulele, don't use slash notation - just show the chord name
+                // The bass note is always part of a 4-note voicing, inversions are normal
+                if (isRootPosition) {
+                    if (!rootPositionChords.includes(chordName)) {
+                        rootPositionChords.push(chordName);
+                    }
+                } else {
+                    // Add as inversion (without slash) - will be shown after root position chords
+                    if (!inversionChords.includes(chordName) && !rootPositionChords.includes(chordName)) {
+                        inversionChords.push(chordName);
+                    }
+                }
+            }
+        }
+    }
+
+    // Filter out simpler chords when a more complete chord with the same root exists
+    // e.g., if Am7 matches, don't also show Am
+    const subsumes = {
+        'm7': ['minor'],      // Am7 subsumes Am
+        '7': ['major'],       // A7 subsumes A
+        'maj7': ['major'],    // Amaj7 subsumes A
+        '6': ['major'],       // A6 subsumes A
+        'm6': ['minor'],      // Am6 subsumes Am
+        'dim7': ['dim'],      // Adim7 subsumes Adim
+        'm7b5': ['dim'],      // Am7b5 subsumes Adim
+    };
+
+    function filterSubsumedChords(chordList) {
+        const result = [];
+        for (const chord of chordList) {
+            // Extract root and type from chord name
+            let root, type;
+            if (chord.endsWith('maj7')) {
+                root = chord.slice(0, -4);
+                type = 'maj7';
+            } else if (chord.endsWith('m7b5')) {
+                root = chord.slice(0, -4);
+                type = 'm7b5';
+            } else if (chord.endsWith('dim7')) {
+                root = chord.slice(0, -4);
+                type = 'dim7';
+            } else if (chord.endsWith('m7')) {
+                root = chord.slice(0, -2);
+                type = 'm7';
+            } else if (chord.endsWith('m6')) {
+                root = chord.slice(0, -2);
+                type = 'm6';
+            } else if (chord.endsWith('m')) {
+                root = chord.slice(0, -1);
+                type = 'minor';
+            } else if (chord.endsWith('7')) {
+                root = chord.slice(0, -1);
+                type = '7';
+            } else if (chord.endsWith('6')) {
+                root = chord.slice(0, -1);
+                type = '6';
+            } else if (chord.endsWith('dim')) {
+                root = chord.slice(0, -3);
+                type = 'dim';
+            } else {
+                root = chord;
+                type = 'major';
+            }
+
+            // Check if this chord is subsumed by a more complete chord in the list
+            let isSubsumed = false;
+            for (const otherChord of chordList) {
+                if (otherChord === chord) continue;
+
+                // Check if otherChord subsumes this chord
+                for (const [superType, subTypes] of Object.entries(subsumes)) {
+                    if (subTypes.includes(type)) {
+                        // This chord type can be subsumed - check if the super version exists
+                        let expectedSuper;
+                        if (superType === 'major') {
+                            expectedSuper = root;
+                        } else if (superType === 'minor') {
+                            expectedSuper = root + 'm';
+                        } else {
+                            expectedSuper = root + superType;
+                        }
+                        if (otherChord === expectedSuper) {
+                            isSubsumed = true;
+                            break;
+                        }
+                    }
+                }
+                if (isSubsumed) break;
+            }
+
+            if (!isSubsumed) {
+                result.push(chord);
+            }
+        }
+        return result;
+    }
+
+    // Return root position chords first, then all inversions
+    // On ukulele, inversions are very common due to the reentrant G string
+    const allChords = [...rootPositionChords, ...inversionChords];
+    const results = filterSubsumedChords(allChords);
+
+    // If we have 2 notes and no chord matches, identify the interval
+    if (playedNotes.length === 2 && results.length === 0) {
+        const interval = Math.abs(sortedSemitones[1] - sortedSemitones[0]);
+        const intervalNames = {
+            1: 'minor 2nd',
+            2: 'major 2nd',
+            3: 'minor 3rd',
+            4: 'major 3rd',
+            5: 'perfect 4th',
+            6: 'tritone',
+            7: 'perfect 5th',
+            8: 'minor 6th',
+            9: 'major 6th',
+            10: 'minor 7th',
+            11: 'major 7th'
+        };
+        if (intervalNames[interval]) {
+            results.push(`${bassNote} + ${intervalNames[interval]}`);
+        }
+    }
+
+    return results;
+}
+
 // Expose to global scope
 window.findChordByFrets = findChordByFrets;
+window.computeChordFromFrets = computeChordFromFrets;

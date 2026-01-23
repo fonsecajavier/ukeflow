@@ -41,6 +41,7 @@ const elements = {
     // Chord Finder elements
     chordFinderContainer: document.getElementById('chord-finder-container'),
     fretboardWrapper: document.getElementById('fretboard-wrapper'),
+    chordFinderFlip: document.getElementById('chord-finder-flip'),
     chordFinderClear: document.getElementById('chord-finder-clear'),
     chordFinderPlay: document.getElementById('chord-finder-play'),
     chordFinderResult: document.getElementById('chord-finder-result')
@@ -895,7 +896,7 @@ function createDominant7thCircleSVG(currentKey, onChordClick, suggestedTonic = n
  * @param {Object} callbacks - Object with onFretClick(string, fret) and onOpenClick(string)
  * @returns {SVGElement} - The SVG fretboard
  */
-function createFretboardSVG(fretState, callbacks) {
+function createFretboardSVG(fretState, callbacks, flipped = true) {
     const numFrets = 12;
     const numStrings = 4;
 
@@ -911,6 +912,12 @@ function createFretboardSVG(fretState, callbacks) {
     const fretboardHeight = height - topPadding - bottomPadding;
     const fretSpacing = fretboardWidth / numFrets;
     const stringSpacing = fretboardHeight / (numStrings - 1);
+
+    // String order for display: default flipped shows A-E-C-G (high to low)
+    // Internal index always [0,1,2,3] = [G,C,E,A]
+    // displayOrder maps visual position (top to bottom) to internal index
+    const displayOrder = flipped ? [3, 2, 1, 0] : [0, 1, 2, 3];
+    const stringLabelsBase = ['G', 'C', 'E', 'A'];
 
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('width', width);
@@ -947,16 +954,17 @@ function createFretboardSVG(fretState, callbacks) {
         svg.appendChild(fret);
     }
 
-    // Draw strings (horizontal lines) - G, C, E, A from top to bottom
-    const stringLabels = ['G', 'C', 'E', 'A'];
-    for (let s = 0; s < numStrings; s++) {
-        const y = topPadding + s * stringSpacing;
+    // Draw strings (horizontal lines) - order determined by flipped setting
+    for (let visualPos = 0; visualPos < numStrings; visualPos++) {
+        const y = topPadding + visualPos * stringSpacing;
+        const stringIndex = displayOrder[visualPos]; // Map visual position to internal index
+
         const string = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         string.setAttribute('x1', leftPadding);
         string.setAttribute('y1', y);
         string.setAttribute('x2', leftPadding + fretboardWidth);
         string.setAttribute('y2', y);
-        string.setAttribute('class', s === 0 ? 'fretboard-string fretboard-string-first' : 'fretboard-string');
+        string.setAttribute('class', visualPos === 0 ? 'fretboard-string fretboard-string-first' : 'fretboard-string');
         svg.appendChild(string);
 
         // String label on the left
@@ -965,7 +973,7 @@ function createFretboardSVG(fretState, callbacks) {
         label.setAttribute('y', y + 4);
         label.setAttribute('text-anchor', 'middle');
         label.setAttribute('class', 'fretboard-label');
-        label.textContent = stringLabels[s];
+        label.textContent = stringLabelsBase[stringIndex];
         svg.appendChild(label);
     }
 
@@ -1011,9 +1019,10 @@ function createFretboardSVG(fretState, callbacks) {
     });
 
     // Create clickable areas and display markers for each string
-    for (let s = 0; s < numStrings; s++) {
-        const y = topPadding + s * stringSpacing;
-        const currentValue = fretState[s];
+    for (let visualPos = 0; visualPos < numStrings; visualPos++) {
+        const y = topPadding + visualPos * stringSpacing;
+        const stringIndex = displayOrder[visualPos]; // Map visual position to internal index
+        const currentValue = fretState[stringIndex];
 
         // Open/muted marker area (above nut)
         const openGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
@@ -1027,12 +1036,9 @@ function createFretboardSVG(fretState, callbacks) {
         openArea.setAttribute('fill', 'transparent');
         openGroup.appendChild(openArea);
 
-        // Check if any string has a fret value (to know if we should show implied opens)
-        const hasAnyFret = fretState.some(f => f !== null && f > 0);
-
         // Show open (O) or muted (X) marker
         if (currentValue === 0) {
-            // Explicitly set open string - solid green circle
+            // Open string - solid green circle
             const openCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
             openCircle.setAttribute('cx', leftPadding);
             openCircle.setAttribute('cy', y);
@@ -1056,18 +1062,11 @@ function createFretboardSVG(fretState, callbacks) {
             line2.setAttribute('y2', y + 5);
             line2.setAttribute('class', 'fretboard-muted');
             openGroup.appendChild(line2);
-        } else if (currentValue === null && hasAnyFret) {
-            // Implied open string (when another string has a fret) - dimmed circle
-            const impliedOpen = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-            impliedOpen.setAttribute('cx', leftPadding);
-            impliedOpen.setAttribute('cy', y);
-            impliedOpen.setAttribute('r', 6);
-            impliedOpen.setAttribute('class', 'fretboard-open-implied');
-            openGroup.appendChild(impliedOpen);
         }
+        // No marker shown for fretted strings (they have the orange dot instead)
 
         openGroup.addEventListener('click', () => {
-            callbacks.onOpenClick(s);
+            callbacks.onOpenClick(stringIndex);
         });
         svg.appendChild(openGroup);
 
@@ -1083,7 +1082,7 @@ function createFretboardSVG(fretState, callbacks) {
             clickArea.setAttribute('height', stringSpacing);
             clickArea.setAttribute('class', 'fretboard-position');
             clickArea.addEventListener('click', () => {
-                callbacks.onFretClick(s, f);
+                callbacks.onFretClick(stringIndex, f);
             });
             svg.appendChild(clickArea);
 

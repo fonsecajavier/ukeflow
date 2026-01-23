@@ -1614,6 +1614,7 @@ function handleModalClose(e) {
 // State for chord finder: [G, C, E, A] - null means unset, 0 = open, -1 = muted, 1-12 = fret
 // Default to all open strings (shows C6 chord initially)
 let chordFinderState = [0, 0, 0, 0];
+let chordFinderFlipped = true; // true = A-E-C-G (high to low), false = G-C-E-A
 let chordFinderRendered = false;
 
 /**
@@ -1627,7 +1628,7 @@ function renderChordFinder() {
     const svg = createFretboardSVG(chordFinderState, {
         onFretClick: handleChordFinderFretClick,
         onOpenClick: handleChordFinderOpenClick
-    });
+    }, chordFinderFlipped);
 
     elements.fretboardWrapper.appendChild(svg);
 
@@ -1644,9 +1645,9 @@ function renderChordFinder() {
  * @param {number} fret - Fret number (1-12)
  */
 function handleChordFinderFretClick(stringIndex, fret) {
-    // Toggle: if same fret is clicked, clear it; otherwise set it
+    // Toggle: if same fret is clicked, set to open; otherwise set the fret
     if (chordFinderState[stringIndex] === fret) {
-        chordFinderState[stringIndex] = null;
+        chordFinderState[stringIndex] = 0; // Back to open
     } else {
         chordFinderState[stringIndex] = fret;
     }
@@ -1655,20 +1656,17 @@ function handleChordFinderFretClick(stringIndex, fret) {
 
 /**
  * Handle open/muted click in chord finder
- * Cycles through: null -> 0 (open) -> -1 (muted) -> null
+ * Cycles through: 0 (open) <-> -1 (muted)
  * @param {number} stringIndex - String index (0=G, 1=C, 2=E, 3=A)
  */
 function handleChordFinderOpenClick(stringIndex) {
     const current = chordFinderState[stringIndex];
-    if (current === null || current > 0) {
-        // Set to open
+    if (current === -1) {
+        // Muted -> Open
         chordFinderState[stringIndex] = 0;
-    } else if (current === 0) {
-        // Set to muted
-        chordFinderState[stringIndex] = -1;
     } else {
-        // Clear
-        chordFinderState[stringIndex] = null;
+        // Open or fretted -> Muted
+        chordFinderState[stringIndex] = -1;
     }
     renderChordFinder();
 }
@@ -1699,25 +1697,108 @@ function updateChordFinderResult() {
         return;
     }
 
-    // Find matching chords
-    const matches = findChordByFrets(chordFinderState);
+    // Calculate and display notes being played
+    const openStrings = [7, 0, 4, 9]; // G, C, E, A in semitones from C
+    const noteNames = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+    const stringNames = ['G', 'C', 'E', 'A'];
 
-    if (matches.length === 0) {
-        const text = document.createElement('span');
-        text.className = 'chord-finder-no-match';
-        text.textContent = 'No matching chord found';
-        elements.chordFinderResult.appendChild(text);
-    } else {
-        // Show matching chords as clickable chips
-        matches.forEach(chordName => {
+    const notesSection = document.createElement('div');
+    notesSection.className = 'chord-finder-section chord-finder-notes';
+
+    const notesLabel = document.createElement('span');
+    notesLabel.className = 'chord-finder-section-label';
+    notesLabel.textContent = 'Notes:';
+    notesSection.appendChild(notesLabel);
+
+    const notesDisplay = document.createElement('div');
+    notesDisplay.className = 'chord-finder-notes-display';
+
+    for (let i = 0; i < 4; i++) {
+        const fret = chordFinderState[i];
+        const noteSpan = document.createElement('span');
+        noteSpan.className = 'chord-finder-note';
+
+        if (fret === null || fret === -1) {
+            noteSpan.textContent = `${stringNames[i]}: ×`;
+            noteSpan.classList.add('muted');
+        } else {
+            const semitone = (openStrings[i] + fret) % 12;
+            const noteName = noteNames[semitone];
+            noteSpan.textContent = `${stringNames[i]}: ${noteName}`;
+        }
+        notesDisplay.appendChild(noteSpan);
+    }
+    notesSection.appendChild(notesDisplay);
+    elements.chordFinderResult.appendChild(notesSection);
+
+    // Find matching chords from library
+    const libraryMatches = findChordByFrets(chordFinderState);
+
+    // Compute chords from music theory (show all computed matches)
+    const computedMatches = computeChordFromFrets(chordFinderState);
+
+    // Show library matches
+    if (libraryMatches.length > 0) {
+        const librarySection = document.createElement('div');
+        librarySection.className = 'chord-finder-section';
+
+        const libraryLabel = document.createElement('span');
+        libraryLabel.className = 'chord-finder-section-label';
+        libraryLabel.textContent = 'From Library:';
+        librarySection.appendChild(libraryLabel);
+
+        const libraryChips = document.createElement('div');
+        libraryChips.className = 'chord-finder-chips';
+        libraryMatches.forEach(chordName => {
             const chip = document.createElement('button');
             chip.className = 'chord-finder-match';
             chip.textContent = chordName;
             chip.addEventListener('click', () => {
                 openChordModal(chordName);
             });
-            elements.chordFinderResult.appendChild(chip);
+            libraryChips.appendChild(chip);
         });
+        librarySection.appendChild(libraryChips);
+        elements.chordFinderResult.appendChild(librarySection);
+    }
+
+    // Show computed matches (all of them, even if also in library)
+    if (computedMatches.length > 0) {
+        const computedSection = document.createElement('div');
+        computedSection.className = 'chord-finder-section';
+
+        const computedLabel = document.createElement('span');
+        computedLabel.className = 'chord-finder-section-label';
+        computedLabel.textContent = 'Computed:';
+        computedSection.appendChild(computedLabel);
+
+        const computedChips = document.createElement('div');
+        computedChips.className = 'chord-finder-chips';
+        computedMatches.forEach(chordName => {
+            const chip = document.createElement('button');
+            chip.className = 'chord-finder-match chord-finder-match-computed';
+            chip.textContent = chordName;
+            // Try to open modal for base chord (without slash)
+            const baseChord = chordName.split('/')[0];
+            if (CHORDS[baseChord]) {
+                chip.addEventListener('click', () => {
+                    openChordModal(baseChord);
+                });
+            } else {
+                chip.classList.add('no-diagram');
+            }
+            computedChips.appendChild(chip);
+        });
+        computedSection.appendChild(computedChips);
+        elements.chordFinderResult.appendChild(computedSection);
+    }
+
+    // No matches at all
+    if (libraryMatches.length === 0 && computedMatches.length === 0) {
+        const text = document.createElement('span');
+        text.className = 'chord-finder-no-match';
+        text.textContent = 'No matching chord found';
+        elements.chordFinderResult.appendChild(text);
     }
 }
 
@@ -1760,6 +1841,14 @@ function playChordFinderChord() {
 }
 
 /**
+ * Flip the fretboard string order (A-E-C-G ↔ G-C-E-A)
+ */
+function flipChordFinder() {
+    chordFinderFlipped = !chordFinderFlipped;
+    renderChordFinder();
+}
+
+/**
  * Setup chord finder event listeners
  */
 function setupChordFinderListeners() {
@@ -1768,6 +1857,9 @@ function setupChordFinderListeners() {
     }
     if (elements.chordFinderPlay) {
         elements.chordFinderPlay.addEventListener('click', playChordFinderChord);
+    }
+    if (elements.chordFinderFlip) {
+        elements.chordFinderFlip.addEventListener('click', flipChordFinder);
     }
 
     // Render chord finder when the details element is opened
