@@ -1152,11 +1152,6 @@ function openKeyModal(majorKey, minorKey) {
 
             // Check if chord exists in library
             const chordData = CHORDS[chord];
-            if (chordData) {
-                chordItem.addEventListener('click', () => {
-                    openChordModal(chord);
-                });
-            }
 
             const degree = document.createElement('span');
             degree.className = 'chord-degree';
@@ -1167,6 +1162,25 @@ function openKeyModal(majorKey, minorKey) {
             name.className = 'chord-name';
             name.textContent = chord;
             chordItem.appendChild(name);
+
+            // Add play button if chord exists
+            if (chordData) {
+                chordItem.addEventListener('click', () => {
+                    openChordModal(chord);
+                });
+
+                const playBtn = document.createElement('button');
+                playBtn.className = 'key-modal-play-btn';
+                playBtn.innerHTML = '&#9654;';
+                playBtn.title = `Play ${chord}`;
+                playBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    playChord(chordData);
+                    playBtn.classList.add('playing');
+                    setTimeout(() => playBtn.classList.remove('playing'), 400);
+                });
+                chordItem.appendChild(playBtn);
+            }
 
             chordsContainer.appendChild(chordItem);
         }
