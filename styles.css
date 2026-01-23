@@ -1008,6 +1008,22 @@ body {
     color: #fff;
 }
 
+.key-modal-hint {
+    font-size: 0.75rem;
+    color: #888;
+    margin: 10px 0 15px;
+    text-align: center;
+}
+
+.key-modal-hint kbd {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-family: monospace;
+    font-size: 0.8rem;
+}
+
 .key-modal-transpose-btn {
     padding: 12px 24px;
     font-size: 1rem;

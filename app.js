@@ -1110,6 +1110,10 @@ function openDom7Modal(chordName, chord7Name, romanNumeral) {
     elements.modalOverlay.classList.add('active');
 }
 
+// Store current key modal chords for keyboard playback
+let keyModalChords = null;
+let keyModalKeyboardHandler = null;
+
 /**
  * Open a modal showing all chords in a key with option to transpose
  */
@@ -1118,6 +1122,31 @@ function openKeyModal(majorKey, minorKey) {
 
     const currentKey = getDisplayKey();
     const isCurrentKeyMinor = isMinorKey(currentKey);
+
+    // Store chords for keyboard access
+    const majorScale = SCALE_DEGREES_MAJOR[majorKey];
+    keyModalChords = majorScale ? majorScale.map(chord => CHORDS[chord]) : null;
+
+    // Add keyboard listener for 1-7 keys
+    if (keyModalKeyboardHandler) {
+        document.removeEventListener('keydown', keyModalKeyboardHandler);
+    }
+    keyModalKeyboardHandler = (e) => {
+        const num = parseInt(e.key);
+        if (num >= 1 && num <= 7 && keyModalChords) {
+            const chordData = keyModalChords[num - 1];
+            if (chordData) {
+                playChord(chordData);
+                // Visual feedback on the corresponding button
+                const buttons = document.querySelectorAll('.key-modal-play-btn');
+                if (buttons[num - 1]) {
+                    buttons[num - 1].classList.add('playing');
+                    setTimeout(() => buttons[num - 1].classList.remove('playing'), 400);
+                }
+            }
+        }
+    };
+    document.addEventListener('keydown', keyModalKeyboardHandler);
 
     // Create modal content
     const content = document.createElement('div');
@@ -1139,7 +1168,6 @@ function openKeyModal(majorKey, minorKey) {
     const chordsContainer = document.createElement('div');
     chordsContainer.className = 'key-modal-chords';
 
-    const majorScale = SCALE_DEGREES_MAJOR[majorKey];
     const romanNumerals = ROMAN_NUMERALS_MAJOR;
 
     if (majorScale) {
@@ -1187,6 +1215,12 @@ function openKeyModal(majorKey, minorKey) {
     }
 
     content.appendChild(chordsContainer);
+
+    // Keyboard hint
+    const keyboardHint = document.createElement('div');
+    keyboardHint.className = 'key-modal-hint';
+    keyboardHint.innerHTML = '⌨️ Press <kbd>1</kbd>-<kbd>7</kbd> to play chords';
+    content.appendChild(keyboardHint);
 
     // Transpose button (only show if a song is loaded)
     if (state.currentSong) {

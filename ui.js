@@ -865,4 +865,11 @@ function createDominant7thCircleSVG(currentKey, onChordClick, suggestedTonic = n
  */
 function closeModal() {
     elements.modalOverlay.classList.remove('active');
+
+    // Clean up key modal keyboard handler if it exists
+    if (typeof keyModalKeyboardHandler !== 'undefined' && keyModalKeyboardHandler) {
+        document.removeEventListener('keydown', keyModalKeyboardHandler);
+        keyModalKeyboardHandler = null;
+        keyModalChords = null;
+    }
 }
