@@ -1123,9 +1123,19 @@ function openKeyModal(majorKey, minorKey) {
     const currentKey = getDisplayKey();
     const isCurrentKeyMinor = isMinorKey(currentKey);
 
+    // Enharmonic equivalents for keyboard playback
+    const enharmonicForKeyboard = {
+        'Cb': 'B', 'Cbm': 'Bm', 'Fb': 'E', 'Fbm': 'Em',
+        'B#': 'C', 'B#m': 'Cm', 'E#': 'F', 'E#m': 'Fm',
+        'Db': 'C#', 'Dbm': 'C#m', 'Gb': 'F#', 'Gbm': 'F#m', 'Ab': 'G#', 'Abm': 'G#m'
+    };
+
     // Store chords for keyboard access
     const majorScale = SCALE_DEGREES_MAJOR[majorKey];
-    keyModalChords = majorScale ? majorScale.map(chord => CHORDS[chord]) : null;
+    keyModalChords = majorScale ? majorScale.map(chord => {
+        const actualChord = CHORDS[chord] ? chord : (enharmonicForKeyboard[chord] || chord);
+        return CHORDS[actualChord];
+    }) : null;
 
     // Add keyboard listener for 1-7 keys
     if (keyModalKeyboardHandler) {
@@ -1170,6 +1180,17 @@ function openKeyModal(majorKey, minorKey) {
 
     const romanNumerals = ROMAN_NUMERALS_MAJOR;
 
+    // Enharmonic equivalents for chords that don't exist in library
+    const enharmonicMap = {
+        'Cb': 'B', 'Cbm': 'Bm', 'Cbdim': 'Bdim',
+        'Fb': 'E', 'Fbm': 'Em', 'Fbdim': 'Edim',
+        'B#': 'C', 'B#m': 'Cm', 'B#dim': 'Cdim',
+        'E#': 'F', 'E#m': 'Fm', 'E#dim': 'Fdim',
+        'Db': 'C#', 'Dbm': 'C#m', 'Dbdim': 'C#dim',
+        'Gb': 'F#', 'Gbm': 'F#m', 'Gbdim': 'F#dim',
+        'Ab': 'G#', 'Abm': 'G#m', 'Abdim': 'G#dim'
+    };
+
     if (majorScale) {
         for (let i = 0; i < 7; i++) {
             const chord = majorScale[i];
@@ -1178,8 +1199,16 @@ function openKeyModal(majorKey, minorKey) {
             const chordItem = document.createElement('div');
             chordItem.className = 'key-modal-chord';
 
-            // Check if chord exists in library
-            const chordData = CHORDS[chord];
+            // Check if chord exists in library, or use enharmonic equivalent
+            let chordData = CHORDS[chord];
+            let actualChord = chord;
+            let displayName = chord;
+
+            if (!chordData && enharmonicMap[chord]) {
+                actualChord = enharmonicMap[chord];
+                chordData = CHORDS[actualChord];
+                displayName = `${chord}/${actualChord}`;
+            }
 
             const degree = document.createElement('span');
             degree.className = 'chord-degree';
@@ -1188,19 +1217,19 @@ function openKeyModal(majorKey, minorKey) {
 
             const name = document.createElement('span');
             name.className = 'chord-name';
-            name.textContent = chord;
+            name.textContent = displayName;
             chordItem.appendChild(name);
 
             // Add play button if chord exists
             if (chordData) {
                 chordItem.addEventListener('click', () => {
-                    openChordModal(chord);
+                    openChordModal(actualChord);
                 });
 
                 const playBtn = document.createElement('button');
                 playBtn.className = 'key-modal-play-btn';
                 playBtn.innerHTML = '&#9654;';
-                playBtn.title = `Play ${chord}`;
+                playBtn.title = `Play ${actualChord}`;
                 playBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     playChord(chordData);

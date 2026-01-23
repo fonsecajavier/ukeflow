@@ -419,13 +419,13 @@ function createChordSVG(chord, large = false) {
  * @param {function} onKeyClick - Callback when a key is clicked
  */
 function createCircleOfFifthsSVG(currentKey, onKeyClick, suggestedTonic = null) {
-    const size = 300;
+    const size = 480;
     const centerX = size / 2;
     const centerY = size / 2;
-    const outerRadius = 130;
-    const innerRadius = 85;
-    const textRadiusMajor = 107;
-    const textRadiusMinor = 60;
+    const outerRadius = 220;
+    const innerRadius = 150;
+    const textRadiusMajor = 185;
+    const textRadiusMinor = 115;
 
     // Circle of fifths order (clockwise from top)
     const majorKeys = ['C', 'G', 'D', 'A', 'E', 'B', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F'];
@@ -458,7 +458,7 @@ function createCircleOfFifthsSVG(currentKey, onKeyClick, suggestedTonic = null) 
     const innerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     innerCircle.setAttribute('cx', centerX);
     innerCircle.setAttribute('cy', centerY);
-    innerCircle.setAttribute('r', 35);
+    innerCircle.setAttribute('r', 70);
     innerCircle.setAttribute('fill', 'rgba(255, 255, 255, 0.02)');
     innerCircle.setAttribute('stroke', 'rgba(255, 255, 255, 0.1)');
     innerCircle.setAttribute('stroke-width', '1');
@@ -521,17 +521,17 @@ function createCircleOfFifthsSVG(currentKey, onKeyClick, suggestedTonic = null) 
         const y1Outer = centerY + outerRadius * Math.sin(startAngle);
         const x2Outer = centerX + outerRadius * Math.cos(endAngle);
         const y2Outer = centerY + outerRadius * Math.sin(endAngle);
-        const x1Inner = centerX + 35 * Math.cos(startAngle);
-        const y1Inner = centerY + 35 * Math.sin(startAngle);
-        const x2Inner = centerX + 35 * Math.cos(endAngle);
-        const y2Inner = centerY + 35 * Math.sin(endAngle);
+        const x1Inner = centerX + 70 * Math.cos(startAngle);
+        const y1Inner = centerY + 70 * Math.sin(startAngle);
+        const x2Inner = centerX + 70 * Math.cos(endAngle);
+        const y2Inner = centerY + 70 * Math.sin(endAngle);
 
         const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         const d = `M ${x1Inner} ${y1Inner}
                    L ${x1Outer} ${y1Outer}
                    A ${outerRadius} ${outerRadius} 0 0 1 ${x2Outer} ${y2Outer}
                    L ${x2Inner} ${y2Inner}
-                   A 35 35 0 0 0 ${x1Inner} ${y1Inner} Z`;
+                   A 70 70 0 0 0 ${x1Inner} ${y1Inner} Z`;
         path.setAttribute('d', d);
         path.setAttribute('class', 'circle-key-bg');
         group.appendChild(path);
@@ -540,12 +540,17 @@ function createCircleOfFifthsSVG(currentKey, onKeyClick, suggestedTonic = null) 
         const majorX = centerX + textRadiusMajor * Math.cos(angle);
         const majorY = centerY + textRadiusMajor * Math.sin(angle);
 
+        // Display text (show both enharmonics at 6 o'clock position)
+        const isEnharmonicPosition = majorKey === 'Gb';
+        const majorDisplay = isEnharmonicPosition ? 'F#/Gb' : majorKey;
+        const minorDisplay = isEnharmonicPosition ? 'D#m/Ebm' : minorKey;
+
         const majorText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         majorText.setAttribute('x', majorX);
         majorText.setAttribute('y', majorY + 5);
         majorText.setAttribute('text-anchor', 'middle');
         majorText.setAttribute('class', 'circle-key-major');
-        majorText.textContent = majorKey;
+        majorText.textContent = majorDisplay;
         group.appendChild(majorText);
 
         // Minor key text (inner ring)
@@ -557,7 +562,7 @@ function createCircleOfFifthsSVG(currentKey, onKeyClick, suggestedTonic = null) 
         minorText.setAttribute('y', minorY + 4);
         minorText.setAttribute('text-anchor', 'middle');
         minorText.setAttribute('class', 'circle-key-minor');
-        minorText.textContent = minorKey;
+        minorText.textContent = minorDisplay;
         group.appendChild(minorText);
 
         // Click handler
