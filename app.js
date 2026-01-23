@@ -1125,9 +1125,13 @@ function openKeyModal(majorKey, minorKey) {
 
     // Enharmonic equivalents for keyboard playback
     const enharmonicForKeyboard = {
-        'Cb': 'B', 'Cbm': 'Bm', 'Fb': 'E', 'Fbm': 'Em',
-        'B#': 'C', 'B#m': 'Cm', 'E#': 'F', 'E#m': 'Fm',
-        'Db': 'C#', 'Dbm': 'C#m', 'Gb': 'F#', 'Gbm': 'F#m', 'Ab': 'G#', 'Abm': 'G#m'
+        'Cb': 'B', 'Cbm': 'Bm', 'Cbdim': 'Bdim',
+        'Fb': 'E', 'Fbm': 'Em', 'Fbdim': 'Edim',
+        'B#': 'C', 'B#m': 'Cm', 'B#dim': 'Cdim',
+        'E#': 'F', 'E#m': 'Fm', 'E#dim': 'Fdim',
+        'Db': 'C#', 'Dbm': 'C#m', 'Dbdim': 'C#dim',
+        'Gb': 'F#', 'Gbm': 'F#m', 'Gbdim': 'F#dim',
+        'Ab': 'G#', 'Abm': 'G#m', 'Abdim': 'G#dim'
     };
 
     // Store chords for keyboard access

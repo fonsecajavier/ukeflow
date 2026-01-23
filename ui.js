@@ -428,8 +428,9 @@ function createCircleOfFifthsSVG(currentKey, onKeyClick, suggestedTonic = null) 
     const textRadiusMinor = 115;
 
     // Circle of fifths order (clockwise from top)
-    const majorKeys = ['C', 'G', 'D', 'A', 'E', 'B', 'Gb', 'Db', 'Ab', 'Eb', 'Bb', 'F'];
-    const minorKeys = ['Am', 'Em', 'Bm', 'F#m', 'C#m', 'G#m', 'Ebm', 'Bbm', 'Fm', 'Cm', 'Gm', 'Dm'];
+    // Using F# instead of Gb (and D#m instead of Ebm) for ukulele-friendly notation
+    const majorKeys = ['C', 'G', 'D', 'A', 'E', 'B', 'F#', 'Db', 'Ab', 'Eb', 'Bb', 'F'];
+    const minorKeys = ['Am', 'Em', 'Bm', 'F#m', 'C#m', 'G#m', 'D#m', 'Bbm', 'Fm', 'Cm', 'Gm', 'Dm'];
 
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('width', size);
@@ -465,9 +466,10 @@ function createCircleOfFifthsSVG(currentKey, onKeyClick, suggestedTonic = null) 
     svg.appendChild(innerCircle);
 
     // Normalize key for comparison (handle enharmonics)
+    // Normalize to ukulele-friendly notation (sharps preferred at 6 o'clock)
     const normalizeKey = (key) => {
         const enharmonics = {
-            'F#': 'Gb', 'Gb': 'Gb',
+            'F#': 'F#', 'Gb': 'F#',
             'C#': 'Db', 'Db': 'Db',
             'G#': 'Ab', 'Ab': 'Ab',
             'D#': 'Eb', 'Eb': 'Eb',
@@ -475,7 +477,7 @@ function createCircleOfFifthsSVG(currentKey, onKeyClick, suggestedTonic = null) 
             'F#m': 'F#m', 'Gbm': 'F#m',
             'C#m': 'C#m', 'Dbm': 'C#m',
             'G#m': 'G#m', 'Abm': 'G#m',
-            'D#m': 'Ebm', 'Ebm': 'Ebm',
+            'D#m': 'D#m', 'Ebm': 'D#m',
             'A#m': 'Bbm', 'Bbm': 'Bbm'
         };
         return enharmonics[key] || key;
@@ -541,7 +543,7 @@ function createCircleOfFifthsSVG(currentKey, onKeyClick, suggestedTonic = null) 
         const majorY = centerY + textRadiusMajor * Math.sin(angle);
 
         // Display text (show both enharmonics at 6 o'clock position)
-        const isEnharmonicPosition = majorKey === 'Gb';
+        const isEnharmonicPosition = majorKey === 'F#';
         const majorDisplay = isEnharmonicPosition ? 'F#/Gb' : majorKey;
         const minorDisplay = isEnharmonicPosition ? 'D#m/Ebm' : minorKey;
 
