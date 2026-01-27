@@ -1,0 +1,302 @@
+{
+  "title": "Vuelve",
+  "artist": "Latin Dreams",
+  "key": "B",
+  "spotify": "https://open.spotify.com/track/41f2YVgXW3t3fZ7EoHrKGH",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Volveré  a tu lado otra vez, a tus pies",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 20 },
+        { "chord": "B", "position": 24 },
+        { "chord": "Bm", "position": 40 }
+      ]
+    },
+    {
+      "lyrics": "Daría lo que fuera por estar junto a ti",
+      "chords": [
+        { "chord": "F#", "position": 15 },
+        { "chord": "Bb", "position": 25 }
+      ]
+    },
+    {
+      "lyrics": "Me recuerdo los momentos que viví junto a ti",
+      "chords": [
+        { "chord": "B", "position": 4 },
+        { "chord": "Bm", "position": 47 },
+        { "chord": "F#", "position": 63 }
+      ]
+    },
+    {
+      "lyrics": "Yo daría la vida por estar contigo",
+      "chords": [
+        { "chord": "Bb", "position": 5 },
+        { "chord": "B", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "El que seré no sobreviviré",
+      "chords": [
+        { "chord": "Bm", "position": 10 },
+        { "chord": "F#", "position": 33 }
+      ]
+    },
+    {
+      "lyrics": "Si estuvieras junto a mí",
+      "chords": [
+        { "chord": "Bb", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "Yo no estaría viviendo esta canción",
+      "chords": [
+        { "chord": "B", "position": 10 },
+        { "chord": "Bm", "position": 45 }
+      ]
+    },
+    {
+      "lyrics": "Por favor vuelve a mí",
+      "chords": [
+        { "chord": "F#", "position": 19 }
+      ]
+    },
+    { "section": "Rap 1" },
+    {
+      "lyrics": "El aire que necesito Pa' respira se me va  y sin ti yo me muero",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 16 },
+        { "chord": "B", "position": 38 },
+        { "chord": "Bm", "position": 55 }
+      ]
+    },
+    {
+      "lyrics": "Me puedo asfixiara, siento y no puedo exclamar y gritarla",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 20 },
+        { "chord": "B", "position": 40 },
+        { "chord": "Bm", "position": 55 }
+      ]
+    },
+    {
+      "lyrics": "Siento que a mi vida del mundo se me esfuma",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 20 },
+        { "chord": "B", "position": 35 },
+        { "chord": "Bm", "position": 45 }
+      ]
+    },
+    {
+      "lyrics": "Y mi pensamiento mi alma se alegra cuando ya eres mi mía",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 18 },
+        { "chord": "B", "position": 37 },
+        { "chord": "Bm", "position": 55 }
+      ]
+    },
+    {
+      "lyrics": "Mi alma se entristece al notarla tu tardía, has algo Dios mío",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 22 },
+        { "chord": "B", "position": 42 },
+        { "chord": "Bm", "position": 56 }
+      ]
+    },
+    {
+      "lyrics": "No puedo aguantarla esta tardanza, es mi alabanza que a ti canta",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 22 },
+        { "chord": "B", "position": 40 },
+        { "chord": "Bm", "position": 55 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Volveré  a tu lado otra vez, a tus pies",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 20 },
+        { "chord": "B", "position": 24 },
+        { "chord": "Bm", "position": 40 }
+      ]
+    },
+    {
+      "lyrics": "Daría lo que fuera por estar junto a ti",
+      "chords": [
+        { "chord": "F#", "position": 15 },
+        { "chord": "Bb", "position": 25 }
+      ]
+    },
+    { "section": "Rap 2" },
+    {
+      "lyrics": "Mi alma  es de ti sin duda mami, por que no quiero verte a",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 20 },
+        { "chord": "B", "position": 38 },
+        { "chord": "Bm", "position": 52 }
+      ]
+    },
+    {
+      "lyrics": "solas cuando llegara la hora, estemos juntos tú y yo  para",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 20 },
+        { "chord": "B", "position": 35 },
+        { "chord": "Bm", "position": 50 }
+      ]
+    },
+    {
+      "lyrics": "hablar del amor de eso, eso es lo que yo quiero, mi alma se",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 20 },
+        { "chord": "B", "position": 38 },
+        { "chord": "Bm", "position": 52 }
+      ]
+    },
+    {
+      "lyrics": "desvanece, mi corazón se entristece al notar que ya no estas",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 14 },
+        { "chord": "B", "position": 35 },
+        { "chord": "Bm", "position": 52 }
+      ]
+    },
+    {
+      "lyrics": "por que conmigo no vuelves, diera por  la vida por estar",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 18 },
+        { "chord": "B", "position": 36 },
+        { "chord": "Bm", "position": 48 }
+      ]
+    },
+    {
+      "lyrics": "contigo por estar a tu lado mami, vuelve conmigo",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 14 },
+        { "chord": "B", "position": 30 },
+        { "chord": "Bm", "position": 42 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Vuelve, vuelve, oooh,  vuelve, vuelve, oooh, vuelve, vuelve",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 24 },
+        { "chord": "B", "position": 48 }
+      ]
+    },
+    {
+      "lyrics": "Vuelve mamasita yo te necesito",
+      "chords": [
+        { "chord": "Bm", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "Vuelve, vuelve, oooh,  vuelve, vuelve, oooh, vuelve",
+      "chords": [
+        { "chord": "F#", "position": 1 },
+        { "chord": "Bb", "position": 21 },
+        { "chord": "B", "position": 45 }
+      ]
+    },
+    {
+      "lyrics": "Vuelve a miiiiiiiiiiiiiiiiiiiiiii",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "F#", "position": 21 }
+      ]
+    },
+    { "section": "Verse 3" },
+    {
+      "lyrics": "A tu lado otra vez, a tus pies",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 10 },
+        { "chord": "B", "position": 20 },
+        { "chord": "Bm", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "Daría lo que fuera por estar junto a ti",
+      "chords": [
+        { "chord": "F#", "position": 15 },
+        { "chord": "Bb", "position": 25 }
+      ]
+    },
+    { "section": "Rap 3" },
+    {
+      "lyrics": "El aire que necesito Pa' respira se me va  y sin ti yo me muero",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 16 },
+        { "chord": "B", "position": 38 },
+        { "chord": "Bm", "position": 55 }
+      ]
+    },
+    {
+      "lyrics": "Me puedo asfixiara, siento y no puedo exclamar y gritarla",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 20 },
+        { "chord": "B", "position": 40 },
+        { "chord": "Bm", "position": 55 }
+      ]
+    },
+    {
+      "lyrics": "Siento que a mi vida del mundo se me esfuma",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 20 },
+        { "chord": "B", "position": 35 },
+        { "chord": "Bm", "position": 45 }
+      ]
+    },
+    {
+      "lyrics": "Y mi pensamiento mi alma se alegra cuando ya eres mi mía",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 18 },
+        { "chord": "B", "position": 37 },
+        { "chord": "Bm", "position": 55 }
+      ]
+    },
+    {
+      "lyrics": "Mi alma se entristece al notarla tu tardía, has algo Dios mío",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 22 },
+        { "chord": "B", "position": 42 },
+        { "chord": "Bm", "position": 56 }
+      ]
+    },
+    {
+      "lyrics": "No puedo aguantarla esta tardanza, es mi alabanza que a ti canta",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bb", "position": 22 },
+        { "chord": "B", "position": 40 },
+        { "chord": "Bm", "position": 55 }
+      ]
+    },
+    { "section": "Outro" },
+    {
+      "lyrics": "Junto a tiiiiiiiiiiiiiiiii",
+      "chords": [
+        { "chord": "F#", "position": 0 }
+      ]
+    }
+  ]
+}
