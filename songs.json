@@ -28,6 +28,7 @@
     { "path": "songs/whats-up.json", "title": "What's Up", "artist": "4 Non Blondes" },
     { "path": "songs/ill-be-there-for-you.json", "title": "I'll Be There For You", "artist": "The Rembrandts" },
     { "path": "songs/salvame.json", "title": "Sálvame", "artist": "RBD" },
-    { "path": "songs/vuelve.json", "title": "Vuelve", "artist": "Latin Dreams" }
+    { "path": "songs/vuelve.json", "title": "Vuelve", "artist": "Latin Dreams" },
+    { "path": "songs/happy-birthday.json", "title": "Happy Birthday", "artist": "Traditional" }
   ]
 }

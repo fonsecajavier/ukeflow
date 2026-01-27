@@ -358,7 +358,8 @@ ukeflow/
     ├── whats-up.json                  # 4 Non Blondes (A)
     ├── ill-be-there-for-you.json      # The Rembrandts (C)
     ├── salvame.json                   # RBD
-    └── vuelve.json                    # Latin Dreams (B)
+    ├── vuelve.json                    # Latin Dreams (B)
+    └── happy-birthday.json            # Traditional (G)
 ```
 
 ### JavaScript Module Organization

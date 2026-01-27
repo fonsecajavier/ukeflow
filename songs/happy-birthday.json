@@ -1,0 +1,38 @@
+{
+  "title": "Happy Birthday",
+  "artist": "Traditional",
+  "key": "G",
+  "spotify": "https://open.spotify.com/track/0PYQ4pOxD2ew8mwwgNV3jQ",
+  "lines": [
+    { "section": "Verse" },
+    {
+      "lyrics": "Happy birthday to you",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "D7", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "Happy birthday to you",
+      "chords": [
+        { "chord": "D7", "position": 0 },
+        { "chord": "G", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "Happy birthday dear (name)",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "Happy birthday to you",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "D7", "position": 6 },
+        { "chord": "G", "position": 15 }
+      ]
+    }
+  ]
+}
