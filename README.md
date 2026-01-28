@@ -18,12 +18,19 @@ Open http://localhost:8000
 
 **Option 2: Node.js**
 ```bash
-npx serve .
+npx serve . -l 8000
 ```
+Open http://localhost:8000
 
 **Option 3: PHP**
 ```bash
 php -S localhost:8000
+```
+
+## Deploy to Production
+
+```bash
+npx vercel --prod
 ```
 
 ## Features
