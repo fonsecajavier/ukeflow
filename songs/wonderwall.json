@@ -1,0 +1,398 @@
+{
+  "title": "Wonderwall",
+  "artist": "Oasis",
+  "key": "F#m",
+  "spotify": "https://open.spotify.com/track/1qPbGZqppFwLwcBC1JQ6Vr",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Today is gonna be the day",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "That they're gonna throw it back to you",
+      "chords": [
+        { "chord": "E", "position": 0 },
+        { "chord": "B", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "By now you should've somehow",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "A", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "Realized what you gotta do",
+      "chords": [
+        { "chord": "E", "position": 0 },
+        { "chord": "B", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "I don't believe that anybody",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "A", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "Feels the way I do about you now",
+      "chords": [
+        { "chord": "E", "position": 0 },
+        { "chord": "B", "position": 14 },
+        { "chord": "F#m", "position": 25 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "A", "position": 4 },
+        { "chord": "E", "position": 8 },
+        { "chord": "B", "position": 12 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Backbeat the word was on the street",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "A", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "That the fire in your heart is out",
+      "chords": [
+        { "chord": "E", "position": 0 },
+        { "chord": "B", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "I'm sure you've heard it all before",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "A", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "But you never really had a doubt",
+      "chords": [
+        { "chord": "E", "position": 0 },
+        { "chord": "B", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "I don't believe that anybody",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "A", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Feels the way I do about you now",
+      "chords": [
+        { "chord": "E", "position": 0 },
+        { "chord": "B", "position": 13 },
+        { "chord": "F#m", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "A", "position": 4 },
+        { "chord": "E", "position": 8 },
+        { "chord": "B", "position": 12 }
+      ]
+    },
+    { "section": "Pre-Chorus" },
+    {
+      "lyrics": "And all the roads we have to walk along are winding",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "E", "position": 13 },
+        { "chord": "F#m", "position": 40 }
+      ]
+    },
+    {
+      "lyrics": "And all the lights that lead us there are blinding",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "E", "position": 14 },
+        { "chord": "F#m", "position": 36 }
+      ]
+    },
+    {
+      "lyrics": "There are many things that I would",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "E", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "Like to say to you",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "F#m", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "I don't know how",
+      "chords": [
+        { "chord": "B", "position": 0 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Because maybe",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "F#m", "position": 8 },
+        { "chord": "A", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "You're gonna be the one who saves me",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "D", "position": 18 },
+        { "chord": "F#m", "position": 22 },
+        { "chord": "A", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "And after all",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "D", "position": 5 },
+        { "chord": "F#m", "position": 9 },
+        { "chord": "A", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "You're my wonderwall",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "D", "position": 10 },
+        { "chord": "F#m", "position": 14 },
+        { "chord": "A", "position": 18 },
+        { "chord": "F#m", "position": 22 }
+      ]
+    },
+    { "section": "Verse 3" },
+    {
+      "lyrics": "Today was gonna be the day",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "A", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "But they'll never throw it back to you",
+      "chords": [
+        { "chord": "E", "position": 0 },
+        { "chord": "B", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "By now you should've somehow",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "A", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "Realized what you're not to do",
+      "chords": [
+        { "chord": "E", "position": 0 },
+        { "chord": "B", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "I don't believe that anybody",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "A", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "Feels the way I do",
+      "chords": [
+        { "chord": "E", "position": 0 },
+        { "chord": "B", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "About you now",
+      "chords": [
+        { "chord": "F#m", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "A", "position": 4 },
+        { "chord": "E", "position": 8 },
+        { "chord": "B", "position": 12 }
+      ]
+    },
+    { "section": "Pre-Chorus" },
+    {
+      "lyrics": "And all the roads we have to walk along are winding",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "E", "position": 13 },
+        { "chord": "F#m", "position": 40 }
+      ]
+    },
+    {
+      "lyrics": "And all the lights that lead us there are blinding",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "E", "position": 14 },
+        { "chord": "F#m", "position": 36 }
+      ]
+    },
+    {
+      "lyrics": "There are many things that I would",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "E", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "Like to say to you",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "F#m", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "I don't know how",
+      "chords": [
+        { "chord": "B", "position": 0 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "I said maybe",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "F#m", "position": 7 },
+        { "chord": "A", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "You're gonna be the one who saves me",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "D", "position": 18 },
+        { "chord": "F#m", "position": 22 },
+        { "chord": "A", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "And after all",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "D", "position": 5 },
+        { "chord": "F#m", "position": 9 },
+        { "chord": "A", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "You're my wonderwall",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "D", "position": 10 },
+        { "chord": "F#m", "position": 14 },
+        { "chord": "A", "position": 18 },
+        { "chord": "F#m", "position": 22 }
+      ]
+    },
+    { "section": "Chorus 2" },
+    {
+      "lyrics": "I said maybe",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "F#m", "position": 7 },
+        { "chord": "A", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "You're gonna be the one who saves me",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "D", "position": 18 },
+        { "chord": "F#m", "position": 22 },
+        { "chord": "A", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "And after all",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "D", "position": 5 },
+        { "chord": "F#m", "position": 9 },
+        { "chord": "A", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "You're my wonderwall",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "D", "position": 10 },
+        { "chord": "F#m", "position": 14 },
+        { "chord": "A", "position": 18 },
+        { "chord": "F#m", "position": 22 }
+      ]
+    },
+    { "section": "Outro" },
+    {
+      "lyrics": "Said maybe",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "F#m", "position": 5 },
+        { "chord": "A", "position": 9 }
+      ]
+    },
+    {
+      "lyrics": "You're gonna be the one that saves me",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "D", "position": 20 },
+        { "chord": "F#m", "position": 24 },
+        { "chord": "A", "position": 29 }
+      ]
+    },
+    {
+      "lyrics": "You're gonna be the one that saves me",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "D", "position": 20 },
+        { "chord": "F#m", "position": 24 },
+        { "chord": "A", "position": 29 }
+      ]
+    },
+    {
+      "lyrics": "You're gonna be the one that saves me",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "D", "position": 20 },
+        { "chord": "F#m", "position": 24 },
+        { "chord": "A", "position": 29 }
+      ]
+    },
+    {
+      "lyrics": "(repeat F#m - D - F#m - A until end)",
+      "chords": [
+        { "chord": "F#m", "position": 0 }
+      ]
+    }
+  ]
+}

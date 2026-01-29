@@ -31,6 +31,7 @@
     { "path": "songs/vuelve.json", "title": "Vuelve", "artist": "Latin Dreams" },
     { "path": "songs/happy-birthday.json", "title": "Happy Birthday", "artist": "Traditional" },
     { "path": "songs/despacito.json", "title": "Despacito", "artist": "Luis Fonsi ft. Daddy Yankee" },
-    { "path": "songs/titanium.json", "title": "Titanium", "artist": "David Guetta ft. Sia" }
+    { "path": "songs/titanium.json", "title": "Titanium", "artist": "David Guetta ft. Sia" },
+    { "path": "songs/wonderwall.json", "title": "Wonderwall", "artist": "Oasis" }
   ]
 }
