@@ -1,0 +1,269 @@
+{
+  "title": "Despacito",
+  "artist": "Luis Fonsi ft. Daddy Yankee",
+  "key": "D",
+  "spotify": "https://open.spotify.com/track/6habFhsOp2NvshLv26DqMb",
+  "lines": [
+    { "section": "Intro" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "G", "position": 5 },
+        { "chord": "D", "position": 10 },
+        { "chord": "A", "position": 15 }
+      ]
+    },
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Si, sabes que ya llevo un rato mirandote",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Tengo que bailar contigo hoy",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Vi que tu mirada ya estaba llamandome",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Muestrame el camino que yo voy",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    { "section": "Pre-Chorus" },
+    {
+      "lyrics": "Tu, tu eres el iman y yo soy el metal",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Me voy acercando y voy armando el plan",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Solo con pensarlo se acelera el pulso",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Oh yeah",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    { "section": "Pre-Chorus 2" },
+    {
+      "lyrics": "Ya, ya me esta gustando mas de lo normal",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Todos mis sentidos van pidiendo mas",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Esto hay que tomarlo sin ningun apuro",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Despacito",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Quiero respirar tu cuello despacito",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Deja que te diga cosas al oido",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Para que te acuerdes si no estas conmigo",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    { "section": "Chorus 2" },
+    {
+      "lyrics": "Despacito",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Quiero desnudarte a besos despacito",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Firmar las paredes de tu laberinto",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Y hacer de tu cuerpo todo un manuscrito",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    { "section": "Post-Chorus" },
+    {
+      "lyrics": "Sube, sube, sube",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Sube, sube",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    { "section": "Verse 2 (Daddy Yankee)" },
+    {
+      "lyrics": "Quiero ver bailar tu pelo, quiero ser tu ritmo",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Que le ensenes a mi boca",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Tus lugares favoritos",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Dejame sobrepasar tus zonas de peligro",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Hasta provocar tus gritos",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Y que olvides tu apellido",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    { "section": "Bridge" },
+    {
+      "lyrics": "Pasito a pasito, suave suavecito",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Nos vamos pegando poquito a poquito",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Cuando tu me besas con esa destreza",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Veo que eres malicia con delicadeza",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    { "section": "Bridge 2" },
+    {
+      "lyrics": "Pasito a pasito, suave suavecito",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Nos vamos pegando poquito a poquito",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Y es que esa belleza es un rompecabezas",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Pero pa montarlo aqui tengo la pieza",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Despacito",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Quiero respirar tu cuello despacito",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Deja que te diga cosas al oido",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Para que te acuerdes si no estas conmigo",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    { "section": "Outro" },
+    {
+      "lyrics": "Despacito",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    }
+  ]
+}
