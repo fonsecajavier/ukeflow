@@ -73,9 +73,9 @@
     {
       "id": "jazz-turnaround",
       "name": "Jazz Turnaround",
-      "numerals": ["ii", "V", "I"],
+      "numerals": ["ii7", "V7", "Imaj7"],
       "mode": "major",
-      "description": "The most important progression in jazz. The ii-V-I creates smooth voice leading and is the building block of jazz harmony.",
+      "description": "The most important progression in jazz. The ii7-V7-Imaj7 creates smooth voice leading with rich 7th chord voicings and is the building block of jazz harmony.",
       "songs": [
         "Autumn Leaves - Various",
         "Fly Me to the Moon - Frank Sinatra",

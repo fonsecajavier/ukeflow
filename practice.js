@@ -411,7 +411,12 @@ function numeralToChord(numeral, key) {
         chordName += 'm';
     }
     if (modifier) {
-        chordName += modifier.replace('m', ''); // Avoid double 'm'
+        // Avoid double 'm' for minor chords, but preserve 'maj7' etc.
+        if (modifier.startsWith('m') && !modifier.startsWith('maj')) {
+            chordName += modifier.slice(1);
+        } else {
+            chordName += modifier;
+        }
     }
 
     return chordName;
