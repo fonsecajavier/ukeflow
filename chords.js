@@ -505,9 +505,9 @@ const CHORDS = {
     },
     'Bm7': {
         name: 'Bm7',
-        frets: [2, 2, 2, 0],
-        fingers: [1, 2, 3, 0],
-        barre: null,
+        frets: [2, 2, 2, 2],
+        fingers: [1, 1, 1, 1],
+        barre: { fret: 2, fromString: 0, toString: 3 },
         baseFret: 1
     },
     'Dm7': {
@@ -582,15 +582,15 @@ const CHORDS = {
     },
     'F#m7': {
         name: 'F#m7',
-        frets: [2, 1, 2, 0],
-        fingers: [2, 1, 3, 0],
+        frets: [2, 4, 2, 0],
+        fingers: [1, 3, 2, 0],
         barre: null,
         baseFret: 1
     },
     'Gbm7': {
         name: 'Gbm7',
-        frets: [2, 1, 2, 0],
-        fingers: [2, 1, 3, 0],
+        frets: [2, 4, 2, 0],
+        fingers: [1, 3, 2, 0],
         barre: null,
         baseFret: 1
     },
