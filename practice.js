@@ -352,16 +352,22 @@ function numeralToChord(numeral, key) {
         'D': ['D', 'E', 'F#', 'G', 'A', 'B', 'C#'],
         'A': ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#'],
         'E': ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#'],
+        'B': ['B', 'C#', 'D#', 'E', 'F#', 'G#', 'A#'],
         'F': ['F', 'G', 'A', 'Bb', 'C', 'D', 'E'],
-        'Bb': ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A']
+        'Bb': ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A'],
+        'Eb': ['Eb', 'F', 'G', 'Ab', 'Bb', 'C', 'D'],
+        'Ab': ['Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G']
     };
 
     // Minor scale degrees (natural minor)
     const minorScale = {
         'A': ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
         'E': ['E', 'F#', 'G', 'A', 'B', 'C', 'D'],
+        'B': ['B', 'C#', 'D', 'E', 'F#', 'G', 'A'],
+        'F#': ['F#', 'G#', 'A', 'B', 'C#', 'D', 'E'],
+        'C#': ['C#', 'D#', 'E', 'F#', 'G#', 'A', 'B'],
         'D': ['D', 'E', 'F', 'G', 'A', 'Bb', 'C'],
-        'B': ['B', 'C#', 'D', 'E', 'F#', 'G', 'A']
+        'G': ['G', 'A', 'Bb', 'C', 'D', 'Eb', 'F']
     };
 
     const scale = isMinorKey ? (minorScale[rootKey] || majorScale[rootKey]) : majorScale[key];

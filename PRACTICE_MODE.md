@@ -12,7 +12,7 @@ Practice common chord progressions used in popular songs.
 - **15 common progressions**: Axis of Awesome, 50s Doo-Wop, Blues, Jazz, and more
 - **Trivia & description**: Learn about each progression's history and style
 - **Popular songs**: 5 example songs for each progression
-- **Key selector**: Transpose to any key (C, G, D, A, E, F, Bb, Am, Em, Dm, Bm)
+- **Key selector**: Transpose to any key (C, G, D, A, E, B, F, Bb, Eb, Ab, Am, Em, Bm, F#m, C#m, Dm, Gm)
 - **Chord diagrams**: Visual display of all chords in the progression
 - **Progression sequence**: Shows chord flow below diagrams (e.g., "C → G → Am → F")
 - **Loop playback**: Cycles through progression chords with metronome
