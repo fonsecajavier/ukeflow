@@ -35,6 +35,21 @@ body {
     cursor: pointer;
 }
 
+.practice-link {
+    color: #3498db;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    border: 1px solid #3498db;
+    border-radius: 20px;
+    transition: all 0.2s;
+}
+
+.practice-link:hover {
+    background: #3498db;
+    color: #fff;
+}
+
 .song-selector-wrapper {
     position: relative;
     display: inline-block;

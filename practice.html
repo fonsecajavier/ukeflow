@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Mode - UkeFlow</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="practice.css">
+</head>
+<body>
+    <div class="practice-container">
+        <header class="practice-header">
+            <a href="index.html" class="back-link">&larr; Back to UkeFlow</a>
+            <h1>Practice Mode</h1>
+        </header>
+
+        <div class="practice-controls">
+            <div class="tempo-control">
+                <label for="tempo-slider">Tempo:</label>
+                <input type="range" id="tempo-slider" min="60" max="180" value="60">
+                <span id="tempo-display">60 BPM</span>
+            </div>
+
+            <div class="chord-filters">
+                <label>Chords:</label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" id="filter-major" checked>
+                    <span>Major</span>
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" id="filter-minor" checked>
+                    <span>Minor</span>
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" id="filter-7th">
+                    <span>7th</span>
+                </label>
+            </div>
+
+            <div class="chord-filters">
+                <label>Include:</label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" id="filter-sharps">
+                    <span>Sharps (#)</span>
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" id="filter-flats">
+                    <span>Flats (b)</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="practice-area">
+            <div class="chord-display" id="chord-display">
+                <div class="chord-name" id="current-chord-name">Press Start</div>
+                <div id="current-chord-diagram"></div>
+            </div>
+
+            <div class="next-chord-preview" id="next-chord-preview">
+                <div class="next-label">Next:</div>
+                <div class="next-chord-name" id="next-chord-name">-</div>
+                <div id="next-chord-diagram"></div>
+            </div>
+        </div>
+
+        <div class="beat-indicator" id="beat-indicator">
+            <span class="beat-dot" data-beat="0"></span>
+            <span class="beat-dot" data-beat="1"></span>
+            <span class="beat-dot" data-beat="2"></span>
+            <span class="beat-dot" data-beat="3"></span>
+        </div>
+
+        <button class="start-stop-btn" id="start-stop-btn">
+            <span class="btn-icon">&#9654;</span>
+            <span class="btn-text">Start</span>
+        </button>
+    </div>
+
+    <!-- Load shared scripts in dependency order -->
+    <script src="chords.js"></script>
+    <script src="state.js"></script>
+    <script src="patterns.js"></script>
+    <script src="audio.js"></script>
+    <script src="ui.js"></script>
+    <script src="practice.js"></script>
+</body>
+</html>
