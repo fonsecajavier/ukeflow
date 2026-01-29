@@ -10,7 +10,7 @@
         "No Woman No Cry - Bob Marley",
         "With or Without You - U2",
         "Someone Like You - Adele",
-        "When I Come Around - Green Day"
+        "Titanium - David Guetta"
       ]
     },
     {
@@ -22,8 +22,8 @@
         "Stand By Me - Ben E. King",
         "Earth Angel - The Penguins",
         "Every Breath You Take - The Police",
-        "La Bamba - Ritchie Valens",
-        "Beautiful Girls - Sean Kingston"
+        "Beautiful Girls - Sean Kingston",
+        "Blue Moon - The Marcels"
       ]
     },
     {
@@ -35,8 +35,8 @@
         "Grenade - Bruno Mars",
         "Despacito - Luis Fonsi",
         "Numb - Linkin Park",
-        "Caramelo - Ozuna",
-        "Umbrella - Rihanna"
+        "Umbrella - Rihanna",
+        "Hello - Adele"
       ]
     },
     {
@@ -46,10 +46,10 @@
       "description": "A descending progression with Spanish/Flamenco roots. Creates dramatic tension that resolves powerfully. Common in rock, metal, and Latin music.",
       "songs": [
         "Hit the Road Jack - Ray Charles",
-        "Smooth - Santana",
-        "Bamboleo - Gipsy Kings",
-        "Aserejé - Las Ketchup",
-        "Sultans of Swing - Dire Straits"
+        "Sultans of Swing - Dire Straits",
+        "Happy Together - The Turtles",
+        "California Dreamin - The Mamas and the Papas",
+        "Smooth Criminal - Michael Jackson"
       ]
     },
     {
@@ -61,8 +61,8 @@
         "Johnny B. Goode - Chuck Berry",
         "Hound Dog - Elvis Presley",
         "Pride and Joy - Stevie Ray Vaughan",
-        "Oye Como Va - Santana",
-        "The Thrill Is Gone - B.B. King"
+        "The Thrill Is Gone - B.B. King",
+        "Sweet Home Chicago - Robert Johnson"
       ]
     },
     {
@@ -87,8 +87,8 @@
         "Canon in D - Pachelbel",
         "Basket Case - Green Day",
         "Memories - Maroon 5",
-        "Oh Lord, Why Lord - Pop-Tops",
-        "Cryin' - Aerosmith"
+        "Cryin' - Aerosmith",
+        "Don't Look Back in Anger - Oasis"
       ]
     },
     {
@@ -114,7 +114,7 @@
         "La Bamba - Ritchie Valens",
         "Guantanamera - Traditional Cuban",
         "Louie Louie - The Kingsmen",
-        "Que Bueno Baila Usted - Benny Moré"
+        "Wild Thing - The Troggs"
       ]
     },
     {
@@ -126,8 +126,8 @@
         "Creep - Radiohead",
         "Space Oddity - David Bowie",
         "Lovefool - The Cardigans",
-        "Where Is My Mind - Pixies",
-        "Mad World - Tears for Fears"
+        "Vampire - Olivia Rodrigo",
+        "Get Free - Lana Del Rey"
       ]
     },
     {
@@ -179,20 +179,20 @@
         "Babe I'm Gonna Leave You - Led Zeppelin",
         "Corazón Partío - Alejandro Sanz",
         "Writing's on the Wall - Sam Smith",
-        "Hello - Adele"
+        "My Heart Will Go On - Celine Dion"
       ]
     },
     {
-      "id": "emotional",
-      "name": "Emotional Pop",
-      "numerals": ["vi", "V", "IV", "V"],
-      "description": "Starting and staying in minor territory with major chords providing lift. Creates bittersweet, anthemic feelings.",
+      "id": "i-vi-i-v",
+      "name": "Flamenco Minor",
+      "numerals": ["i", "VI", "i", "V"],
+      "description": "A simple minor progression with the major VI chord adding brightness. Common in Latin, flamenco-influenced, and minor key pop songs.",
       "songs": [
-        "Wake Me Up - Avicii",
-        "Counting Stars - OneRepublic",
-        "Tusa - Karol G",
-        "Titanium - David Guetta",
-        "Bailando - Enrique Iglesias"
+        "Smooth - Santana",
+        "Bamboleo - Gipsy Kings",
+        "La Isla Bonita - Madonna",
+        "Maria Maria - Santana",
+        "Oye Como Va - Santana"
       ]
     }
   ]
