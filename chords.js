@@ -633,15 +633,15 @@ const CHORDS = {
     },
     'Ddim': {
         name: 'Ddim',
-        frets: [1, 2, 1, 0],
-        fingers: [1, 3, 2, 0],
+        frets: [1, 2, 1, 2],
+        fingers: [1, 3, 2, 4],
         barre: null,
         baseFret: 1
     },
     'Edim': {
         name: 'Edim',
-        frets: [0, 3, 2, 3],
-        fingers: [0, 2, 1, 3],
+        frets: [0, 4, 3, 1],
+        fingers: [0, 4, 3, 1],
         barre: null,
         baseFret: 1
     },
@@ -882,8 +882,8 @@ const CHORDS = {
     },
     'Gadd9': {
         name: 'Gadd9',
-        frets: [0, 2, 3, 0],
-        fingers: [0, 1, 2, 0],
+        frets: [0, 2, 0, 2],
+        fingers: [0, 1, 0, 2],
         barre: null,
         baseFret: 1
     },
@@ -896,8 +896,8 @@ const CHORDS = {
     },
     'Dadd9': {
         name: 'Dadd9',
-        frets: [2, 2, 0, 0],
-        fingers: [1, 2, 0, 0],
+        frets: [2, 2, 2, 0],
+        fingers: [1, 2, 3, 0],
         barre: null,
         baseFret: 1
     },
