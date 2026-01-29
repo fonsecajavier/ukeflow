@@ -119,3 +119,11 @@ Bamboleo, bambolea
 - **Add play style**: Edit `patterns.js`, add to PLAY_STYLES.strums or .arpeggios
 - **Add collapsible section**: Follow pattern in index.html (details/summary), add matching CSS
 - **Add Spotify link**: Add `"spotify": "https://open.spotify.com/track/TRACK_ID"` to song JSON. **Always search the web** to find the correct Spotify track URL - do not guess or make up track IDs.
+
+## Adding Songs to Progressions (Practice Mode)
+When adding songs to `progressions.json`:
+1. **ALWAYS verify the chord progression** by searching the web for the song's actual chords
+2. **Do NOT guess** based on memory or assumptions - chord progressions are often misremembered
+3. Convert the chords to roman numerals in the song's key to confirm they match the progression
+4. Example: For "Axis of Awesome" (I-V-vi-IV), a song in C with chords C-G-Am-F is correct, but Am-F-C-G would be "Sensitive Female" (vi-IV-I-V)
+5. Be especially careful with rotations - the same 4 chords in different orders are different progressions
