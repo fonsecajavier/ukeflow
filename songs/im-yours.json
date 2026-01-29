@@ -1,145 +1,145 @@
 {
   "title": "I'm Yours",
   "artist": "Jason Mraz",
-  "key": "C",
+  "key": "B",
   "spotify": "https://open.spotify.com/track/1EzrEOXmMH3G43AXT1y7pA",
   "lines": [
     { "section": "Intro" },
     {
       "lyrics": "",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 6 },
-        { "chord": "Am", "position": 12 },
-        { "chord": "F", "position": 18 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 6 },
+        { "chord": "G#m", "position": 12 },
+        { "chord": "E", "position": 18 }
       ]
     },
     { "section": "Verse 1" },
     {
       "lyrics": "Well, you done done me and you bet I felt it",
       "chords": [
-        { "chord": "C", "position": 0 }
+        { "chord": "B", "position": 0 }
       ]
     },
     {
       "lyrics": "I tried to be chill but you're so hot that I melted",
       "chords": [
-        { "chord": "G", "position": 0 }
+        { "chord": "F#", "position": 0 }
       ]
     },
     {
       "lyrics": "I fell right through the cracks",
       "chords": [
-        { "chord": "Am", "position": 0 }
+        { "chord": "G#m", "position": 0 }
       ]
     },
     {
       "lyrics": "Now I'm trying to get back",
       "chords": [
-        { "chord": "F", "position": 0 }
+        { "chord": "E", "position": 0 }
       ]
     },
     { "section": "Verse 2" },
     {
       "lyrics": "Before the cool done run out I'll be giving it my bestest",
       "chords": [
-        { "chord": "C", "position": 0 }
+        { "chord": "B", "position": 0 }
       ]
     },
     {
       "lyrics": "And nothing's gonna stop me but divine intervention",
       "chords": [
-        { "chord": "G", "position": 0 }
+        { "chord": "F#", "position": 0 }
       ]
     },
     {
       "lyrics": "I reckon it's again my turn",
       "chords": [
-        { "chord": "Am", "position": 0 }
+        { "chord": "G#m", "position": 0 }
       ]
     },
     {
       "lyrics": "To win some or learn some",
       "chords": [
-        { "chord": "F", "position": 0 }
+        { "chord": "E", "position": 0 }
       ]
     },
     { "section": "Chorus" },
     {
       "lyrics": "But I won't hesitate no more, no more",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 25 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 25 }
       ]
     },
     {
       "lyrics": "It cannot wait, I'm yours",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "F", "position": 14 }
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 14 }
       ]
     },
     { "section": "Verse 3" },
     {
       "lyrics": "Well open up your mind and see like me",
       "chords": [
-        { "chord": "C", "position": 0 }
+        { "chord": "B", "position": 0 }
       ]
     },
     {
       "lyrics": "Open up your plans and damn you're free",
       "chords": [
-        { "chord": "G", "position": 0 }
+        { "chord": "F#", "position": 0 }
       ]
     },
     {
       "lyrics": "Look into your heart and you'll find love love love love",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "F", "position": 35 }
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 35 }
       ]
     },
     {
       "lyrics": "Listen to the music of the moment people dance and sing",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 35 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 35 }
       ]
     },
     {
       "lyrics": "We're just one big family",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "F", "position": 18 }
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 18 }
       ]
     },
     { "section": "Chorus" },
     {
       "lyrics": "So I won't hesitate no more, no more",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 24 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 24 }
       ]
     },
     {
       "lyrics": "It cannot wait, I'm sure",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "F", "position": 14 }
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 14 }
       ]
     },
     {
       "lyrics": "There's no need to complicate, our time is short",
       "chords": [
-        { "chord": "C", "position": 0 },
-        { "chord": "G", "position": 30 }
+        { "chord": "B", "position": 0 },
+        { "chord": "F#", "position": 30 }
       ]
     },
     {
       "lyrics": "This is our fate, I'm yours",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "F", "position": 14 }
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 14 }
       ]
     }
   ]
