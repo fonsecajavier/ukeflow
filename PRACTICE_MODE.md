@@ -17,6 +17,7 @@ Practice with randomly selected chords based on filters.
 - **Cycle same root**: When enabled, cycles through all selected chord types for the same root (e.g., A → Am → A7) before moving to a new root
 - **Beat indicator**: 4 dots showing current beat
 - **Transition animation**: Subtle pulse on chord change
+- **Count-in**: 4-beat preparation showing "Get Ready!" before first chord
 
 ### Progression Mode
 Practice common chord progressions used in popular songs.
@@ -28,7 +29,9 @@ Practice common chord progressions used in popular songs.
 - **Popular songs**: 5 example songs for each progression
 - **Key selector**: Transpose to any key (C, G, D, A, E, F, Bb, Am, Em, Dm, Bm)
 - **Chord diagrams**: Visual display of all chords in the progression
+- **Progression sequence**: Shows chord flow below diagrams (e.g., "C → G → Am → F")
 - **Loop playback**: Cycles through progression chords with metronome
+- **Count-in**: 4-beat preparation showing "Get Ready!" before first chord
 
 ## Files
 
@@ -43,20 +46,24 @@ Practice common chord progressions used in popular songs.
 
 ### Random Mode
 1. User clicks Start
-2. Metronome begins at selected tempo
-3. Random chord from filtered pool displayed
-4. After 4 beats, advances to next chord with subtle animation
-5. Next chord always shown in preview corner
-6. Filters update chord pool in real-time
+2. "Get Ready!" displays with first chord in preview corner
+3. Metronome plays 4-beat count-in
+4. On beat 1 of next measure, first chord appears
+5. After 4 beats, advances to next chord with subtle animation
+6. Next chord always shown in preview corner
+7. Filters update chord pool in real-time
 
 ### Progression Mode
 1. User searches and selects a progression
 2. Info panel shows description and example songs
 3. User selects key (default: C)
 4. All chord diagrams displayed with roman numerals
-5. User clicks Start
-6. Metronome cycles through progression chords in order
-7. Loops back to first chord after completing progression
+5. Progression sequence shown below (e.g., "C → G → Am → F")
+6. User clicks Start
+7. "Get Ready!" displays with first chord in preview
+8. After 4-beat count-in, first chord appears on beat 1
+9. Metronome cycles through progression chords in order
+10. Loops back to first chord after completing progression
 
 ## Progressions Library
 
