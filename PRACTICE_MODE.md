@@ -10,6 +10,7 @@ A chord transition practice tool with metronome.
 - **Tempo control**: 60-180 BPM slider (default: 60)
 - **Chord type filters**: Major, Minor, 7th (Major & Minor on by default)
 - **Accidental filters**: Sharps (#), Flats (b) (both off by default for natural chords only)
+- **Cycle same root**: When enabled, cycles through all selected chord types for the same root (e.g., A → Am → A7) before moving to a new root
 - **Beat indicator**: 4 dots showing current beat
 - **Transition animation**: Subtle pulse on chord change
 

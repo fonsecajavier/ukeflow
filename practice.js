@@ -18,7 +18,11 @@ const practiceState = {
         seventh: false,
         sharps: false,
         flats: false
-    }
+    },
+    cycleSameRoot: false,
+    currentRoot: null,
+    rootCycleIndex: 0,
+    rootChords: []
 };
 
 // DOM elements
@@ -30,6 +34,7 @@ const practiceElements = {
     filter7th: document.getElementById('filter-7th'),
     filterSharps: document.getElementById('filter-sharps'),
     filterFlats: document.getElementById('filter-flats'),
+    cycleSameRoot: document.getElementById('cycle-same-root'),
     chordDisplay: document.getElementById('chord-display'),
     currentChordName: document.getElementById('current-chord-name'),
     currentChordDiagram: document.getElementById('current-chord-diagram'),
@@ -51,6 +56,7 @@ function initPractice() {
     practiceElements.filter7th.addEventListener('change', handleFilterChange);
     practiceElements.filterSharps.addEventListener('change', handleFilterChange);
     practiceElements.filterFlats.addEventListener('change', handleFilterChange);
+    practiceElements.cycleSameRoot.addEventListener('change', handleCycleModeChange);
     practiceElements.startStopBtn.addEventListener('click', togglePractice);
 
     // Initialize chord pool
@@ -142,9 +148,117 @@ function updateChordPool() {
 }
 
 /**
+ * Handle cycle same root mode change
+ */
+function handleCycleModeChange() {
+    practiceState.cycleSameRoot = practiceElements.cycleSameRoot.checked;
+
+    // Reset cycle state
+    practiceState.currentRoot = null;
+    practiceState.rootCycleIndex = 0;
+    practiceState.rootChords = [];
+
+    // If playing, restart with new mode
+    if (practiceState.isPlaying) {
+        if (practiceState.cycleSameRoot) {
+            startNewRootCycle();
+        } else {
+            practiceState.currentChord = getRandomChord();
+            practiceState.nextChord = getRandomChord();
+        }
+        updateDisplay();
+    }
+}
+
+/**
+ * Extract root note from chord name (e.g., "Am7" -> "A", "F#m" -> "F#")
+ */
+function getChordRoot(chordName) {
+    const match = chordName.match(/^([A-G][#b]?)/);
+    return match ? match[1] : null;
+}
+
+/**
+ * Get all available roots based on current filters
+ */
+function getAvailableRoots() {
+    const roots = new Set();
+    practiceState.chordPool.forEach(chord => {
+        const root = getChordRoot(chord);
+        if (root) roots.add(root);
+    });
+    return Array.from(roots);
+}
+
+/**
+ * Get all chords for a given root from the current pool
+ */
+function getChordsForRoot(root) {
+    return practiceState.chordPool.filter(chord => getChordRoot(chord) === root);
+}
+
+/**
+ * Start a new root cycle with a random root
+ */
+function startNewRootCycle() {
+    const availableRoots = getAvailableRoots();
+    if (availableRoots.length === 0) return;
+
+    // Pick a random root (avoid same root if possible)
+    let roots = availableRoots;
+    if (practiceState.currentRoot && availableRoots.length > 1) {
+        roots = availableRoots.filter(r => r !== practiceState.currentRoot);
+    }
+
+    const randomIndex = Math.floor(Math.random() * roots.length);
+    practiceState.currentRoot = roots[randomIndex];
+    practiceState.rootChords = getChordsForRoot(practiceState.currentRoot);
+    practiceState.rootCycleIndex = 0;
+
+    // Shuffle the chords for this root
+    shuffleArray(practiceState.rootChords);
+}
+
+/**
+ * Shuffle array in place (Fisher-Yates)
+ */
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+/**
+ * Get next chord in cycle same root mode
+ */
+function getNextCycleChord() {
+    if (practiceState.rootChords.length === 0) {
+        startNewRootCycle();
+    }
+
+    if (practiceState.rootChords.length === 0) return null;
+
+    // If we've cycled through all chords for this root, start new root
+    if (practiceState.rootCycleIndex >= practiceState.rootChords.length) {
+        startNewRootCycle();
+    }
+
+    const chord = practiceState.rootChords[practiceState.rootCycleIndex];
+    practiceState.rootCycleIndex++;
+
+    return chord;
+}
+
+/**
  * Get a random chord from the pool (avoiding the current chord)
  */
 function getRandomChord() {
+    // Use cycle mode if enabled
+    if (practiceState.cycleSameRoot) {
+        return getNextCycleChord();
+    }
+
     if (practiceState.chordPool.length === 0) return null;
 
     let available = practiceState.chordPool;
@@ -179,7 +293,15 @@ function startPractice() {
     practiceState.isPlaying = true;
     practiceState.currentBeat = 0;
 
+    // Reset cycle state
+    practiceState.currentRoot = null;
+    practiceState.rootCycleIndex = 0;
+    practiceState.rootChords = [];
+
     // Get initial chords
+    if (practiceState.cycleSameRoot) {
+        startNewRootCycle();
+    }
     practiceState.currentChord = getRandomChord();
     practiceState.nextChord = getRandomChord();
 
