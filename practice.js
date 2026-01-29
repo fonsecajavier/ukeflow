@@ -40,6 +40,11 @@ const practiceState = {
 const practiceElements = {
     // Tabs
     tabs: document.querySelectorAll('.practice-tab'),
+    // Modal
+    modalOverlay: document.getElementById('modal-overlay'),
+    modalContent: document.getElementById('modal-content'),
+    modalClose: document.getElementById('modal-close'),
+    modalChord: document.getElementById('modal-chord'),
     // Random mode
     randomControls: document.getElementById('random-controls'),
     tempoSlider: document.getElementById('tempo-slider'),
@@ -110,6 +115,12 @@ function initPractice() {
 
     // Keyboard shortcuts
     document.addEventListener('keydown', handleKeyPress);
+
+    // Modal close handlers
+    practiceElements.modalClose.addEventListener('click', closeModal);
+    practiceElements.modalOverlay.addEventListener('click', (e) => {
+        if (e.target === practiceElements.modalOverlay) closeModal();
+    });
 
     // Load progressions
     loadProgressions();
@@ -448,6 +459,8 @@ function updateProgressionChords() {
             wrapper.appendChild(numeral);
 
             const diagram = createChordDiagram(chordData, false, chordName, false, false);
+            diagram.style.cursor = 'pointer';
+            diagram.addEventListener('click', () => openPracticeChordModal(chordName));
             wrapper.appendChild(diagram);
 
             practiceElements.progressionChords.appendChild(wrapper);
@@ -903,6 +916,9 @@ function updateDisplay() {
 
         const chordData = CHORDS[practiceState.currentChord];
         const svg = createChordSVG(chordData, true);
+        svg.style.cursor = 'pointer';
+        const currentChord = practiceState.currentChord;
+        svg.addEventListener('click', () => openPracticeChordModal(currentChord));
         practiceElements.currentChordDiagram.appendChild(svg);
     } else {
         practiceElements.currentChordName.textContent = 'Press Start';
@@ -916,6 +932,9 @@ function updateDisplay() {
 
         const chordData = CHORDS[practiceState.nextChord];
         const svg = createChordSVG(chordData, false);
+        svg.style.cursor = 'pointer';
+        const nextChord = practiceState.nextChord;
+        svg.addEventListener('click', () => openPracticeChordModal(nextChord));
         practiceElements.nextChordDiagram.appendChild(svg);
 
         practiceElements.nextChordPreview.style.display = 'flex';
@@ -965,6 +984,90 @@ function updateButtonState() {
         icon.innerHTML = '&#9654;'; // Play triangle
         text.textContent = 'Start';
     }
+}
+
+/**
+ * Close the chord modal
+ */
+function closeModal() {
+    practiceElements.modalOverlay.classList.remove('active');
+}
+
+/**
+ * Open chord modal with variations
+ */
+function openPracticeChordModal(chordName) {
+    const chordData = CHORDS[chordName];
+    if (!chordData) return;
+
+    practiceElements.modalChord.innerHTML = '';
+
+    // Get all variations for this chord
+    const variations = getChordVariations(chordName);
+    const hasVariations = variations.length > 1;
+
+    // Title with chord name
+    const nameDiv = document.createElement('div');
+    nameDiv.className = 'chord-name modal-chord-title';
+    nameDiv.textContent = chordName;
+    practiceElements.modalChord.appendChild(nameDiv);
+
+    if (hasVariations) {
+        // Create a container for all variations
+        const variationsContainer = document.createElement('div');
+        variationsContainer.className = 'variations-container';
+
+        variations.forEach((variation, index) => {
+            const variationItem = document.createElement('div');
+            variationItem.className = 'variation-item';
+            if (index === 0) variationItem.classList.add('default');
+
+            // Variation label
+            const label = document.createElement('div');
+            label.className = 'variation-label';
+            label.textContent = variation.description || (index === 0 ? 'Default' : `Variation ${index}`);
+            variationItem.appendChild(label);
+
+            // SVG diagram
+            const svg = createChordSVG(variation, true);
+            variationItem.appendChild(svg);
+
+            // Play button for this variation
+            const playBtn = document.createElement('button');
+            playBtn.className = 'chord-play-btn variation-play-btn';
+            playBtn.innerHTML = '&#9654;';
+            playBtn.title = 'Play this voicing';
+            playBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                playChordArpeggio(variation);
+                playBtn.classList.add('playing');
+                setTimeout(() => playBtn.classList.remove('playing'), 400);
+            });
+            variationItem.appendChild(playBtn);
+
+            variationsContainer.appendChild(variationItem);
+        });
+
+        practiceElements.modalChord.appendChild(variationsContainer);
+    } else {
+        // Single chord (no variations) - show as before
+        const svg = createChordSVG(chordData, true);
+        practiceElements.modalChord.appendChild(svg);
+
+        // Add play button for modal
+        const playBtn = document.createElement('button');
+        playBtn.className = 'chord-play-btn modal-play-btn';
+        playBtn.innerHTML = '&#9654; Play';
+        playBtn.title = 'Play chord';
+        playBtn.addEventListener('click', () => {
+            playChordArpeggio(chordData);
+            playBtn.classList.add('playing');
+            setTimeout(() => playBtn.classList.remove('playing'), 400);
+        });
+        practiceElements.modalChord.appendChild(playBtn);
+    }
+
+    practiceElements.modalOverlay.classList.add('active');
 }
 
 // Initialize when DOM is ready
