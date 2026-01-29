@@ -59,9 +59,9 @@
     {
       "id": "blues",
       "name": "12-Bar Blues",
-      "numerals": ["I", "I", "I", "I", "IV", "IV", "I", "I", "V", "IV", "I", "V"],
+      "numerals": ["I7", "I7", "I7", "I7", "IV7", "IV7", "I7", "I7", "V7", "IV7", "I7", "V7"],
       "mode": "major",
-      "description": "The foundation of blues, rock and roll, and countless other genres. This 12-bar structure has been the backbone of popular music for over a century.",
+      "description": "The foundation of blues, rock and roll, and countless other genres. The dominant 7th chords give it that classic bluesy sound. This 12-bar structure has been the backbone of popular music for over a century.",
       "songs": [
         "Johnny B. Goode - Chuck Berry",
         "Hound Dog - Elvis Presley",
