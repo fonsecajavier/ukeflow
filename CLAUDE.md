@@ -120,6 +120,10 @@ Bamboleo, bambolea
 - **Add collapsible section**: Follow pattern in index.html (details/summary), add matching CSS
 - **Add Spotify link**: Add `"spotify": "https://open.spotify.com/track/TRACK_ID"` to song JSON. **Always search the web** to find the correct Spotify track URL - do not guess or make up track IDs.
 
+## Deployment
+1. Push to git: `git push`
+2. Deploy to Vercel: `npx vercel --prod`
+
 ## Adding Songs to Progressions (Practice Mode)
 When adding songs to `progressions.json`:
 1. **ALWAYS verify the chord progression** by searching the web for the song's actual chords
