@@ -14,7 +14,56 @@
             <h1>Practice Mode</h1>
         </header>
 
-        <div class="practice-controls">
+        <!-- Mode Tabs -->
+        <div class="practice-tabs">
+            <button class="practice-tab active" data-mode="random">Random Chords</button>
+            <button class="practice-tab" data-mode="progression">Progressions</button>
+        </div>
+
+        <!-- Progression Mode -->
+        <div class="progression-section" id="progression-section" style="display: none;">
+            <div class="progression-selector">
+                <div class="progression-search-wrapper">
+                    <input type="text" id="progression-search" placeholder="Search progressions..." autocomplete="off">
+                    <ul id="progression-dropdown" class="progression-dropdown"></ul>
+                </div>
+            </div>
+
+            <div class="progression-info" id="progression-info" style="display: none;">
+                <div class="progression-header">
+                    <h2 id="progression-name"></h2>
+                    <span class="progression-numerals" id="progression-numerals"></span>
+                </div>
+                <p class="progression-description" id="progression-description"></p>
+                <div class="progression-songs">
+                    <h4>Popular Songs:</h4>
+                    <ul id="progression-songs-list"></ul>
+                </div>
+            </div>
+
+            <div class="progression-key-selector" id="progression-key-selector" style="display: none;">
+                <label for="progression-key">Key:</label>
+                <select id="progression-key">
+                    <option value="C">C</option>
+                    <option value="G">G</option>
+                    <option value="D">D</option>
+                    <option value="A">A</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="Bb">Bb</option>
+                    <option value="Am">Am</option>
+                    <option value="Em">Em</option>
+                    <option value="Dm">Dm</option>
+                    <option value="Bm">Bm</option>
+                </select>
+            </div>
+
+            <div class="progression-chords" id="progression-chords" style="display: none;"></div>
+            <div class="progression-sequence" id="progression-sequence" style="display: none;"></div>
+        </div>
+
+        <!-- Random Chords Mode Controls -->
+        <div class="practice-controls" id="random-controls">
             <div class="tempo-control">
                 <label for="tempo-slider">Tempo:</label>
                 <input type="range" id="tempo-slider" min="60" max="180" value="60">
@@ -58,6 +107,7 @@
             </div>
         </div>
 
+        <!-- Shared Practice Area -->
         <div class="practice-area">
             <div class="chord-display" id="chord-display">
                 <div class="chord-name" id="current-chord-name">Press Start</div>

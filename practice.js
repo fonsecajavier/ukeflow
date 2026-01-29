@@ -22,11 +22,24 @@ const practiceState = {
     cycleSameRoot: false,
     currentRoot: null,
     rootCycleIndex: 0,
-    rootChords: []
+    rootChords: [],
+    // Progression mode
+    mode: 'random', // 'random' or 'progression'
+    progressions: [],
+    selectedProgression: null,
+    progressionKey: 'C',
+    progressionChords: [],
+    progressionIndex: 0,
+    // Count-in
+    isCountingIn: false
 };
 
 // DOM elements
 const practiceElements = {
+    // Tabs
+    tabs: document.querySelectorAll('.practice-tab'),
+    // Random mode
+    randomControls: document.getElementById('random-controls'),
     tempoSlider: document.getElementById('tempo-slider'),
     tempoDisplay: document.getElementById('tempo-display'),
     filterMajor: document.getElementById('filter-major'),
@@ -35,6 +48,20 @@ const practiceElements = {
     filterSharps: document.getElementById('filter-sharps'),
     filterFlats: document.getElementById('filter-flats'),
     cycleSameRoot: document.getElementById('cycle-same-root'),
+    // Progression mode
+    progressionSection: document.getElementById('progression-section'),
+    progressionSearch: document.getElementById('progression-search'),
+    progressionDropdown: document.getElementById('progression-dropdown'),
+    progressionInfo: document.getElementById('progression-info'),
+    progressionName: document.getElementById('progression-name'),
+    progressionNumerals: document.getElementById('progression-numerals'),
+    progressionDescription: document.getElementById('progression-description'),
+    progressionSongsList: document.getElementById('progression-songs-list'),
+    progressionKeySelector: document.getElementById('progression-key-selector'),
+    progressionKey: document.getElementById('progression-key'),
+    progressionChords: document.getElementById('progression-chords'),
+    progressionSequence: document.getElementById('progression-sequence'),
+    // Shared
     chordDisplay: document.getElementById('chord-display'),
     currentChordName: document.getElementById('current-chord-name'),
     currentChordDiagram: document.getElementById('current-chord-diagram'),
@@ -49,7 +76,12 @@ const practiceElements = {
  * Initialize practice mode
  */
 function initPractice() {
-    // Set up event listeners
+    // Set up tab listeners
+    practiceElements.tabs.forEach(tab => {
+        tab.addEventListener('click', () => handleTabChange(tab.dataset.mode));
+    });
+
+    // Set up random mode event listeners
     practiceElements.tempoSlider.addEventListener('input', handleTempoChange);
     practiceElements.filterMajor.addEventListener('change', handleFilterChange);
     practiceElements.filterMinor.addEventListener('change', handleFilterChange);
@@ -57,13 +89,287 @@ function initPractice() {
     practiceElements.filterSharps.addEventListener('change', handleFilterChange);
     practiceElements.filterFlats.addEventListener('change', handleFilterChange);
     practiceElements.cycleSameRoot.addEventListener('change', handleCycleModeChange);
+
+    // Set up progression mode event listeners
+    practiceElements.progressionSearch.addEventListener('input', handleProgressionSearch);
+    practiceElements.progressionSearch.addEventListener('focus', () => showProgressionDropdown());
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.progression-search-wrapper')) {
+            hideProgressionDropdown();
+        }
+    });
+    practiceElements.progressionKey.addEventListener('change', handleProgressionKeyChange);
+
+    // Shared
     practiceElements.startStopBtn.addEventListener('click', togglePractice);
+
+    // Load progressions
+    loadProgressions();
 
     // Initialize chord pool
     updateChordPool();
 
     // Show initial state
     updateDisplay();
+}
+
+/**
+ * Show or hide the practice controls (chord display, beat indicator, start button)
+ */
+function showPracticeControls(show) {
+    const display = show ? '' : 'none';
+    practiceElements.chordDisplay.style.display = display;
+    practiceElements.beatIndicator.style.display = display;
+    practiceElements.startStopBtn.style.display = display;
+}
+
+/**
+ * Handle tab change between random and progression modes
+ */
+function handleTabChange(mode) {
+    // Stop if playing
+    if (practiceState.isPlaying) {
+        stopPractice();
+    }
+
+    practiceState.mode = mode;
+
+    // Update tab styles
+    practiceElements.tabs.forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.mode === mode);
+    });
+
+    // Show/hide sections
+    if (mode === 'random') {
+        practiceElements.randomControls.style.display = '';
+        practiceElements.progressionSection.style.display = 'none';
+        // Always show practice controls in random mode
+        showPracticeControls(true);
+    } else {
+        practiceElements.randomControls.style.display = 'none';
+        practiceElements.progressionSection.style.display = '';
+        // Hide practice controls until progression is selected
+        showPracticeControls(!!practiceState.selectedProgression);
+    }
+
+    // Reset display
+    practiceState.currentChord = null;
+    practiceState.nextChord = null;
+    updateDisplay();
+}
+
+/**
+ * Load progressions from JSON file
+ */
+async function loadProgressions() {
+    try {
+        const response = await fetch('progressions.json');
+        const data = await response.json();
+        practiceState.progressions = data.progressions;
+    } catch (error) {
+        console.error('Failed to load progressions:', error);
+    }
+}
+
+/**
+ * Handle progression search input
+ */
+function handleProgressionSearch() {
+    const query = practiceElements.progressionSearch.value.toLowerCase();
+    showProgressionDropdown(query);
+}
+
+/**
+ * Show progression dropdown with optional filter
+ */
+function showProgressionDropdown(filter = '') {
+    const dropdown = practiceElements.progressionDropdown;
+    dropdown.innerHTML = '';
+
+    const filtered = practiceState.progressions.filter(p =>
+        p.name.toLowerCase().includes(filter) ||
+        p.numerals.join('-').toLowerCase().includes(filter)
+    );
+
+    if (filtered.length === 0) {
+        dropdown.style.display = 'none';
+        return;
+    }
+
+    filtered.forEach(progression => {
+        const li = document.createElement('li');
+        li.className = 'progression-option';
+        li.innerHTML = `
+            <span class="progression-option-name">${progression.name}</span>
+            <span class="progression-option-numerals">(${progression.numerals.join(' - ')})</span>
+        `;
+        li.addEventListener('click', () => selectProgression(progression));
+        dropdown.appendChild(li);
+    });
+
+    dropdown.style.display = 'block';
+}
+
+/**
+ * Hide progression dropdown
+ */
+function hideProgressionDropdown() {
+    practiceElements.progressionDropdown.style.display = 'none';
+}
+
+/**
+ * Select a progression
+ */
+function selectProgression(progression) {
+    practiceState.selectedProgression = progression;
+    practiceElements.progressionSearch.value = progression.name;
+    hideProgressionDropdown();
+
+    // Show progression info
+    practiceElements.progressionInfo.style.display = '';
+    practiceElements.progressionName.textContent = progression.name;
+    practiceElements.progressionNumerals.textContent = progression.numerals.join(' - ');
+    practiceElements.progressionDescription.textContent = progression.description;
+
+    // Populate songs list
+    practiceElements.progressionSongsList.innerHTML = '';
+    progression.songs.forEach(song => {
+        const li = document.createElement('li');
+        li.textContent = song;
+        practiceElements.progressionSongsList.appendChild(li);
+    });
+
+    // Show key selector
+    practiceElements.progressionKeySelector.style.display = '';
+
+    // Show practice controls
+    showPracticeControls(true);
+
+    // Update chords for current key
+    updateProgressionChords();
+}
+
+/**
+ * Handle progression key change
+ */
+function handleProgressionKeyChange() {
+    practiceState.progressionKey = practiceElements.progressionKey.value;
+    updateProgressionChords();
+
+    // If playing, restart with new key
+    if (practiceState.isPlaying) {
+        practiceState.progressionIndex = 0;
+        practiceState.currentChord = practiceState.progressionChords[0];
+        practiceState.nextChord = practiceState.progressionChords[1] || practiceState.progressionChords[0];
+        updateDisplay();
+    }
+}
+
+/**
+ * Convert roman numeral to chord name in given key
+ */
+function numeralToChord(numeral, key) {
+    const isMinorKey = key.endsWith('m');
+    const rootKey = isMinorKey ? key.slice(0, -1) : key;
+
+    // Major scale degrees
+    const majorScale = {
+        'C': ['C', 'D', 'E', 'F', 'G', 'A', 'B'],
+        'G': ['G', 'A', 'B', 'C', 'D', 'E', 'F#'],
+        'D': ['D', 'E', 'F#', 'G', 'A', 'B', 'C#'],
+        'A': ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#'],
+        'E': ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#'],
+        'F': ['F', 'G', 'A', 'Bb', 'C', 'D', 'E'],
+        'Bb': ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A']
+    };
+
+    // Minor scale degrees (natural minor)
+    const minorScale = {
+        'A': ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
+        'E': ['E', 'F#', 'G', 'A', 'B', 'C', 'D'],
+        'D': ['D', 'E', 'F', 'G', 'A', 'Bb', 'C'],
+        'B': ['B', 'C#', 'D', 'E', 'F#', 'G', 'A']
+    };
+
+    const scale = isMinorKey ? (minorScale[rootKey] || majorScale[rootKey]) : majorScale[key];
+    if (!scale) return numeral;
+
+    // Parse numeral
+    const numeralMap = {
+        'I': 0, 'i': 0,
+        'II': 1, 'ii': 1,
+        'III': 2, 'iii': 2,
+        'IV': 3, 'iv': 3,
+        'V': 4, 'v': 4,
+        'VI': 5, 'vi': 5,
+        'VII': 6, 'vii': 6
+    };
+
+    // Extract base numeral and modifiers
+    // Match roman numerals I-VII (case sensitive for major/minor detection)
+    const match = numeral.match(/^(VII|VII|VI|VI|IV|IV|V|V|III|III|II|II|I|I|vii|vi|iv|v|iii|ii|i)(.*)/);
+    if (!match) return numeral;
+
+    const baseNumeral = match[1];
+    const modifier = match[2]; // e.g., '', 'm', '7', etc.
+
+    const degree = numeralMap[baseNumeral];
+    if (degree === undefined) return numeral;
+
+    const root = scale[degree];
+    const isLowerCase = baseNumeral === baseNumeral.toLowerCase();
+
+    // Build chord name
+    let chordName = root;
+    if (isLowerCase && !modifier.includes('m')) {
+        chordName += 'm';
+    }
+    if (modifier) {
+        chordName += modifier.replace('m', ''); // Avoid double 'm'
+    }
+
+    return chordName;
+}
+
+/**
+ * Update progression chords display for current key
+ */
+function updateProgressionChords() {
+    if (!practiceState.selectedProgression) return;
+
+    const key = practiceState.progressionKey;
+    const numerals = practiceState.selectedProgression.numerals;
+
+    // Convert numerals to chord names
+    practiceState.progressionChords = numerals.map(n => numeralToChord(n, key));
+
+    // Display chord diagrams
+    practiceElements.progressionChords.innerHTML = '';
+    practiceState.progressionChords.forEach((chordName, index) => {
+        const chordData = CHORDS[chordName];
+        if (chordData) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'progression-chord-item';
+
+            const numeral = document.createElement('div');
+            numeral.className = 'progression-chord-numeral';
+            numeral.textContent = numerals[index];
+            wrapper.appendChild(numeral);
+
+            const diagram = createChordDiagram(chordData, false, chordName, false, false);
+            wrapper.appendChild(diagram);
+
+            practiceElements.progressionChords.appendChild(wrapper);
+        }
+    });
+
+    // Show the containers
+    practiceElements.progressionChords.style.display = '';
+    practiceElements.progressionSequence.style.display = '';
+
+    // Display progression sequence
+    const sequenceText = practiceState.progressionChords.join(' → ');
+    practiceElements.progressionSequence.textContent = sequenceText;
 }
 
 /**
@@ -251,9 +557,24 @@ function getNextCycleChord() {
 }
 
 /**
+ * Get next chord in progression mode
+ */
+function getNextProgressionChord() {
+    if (practiceState.progressionChords.length === 0) return null;
+
+    practiceState.progressionIndex = (practiceState.progressionIndex + 1) % practiceState.progressionChords.length;
+    return practiceState.progressionChords[practiceState.progressionIndex];
+}
+
+/**
  * Get a random chord from the pool (avoiding the current chord)
  */
 function getRandomChord() {
+    // Use progression mode if enabled
+    if (practiceState.mode === 'progression') {
+        return getNextProgressionChord();
+    }
+
     // Use cycle mode if enabled
     if (practiceState.cycleSameRoot) {
         return getNextCycleChord();
@@ -287,23 +608,41 @@ function togglePractice() {
  * Start practice session
  */
 function startPractice() {
+    // Check if progression mode has a selected progression
+    if (practiceState.mode === 'progression' && !practiceState.selectedProgression) {
+        alert('Please select a progression first');
+        return;
+    }
+
     // Initialize audio context (needs user gesture)
     getAudioContext();
 
     practiceState.isPlaying = true;
     practiceState.currentBeat = 0;
+    practiceState.isCountingIn = true; // Start with count-in
+    practiceState.firstBeat = true; // Skip chord advance on first beat
 
-    // Reset cycle state
-    practiceState.currentRoot = null;
-    practiceState.rootCycleIndex = 0;
-    practiceState.rootChords = [];
+    if (practiceState.mode === 'progression') {
+        // Progression mode
+        practiceState.progressionIndex = 0;
+        // During count-in, show first chord in preview
+        practiceState.currentChord = null;
+        practiceState.nextChord = practiceState.progressionChords[0];
+    } else {
+        // Random mode
+        // Reset cycle state
+        practiceState.currentRoot = null;
+        practiceState.rootCycleIndex = 0;
+        practiceState.rootChords = [];
 
-    // Get initial chords
-    if (practiceState.cycleSameRoot) {
-        startNewRootCycle();
+        // Get initial chords
+        if (practiceState.cycleSameRoot) {
+            startNewRootCycle();
+        }
+        // During count-in, show first chord in preview
+        practiceState.currentChord = null;
+        practiceState.nextChord = getRandomChord();
     }
-    practiceState.currentChord = getRandomChord();
-    practiceState.nextChord = getRandomChord();
 
     updateDisplay();
     updateButtonState();
@@ -315,6 +654,7 @@ function startPractice() {
  */
 function stopPractice() {
     practiceState.isPlaying = false;
+    practiceState.isCountingIn = false;
     stopMetronome();
     updateButtonState();
     clearBeatIndicator();
@@ -346,6 +686,14 @@ function stopMetronome() {
  * Called on each beat
  */
 function onBeat() {
+    // Advance chord at the START of beat 1 (before tick plays)
+    // Skip on very first beat to preserve count-in
+    if (practiceState.currentBeat === 0 && !practiceState.firstBeat) {
+        advanceChord();
+        highlightTransition();
+    }
+    practiceState.firstBeat = false;
+
     // Play metronome tick
     const isAccent = practiceState.currentBeat === 0;
     playMetronomeTick(isAccent);
@@ -353,21 +701,8 @@ function onBeat() {
     // Update beat indicator
     updateBeatIndicator();
 
-    // Advance to next chord on beat 0 (except first time)
-    if (practiceState.currentBeat === 0 && practiceState.currentChord) {
-        // Only advance after the first 4 beats
-        if (practiceState.intervalId) {
-            highlightTransition();
-        }
-    }
-
     // Increment beat
     practiceState.currentBeat = (practiceState.currentBeat + 1) % 4;
-
-    // Advance chord after beat 4 (when we wrap to 0)
-    if (practiceState.currentBeat === 0) {
-        advanceChord();
-    }
 }
 
 /**
@@ -399,8 +734,21 @@ function playMetronomeTick(accent = false) {
  * Advance to the next chord
  */
 function advanceChord() {
-    practiceState.currentChord = practiceState.nextChord;
-    practiceState.nextChord = getRandomChord();
+    // If counting in, transition to first real chord
+    if (practiceState.isCountingIn) {
+        practiceState.isCountingIn = false;
+        practiceState.currentChord = practiceState.nextChord;
+
+        // Get the next chord after the first one
+        if (practiceState.mode === 'progression') {
+            practiceState.nextChord = practiceState.progressionChords[1] || practiceState.progressionChords[0];
+        } else {
+            practiceState.nextChord = getRandomChord();
+        }
+    } else {
+        practiceState.currentChord = practiceState.nextChord;
+        practiceState.nextChord = getRandomChord();
+    }
     updateDisplay();
 }
 
@@ -419,7 +767,11 @@ function highlightTransition() {
  */
 function updateDisplay() {
     // Update current chord
-    if (practiceState.currentChord && CHORDS[practiceState.currentChord]) {
+    if (practiceState.isCountingIn) {
+        // Show "Get Ready!" during count-in
+        practiceElements.currentChordName.textContent = 'Get Ready!';
+        practiceElements.currentChordDiagram.innerHTML = '';
+    } else if (practiceState.currentChord && CHORDS[practiceState.currentChord]) {
         practiceElements.currentChordName.textContent = practiceState.currentChord;
         practiceElements.currentChordDiagram.innerHTML = '';
 

@@ -1,0 +1,199 @@
+{
+  "progressions": [
+    {
+      "id": "axis",
+      "name": "Axis of Awesome",
+      "numerals": ["I", "V", "vi", "IV"],
+      "description": "The most common pop progression, used in hundreds of hit songs. Named after the comedy group that famously medleyed dozens of songs using this progression.",
+      "songs": [
+        "Let It Be - The Beatles",
+        "No Woman No Cry - Bob Marley",
+        "With or Without You - U2",
+        "Someone Like You - Adele",
+        "When I Come Around - Green Day"
+      ]
+    },
+    {
+      "id": "50s",
+      "name": "50s Doo-Wop",
+      "numerals": ["I", "vi", "IV", "V"],
+      "description": "The classic doo-wop progression from the 1950s. Creates a nostalgic, romantic feel that defined an era of music.",
+      "songs": [
+        "Stand By Me - Ben E. King",
+        "Earth Angel - The Penguins",
+        "Every Breath You Take - The Police",
+        "Unchained Melody - The Righteous Brothers",
+        "Beautiful Girls - Sean Kingston"
+      ]
+    },
+    {
+      "id": "sensitive",
+      "name": "Sensitive Female",
+      "numerals": ["vi", "IV", "I", "V"],
+      "description": "Starting on the minor vi chord gives this progression a more emotional, introspective quality. Popular in contemporary pop and indie music.",
+      "songs": [
+        "Grenade - Bruno Mars",
+        "Complicated - Avril Lavigne",
+        "Numb - Linkin Park",
+        "What About Us - Pink",
+        "Umbrella - Rihanna"
+      ]
+    },
+    {
+      "id": "andalusian",
+      "name": "Andalusian Cadence",
+      "numerals": ["i", "VII", "VI", "V"],
+      "description": "A descending progression with Spanish/Flamenco roots. Creates dramatic tension that resolves powerfully. Common in rock, metal, and Latin music.",
+      "songs": [
+        "Hit the Road Jack - Ray Charles",
+        "Smooth - Santana",
+        "Stairway to Heaven (intro) - Led Zeppelin",
+        "Sultans of Swing - Dire Straits",
+        "Bamboleo - Gipsy Kings"
+      ]
+    },
+    {
+      "id": "blues",
+      "name": "12-Bar Blues",
+      "numerals": ["I", "I", "I", "I", "IV", "IV", "I", "I", "V", "IV", "I", "V"],
+      "description": "The foundation of blues, rock and roll, and countless other genres. This 12-bar structure has been the backbone of popular music for over a century.",
+      "songs": [
+        "Johnny B. Goode - Chuck Berry",
+        "Hound Dog - Elvis Presley",
+        "Pride and Joy - Stevie Ray Vaughan",
+        "Rock Around the Clock - Bill Haley",
+        "The Thrill Is Gone - B.B. King"
+      ]
+    },
+    {
+      "id": "jazz-turnaround",
+      "name": "Jazz Turnaround",
+      "numerals": ["ii", "V", "I"],
+      "description": "The most important progression in jazz. The ii-V-I creates smooth voice leading and is the building block of jazz harmony.",
+      "songs": [
+        "Autumn Leaves - Various",
+        "Fly Me to the Moon - Frank Sinatra",
+        "All the Things You Are - Jerome Kern",
+        "Girl from Ipanema - Jobim",
+        "Satin Doll - Duke Ellington"
+      ]
+    },
+    {
+      "id": "pachelbel",
+      "name": "Pachelbel's Canon",
+      "numerals": ["I", "V", "vi", "iii", "IV", "I", "IV", "V"],
+      "description": "Based on the famous Baroque composition. This progression has been borrowed by countless pop songs for its elegant, flowing quality.",
+      "songs": [
+        "Canon in D - Pachelbel",
+        "Basket Case - Green Day",
+        "Graduation - Vitamin C",
+        "Hook - Blues Traveler",
+        "Cryin' - Aerosmith"
+      ]
+    },
+    {
+      "id": "minor-blues",
+      "name": "Minor Blues",
+      "numerals": ["i", "iv", "i", "V"],
+      "description": "A darker take on the blues progression. Common in minor key songs across rock, R&B, and soul music.",
+      "songs": [
+        "The House of the Rising Sun - The Animals",
+        "Ain't No Sunshine - Bill Withers",
+        "Black Magic Woman - Santana",
+        "Summertime - George Gershwin",
+        "Feeling Good - Nina Simone"
+      ]
+    },
+    {
+      "id": "classic-rock",
+      "name": "Classic Rock",
+      "numerals": ["I", "IV", "V"],
+      "description": "The simplest and most powerful progression. Just three chords that built rock and roll and countless folk songs.",
+      "songs": [
+        "Twist and Shout - The Beatles",
+        "Wild Thing - The Troggs",
+        "La Bamba - Ritchie Valens",
+        "Louie Louie - The Kingsmen",
+        "Good Riddance - Green Day"
+      ]
+    },
+    {
+      "id": "creep",
+      "name": "Creep Progression",
+      "numerals": ["I", "III", "IV", "iv"],
+      "description": "Named after the Radiohead song. The surprise major III and the minor iv (borrowed from parallel minor) create an unsettling, emotional quality.",
+      "songs": [
+        "Creep - Radiohead",
+        "Space Oddity - David Bowie",
+        "Lovefool - The Cardigans",
+        "Where Is My Mind - Pixies",
+        "Mad World - Tears for Fears"
+      ]
+    },
+    {
+      "id": "pop-punk",
+      "name": "Pop-Punk",
+      "numerals": ["I", "V", "vi", "iii", "IV"],
+      "description": "An extended version of the Axis progression with an added iii chord. Common in punk and pop-punk music.",
+      "songs": [
+        "All the Small Things - Blink-182",
+        "Good Riddance - Green Day",
+        "I Miss You - Blink-182",
+        "Sugar We're Goin Down - Fall Out Boy",
+        "Ocean Avenue - Yellowcard"
+      ]
+    },
+    {
+      "id": "royal-road",
+      "name": "Royal Road",
+      "numerals": ["IV", "V", "iii", "vi"],
+      "description": "Popular in Japanese pop and anime music. Creates a sense of forward momentum and emotional resolution.",
+      "songs": [
+        "Various J-Pop songs",
+        "Many anime opening themes",
+        "K-Pop ballads",
+        "Video game music",
+        "Contemporary Asian pop"
+      ]
+    },
+    {
+      "id": "reggae",
+      "name": "Reggae",
+      "numerals": ["I", "IV", "V", "IV"],
+      "description": "A laid-back progression common in reggae and ska. The return to IV before repeating creates a relaxed, cyclical feel.",
+      "songs": [
+        "Three Little Birds - Bob Marley",
+        "Redemption Song - Bob Marley",
+        "Santeria - Sublime",
+        "What I Got - Sublime",
+        "Bad Boys - Inner Circle"
+      ]
+    },
+    {
+      "id": "minor-descending",
+      "name": "Minor Descending",
+      "numerals": ["i", "VII", "VI", "VII"],
+      "description": "A minor progression that descends then ascends. Creates a moody, contemplative atmosphere popular in modern pop and R&B.",
+      "songs": [
+        "Stairway to Heaven - Led Zeppelin",
+        "Babe I'm Gonna Leave You - Led Zeppelin",
+        "While My Guitar Gently Weeps - Beatles",
+        "Writing's on the Wall - Sam Smith",
+        "Hello - Adele"
+      ]
+    },
+    {
+      "id": "emotional",
+      "name": "Emotional Pop",
+      "numerals": ["vi", "V", "IV", "V"],
+      "description": "Starting and staying in minor territory with major chords providing lift. Creates bittersweet, anthemic feelings.",
+      "songs": [
+        "Wake Me Up - Avicii",
+        "Counting Stars - OneRepublic",
+        "Believer - Imagine Dragons",
+        "Titanium - David Guetta",
+        "Radioactive - Imagine Dragons"
+      ]
+    }
+  ]
+}

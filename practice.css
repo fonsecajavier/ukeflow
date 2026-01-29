@@ -249,6 +249,255 @@
     font-size: 1rem;
 }
 
+/* Practice Mode Tabs */
+.practice-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.practice-tab {
+    flex: 1;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #888;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.practice-tab:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ccc;
+}
+
+.practice-tab.active {
+    background: rgba(243, 156, 18, 0.15);
+    border-color: #f39c12;
+    color: #f39c12;
+}
+
+/* Progression Section */
+.progression-section {
+    margin-bottom: 20px;
+}
+
+/* Progression Search */
+.progression-selector {
+    margin-bottom: 20px;
+}
+
+.progression-search-wrapper {
+    position: relative;
+    max-width: 400px;
+}
+
+#progression-search {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+#progression-search:focus {
+    border-color: #3498db;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+#progression-search::placeholder {
+    color: #666;
+}
+
+/* Progression Dropdown */
+.progression-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: #1a1a2e;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.progression-option {
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.progression-option:hover {
+    background: rgba(243, 156, 18, 0.2);
+}
+
+.progression-option-name {
+    font-weight: 600;
+    color: #fff;
+}
+
+.progression-option-numerals {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+/* Progression Info */
+.progression-info {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.progression-header {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.progression-header h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #f39c12;
+}
+
+.progression-numerals {
+    font-size: 1.1rem;
+    color: #3498db;
+    font-weight: 600;
+}
+
+.progression-description {
+    color: #aaa;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.progression-songs h4 {
+    margin: 0 0 8px 0;
+    font-size: 0.9rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.progression-songs ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.progression-songs li {
+    padding: 5px 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #ccc;
+}
+
+/* Progression Key Selector */
+.progression-key-selector {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.progression-key-selector label {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+#progression-key {
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+#progression-key:focus {
+    border-color: #3498db;
+}
+
+#progression-key option {
+    background: #1a1a2e;
+    color: #fff;
+}
+
+/* Progression Chords Display */
+.progression-chords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+}
+
+.progression-chord-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: transform 0.15s ease;
+}
+
+.progression-chord-item:hover {
+    transform: scale(1.05);
+}
+
+.progression-chord-numeral {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #3498db;
+    margin-bottom: 5px;
+}
+
+/* Progression Sequence */
+.progression-sequence {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #f39c12;
+    padding: 15px;
+    background: rgba(243, 156, 18, 0.1);
+    border-radius: 8px;
+    margin-top: 15px;
+    letter-spacing: 0.5px;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
     .practice-controls {
@@ -283,5 +532,26 @@
 
     .practice-area {
         flex-direction: column;
+    }
+
+    .practice-tabs {
+        flex-direction: column;
+    }
+
+    .progression-header {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .progression-songs ul {
+        flex-direction: column;
+    }
+
+    .progression-chords {
+        gap: 10px;
+    }
+
+    .progression-chord-item {
+        padding: 8px;
     }
 }

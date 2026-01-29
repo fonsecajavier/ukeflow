@@ -1,9 +1,13 @@
 # Practice Mode
 
-A chord transition practice tool with metronome.
+A chord transition practice tool with metronome supporting both random chords and structured progressions.
 
-## Features
+## Two Practice Modes
 
+### Random Chords Mode
+Practice with randomly selected chords based on filters.
+
+**Features:**
 - **Metronome**: Plays tick on each beat (accent on beat 1)
 - **Random chords**: Displays a new chord every 4 beats
 - **Next chord preview**: Shows upcoming chord in corner
@@ -14,16 +18,30 @@ A chord transition practice tool with metronome.
 - **Beat indicator**: 4 dots showing current beat
 - **Transition animation**: Subtle pulse on chord change
 
+### Progression Mode
+Practice common chord progressions used in popular songs.
+
+**Features:**
+- **Progression search**: Search by name or roman numerals
+- **15 common progressions**: Axis of Awesome, 50s Doo-Wop, Blues, Jazz, and more
+- **Trivia & description**: Learn about each progression's history and style
+- **Popular songs**: 5 example songs for each progression
+- **Key selector**: Transpose to any key (C, G, D, A, E, F, Bb, Am, Em, Dm, Bm)
+- **Chord diagrams**: Visual display of all chords in the progression
+- **Loop playback**: Cycles through progression chords with metronome
+
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `practice.html` | Page structure, loads shared scripts + practice.js |
+| `practice.html` | Page structure with tabs for both modes |
 | `practice.css` | Layout, animations, responsive styles |
-| `practice.js` | Metronome loop, chord selection, UI updates |
+| `practice.js` | Metronome loop, chord selection, progression logic |
+| `progressions.json` | Library of 15 common progressions with metadata |
 
 ## How It Works
 
+### Random Mode
 1. User clicks Start
 2. Metronome begins at selected tempo
 3. Random chord from filtered pool displayed
@@ -31,10 +49,40 @@ A chord transition practice tool with metronome.
 5. Next chord always shown in preview corner
 6. Filters update chord pool in real-time
 
+### Progression Mode
+1. User searches and selects a progression
+2. Info panel shows description and example songs
+3. User selects key (default: C)
+4. All chord diagrams displayed with roman numerals
+5. User clicks Start
+6. Metronome cycles through progression chords in order
+7. Loops back to first chord after completing progression
+
+## Progressions Library
+
+| ID | Name | Numerals |
+|----|------|----------|
+| axis | Axis of Awesome | I - V - vi - IV |
+| 50s | 50s Doo-Wop | I - vi - IV - V |
+| sensitive | Sensitive Female | vi - IV - I - V |
+| andalusian | Andalusian Cadence | i - VII - VI - V |
+| blues | 12-Bar Blues | I - I - I - I - IV - IV - I - I - V - IV - I - V |
+| jazz-turnaround | Jazz Turnaround | ii - V - I |
+| pachelbel | Pachelbel's Canon | I - V - vi - iii - IV - I - IV - V |
+| minor-blues | Minor Blues | i - iv - i - V |
+| classic-rock | Classic Rock | I - IV - V |
+| creep | Creep Progression | I - III - IV - iv |
+| pop-punk | Pop-Punk | I - V - vi - iii - IV |
+| royal-road | Royal Road | IV - V - iii - vi |
+| reggae | Reggae | I - IV - V - IV |
+| minor-descending | Minor Descending | i - VII - VI - VII |
+| emotional | Emotional Pop | vi - V - IV - V |
+
 ## Reused Components
 
 From main app:
 - `CHORDS` object (chords.js)
 - `createChordSVG()` (ui.js)
+- `createChordDiagram()` (ui.js)
 - `getAudioContext()` (audio.js)
 - Color scheme and chord diagram styles (styles.css)
