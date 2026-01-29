@@ -87,6 +87,7 @@
       "lyrics": "I am titanium",
       "chords": [
         { "chord": "Cm", "position": 0 },
+        { "chord": "Csus2", "position": 5 },
         { "chord": "Ab", "position": 9 }
       ]
     },
@@ -101,6 +102,7 @@
       "lyrics": "I am titanium",
       "chords": [
         { "chord": "Cm", "position": 0 },
+        { "chord": "Csus2", "position": 5 },
         { "chord": "Ab", "position": 9 }
       ]
     },
@@ -197,6 +199,7 @@
       "lyrics": "I am titanium",
       "chords": [
         { "chord": "Cm", "position": 0 },
+        { "chord": "Csus2", "position": 5 },
         { "chord": "Ab", "position": 9 }
       ]
     },
@@ -211,6 +214,7 @@
       "lyrics": "I am titanium",
       "chords": [
         { "chord": "Cm", "position": 0 },
+        { "chord": "Csus2", "position": 5 },
         { "chord": "Ab", "position": 9 }
       ]
     },
@@ -250,6 +254,7 @@
       "lyrics": "I am titanium",
       "chords": [
         { "chord": "Cm", "position": 0 },
+        { "chord": "Csus2", "position": 5 },
         { "chord": "Ab", "position": 9 }
       ]
     },
@@ -264,6 +269,7 @@
       "lyrics": "I am titanium",
       "chords": [
         { "chord": "Cm", "position": 0 },
+        { "chord": "Csus2", "position": 5 },
         { "chord": "Ab", "position": 9 }
       ]
     }
