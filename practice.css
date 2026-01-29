@@ -142,11 +142,18 @@
     margin-bottom: 20px;
 }
 
-/* Next Chord Preview */
-.next-chord-preview {
+/* Next Chord Wrapper */
+.next-chord-wrapper {
     position: absolute;
     bottom: 0;
     right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Next Chord Preview */
+.next-chord-preview {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -278,6 +285,46 @@
     background: rgba(243, 156, 18, 0.15);
     border-color: #f39c12;
     color: #f39c12;
+}
+
+/* Shared Tempo Section */
+.tempo-section {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Sound Toggle Button */
+.sound-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-bottom: 5px;
+}
+
+.sound-toggle:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ccc;
+}
+
+.sound-toggle.active {
+    background: rgba(243, 156, 18, 0.2);
+    border-color: #f39c12;
+    color: #f39c12;
+}
+
+.sound-icon {
+    pointer-events: none;
 }
 
 /* Progression Section */

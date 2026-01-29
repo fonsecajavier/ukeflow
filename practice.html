@@ -16,12 +16,21 @@
 
         <!-- Mode Tabs -->
         <div class="practice-tabs">
-            <button class="practice-tab active" data-mode="random">Random Chords</button>
-            <button class="practice-tab" data-mode="progression">Progressions</button>
+            <button class="practice-tab active" data-mode="progression">Progressions</button>
+            <button class="practice-tab" data-mode="random">Random Chords</button>
+        </div>
+
+        <!-- Shared Tempo Control -->
+        <div class="tempo-section" id="tempo-section" style="display: none;">
+            <div class="tempo-control">
+                <label for="tempo-slider">Tempo:</label>
+                <input type="range" id="tempo-slider" min="60" max="180" value="120">
+                <span id="tempo-display">120 BPM</span>
+            </div>
         </div>
 
         <!-- Progression Mode -->
-        <div class="progression-section" id="progression-section" style="display: none;">
+        <div class="progression-section" id="progression-section">
             <div class="progression-selector">
                 <div class="progression-search-wrapper">
                     <input type="text" id="progression-search" placeholder="Search progressions..." autocomplete="off">
@@ -63,13 +72,7 @@
         </div>
 
         <!-- Random Chords Mode Controls -->
-        <div class="practice-controls" id="random-controls">
-            <div class="tempo-control">
-                <label for="tempo-slider">Tempo:</label>
-                <input type="range" id="tempo-slider" min="60" max="180" value="60">
-                <span id="tempo-display">60 BPM</span>
-            </div>
-
+        <div class="practice-controls" id="random-controls" style="display: none;">
             <div class="chord-filters">
                 <label>Chords:</label>
                 <label class="filter-checkbox">
@@ -109,26 +112,33 @@
 
         <!-- Shared Practice Area -->
         <div class="practice-area">
-            <div class="chord-display" id="chord-display">
+            <div class="chord-display" id="chord-display" style="display: none;">
                 <div class="chord-name" id="current-chord-name">Press Start</div>
                 <div id="current-chord-diagram"></div>
             </div>
 
-            <div class="next-chord-preview" id="next-chord-preview">
-                <div class="next-label">Next:</div>
-                <div class="next-chord-name" id="next-chord-name">-</div>
-                <div id="next-chord-diagram"></div>
+            <div class="next-chord-wrapper">
+                <button class="sound-toggle active" id="sound-toggle" title="Play chord sound">
+                    <svg class="sound-icon" viewBox="0 0 24 24" width="16" height="16">
+                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" fill="currentColor"/>
+                    </svg>
+                </button>
+                <div class="next-chord-preview" id="next-chord-preview">
+                    <div class="next-label">Next:</div>
+                    <div class="next-chord-name" id="next-chord-name">-</div>
+                    <div id="next-chord-diagram"></div>
+                </div>
             </div>
         </div>
 
-        <div class="beat-indicator" id="beat-indicator">
+        <div class="beat-indicator" id="beat-indicator" style="display: none;">
             <span class="beat-dot" data-beat="0"></span>
             <span class="beat-dot" data-beat="1"></span>
             <span class="beat-dot" data-beat="2"></span>
             <span class="beat-dot" data-beat="3"></span>
         </div>
 
-        <button class="start-stop-btn" id="start-stop-btn">
+        <button class="start-stop-btn" id="start-stop-btn" style="display: none;">
             <span class="btn-icon">&#9654;</span>
             <span class="btn-text">Start</span>
         </button>

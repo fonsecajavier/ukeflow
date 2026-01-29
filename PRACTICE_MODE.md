@@ -4,22 +4,7 @@ A chord transition practice tool with metronome supporting both random chords an
 
 ## Two Practice Modes
 
-### Random Chords Mode
-Practice with randomly selected chords based on filters.
-
-**Features:**
-- **Metronome**: Plays tick on each beat (accent on beat 1)
-- **Random chords**: Displays a new chord every 4 beats
-- **Next chord preview**: Shows upcoming chord in corner
-- **Tempo control**: 60-180 BPM slider (default: 60)
-- **Chord type filters**: Major, Minor, 7th (Major & Minor on by default)
-- **Accidental filters**: Sharps (#), Flats (b) (both off by default for natural chords only)
-- **Cycle same root**: When enabled, cycles through all selected chord types for the same root (e.g., A → Am → A7) before moving to a new root
-- **Beat indicator**: 4 dots showing current beat
-- **Transition animation**: Subtle pulse on chord change
-- **Count-in**: 4-beat preparation showing "Get Ready!" before first chord
-
-### Progression Mode
+### Progression Mode (Default)
 Practice common chord progressions used in popular songs.
 
 **Features:**
@@ -31,6 +16,22 @@ Practice common chord progressions used in popular songs.
 - **Chord diagrams**: Visual display of all chords in the progression
 - **Progression sequence**: Shows chord flow below diagrams (e.g., "C → G → Am → F")
 - **Loop playback**: Cycles through progression chords with metronome
+- **Count-in**: 4-beat preparation showing "Get Ready!" before first chord
+- **Bookmarkable URLs**: Progression, key, and tempo saved in URL for sharing
+
+### Random Chords Mode
+Practice with randomly selected chords based on filters.
+
+**Features:**
+- **Metronome**: Plays tick on each beat (accent on beat 1)
+- **Random chords**: Displays a new chord every 4 beats
+- **Next chord preview**: Shows upcoming chord in corner
+- **Tempo control**: 60-180 BPM slider (default: 120)
+- **Chord type filters**: Major, Minor, 7th (Major & Minor on by default)
+- **Accidental filters**: Sharps (#), Flats (b) (both off by default for natural chords only)
+- **Cycle same root**: When enabled, cycles through all selected chord types for the same root (e.g., A → Am → A7) before moving to a new root
+- **Beat indicator**: 4 dots showing current beat
+- **Transition animation**: Subtle pulse on chord change
 - **Count-in**: 4-beat preparation showing "Get Ready!" before first chord
 
 ## Files
@@ -44,26 +45,28 @@ Practice common chord progressions used in popular songs.
 
 ## How It Works
 
-### Random Mode
-1. User clicks Start
-2. "Get Ready!" displays with first chord in preview corner
-3. Metronome plays 4-beat count-in
-4. On beat 1 of next measure, first chord appears
-5. After 4 beats, advances to next chord with subtle animation
-6. Next chord always shown in preview corner
-7. Filters update chord pool in real-time
-
 ### Progression Mode
 1. User searches and selects a progression
 2. Info panel shows description and example songs
-3. User selects key (default: C)
+3. User selects key (default: C) and tempo
 4. All chord diagrams displayed with roman numerals
 5. Progression sequence shown below (e.g., "C → G → Am → F")
-6. User clicks Start
-7. "Get Ready!" displays with first chord in preview
-8. After 4-beat count-in, first chord appears on beat 1
-9. Metronome cycles through progression chords in order
-10. Loops back to first chord after completing progression
+6. URL updates for bookmarking (e.g., `?progression=axis&key=G&tempo=90`)
+7. User clicks Start
+8. "Get Ready!" displays with first chord in preview
+9. After 4-beat count-in, first chord appears on beat 1
+10. Metronome cycles through progression chords in order
+11. Loops back to first chord after completing progression
+
+### Random Mode
+1. User switches to Random Chords tab
+2. User clicks Start
+3. "Get Ready!" displays with first chord in preview corner
+4. Metronome plays 4-beat count-in
+5. On beat 1 of next measure, first chord appears
+6. After 4 beats, advances to next chord with subtle animation
+7. Next chord always shown in preview corner
+8. Filters update chord pool in real-time
 
 ## Progressions Library
 

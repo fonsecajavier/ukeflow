@@ -9,7 +9,7 @@ const practiceState = {
     currentChord: null,
     nextChord: null,
     currentBeat: 0,
-    tempo: 60,
+    tempo: 120,
     intervalId: null,
     chordPool: [],
     filters: {
@@ -24,14 +24,16 @@ const practiceState = {
     rootCycleIndex: 0,
     rootChords: [],
     // Progression mode
-    mode: 'random', // 'random' or 'progression'
+    mode: 'progression', // 'random' or 'progression'
     progressions: [],
     selectedProgression: null,
     progressionKey: 'C',
     progressionChords: [],
     progressionIndex: 0,
     // Count-in
-    isCountingIn: false
+    isCountingIn: false,
+    // Sound
+    playChordSound: true
 };
 
 // DOM elements
@@ -62,6 +64,8 @@ const practiceElements = {
     progressionChords: document.getElementById('progression-chords'),
     progressionSequence: document.getElementById('progression-sequence'),
     // Shared
+    tempoSection: document.getElementById('tempo-section'),
+    soundToggle: document.getElementById('sound-toggle'),
     chordDisplay: document.getElementById('chord-display'),
     currentChordName: document.getElementById('current-chord-name'),
     currentChordDiagram: document.getElementById('current-chord-diagram'),
@@ -102,6 +106,7 @@ function initPractice() {
 
     // Shared
     practiceElements.startStopBtn.addEventListener('click', togglePractice);
+    practiceElements.soundToggle.addEventListener('click', handleSoundToggle);
 
     // Load progressions
     loadProgressions();
@@ -114,10 +119,11 @@ function initPractice() {
 }
 
 /**
- * Show or hide the practice controls (chord display, beat indicator, start button)
+ * Show or hide the practice controls (tempo, chord display, beat indicator, start button)
  */
 function showPracticeControls(show) {
     const display = show ? '' : 'none';
+    practiceElements.tempoSection.style.display = display;
     practiceElements.chordDisplay.style.display = display;
     practiceElements.beatIndicator.style.display = display;
     practiceElements.startStopBtn.style.display = display;
@@ -166,6 +172,9 @@ async function loadProgressions() {
         const response = await fetch('progressions.json');
         const data = await response.json();
         practiceState.progressions = data.progressions;
+
+        // Check URL for bookmarked progression
+        loadFromUrlParams();
     } catch (error) {
         console.error('Failed to load progressions:', error);
     }
@@ -220,7 +229,7 @@ function hideProgressionDropdown() {
 /**
  * Select a progression
  */
-function selectProgression(progression) {
+function selectProgression(progression, updateUrl = true) {
     practiceState.selectedProgression = progression;
     practiceElements.progressionSearch.value = progression.name;
     hideProgressionDropdown();
@@ -247,6 +256,66 @@ function selectProgression(progression) {
 
     // Update chords for current key
     updateProgressionChords();
+
+    // Update URL with progression and key
+    if (updateUrl) {
+        updateUrlParams();
+    }
+}
+
+/**
+ * Update URL with current progression, key, and tempo
+ */
+function updateUrlParams() {
+    const params = new URLSearchParams();
+    if (practiceState.selectedProgression) {
+        params.set('progression', practiceState.selectedProgression.id);
+        params.set('key', practiceState.progressionKey);
+    }
+    if (practiceState.tempo !== 120) {
+        params.set('tempo', practiceState.tempo);
+    }
+    const newUrl = params.toString()
+        ? `${window.location.pathname}?${params.toString()}`
+        : window.location.pathname;
+    window.history.replaceState({}, '', newUrl);
+}
+
+/**
+ * Load progression from URL params
+ */
+function loadFromUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    const progressionId = params.get('progression');
+    const key = params.get('key');
+    const tempo = params.get('tempo');
+
+    // Set tempo if provided
+    if (tempo) {
+        const tempoValue = parseInt(tempo);
+        if (tempoValue >= 60 && tempoValue <= 180) {
+            practiceState.tempo = tempoValue;
+            practiceElements.tempoSlider.value = tempoValue;
+            practiceElements.tempoDisplay.textContent = `${tempoValue} BPM`;
+        }
+    }
+
+    if (progressionId && practiceState.progressions.length > 0) {
+        const progression = practiceState.progressions.find(p => p.id === progressionId);
+        if (progression) {
+            // Switch to progression tab
+            handleTabChange('progression');
+
+            // Set key if provided
+            if (key) {
+                practiceState.progressionKey = key;
+                practiceElements.progressionKey.value = key;
+            }
+
+            // Select the progression (don't update URL again)
+            selectProgression(progression, false);
+        }
+    }
 }
 
 /**
@@ -255,6 +324,7 @@ function selectProgression(progression) {
 function handleProgressionKeyChange() {
     practiceState.progressionKey = practiceElements.progressionKey.value;
     updateProgressionChords();
+    updateUrlParams();
 
     // If playing, restart with new key
     if (practiceState.isPlaying) {
@@ -378,11 +448,32 @@ function updateProgressionChords() {
 function handleTempoChange() {
     practiceState.tempo = parseInt(practiceElements.tempoSlider.value);
     practiceElements.tempoDisplay.textContent = `${practiceState.tempo} BPM`;
+    updateUrlParams();
 
     // If playing, restart with new tempo
     if (practiceState.isPlaying) {
         stopMetronome();
         startMetronome();
+    }
+}
+
+/**
+ * Handle sound toggle button click
+ */
+function handleSoundToggle() {
+    practiceState.playChordSound = !practiceState.playChordSound;
+    practiceElements.soundToggle.classList.toggle('active', practiceState.playChordSound);
+}
+
+/**
+ * Play the current chord as a downroll strum
+ */
+function playCurrentChordSound() {
+    if (!practiceState.playChordSound || !practiceState.currentChord) return;
+
+    const chordData = CHORDS[practiceState.currentChord];
+    if (chordData && typeof playChord === 'function') {
+        playChord(chordData);
     }
 }
 
@@ -750,6 +841,7 @@ function advanceChord() {
         practiceState.nextChord = getRandomChord();
     }
     updateDisplay();
+    playCurrentChordSound();
 }
 
 /**
