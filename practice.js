@@ -232,7 +232,7 @@ function hideProgressionDropdown() {
 /**
  * Select a progression
  */
-function selectProgression(progression, updateUrl = true) {
+function selectProgression(progression, updateUrl = true, useDefaultKey = true) {
     practiceState.selectedProgression = progression;
     practiceElements.progressionSearch.value = progression.name;
     hideProgressionDropdown();
@@ -253,6 +253,13 @@ function selectProgression(progression, updateUrl = true) {
 
     // Show key selector
     practiceElements.progressionKeySelector.style.display = '';
+
+    // Set default key based on progression mode (if not overridden by URL)
+    if (useDefaultKey) {
+        const defaultKey = progression.mode === 'minor' ? 'Am' : 'C';
+        practiceState.progressionKey = defaultKey;
+        practiceElements.progressionKey.value = defaultKey;
+    }
 
     // Show practice controls
     showPracticeControls(true);
@@ -309,14 +316,14 @@ function loadFromUrlParams() {
             // Switch to progression tab
             handleTabChange('progression');
 
-            // Set key if provided
+            // Set key if provided in URL
             if (key) {
                 practiceState.progressionKey = key;
                 practiceElements.progressionKey.value = key;
             }
 
-            // Select the progression (don't update URL again)
-            selectProgression(progression, false);
+            // Select the progression (don't update URL, and don't use default key if URL had one)
+            selectProgression(progression, false, !key);
         }
     }
 }
