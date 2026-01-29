@@ -8,7 +8,8 @@
     {
       "lyrics": "Today is gonna be the day",
       "chords": [
-        { "chord": "A", "position": 0 }
+        { "chord": "F#m", "position": 0 },
+        { "chord": "A", "position": 13 }
       ]
     },
     {
