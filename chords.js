@@ -191,8 +191,8 @@ const CHORDS = {
     },
     'C#m': {
         name: 'C#m',
-        frets: [1, 1, 0, 0],
-        fingers: [1, 2, 0, 0],
+        frets: [1, 1, 0, 4],
+        fingers: [1, 2, 0, 4],
         barre: null,
         baseFret: 1
     },
@@ -205,9 +205,9 @@ const CHORDS = {
     },
     'Bbm': {
         name: 'Bbm',
-        frets: [1, 1, 1, 1],
-        fingers: [1, 1, 1, 1],
-        barre: { fret: 1, fromString: 0, toString: 3 },
+        frets: [3, 1, 1, 1],
+        fingers: [3, 1, 1, 1],
+        barre: { fret: 1, fromString: 1, toString: 3 },
         baseFret: 1
     },
     'Ebm': {
@@ -219,9 +219,9 @@ const CHORDS = {
     },
     'A#m': {
         name: 'A#m',
-        frets: [1, 1, 1, 1],
-        fingers: [1, 1, 1, 1],
-        barre: { fret: 1, fromString: 0, toString: 3 },
+        frets: [3, 1, 1, 1],
+        fingers: [3, 1, 1, 1],
+        barre: { fret: 1, fromString: 1, toString: 3 },
         baseFret: 1
     },
     'D#m': {
@@ -240,8 +240,8 @@ const CHORDS = {
     },
     'Dbm': {
         name: 'Dbm',
-        frets: [1, 1, 0, 0],
-        fingers: [1, 2, 0, 0],
+        frets: [1, 1, 0, 4],
+        fingers: [1, 2, 0, 4],
         barre: null,
         baseFret: 1
     },
