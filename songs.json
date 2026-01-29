@@ -30,6 +30,7 @@
     { "path": "songs/salvame.json", "title": "Sálvame", "artist": "RBD" },
     { "path": "songs/vuelve.json", "title": "Vuelve", "artist": "Latin Dreams" },
     { "path": "songs/happy-birthday.json", "title": "Happy Birthday", "artist": "Traditional" },
-    { "path": "songs/despacito.json", "title": "Despacito", "artist": "Luis Fonsi ft. Daddy Yankee" }
+    { "path": "songs/despacito.json", "title": "Despacito", "artist": "Luis Fonsi ft. Daddy Yankee" },
+    { "path": "songs/titanium.json", "title": "Titanium", "artist": "David Guetta ft. Sia" }
   ]
 }

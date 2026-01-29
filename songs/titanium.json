@@ -1,0 +1,271 @@
+{
+  "title": "Titanium",
+  "artist": "David Guetta ft. Sia",
+  "key": "Eb",
+  "spotify": "https://open.spotify.com/track/0lHAMNU8RGiIObScrsRgmP",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "You shout it out",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Bb", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "but I can't hear a word you say",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Ab", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "I'm talking loud not saying much",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Bb", "position": 17 },
+        { "chord": "Cm", "position": 20 },
+        { "chord": "Ab", "position": 23 }
+      ]
+    },
+    {
+      "lyrics": "I'm criticized but all your bullets ricochet",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Bb", "position": 14 },
+        { "chord": "Cm", "position": 19 },
+        { "chord": "Ab", "position": 40 }
+      ]
+    },
+    {
+      "lyrics": "You shoot me down, but I get up",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Bb", "position": 17 },
+        { "chord": "Cm", "position": 20 },
+        { "chord": "Ab", "position": 23 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "I'm bulletproof, nothing to lose",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Bb", "position": 16 },
+        { "chord": "Gm", "position": 25 }
+      ]
+    },
+    {
+      "lyrics": "fire away, fire away",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Ab", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "ricochet, you take your aim",
+      "chords": [
+        { "chord": "Bb", "position": 0 },
+        { "chord": "Gm", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "fire away, fire away",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Ab", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "you shoot me down but I won't fall",
+      "chords": [
+        { "chord": "Bb", "position": 0 },
+        { "chord": "Gm", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "I am titanium",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Ab", "position": 9 }
+      ]
+    },
+    {
+      "lyrics": "you shoot me down but I won't fall",
+      "chords": [
+        { "chord": "Bb", "position": 0 },
+        { "chord": "Gm", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "I am titanium",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Ab", "position": 9 }
+      ]
+    },
+    { "section": "Interlude" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Bb", "position": 4 },
+        { "chord": "Cm", "position": 8 },
+        { "chord": "Ab", "position": 12 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Cut me down",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Bb", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "but it's you who'll have further to fall",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Ab", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "Ghost town, haunted love",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Bb", "position": 11 },
+        { "chord": "Cm", "position": 15 },
+        { "chord": "Ab", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Raise your voice, sticks and stones may break my bones",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Bb", "position": 15 },
+        { "chord": "Cm", "position": 20 },
+        { "chord": "Ab", "position": 45 }
+      ]
+    },
+    {
+      "lyrics": "I'm talking loud not saying much",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Bb", "position": 16 },
+        { "chord": "Cm", "position": 20 },
+        { "chord": "Ab", "position": 23 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "I'm bulletproof, nothing to lose",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Bb", "position": 16 },
+        { "chord": "Gm", "position": 25 }
+      ]
+    },
+    {
+      "lyrics": "fire away, fire away",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Ab", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "ricochet, you take your aim",
+      "chords": [
+        { "chord": "Bb", "position": 0 },
+        { "chord": "Gm", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "fire away, fire away",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Ab", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "you shoot me down but I won't fall",
+      "chords": [
+        { "chord": "Bb", "position": 0 },
+        { "chord": "Gm", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "I am titanium",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Ab", "position": 9 }
+      ]
+    },
+    {
+      "lyrics": "you shoot me down but I won't fall",
+      "chords": [
+        { "chord": "Bb", "position": 0 },
+        { "chord": "Gm", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "I am titanium",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Ab", "position": 9 }
+      ]
+    },
+    { "section": "Bridge" },
+    {
+      "lyrics": "Stone-hard, machine gun",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Bb", "position": 12 },
+        { "chord": "Gm", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Firing at the ones who run",
+      "chords": [
+        { "chord": "Cm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "stone hard, as bulletproof glass",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Bb", "position": 12 },
+        { "chord": "Cm", "position": 24 }
+      ]
+    },
+    { "section": "Final Chorus" },
+    {
+      "lyrics": "You shoot me down but I won't fall",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Bb", "position": 17 },
+        { "chord": "Gm", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "I am titanium",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Ab", "position": 9 }
+      ]
+    },
+    {
+      "lyrics": "You shoot me down but I won't fall",
+      "chords": [
+        { "chord": "Bb", "position": 0 },
+        { "chord": "Gm", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "I am titanium",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Ab", "position": 9 }
+      ]
+    }
+  ]
+}
