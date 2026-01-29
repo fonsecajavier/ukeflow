@@ -46,10 +46,19 @@ function getAudioContext() {
     if (!audioContext) {
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
     }
-    if (audioContext.state === 'suspended') {
-        audioContext.resume();
-    }
     return audioContext;
+}
+
+/**
+ * Ensure audio context is ready to play (handles iOS suspend/resume)
+ * @returns {Promise<AudioContext>}
+ */
+async function ensureAudioReady() {
+    const ctx = getAudioContext();
+    if (ctx.state === 'suspended') {
+        await ctx.resume();
+    }
+    return ctx;
 }
 
 /**
@@ -308,8 +317,8 @@ function playChunk(startTime) {
  * Play a chord using the selected play style
  * Requires: currentPlayStyle, currentBPM, getPlayStyle, getBeat from patterns.js
  */
-function playChord(chordData) {
-    const ctx = getAudioContext();
+async function playChord(chordData) {
+    const ctx = await ensureAudioReady();
     const now = ctx.currentTime;
     const styleConfig = getPlayStyle(currentPlayStyle);
     const pattern = styleConfig.pattern;
@@ -353,6 +362,6 @@ function playChord(chordData) {
 }
 
 // Keep old function name for compatibility
-function playChordArpeggio(chordData) {
-    playChord(chordData);
+async function playChordArpeggio(chordData) {
+    await playChord(chordData);
 }

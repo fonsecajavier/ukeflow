@@ -744,15 +744,15 @@ function togglePractice() {
 /**
  * Start practice session
  */
-function startPractice() {
+async function startPractice() {
     // Check if progression mode has a selected progression
     if (practiceState.mode === 'progression' && !practiceState.selectedProgression) {
         alert('Please select a progression first');
         return;
     }
 
-    // Initialize audio context (needs user gesture)
-    getAudioContext();
+    // Ensure audio context is ready (handles iOS suspend/resume)
+    await ensureAudioReady();
 
     practiceState.isPlaying = true;
     practiceState.currentBeat = 0;
