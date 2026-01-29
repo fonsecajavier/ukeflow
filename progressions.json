@@ -10,7 +10,7 @@
         "No Woman No Cry - Bob Marley",
         "With or Without You - U2",
         "Someone Like You - Adele",
-        "When I Come Around - Green Day"
+        "Despacito - Luis Fonsi"
       ]
     },
     {
@@ -22,7 +22,7 @@
         "Stand By Me - Ben E. King",
         "Earth Angel - The Penguins",
         "Every Breath You Take - The Police",
-        "Unchained Melody - The Righteous Brothers",
+        "La Bamba - Ritchie Valens",
         "Beautiful Girls - Sean Kingston"
       ]
     },
@@ -35,7 +35,7 @@
         "Grenade - Bruno Mars",
         "Complicated - Avril Lavigne",
         "Numb - Linkin Park",
-        "What About Us - Pink",
+        "Caramelo - Ozuna",
         "Umbrella - Rihanna"
       ]
     },
@@ -47,9 +47,9 @@
       "songs": [
         "Hit the Road Jack - Ray Charles",
         "Smooth - Santana",
-        "Stairway to Heaven (intro) - Led Zeppelin",
-        "Sultans of Swing - Dire Straits",
-        "Bamboleo - Gipsy Kings"
+        "Bamboleo - Gipsy Kings",
+        "Aserejé - Las Ketchup",
+        "Sultans of Swing - Dire Straits"
       ]
     },
     {
@@ -61,7 +61,7 @@
         "Johnny B. Goode - Chuck Berry",
         "Hound Dog - Elvis Presley",
         "Pride and Joy - Stevie Ray Vaughan",
-        "Rock Around the Clock - Bill Haley",
+        "Oye Como Va - Santana",
         "The Thrill Is Gone - B.B. King"
       ]
     },
@@ -73,8 +73,8 @@
       "songs": [
         "Autumn Leaves - Various",
         "Fly Me to the Moon - Frank Sinatra",
-        "All the Things You Are - Jerome Kern",
-        "Girl from Ipanema - Jobim",
+        "Girl from Ipanema - Tom Jobim",
+        "Chega de Saudade - João Gilberto",
         "Satin Doll - Duke Ellington"
       ]
     },
@@ -86,8 +86,8 @@
       "songs": [
         "Canon in D - Pachelbel",
         "Basket Case - Green Day",
-        "Graduation - Vitamin C",
-        "Hook - Blues Traveler",
+        "Memories - Maroon 5",
+        "Oh Lord, Why Lord - Pop-Tops",
         "Cryin' - Aerosmith"
       ]
     },
@@ -98,8 +98,8 @@
       "description": "A darker take on the blues progression. Common in minor key songs across rock, R&B, and soul music.",
       "songs": [
         "The House of the Rising Sun - The Animals",
-        "Ain't No Sunshine - Bill Withers",
         "Black Magic Woman - Santana",
+        "Besame Mucho - Consuelo Velázquez",
         "Summertime - George Gershwin",
         "Feeling Good - Nina Simone"
       ]
@@ -111,10 +111,10 @@
       "description": "The simplest and most powerful progression. Just three chords that built rock and roll and countless folk songs.",
       "songs": [
         "Twist and Shout - The Beatles",
-        "Wild Thing - The Troggs",
         "La Bamba - Ritchie Valens",
+        "Guantanamera - Traditional Cuban",
         "Louie Louie - The Kingsmen",
-        "Good Riddance - Green Day"
+        "Que Bueno Baila Usted - Benny Moré"
       ]
     },
     {
@@ -160,12 +160,12 @@
       "id": "reggae",
       "name": "Reggae",
       "numerals": ["I", "IV", "V", "IV"],
-      "description": "A laid-back progression common in reggae and ska. The return to IV before repeating creates a relaxed, cyclical feel.",
+      "description": "A laid-back progression common in reggae, ska, and salsa. The return to IV before repeating creates a relaxed, cyclical feel.",
       "songs": [
         "Three Little Birds - Bob Marley",
         "Redemption Song - Bob Marley",
         "Santeria - Sublime",
-        "What I Got - Sublime",
+        "Suavemente - Elvis Crespo",
         "Bad Boys - Inner Circle"
       ]
     },
@@ -177,7 +177,7 @@
       "songs": [
         "Stairway to Heaven - Led Zeppelin",
         "Babe I'm Gonna Leave You - Led Zeppelin",
-        "While My Guitar Gently Weeps - Beatles",
+        "Corazón Partío - Alejandro Sanz",
         "Writing's on the Wall - Sam Smith",
         "Hello - Adele"
       ]
@@ -190,9 +190,9 @@
       "songs": [
         "Wake Me Up - Avicii",
         "Counting Stars - OneRepublic",
-        "Believer - Imagine Dragons",
+        "Tusa - Karol G",
         "Titanium - David Guetta",
-        "Radioactive - Imagine Dragons"
+        "Bailando - Enrique Iglesias"
       ]
     }
   ]

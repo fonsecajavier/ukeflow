@@ -108,6 +108,9 @@ function initPractice() {
     practiceElements.startStopBtn.addEventListener('click', togglePractice);
     practiceElements.soundToggle.addEventListener('click', handleSoundToggle);
 
+    // Keyboard shortcuts
+    document.addEventListener('keydown', handleKeyPress);
+
     // Load progressions
     loadProgressions();
 
@@ -463,6 +466,18 @@ function handleTempoChange() {
 function handleSoundToggle() {
     practiceState.playChordSound = !practiceState.playChordSound;
     practiceElements.soundToggle.classList.toggle('active', practiceState.playChordSound);
+}
+
+/**
+ * Handle keyboard shortcuts
+ */
+function handleKeyPress(e) {
+    // Ignore if typing in an input field
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+    if (e.key === 'p' || e.key === 'P') {
+        handleSoundToggle();
+    }
 }
 
 /**
@@ -832,6 +847,7 @@ function advanceChord() {
 
         // Get the next chord after the first one
         if (practiceState.mode === 'progression') {
+            practiceState.progressionIndex = 1;
             practiceState.nextChord = practiceState.progressionChords[1] || practiceState.progressionChords[0];
         } else {
             practiceState.nextChord = getRandomChord();

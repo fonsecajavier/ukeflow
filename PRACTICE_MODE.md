@@ -18,7 +18,7 @@ Practice common chord progressions used in popular songs.
 - **Loop playback**: Cycles through progression chords with metronome
 - **Count-in**: 4-beat preparation showing "Get Ready!" before first chord
 - **Bookmarkable URLs**: Progression, key, and tempo saved in URL for sharing
-- **Chord sound**: Toggle to play chord as downroll strum on each change (on by default)
+- **Chord sound**: Toggle to play chord as downroll strum on each change (on by default, press "p" to toggle)
 
 ### Random Chords Mode
 Practice with randomly selected chords based on filters.
@@ -34,7 +34,7 @@ Practice with randomly selected chords based on filters.
 - **Beat indicator**: 4 dots showing current beat
 - **Transition animation**: Subtle pulse on chord change
 - **Count-in**: 4-beat preparation showing "Get Ready!" before first chord
-- **Chord sound**: Toggle to play chord as downroll strum on each change (on by default)
+- **Chord sound**: Toggle to play chord as downroll strum on each change (on by default, press "p" to toggle)
 
 ## Files
 
