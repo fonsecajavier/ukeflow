@@ -2,6 +2,22 @@
 
 A single-page HTML/JS app for learning ukulele chord progressions. View chord diagrams, see chords above lyrics, play chords with realistic ukulele sounds, and learn music theory.
 
+---
+
+## ⚠️ VIBE-CODED PROJECT DISCLAIMER ⚠️
+
+**This entire application has been vibe-coded.** Almost no care has been put into performance, code quality, or security. This project is **not representative of the author's professional code quality**.
+
+This is a toy project created to:
+1. Quickly achieve a personal goal (learning to play ukulele)
+2. Explore the capabilities and limits of vibe-coding with AI assistance
+
+If you're here to evaluate code quality, architecture, or best practices — this is not the repo you're looking for. Move along.
+
+**Fun fact:** It might, however, be somewhat representative of the author's prompting skills. 🤖
+
+---
+
 ## Disclaimer
 
 All songs included in this project are the property of their respective authors, composers, and copyright holders. The chord progressions and lyrics are provided for educational and personal practice purposes only. This project does not claim ownership of any musical compositions.
