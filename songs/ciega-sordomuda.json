@@ -8,77 +8,78 @@
     {
       "lyrics": "Se me acaba el argumento",
       "chords": [
-        { "chord": "C#", "position": 0 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "F#", "position": 25 }
       ]
     },
     {
-      "lyrics": "y la metodología",
+      "lyrics": "y la metodologia",
       "chords": [
-        { "chord": "F#", "position": 0 }
+        { "chord": "C#", "position": 14 }
       ]
     },
     {
-      "lyrics": "cada vez que se aparece frente a mi tu anatomía",
+      "lyrics": "cada vez que se aparece frente a mi tu anatomia",
       "chords": [
-        { "chord": "C#", "position": 0 }
+        { "chord": "F#", "position": 19 },
+        { "chord": "G#", "position": 33 },
+        { "chord": "C#", "position": 44 }
       ]
     },
     {
       "lyrics": "Porque este amor ya no entiende",
       "chords": [
-        { "chord": "F#", "position": 0 },
-        { "chord": "G#", "position": 18 },
-        { "chord": "C#", "position": 21 }
+        { "chord": "F#", "position": 26 }
       ]
     },
     {
       "lyrics": "de consejos, ni razones",
       "chords": [
-        { "chord": "F#", "position": 0 }
+        { "chord": "C#", "position": 19 }
       ]
     },
     {
       "lyrics": "se alimenta de pretextos",
       "chords": [
-        { "chord": "C#", "position": 0 }
+        { "chord": "F#", "position": 19 }
       ]
     },
     {
       "lyrics": "y le faltan pantalones",
       "chords": [
-        { "chord": "F#", "position": 0 }
+        { "chord": "G#", "position": 6 },
+        { "chord": "C#", "position": 15 },
+        { "chord": "D#m", "position": 22 }
       ]
     },
     {
       "lyrics": "este amor no me permite estar de pie",
       "chords": [
-        { "chord": "G#", "position": 0 },
-        { "chord": "D#m", "position": 6 }
+        { "chord": "F#", "position": 19 },
+        { "chord": "C#", "position": 32 }
       ]
     },
     {
       "lyrics": "porque ya hasta me ha quebrado los talones",
       "chords": [
-        { "chord": "F#", "position": 0 },
-        { "chord": "C#", "position": 10 }
+        { "chord": "G#", "position": 26 },
+        { "chord": "D#m", "position": 37 }
       ]
     },
     {
-      "lyrics": "aunque me levante volveré a caer, si te acercas nada es útil",
+      "lyrics": "aunque me levante volvere a caer, si te acercas nada es util",
       "chords": [
-        { "chord": "D#m", "position": 0 }
+        { "chord": "F#", "position": 18 },
+        { "chord": "G#", "position": 29 }
       ]
     },
     {
-      "lyrics": "para esta inútil",
-      "chords": [
-        { "chord": "F#", "position": 0 },
-        { "chord": "G#", "position": 6 }
-      ]
+      "lyrics": "para esta inutil",
+      "chords": []
     },
     { "section": "Chorus" },
     {
-      "lyrics": "Bruta, ciega, sordomuda, torpe, traste, testaruda",
+      "lyrics": "bruta, ciega, sordomuda, torpe, traste, testaruda",
       "chords": [
         { "chord": "F#", "position": 0 }
       ]
@@ -96,91 +97,72 @@
       ]
     },
     {
-      "lyrics": "pienso en ti día y noche y no se como olvidarte",
+      "lyrics": "pienso en ti dia y noche y no se como olvidarte",
       "chords": [
         { "chord": "C#", "position": 0 }
-      ]
-    },
-    { "section": "Interlude" },
-    {
-      "lyrics": "(requinto)",
-      "chords": [
-        { "chord": "F#", "position": 0 },
-        { "chord": "C#", "position": 4 },
-        { "chord": "F#", "position": 7 },
-        { "chord": "C#", "position": 10 }
       ]
     },
     { "section": "Verse 2" },
     {
       "lyrics": "Cuantas veces he intentado",
       "chords": [
-        { "chord": "C#", "position": 0 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "F#", "position": 24 }
       ]
     },
     {
       "lyrics": "enterrarte en mi memoria",
       "chords": [
-        { "chord": "F#", "position": 0 }
+        { "chord": "C#", "position": 20 }
       ]
     },
     {
       "lyrics": "y aunque diga ya no mas es otra vez la misma historia",
       "chords": [
-        { "chord": "C#", "position": 0 }
+        { "chord": "F#", "position": 21 },
+        { "chord": "G#", "position": 32 },
+        { "chord": "C#", "position": 48 }
       ]
     },
     {
-      "lyrics": "Porque este amor siempre sabe",
+      "lyrics": "porque este amor siempre sabe",
       "chords": [
-        { "chord": "F#", "position": 0 },
-        { "chord": "G#", "position": 18 },
-        { "chord": "C#", "position": 21 }
+        { "chord": "F#", "position": 26 }
       ]
     },
     {
       "lyrics": "hacerme respirar profundo",
       "chords": [
-        { "chord": "F#", "position": 0 }
+        { "chord": "C#", "position": 21 }
       ]
     },
     {
       "lyrics": "ya me trae por la izquierda y de pelea con el mundo",
       "chords": [
-        { "chord": "C#", "position": 0 }
+        { "chord": "F#", "position": 21 },
+        { "chord": "G#", "position": 35 },
+        { "chord": "D#m", "position": 47 }
       ]
     },
     {
-      "lyrics": "Si pudiera exorcizarme de tu voz",
+      "lyrics": "si pudiera exorcizarme de tu voz, si pudiera escaparme de tu nombre",
       "chords": [
-        { "chord": "F#", "position": 0 },
-        { "chord": "G#", "position": 22 },
-        { "chord": "D#m", "position": 25 }
+        { "chord": "F#", "position": 17 },
+        { "chord": "C#", "position": 37 },
+        { "chord": "G#", "position": 56 },
+        { "chord": "D#m", "position": 67 }
       ]
     },
     {
-      "lyrics": "si pudiera escaparme de tu nombre",
+      "lyrics": "si pudiera arrancarme del corazon, y esconderme para no sentirme nuevamente",
       "chords": [
-        { "chord": "F#", "position": 0 },
-        { "chord": "C#", "position": 20 }
-      ]
-    },
-    {
-      "lyrics": "si pudiera arrancarme del corazón",
-      "chords": [
-        { "chord": "D#m", "position": 0 }
-      ]
-    },
-    {
-      "lyrics": "y esconderme para no sentirme nuevamente",
-      "chords": [
-        { "chord": "F#", "position": 0 },
-        { "chord": "G#", "position": 20 }
+        { "chord": "F#", "position": 17 },
+        { "chord": "G#", "position": 38 }
       ]
     },
     { "section": "Chorus" },
     {
-      "lyrics": "Bruta, ciega, sordomuda, torpe, traste, testaruda",
+      "lyrics": "bruta, ciega sordomuda, torpe, traste, testaruda",
       "chords": [
         { "chord": "F#", "position": 0 }
       ]
@@ -198,26 +180,16 @@
       ]
     },
     {
-      "lyrics": "pienso en ti día y noche y no se como olvidarte",
+      "lyrics": "pienso en ti dia y noche, y no se como olvidarte",
       "chords": [
         { "chord": "C#", "position": 0 }
       ]
     },
-    { "section": "Interlude" },
-    {
-      "lyrics": "(requinto)",
-      "chords": [
-        { "chord": "F#", "position": 0 },
-        { "chord": "C#", "position": 4 },
-        { "chord": "F#", "position": 7 },
-        { "chord": "C#", "position": 10 }
-      ]
-    },
     { "section": "Bridge" },
     {
-      "lyrics": "Ojerosa, flaca, fea, desgreñada, torpe, tonta, lenta, necia, desquiciada",
+      "lyrics": "ojerosa, flaca, fea, desgreñada, torpe, tonta, lenta, necia, desquiciada",
       "chords": [
-        { "chord": "F#", "position": 0 }
+        { "chord": "F#", "position": 3 }
       ]
     },
     {
@@ -243,14 +215,14 @@
       "lyrics": "(instrumental)",
       "chords": [
         { "chord": "F#", "position": 0 },
-        { "chord": "C#", "position": 5 },
-        { "chord": "F#", "position": 8 },
-        { "chord": "C#", "position": 11 }
+        { "chord": "C#", "position": 3 },
+        { "chord": "F#", "position": 6 },
+        { "chord": "C#", "position": 9 }
       ]
     },
-    { "section": "Chorus (x2)" },
+    { "section": "Chorus" },
     {
-      "lyrics": "Bruta, ciega, sordomuda, torpe, traste, testaruda",
+      "lyrics": "bruta, ciega, sordomuda, torpe, traste, testaruda",
       "chords": [
         { "chord": "F#", "position": 0 }
       ]
@@ -268,7 +240,7 @@
       ]
     },
     {
-      "lyrics": "pienso en ti día y noche y no se como olvidarte",
+      "lyrics": "pienso en ti dia y noche, y no se como olvidarte",
       "chords": [
         { "chord": "C#", "position": 0 }
       ]
