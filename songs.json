@@ -33,6 +33,7 @@
     { "path": "songs/despacito.json", "title": "Despacito", "artist": "Luis Fonsi ft. Daddy Yankee" },
     { "path": "songs/titanium.json", "title": "Titanium", "artist": "David Guetta ft. Sia" },
     { "path": "songs/wonderwall.json", "title": "Wonderwall", "artist": "Oasis" },
-    { "path": "songs/stan.json", "title": "Stan", "artist": "Eminem ft. Dido" }
+    { "path": "songs/stan.json", "title": "Stan", "artist": "Eminem ft. Dido" },
+    { "path": "songs/vivir-lo-nuestro.json", "title": "Vivir Lo Nuestro", "artist": "La India & Marc Anthony" }
   ]
 }

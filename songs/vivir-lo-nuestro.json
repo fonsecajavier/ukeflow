@@ -1,0 +1,137 @@
+{
+  "title": "Vivir Lo Nuestro",
+  "artist": "La India & Marc Anthony",
+  "key": "Fm",
+  "spotify": "https://open.spotify.com/track/4qAknKWl2aMvWn4r1nzWAa",
+  "lines": [
+    { "section": "Intro" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Ab", "position": 3 },
+        { "chord": "Bbm", "position": 6 },
+        { "chord": "C7", "position": 10 },
+        { "chord": "Fm", "position": 13 }
+      ]
+    },
+    { "section": "Verse 1" },
+    {
+      "lyrics": "En un llano tan inmenso, tan inmenso",
+      "chords": [
+        { "chord": "Ab", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "como el cielo, voy a podar un jardin para",
+      "chords": [
+        { "chord": "Bbm", "position": 10 },
+        { "chord": "Eb11", "position": 31 }
+      ]
+    },
+    {
+      "lyrics": "que duerma tu cuerpo, en un mar espeso y ancho",
+      "chords": [
+        { "chord": "Ab", "position": 18 },
+        { "chord": "Fm", "position": 41 }
+      ]
+    },
+    {
+      "lyrics": "mas ancho que el universo",
+      "chords": [
+        { "chord": "Bbm", "position": 21 }
+      ]
+    },
+    {
+      "lyrics": "voy a construir un barco para que navegue el sueño",
+      "chords": [
+        { "chord": "C7", "position": 19 },
+        { "chord": "Fm", "position": 44 }
+      ]
+    },
+    {
+      "lyrics": "En un universo negro, como el ebano mas puro",
+      "chords": [
+        { "chord": "Ab", "position": 16 },
+        { "chord": "Bbm", "position": 38 }
+      ]
+    },
+    {
+      "lyrics": "para construir de blanco nuestro amor para el futuro",
+      "chords": [
+        { "chord": "Eb11", "position": 19 },
+        { "chord": "Ab", "position": 44 }
+      ]
+    },
+    {
+      "lyrics": "en una noche cerrada voy a detener el tiempo",
+      "chords": [
+        { "chord": "Fm", "position": 17 },
+        { "chord": "Bbm", "position": 37 }
+      ]
+    },
+    {
+      "lyrics": "para soñar a tu lado que nuestro amor es eterno",
+      "chords": [
+        { "chord": "C7", "position": 17 },
+        { "chord": "Fm", "position": 42 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Y volar, volar tan lejos donde nadie nos",
+      "chords": [
+        { "chord": "Fm", "position": 5 },
+        { "chord": "Bbm", "position": 18 },
+        { "chord": "C7", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "obstruya el pensamiento, volar volar sin miedo",
+      "chords": [
+        { "chord": "Fm", "position": 19 },
+        { "chord": "Cm7b5", "position": 27 },
+        { "chord": "F7", "position": 34 },
+        { "chord": "Bbm", "position": 39 }
+      ]
+    },
+    {
+      "lyrics": "como palomas libres, tan libres como el viento",
+      "chords": [
+        { "chord": "C7", "position": 14 },
+        { "chord": "Fm", "position": 42 }
+      ]
+    },
+    {
+      "lyrics": "Y vivir vivir lo nuestro y amarnos hasta quedar sin",
+      "chords": [
+        { "chord": "Fm", "position": 5 },
+        { "chord": "Bbm", "position": 16 },
+        { "chord": "C7", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "aliento, soñar soñar despiertos",
+      "chords": [
+        { "chord": "Fm", "position": 3 },
+        { "chord": "Cm7b5", "position": 11 },
+        { "chord": "F7", "position": 17 },
+        { "chord": "Bbm", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "en un mundo sin razas, sin dolores sin lamentos",
+      "chords": [
+        { "chord": "C7", "position": 17 },
+        { "chord": "Fm", "position": 41 }
+      ]
+    },
+    {
+      "lyrics": "sin nadie que se oponga en que tu y yo nos amemos",
+      "chords": [
+        { "chord": "Bbm", "position": 19 },
+        { "chord": "C7", "position": 23 }
+      ]
+    }
+  ]
+}
