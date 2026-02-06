@@ -345,13 +345,6 @@ const CHORDS = {
         barre: { fret: 3, fromString: 0, toString: 2 },
         baseFret: 1
     },
-    'Eb11': {
-        name: 'Eb11',
-        frets: [1, 1, 1, 1],
-        fingers: [1, 1, 1, 1],
-        barre: { fret: 1, fromString: 0, toString: 3 },
-        baseFret: 1
-    },
     'F#7': {
         name: 'F#7',
         frets: [3, 4, 2, 1],
@@ -378,6 +371,127 @@ const CHORDS = {
         frets: [1, 2, 1, 1],
         fingers: [1, 2, 1, 1],
         barre: { fret: 1, fromString: 0, toString: 3 },
+        baseFret: 1
+    },
+
+    // Eleventh Chords
+    'C11': {
+        name: 'C11',
+        frets: [0, 0, 0, 0],
+        fingers: [0, 0, 0, 0],
+        barre: null,
+        baseFret: 1
+    },
+    'C#11': {
+        name: 'C#11',
+        frets: [1, 1, 1, 1],
+        fingers: [1, 1, 1, 1],
+        barre: { fret: 1, fromString: 0, toString: 3 },
+        baseFret: 1
+    },
+    'Db11': {
+        name: 'Db11',
+        frets: [1, 1, 1, 1],
+        fingers: [1, 1, 1, 1],
+        barre: { fret: 1, fromString: 0, toString: 3 },
+        baseFret: 1
+    },
+    'D11': {
+        name: 'D11',
+        frets: [2, 2, 2, 0],
+        fingers: [1, 2, 3, 0],
+        barre: null,
+        baseFret: 1
+    },
+    'D#11': {
+        name: 'D#11',
+        frets: [3, 3, 3, 1],
+        fingers: [2, 3, 4, 1],
+        barre: null,
+        baseFret: 1
+    },
+    'Eb11': {
+        name: 'Eb11',
+        frets: [3, 3, 3, 1],
+        fingers: [2, 3, 4, 1],
+        barre: null,
+        baseFret: 1
+    },
+    'E11': {
+        name: 'E11',
+        frets: [1, 2, 0, 0],
+        fingers: [1, 2, 0, 0],
+        barre: null,
+        baseFret: 1
+    },
+    'F11': {
+        name: 'F11',
+        frets: [2, 3, 1, 1],
+        fingers: [2, 3, 1, 1],
+        barre: { fret: 1, fromString: 2, toString: 3 },
+        baseFret: 1
+    },
+    'F#11': {
+        name: 'F#11',
+        frets: [3, 4, 2, 2],
+        fingers: [2, 3, 1, 1],
+        barre: { fret: 2, fromString: 2, toString: 3 },
+        baseFret: 1
+    },
+    'Gb11': {
+        name: 'Gb11',
+        frets: [3, 4, 2, 2],
+        fingers: [2, 3, 1, 1],
+        barre: { fret: 2, fromString: 2, toString: 3 },
+        baseFret: 1
+    },
+    'G11': {
+        name: 'G11',
+        frets: [0, 2, 1, 0],
+        fingers: [0, 2, 1, 0],
+        barre: null,
+        baseFret: 1
+    },
+    'G#11': {
+        name: 'G#11',
+        frets: [1, 3, 2, 1],
+        fingers: [1, 3, 2, 1],
+        barre: { fret: 1, fromString: 0, toString: 3 },
+        baseFret: 1
+    },
+    'Ab11': {
+        name: 'Ab11',
+        frets: [1, 3, 2, 1],
+        fingers: [1, 3, 2, 1],
+        barre: { fret: 1, fromString: 0, toString: 3 },
+        baseFret: 1
+    },
+    'A11': {
+        name: 'A11',
+        frets: [0, 1, 0, 0],
+        fingers: [0, 1, 0, 0],
+        barre: null,
+        baseFret: 1
+    },
+    'A#11': {
+        name: 'A#11',
+        frets: [1, 2, 1, 1],
+        fingers: [1, 2, 1, 1],
+        barre: { fret: 1, fromString: 0, toString: 3 },
+        baseFret: 1
+    },
+    'Bb11': {
+        name: 'Bb11',
+        frets: [1, 2, 1, 1],
+        fingers: [1, 2, 1, 1],
+        barre: { fret: 1, fromString: 0, toString: 3 },
+        baseFret: 1
+    },
+    'B11': {
+        name: 'B11',
+        frets: [2, 3, 2, 0],
+        fingers: [1, 2, 1, 0],
+        barre: { fret: 2, fromString: 0, toString: 2 },
         baseFret: 1
     },
 
@@ -559,13 +673,6 @@ const CHORDS = {
         barre: { fret: 3, fromString: 0, toString: 3 },
         baseFret: 1
     },
-    'Cm7b5': {
-        name: 'Cm7b5',
-        frets: [3, 3, 2, 3],
-        fingers: [2, 3, 1, 4],
-        barre: null,
-        baseFret: 1
-    },
     'C#m7': {
         name: 'C#m7',
         frets: [4, 4, 4, 4],
@@ -627,6 +734,127 @@ const CHORDS = {
         frets: [1, 1, 1, 1],
         fingers: [1, 1, 1, 1],
         barre: { fret: 1, fromString: 0, toString: 3 },
+        baseFret: 1
+    },
+
+    // Minor 7 flat 5 (Half-Diminished) Chords
+    'Am7b5': {
+        name: 'Am7b5',
+        frets: [2, 0, 0, 0],
+        fingers: [1, 0, 0, 0],
+        barre: null,
+        baseFret: 1
+    },
+    'A#m7b5': {
+        name: 'A#m7b5',
+        frets: [1, 1, 0, 1],
+        fingers: [1, 2, 0, 3],
+        barre: null,
+        baseFret: 1
+    },
+    'Bbm7b5': {
+        name: 'Bbm7b5',
+        frets: [1, 1, 0, 1],
+        fingers: [1, 2, 0, 3],
+        barre: null,
+        baseFret: 1
+    },
+    'Bm7b5': {
+        name: 'Bm7b5',
+        frets: [2, 2, 1, 2],
+        fingers: [2, 3, 1, 4],
+        barre: null,
+        baseFret: 1
+    },
+    'Cm7b5': {
+        name: 'Cm7b5',
+        frets: [3, 3, 2, 3],
+        fingers: [2, 3, 1, 4],
+        barre: null,
+        baseFret: 1
+    },
+    'C#m7b5': {
+        name: 'C#m7b5',
+        frets: [4, 4, 3, 4],
+        fingers: [2, 3, 1, 4],
+        barre: null,
+        baseFret: 1
+    },
+    'Dbm7b5': {
+        name: 'Dbm7b5',
+        frets: [4, 4, 3, 4],
+        fingers: [2, 3, 1, 4],
+        barre: null,
+        baseFret: 1
+    },
+    'Dm7b5': {
+        name: 'Dm7b5',
+        frets: [1, 2, 1, 3],
+        fingers: [1, 2, 1, 4],
+        barre: { fret: 1, fromString: 0, toString: 2 },
+        baseFret: 1
+    },
+    'D#m7b5': {
+        name: 'D#m7b5',
+        frets: [2, 3, 2, 4],
+        fingers: [1, 2, 1, 4],
+        barre: { fret: 2, fromString: 0, toString: 2 },
+        baseFret: 1
+    },
+    'Ebm7b5': {
+        name: 'Ebm7b5',
+        frets: [2, 3, 2, 4],
+        fingers: [1, 2, 1, 4],
+        barre: { fret: 2, fromString: 0, toString: 2 },
+        baseFret: 1
+    },
+    'Em7b5': {
+        name: 'Em7b5',
+        frets: [0, 2, 0, 1],
+        fingers: [0, 2, 0, 1],
+        barre: null,
+        baseFret: 1
+    },
+    'Fm7b5': {
+        name: 'Fm7b5',
+        frets: [1, 3, 0, 3],
+        fingers: [1, 2, 0, 3],
+        barre: null,
+        baseFret: 1
+    },
+    'F#m7b5': {
+        name: 'F#m7b5',
+        frets: [2, 4, 1, 4],
+        fingers: [2, 3, 1, 4],
+        barre: null,
+        baseFret: 1
+    },
+    'Gbm7b5': {
+        name: 'Gbm7b5',
+        frets: [2, 4, 1, 4],
+        fingers: [2, 3, 1, 4],
+        barre: null,
+        baseFret: 1
+    },
+    'Gm7b5': {
+        name: 'Gm7b5',
+        frets: [0, 1, 1, 1],
+        fingers: [0, 1, 2, 3],
+        barre: null,
+        baseFret: 1
+    },
+    'G#m7b5': {
+        name: 'G#m7b5',
+        frets: [1, 2, 2, 2],
+        fingers: [1, 2, 3, 4],
+        barre: null,
+        baseFret: 1
+    },
+    'Abm7b5': {
+        name: 'Abm7b5',
+        frets: [1, 2, 2, 2],
+        fingers: [1, 2, 3, 4],
+        barre: null,
         baseFret: 1
     },
 
