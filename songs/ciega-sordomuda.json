@@ -1,91 +1,276 @@
 {
   "title": "Ciega, Sordomuda",
   "artist": "Shakira",
-  "key": "Am",
+  "key": "C#",
   "spotify": "https://open.spotify.com/track/7jxHeJLVpnP7S08JFF4GBi",
   "lines": [
     { "section": "Verse 1" },
     {
-      "lyrics": "Se me ha clavado en el alma",
+      "lyrics": "Se me acaba el argumento",
       "chords": [
-        { "chord": "Am", "position": 0 }
+        { "chord": "C#", "position": 0 }
       ]
     },
     {
-      "lyrics": "Una flor, una espina, una astilla",
+      "lyrics": "y la metodología",
       "chords": [
-        { "chord": "G", "position": 0 }
+        { "chord": "F#", "position": 0 }
       ]
     },
     {
-      "lyrics": "Y no la puedo arrancar",
+      "lyrics": "cada vez que se aparece frente a mi tu anatomía",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "E7", "position": 14 }
+        { "chord": "C#", "position": 0 }
       ]
     },
     {
-      "lyrics": "Se me ha clavado en los ojos",
+      "lyrics": "Porque este amor ya no entiende",
       "chords": [
-        { "chord": "Am", "position": 0 }
+        { "chord": "F#", "position": 0 },
+        { "chord": "G#", "position": 18 },
+        { "chord": "C#", "position": 21 }
       ]
     },
     {
-      "lyrics": "Tu mirada que quema y que abrasa",
+      "lyrics": "de consejos, ni razones",
       "chords": [
-        { "chord": "G", "position": 0 }
+        { "chord": "F#", "position": 0 }
       ]
     },
     {
-      "lyrics": "Y no la puedo olvidar",
+      "lyrics": "se alimenta de pretextos",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "E7", "position": 14 }
-      ]
-    },
-    { "section": "Pre-Chorus" },
-    {
-      "lyrics": "Se me ha escapado de las manos",
-      "chords": [
-        { "chord": "Dm", "position": 0 },
-        { "chord": "Am", "position": 16 }
+        { "chord": "C#", "position": 0 }
       ]
     },
     {
-      "lyrics": "El mundo entero y ya no sé qué hacer",
+      "lyrics": "y le faltan pantalones",
       "chords": [
-        { "chord": "E7", "position": 0 },
-        { "chord": "Am", "position": 20 }
+        { "chord": "F#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "este amor no me permite estar de pie",
+      "chords": [
+        { "chord": "G#", "position": 0 },
+        { "chord": "D#m", "position": 6 }
+      ]
+    },
+    {
+      "lyrics": "porque ya hasta me ha quebrado los talones",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "C#", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "aunque me levante volveré a caer, si te acercas nada es útil",
+      "chords": [
+        { "chord": "D#m", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "para esta inútil",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "G#", "position": 6 }
       ]
     },
     { "section": "Chorus" },
     {
-      "lyrics": "Me he vuelto ciega, sordomuda",
+      "lyrics": "Bruta, ciega, sordomuda, torpe, traste, testaruda",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "G", "position": 14 }
+        { "chord": "F#", "position": 0 }
       ]
     },
     {
-      "lyrics": "Torpe, triste, boba, tonta, loca",
+      "lyrics": "es todo lo que he sido, por ti me he convertido",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "E7", "position": 18 }
+        { "chord": "C#", "position": 0 }
       ]
     },
     {
-      "lyrics": "Lo mío es desastre total",
+      "lyrics": "en una cosa que no hace otra cosa mas que amarte",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "G", "position": 14 }
+        { "chord": "F#", "position": 0 }
       ]
     },
     {
-      "lyrics": "Piensa en él, ya no puedo pensar",
+      "lyrics": "pienso en ti día y noche y no se como olvidarte",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "E7", "position": 16 },
-        { "chord": "Am", "position": 26 }
+        { "chord": "C#", "position": 0 }
+      ]
+    },
+    { "section": "Interlude" },
+    {
+      "lyrics": "(requinto)",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "C#", "position": 4 },
+        { "chord": "F#", "position": 7 },
+        { "chord": "C#", "position": 10 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Cuantas veces he intentado",
+      "chords": [
+        { "chord": "C#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "enterrarte en mi memoria",
+      "chords": [
+        { "chord": "F#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "y aunque diga ya no mas es otra vez la misma historia",
+      "chords": [
+        { "chord": "C#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Porque este amor siempre sabe",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "G#", "position": 18 },
+        { "chord": "C#", "position": 21 }
+      ]
+    },
+    {
+      "lyrics": "hacerme respirar profundo",
+      "chords": [
+        { "chord": "F#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "ya me trae por la izquierda y de pelea con el mundo",
+      "chords": [
+        { "chord": "C#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Si pudiera exorcizarme de tu voz",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "G#", "position": 22 },
+        { "chord": "D#m", "position": 25 }
+      ]
+    },
+    {
+      "lyrics": "si pudiera escaparme de tu nombre",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "C#", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "si pudiera arrancarme del corazón",
+      "chords": [
+        { "chord": "D#m", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "y esconderme para no sentirme nuevamente",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "G#", "position": 20 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Bruta, ciega, sordomuda, torpe, traste, testaruda",
+      "chords": [
+        { "chord": "F#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "es todo lo que he sido, por ti me he convertido",
+      "chords": [
+        { "chord": "C#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "en una cosa que no hace otra cosa mas que amarte",
+      "chords": [
+        { "chord": "F#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "pienso en ti día y noche y no se como olvidarte",
+      "chords": [
+        { "chord": "C#", "position": 0 }
+      ]
+    },
+    { "section": "Interlude" },
+    {
+      "lyrics": "(requinto)",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "C#", "position": 4 },
+        { "chord": "F#", "position": 7 },
+        { "chord": "C#", "position": 10 }
+      ]
+    },
+    { "section": "Bridge" },
+    {
+      "lyrics": "Ojerosa, flaca, fea, desgreñada, torpe, tonta, lenta, necia, desquiciada",
+      "chords": [
+        { "chord": "F#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "completamente descontrolada, tu te das cuenta y no me dices nada",
+      "chords": [
+        { "chord": "C#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "ves que se me ha vuelto la cabeza un nido, donde solamente tu tienes asilo",
+      "chords": [
+        { "chord": "F#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "y no me escuchas lo que te digo, mira bien lo que vas a hacer conmigo",
+      "chords": [
+        { "chord": "C#", "position": 0 }
+      ]
+    },
+    { "section": "Interlude" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "C#", "position": 5 },
+        { "chord": "F#", "position": 8 },
+        { "chord": "C#", "position": 11 }
+      ]
+    },
+    { "section": "Chorus (x2)" },
+    {
+      "lyrics": "Bruta, ciega, sordomuda, torpe, traste, testaruda",
+      "chords": [
+        { "chord": "F#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "es todo lo que he sido, por ti me he convertido",
+      "chords": [
+        { "chord": "C#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "en una cosa que no hace otra cosa mas que amarte",
+      "chords": [
+        { "chord": "F#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "pienso en ti día y noche y no se como olvidarte",
+      "chords": [
+        { "chord": "C#", "position": 0 }
       ]
     }
   ]

@@ -523,28 +523,31 @@ function analyzeKeyConfidence(key) {
         const bVII = transposeChord(candidateRoot, 10);
         diatonicChords.push(bVII);
 
-        // Count non-diatonic chords
+        // Count non-diatonic chords - now checks chord QUALITY (major vs minor)
+        // This is critical: G# major in F# major is non-diatonic (should be G#m)
         let nonDiatonicCount = 0;
         for (const chord of uniqueChords) {
-            const chordBase = chord.replace(/7|maj7|m7|dim|aug/, '');
+            // Remove only 7th extensions, keep 'm' to distinguish major/minor
+            const chordWithQuality = chord.replace(/7|maj7|dim7|aug/, '');
+            const isMinorChord = chordWithQuality.endsWith('m') && !chordWithQuality.endsWith('dim');
+            const chordRoot = chordWithQuality.replace(/m$|dim$/, '');
+
             const isDiatonic = diatonicChords.some(d => {
-                const dBase = d.replace(/dim/, '');
-                return chordBase === dBase || chordBase === d;
+                const dIsMinor = d.endsWith('m') && !d.endsWith('dim');
+                const dRoot = d.replace(/m$|dim$/, '');
+                // Must match both root AND quality (major/minor)
+                return chordRoot === dRoot && isMinorChord === dIsMinor;
             });
             if (!isDiatonic) {
                 nonDiatonicCount++;
             }
         }
 
-        // Penalize keys with non-diatonic chords
-        // This is a strong indicator - if E major exists when Em is expected,
-        // that key is likely wrong. Scale penalty by total chords.
+        // If there are non-diatonic chords (wrong quality like G# major instead of G#m),
+        // this key is almost certainly wrong - skip it entirely.
+        // This is critical: e.g., G# major in F# major means F# is not the key.
         if (nonDiatonicCount > 0) {
-            // Base penalty plus scaled by how many chords don't fit
-            const nonDiatonicRatio = nonDiatonicCount / uniqueChords.length;
-            // If 25%+ of chords are non-diatonic, heavily penalize
-            const penalty = nonDiatonicCount * 3 + (nonDiatonicRatio > 0.25 ? 10 : 0);
-            score -= penalty;
+            continue;
         }
 
         if (score > 0) {
