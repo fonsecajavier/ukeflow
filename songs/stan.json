@@ -1,0 +1,803 @@
+{
+  "title": "Stan",
+  "artist": "Eminem ft. Dido",
+  "key": "G#m",
+  "spotify": "https://open.spotify.com/track/3UmaczJpikHgJFyBTAJVoz",
+  "lines": [
+    { "section": "Intro/Chorus" },
+    {
+      "lyrics": "My tea's gone cold, I'm wonderin' why",
+      "chords": [
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 14 },
+        { "chord": "F#", "position": 34 }
+      ]
+    },
+    {
+      "lyrics": "Got out of bed at all",
+      "chords": [
+        { "chord": "B", "position": 4 },
+        { "chord": "F#", "position": 11 },
+        { "chord": "G#m", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "The morning rain clouds up my window",
+      "chords": [
+        { "chord": "E", "position": 12 },
+        { "chord": "F#", "position": 33 }
+      ]
+    },
+    {
+      "lyrics": "And I can't see at all",
+      "chords": [
+        { "chord": "B", "position": 4 },
+        { "chord": "F#", "position": 12 },
+        { "chord": "G#m", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "And even if I could it'll all be gray",
+      "chords": [
+        { "chord": "E", "position": 9 },
+        { "chord": "F#", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "But your picture on my wall",
+      "chords": [
+        { "chord": "B", "position": 9 },
+        { "chord": "F#", "position": 17 },
+        { "chord": "G#m", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "It reminds me that it's not so bad",
+      "chords": [
+        { "chord": "E", "position": 8 },
+        { "chord": "C#/F", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "It's not so bad",
+      "chords": [
+        { "chord": "B", "position": 5 },
+        { "chord": "F#", "position": 9 },
+        { "chord": "G#m", "position": 13 }
+      ]
+    },
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Dear Slim, I wrote you, but you still ain't callin",
+      "chords": [
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 23 },
+        { "chord": "F#", "position": 44 }
+      ]
+    },
+    {
+      "lyrics": "I left my cell, my pager, and my home phone at the bottom",
+      "chords": [
+        { "chord": "B", "position": 40 },
+        { "chord": "F#", "position": 52 },
+        { "chord": "G#m", "position": 56 }
+      ]
+    },
+    {
+      "lyrics": "I sent two letters back in Autumn, you must not have got 'em",
+      "chords": [
+        { "chord": "E", "position": 31 },
+        { "chord": "F#", "position": 52 }
+      ]
+    },
+    {
+      "lyrics": "There probably was a problem with the post office or somethin'",
+      "chords": [
+        { "chord": "B", "position": 38 },
+        { "chord": "F#", "position": 52 }
+      ]
+    },
+    {
+      "lyrics": "Sometimes I scribble addresses too sloppy when I jot 'em",
+      "chords": [
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 32 },
+        { "chord": "F#", "position": 50 }
+      ]
+    },
+    {
+      "lyrics": "But anyway, what's been up man, how's your daughter?",
+      "chords": [
+        { "chord": "B", "position": 24 },
+        { "chord": "F#", "position": 35 },
+        { "chord": "G#m", "position": 43 }
+      ]
+    },
+    {
+      "lyrics": "My girlfriend's pregnant too, I'm bout to be a father",
+      "chords": [
+        { "chord": "E", "position": 44 }
+      ]
+    },
+    {
+      "lyrics": "If I have a daughter, guess what I'm a call her",
+      "chords": [
+        { "chord": "C#/F", "position": 12 },
+        { "chord": "E", "position": 36 }
+      ]
+    },
+    {
+      "lyrics": "I'm a name her Bonnie",
+      "chords": [
+        { "chord": "G#m", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "I read about your Uncle Ronnie too, I'm sorry",
+      "chords": [
+        { "chord": "E", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "I had a friend kill himself over some b**** who didn't want him",
+      "chords": [
+        { "chord": "F#", "position": 1 },
+        { "chord": "B", "position": 30 },
+        { "chord": "F#", "position": 48 },
+        { "chord": "G#m", "position": 56 }
+      ]
+    },
+    {
+      "lyrics": "I know you probably hear this every day, but I'm your biggest fan",
+      "chords": [
+        { "chord": "E", "position": 39 },
+        { "chord": "F#", "position": 57 }
+      ]
+    },
+    {
+      "lyrics": "I even got that underground s*** that you did with Skam",
+      "chords": [
+        { "chord": "B", "position": 23 },
+        { "chord": "F#", "position": 40 },
+        { "chord": "G#m", "position": 48 }
+      ]
+    },
+    {
+      "lyrics": "I got a room full of your posters and your pictures man",
+      "chords": [
+        { "chord": "E", "position": 26 },
+        { "chord": "F#", "position": 49 }
+      ]
+    },
+    {
+      "lyrics": "I like that s*** you did with Rawkus too, that s*** was phat",
+      "chords": [
+        { "chord": "B", "position": 30 },
+        { "chord": "F#", "position": 43 },
+        { "chord": "G#m", "position": 56 }
+      ]
+    },
+    {
+      "lyrics": "Anyways, I hope you get this man, hit me back",
+      "chords": [
+        { "chord": "E", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Just to chat, truly yours, your biggest fan, this is Stan",
+      "chords": [
+        { "chord": "C#/F", "position": 0 },
+        { "chord": "E", "position": 36 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "My tea's gone cold, I'm wonderin' why",
+      "chords": [
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 14 },
+        { "chord": "F#", "position": 34 }
+      ]
+    },
+    {
+      "lyrics": "Got out of bed at all",
+      "chords": [
+        { "chord": "B", "position": 4 },
+        { "chord": "F#", "position": 11 },
+        { "chord": "G#m", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "The morning rain clouds up my window",
+      "chords": [
+        { "chord": "E", "position": 12 },
+        { "chord": "F#", "position": 33 }
+      ]
+    },
+    {
+      "lyrics": "And I can't see at all",
+      "chords": [
+        { "chord": "B", "position": 4 },
+        { "chord": "F#", "position": 12 },
+        { "chord": "G#m", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "And even if I could it'll all be gray",
+      "chords": [
+        { "chord": "E", "position": 9 },
+        { "chord": "F#", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "But your picture on my wall",
+      "chords": [
+        { "chord": "B", "position": 9 },
+        { "chord": "F#", "position": 17 },
+        { "chord": "G#m", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "It reminds me that it's not so bad",
+      "chords": [
+        { "chord": "E", "position": 8 },
+        { "chord": "C#/F", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "It's not so bad",
+      "chords": [
+        { "chord": "E", "position": 5 },
+        { "chord": "G#m", "position": 11 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Dear Slim, you still ain't called or wrote, I hope you have a chance",
+      "chords": [
+        { "chord": "G#m", "position": 5 },
+        { "chord": "E", "position": 46 }
+      ]
+    },
+    {
+      "lyrics": "I ain't mad, I think it's just f***** up that you don't answer fans",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "B", "position": 31 },
+        { "chord": "G#m", "position": 56 }
+      ]
+    },
+    {
+      "lyrics": "If you didn't wanna talk to me outside your concert",
+      "chords": [
+        { "chord": "E", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "You didn't have to, but you could've signed an autograph for Matthew",
+      "chords": [
+        { "chord": "F#", "position": 11 },
+        { "chord": "B", "position": 47 },
+        { "chord": "F#", "position": 59 }
+      ]
+    },
+    {
+      "lyrics": "That's my little brother man, he's only six years old",
+      "chords": [
+        { "chord": "G#m", "position": 9 },
+        { "chord": "E", "position": 36 }
+      ]
+    },
+    {
+      "lyrics": "We waited in the blistering cold for you",
+      "chords": [
+        { "chord": "F#", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "For four hours and you just said no",
+      "chords": [
+        { "chord": "B", "position": 4 },
+        { "chord": "F#", "position": 23 },
+        { "chord": "G#m", "position": 31 }
+      ]
+    },
+    {
+      "lyrics": "That's pretty s****y man, you're like his f***ing idol",
+      "chords": [
+        { "chord": "E", "position": 33 }
+      ]
+    },
+    {
+      "lyrics": "He wants to be just like you man, he likes you more than I do",
+      "chords": [
+        { "chord": "C#/F", "position": 3 },
+        { "chord": "E", "position": 35 },
+        { "chord": "G#m", "position": 55 }
+      ]
+    },
+    {
+      "lyrics": "I ain't that mad though, I just don't like being lied to",
+      "chords": [
+        { "chord": "E", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "Remember when we met in Denver, you said if I write you",
+      "chords": [
+        { "chord": "F#", "position": 6 },
+        { "chord": "B", "position": 30 },
+        { "chord": "F#", "position": 44 }
+      ]
+    },
+    {
+      "lyrics": "You would write back, see I'm just like you in a way",
+      "chords": [
+        { "chord": "G#m", "position": 10 },
+        { "chord": "E", "position": 40 }
+      ]
+    },
+    {
+      "lyrics": "I never knew my father neither",
+      "chords": [
+        { "chord": "F#", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "He used to always cheat on my mom and beat her",
+      "chords": [
+        { "chord": "B", "position": 11 },
+        { "chord": "F#", "position": 28 },
+        { "chord": "G#m", "position": 39 }
+      ]
+    },
+    {
+      "lyrics": "I can relate to what you're saying in your songs",
+      "chords": [
+        { "chord": "E", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "So when I have a s****y day, I drift away and put em on",
+      "chords": [
+        { "chord": "F#", "position": 10 },
+        { "chord": "B", "position": 33 },
+        { "chord": "F#", "position": 46 }
+      ]
+    },
+    {
+      "lyrics": "Cause I don't really got s*** else, so that s*** helps when I'm depressed",
+      "chords": [
+        { "chord": "G#m", "position": 14 },
+        { "chord": "E", "position": 48 }
+      ]
+    },
+    {
+      "lyrics": "I even got a tattoo of your name across the chest",
+      "chords": [
+        { "chord": "C#/F", "position": 0 },
+        { "chord": "E", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "Sometimes I even cut myself to see how much it bleeds",
+      "chords": [
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "Its like adrenaline, the pain is such a sudden rush for me",
+      "chords": [
+        { "chord": "F#", "position": 9 },
+        { "chord": "B", "position": 33 },
+        { "chord": "F#", "position": 49 }
+      ]
+    },
+    {
+      "lyrics": "See everything you say is real, and I respect you cause you tell it",
+      "chords": [
+        { "chord": "G#m", "position": 8 },
+        { "chord": "E", "position": 43 }
+      ]
+    },
+    {
+      "lyrics": "My girlfriend's jealous, because I talk about you 24/7",
+      "chords": [
+        { "chord": "F#", "position": 7 },
+        { "chord": "B", "position": 31 },
+        { "chord": "F#", "position": 47 }
+      ]
+    },
+    {
+      "lyrics": "But she don't know you like I know you slim, no one does",
+      "chords": [
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 36 }
+      ]
+    },
+    {
+      "lyrics": "She don't know what it was like for people like us growin' up",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "B", "position": 34 },
+        { "chord": "F#", "position": 50 }
+      ]
+    },
+    {
+      "lyrics": "You gotta call me man, I'll be the biggest fan you'll ever lose",
+      "chords": [
+        { "chord": "G#m", "position": 10 },
+        { "chord": "E", "position": 46 }
+      ]
+    },
+    {
+      "lyrics": "Sincerely yours, Stan, p.s. We should be together too",
+      "chords": [
+        { "chord": "C#/F", "position": 10 },
+        { "chord": "E", "position": 26 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "My tea's gone cold, I'm wonderin' why",
+      "chords": [
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 14 },
+        { "chord": "F#", "position": 34 }
+      ]
+    },
+    {
+      "lyrics": "Got out of bed at all",
+      "chords": [
+        { "chord": "B", "position": 4 },
+        { "chord": "F#", "position": 11 },
+        { "chord": "G#m", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "The morning rain clouds up my window",
+      "chords": [
+        { "chord": "E", "position": 12 },
+        { "chord": "F#", "position": 33 }
+      ]
+    },
+    {
+      "lyrics": "And I can't see at all",
+      "chords": [
+        { "chord": "B", "position": 4 },
+        { "chord": "F#", "position": 12 },
+        { "chord": "G#m", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "And even if I could it'll all be gray",
+      "chords": [
+        { "chord": "E", "position": 9 },
+        { "chord": "F#", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "But your picture on my wall",
+      "chords": [
+        { "chord": "B", "position": 9 },
+        { "chord": "F#", "position": 17 },
+        { "chord": "G#m", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "It reminds me that it's not so bad",
+      "chords": [
+        { "chord": "E", "position": 8 },
+        { "chord": "C#/F", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "It's not so bad",
+      "chords": [
+        { "chord": "E", "position": 5 }
+      ]
+    },
+    { "section": "Verse 3" },
+    {
+      "lyrics": "Dear Mr I'm-Too-Good-To-Call-Or-Write-My-Fans",
+      "chords": [
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 22 },
+        { "chord": "F#", "position": 42 }
+      ]
+    },
+    {
+      "lyrics": "This'll be the last package I ever send your a**",
+      "chords": [
+        { "chord": "B", "position": 30 },
+        { "chord": "F#", "position": 44 }
+      ]
+    },
+    {
+      "lyrics": "It's been six months and still no words",
+      "chords": [
+        { "chord": "G#m", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "I don't deserve it",
+      "chords": [
+        { "chord": "E", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "I know you got my last two letters",
+      "chords": [
+        { "chord": "F#", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "I wrote the addresses on them perfect",
+      "chords": [
+        { "chord": "B", "position": 15 },
+        { "chord": "F#", "position": 31 }
+      ]
+    },
+    {
+      "lyrics": "So this is my cassette I'm sending you, I hope you hear it",
+      "chords": [
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 37 }
+      ]
+    },
+    {
+      "lyrics": "I'm in the car right now, I'm doin' 90 on the freeway",
+      "chords": [
+        { "chord": "F#", "position": 4 },
+        { "chord": "B", "position": 32 },
+        { "chord": "F#", "position": 48 }
+      ]
+    },
+    {
+      "lyrics": "Hey Slim, I drank a fifth of vodka, dare me to drive?",
+      "chords": [
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 29 },
+        { "chord": "C#/F", "position": 44 }
+      ]
+    },
+    {
+      "lyrics": "You know that song by Phil Collins, In the Air of the Night",
+      "chords": [
+        { "chord": "E", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "About that guy who could've saved that other guy from drowning",
+      "chords": [
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 36 }
+      ]
+    },
+    {
+      "lyrics": "But didn't, but Phil saw it all, then at a show he found him",
+      "chords": [
+        { "chord": "F#", "position": 4 },
+        { "chord": "B", "position": 30 },
+        { "chord": "F#", "position": 50 }
+      ]
+    },
+    {
+      "lyrics": "That's kinda how this is, you could've rescued me from drowning",
+      "chords": [
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 36 }
+      ]
+    },
+    {
+      "lyrics": "Now it's too late, I'm on a 1,000 downers now, I'm drowsy",
+      "chords": [
+        { "chord": "F#", "position": 9 },
+        { "chord": "B", "position": 29 },
+        { "chord": "F#", "position": 47 }
+      ]
+    },
+    {
+      "lyrics": "And all I wanted was a lousy letter or a call",
+      "chords": [
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "I hope you know I ripped all of your pictures off my wall",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "B", "position": 37 },
+        { "chord": "F#", "position": 51 }
+      ]
+    },
+    {
+      "lyrics": "I love you Slim, we could've been together, think about it",
+      "chords": [
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 28 },
+        { "chord": "C#/F", "position": 48 }
+      ]
+    },
+    {
+      "lyrics": "You ruined it now, I hope you can't sleep and you dream about it",
+      "chords": [
+        { "chord": "E", "position": 20 },
+        { "chord": "G#m", "position": 60 }
+      ]
+    },
+    {
+      "lyrics": "And when you dream, I hope you can't sleep and you scream about it",
+      "chords": [
+        { "chord": "E", "position": 31 }
+      ]
+    },
+    {
+      "lyrics": "I hope your conscience eats at you and you can't breathe without me",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "B", "position": 28 },
+        { "chord": "F#", "position": 44 },
+        { "chord": "G#m", "position": 58 }
+      ]
+    },
+    {
+      "lyrics": "See Slim, shut up b****, I'm trying to talk",
+      "chords": [
+        { "chord": "E", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "Hey Slim, that's my girlfriend screamin' in the trunk",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "B", "position": 22 },
+        { "chord": "F#", "position": 44 }
+      ]
+    },
+    {
+      "lyrics": "But I didn't slit her throat, I just tied her up, see I ain't like you",
+      "chords": [
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 45 }
+      ]
+    },
+    {
+      "lyrics": "Cause if she suffocates, she'll suffer more, then she'll die too",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "B", "position": 35 },
+        { "chord": "F#", "position": 52 },
+        { "chord": "G#m", "position": 58 }
+      ]
+    },
+    {
+      "lyrics": "Well, gotta go, I'm almost under the bridge now",
+      "chords": [
+        { "chord": "E", "position": 15 },
+        { "chord": "C#/F", "position": 36 }
+      ]
+    },
+    {
+      "lyrics": "Oh s***, I forgot, how am I supposed to send this s*** out?",
+      "chords": [
+        { "chord": "E", "position": 18 }
+      ]
+    },
+    { "section": "Instrumental" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 3 },
+        { "chord": "C#/F", "position": 6 },
+        { "chord": "E", "position": 9 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "My tea's gone cold, I'm wonderin' why",
+      "chords": [
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 14 },
+        { "chord": "F#", "position": 34 }
+      ]
+    },
+    {
+      "lyrics": "Got out of bed at all",
+      "chords": [
+        { "chord": "B", "position": 4 },
+        { "chord": "F#", "position": 11 },
+        { "chord": "G#m", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "The morning rain clouds up my window",
+      "chords": [
+        { "chord": "E", "position": 12 },
+        { "chord": "F#", "position": 33 }
+      ]
+    },
+    {
+      "lyrics": "And I can't see at all",
+      "chords": [
+        { "chord": "B", "position": 4 },
+        { "chord": "F#", "position": 12 },
+        { "chord": "G#m", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "And even if I could it'll all be gray",
+      "chords": [
+        { "chord": "E", "position": 9 },
+        { "chord": "F#", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "But your picture on my wall",
+      "chords": [
+        { "chord": "B", "position": 9 },
+        { "chord": "F#", "position": 17 },
+        { "chord": "G#m", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "It reminds me that it's not so bad",
+      "chords": [
+        { "chord": "E", "position": 8 },
+        { "chord": "C#/F", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "It's not so bad",
+      "chords": [
+        { "chord": "E", "position": 5 }
+      ]
+    },
+    { "section": "Verse 4" },
+    {
+      "lyrics": "Dear Stan, I meant to write you sooner, but I've just been busy",
+      "chords": [
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 37 }
+      ]
+    },
+    {
+      "lyrics": "You say your girlfriend's pregnant now, how far along is she?",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "B", "position": 36 },
+        { "chord": "F#", "position": 52 }
+      ]
+    },
+    {
+      "lyrics": "Look, I'm really flattered you would call your daughter that",
+      "chords": [
+        { "chord": "G#m", "position": 0 },
+        { "chord": "E", "position": 34 }
+      ]
+    },
+    {
+      "lyrics": "And here's an autograph for your brother",
+      "chords": [
+        { "chord": "F#", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "I wrote it on this Starter cap",
+      "chords": [
+        { "chord": "B", "position": 2 },
+        { "chord": "F#", "position": 18 },
+        { "chord": "G#m", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "I'm sorry I didn't see you at the show, I must've missed you",
+      "chords": [
+        { "chord": "E", "position": 19 }
+      ]
+    }
+  ]
+}
