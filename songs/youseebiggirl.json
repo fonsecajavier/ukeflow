@@ -1,0 +1,288 @@
+{
+  "title": "YouSeeBIGGIRL/T:T",
+  "artist": "Hiroyuki Sawano (Attack on Titan)",
+  "key": "Am",
+  "spotify": "https://open.spotify.com/track/4dHOnPucB5VBYq3gjRtYy9",
+  "lines": [
+    { "section": "Intro" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Am", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Am", "position": 8 }
+      ]
+    },
+    { "section": "Verse" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Am", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "F", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Am", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Dm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Am", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "F", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    { "section": "Pre-Chorus" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Am", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 8 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "E", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Dm", "position": 0 },
+        { "chord": "E", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "E", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Dm", "position": 0 },
+        { "chord": "E", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 4 },
+        { "chord": "Am", "position": 8 }
+      ]
+    },
+    { "section": "Vogel Im Käfig" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Dm", "position": 0 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Dm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "C", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Bb", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "F", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Dm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "C", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "F", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Dm", "position": 0 }
+      ]
+    },
+    { "section": "Interlude" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Dm", "position": 0 },
+        { "chord": "Am", "position": 4 },
+        { "chord": "Dm", "position": 8 },
+        { "chord": "Gm", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Dm", "position": 0 },
+        { "chord": "Bb", "position": 4 },
+        { "chord": "Am", "position": 8 },
+        { "chord": "Dm", "position": 12 }
+      ]
+    },
+    { "section": "Build Up" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Dm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "F", "position": 0 }
+      ]
+    },
+    { "section": "Final Chorus" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Dm", "position": 0 },
+        { "chord": "Am", "position": 4 },
+        { "chord": "Gm", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Dm", "position": 0 },
+        { "chord": "Am", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "E", "position": 4 },
+        { "chord": "Dm", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Dm", "position": 0 },
+        { "chord": "Am", "position": 4 },
+        { "chord": "Gm", "position": 8 },
+        { "chord": "Dm", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Dm", "position": 0 },
+        { "chord": "Am", "position": 4 },
+        { "chord": "F", "position": 8 },
+        { "chord": "E", "position": 12 },
+        { "chord": "Dm", "position": 16 }
+      ]
+    }
+  ]
+}
