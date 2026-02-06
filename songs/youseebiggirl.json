@@ -4,7 +4,7 @@
   "key": "Am",
   "spotify": "https://open.spotify.com/track/4dHOnPucB5VBYq3gjRtYy9",
   "lines": [
-    { "section": "Intro" },
+    { "section": "Intro (Apple Seed) 0:00" },
     {
       "lyrics": "(instrumental)",
       "chords": [
@@ -32,7 +32,7 @@
         { "chord": "Am", "position": 8 }
       ]
     },
-    { "section": "Verse" },
+    { "section": "Build (Apple Seed) 1:00" },
     {
       "lyrics": "(instrumental)",
       "chords": [
@@ -57,73 +57,7 @@
         { "chord": "Am", "position": 0 }
       ]
     },
-    {
-      "lyrics": "(instrumental)",
-      "chords": [
-        { "chord": "Dm", "position": 0 }
-      ]
-    },
-    {
-      "lyrics": "(instrumental)",
-      "chords": [
-        { "chord": "Am", "position": 0 }
-      ]
-    },
-    {
-      "lyrics": "(instrumental)",
-      "chords": [
-        { "chord": "F", "position": 0 }
-      ]
-    },
-    {
-      "lyrics": "(instrumental)",
-      "chords": [
-        { "chord": "G", "position": 0 }
-      ]
-    },
-    { "section": "Pre-Chorus" },
-    {
-      "lyrics": "(instrumental)",
-      "chords": [
-        { "chord": "Am", "position": 0 }
-      ]
-    },
-    {
-      "lyrics": "(instrumental)",
-      "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "G", "position": 8 }
-      ]
-    },
-    { "section": "Chorus" },
-    {
-      "lyrics": "(instrumental)",
-      "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "G", "position": 8 }
-      ]
-    },
-    {
-      "lyrics": "(instrumental)",
-      "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "E", "position": 8 }
-      ]
-    },
-    {
-      "lyrics": "(instrumental)",
-      "chords": [
-        { "chord": "Dm", "position": 0 },
-        { "chord": "E", "position": 8 }
-      ]
-    },
-    {
-      "lyrics": "(instrumental)",
-      "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "G", "position": 8 }
-      ]
-    },
+    { "section": "Climax (Apple Seed) 2:00" },
     {
       "lyrics": "(instrumental)",
       "chords": [
@@ -153,135 +87,161 @@
         { "chord": "Am", "position": 8 }
       ]
     },
-    { "section": "Vogel Im Käfig" },
+    { "section": "Vogel Im Käfig 2:42" },
     {
-      "lyrics": "(instrumental)",
+      "lyrics": "Alles Lebendige stirbt eines Tages",
       "chords": [
-        { "chord": "Dm", "position": 0 }
-      ]
-    },
-    { "section": "Verse 2" },
-    {
-      "lyrics": "(instrumental)",
-      "chords": [
-        { "chord": "Dm", "position": 0 }
+        { "chord": "Am", "position": 0 }
       ]
     },
     {
-      "lyrics": "(instrumental)",
+      "lyrics": "Ob wir zum Sterben bereit sind oder nicht",
       "chords": [
-        { "chord": "C", "position": 0 }
+        { "chord": "G", "position": 0 }
       ]
     },
     {
-      "lyrics": "(instrumental)",
+      "lyrics": "der Tag kommt sicher",
       "chords": [
-        { "chord": "Bb", "position": 0 }
+        { "chord": "F", "position": 0 },
+        { "chord": "E", "position": 12 }
       ]
     },
     {
       "lyrics": "(instrumental)",
       "chords": [
-        { "chord": "F", "position": 0 }
+        { "chord": "Am", "position": 0 }
+      ]
+    },
+    { "section": "Verse 3:00" },
+    {
+      "lyrics": "Ist das der Engel, der vom dämmernden Himmel hinunter flog?",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "Ist das der Teufel, der aus der Felsenspalte heraus kroch?",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "E", "position": 40 }
       ]
     },
     {
       "lyrics": "(instrumental)",
       "chords": [
-        { "chord": "Dm", "position": 0 }
+        { "chord": "Am", "position": 0 }
+      ]
+    },
+    { "section": "Pre-Chorus 3:30" },
+    {
+      "lyrics": "Tränen, Ärger, Mitleid, Grausamkeit",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 16 }
       ]
     },
     {
-      "lyrics": "(instrumental)",
+      "lyrics": "Frieden, Chaos, Glaube, Verrat",
       "chords": [
-        { "chord": "C", "position": 0 }
+        { "chord": "F", "position": 0 },
+        { "chord": "E", "position": 24 }
+      ]
+    },
+    { "section": "Chorus 3:50" },
+    {
+      "lyrics": "Wir werden gegen unser Schicksal ankämpfen",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 20 }
       ]
     },
     {
-      "lyrics": "(instrumental)",
+      "lyrics": "Wir dürfen uns nicht in unser Schicksal ergeben",
       "chords": [
-        { "chord": "F", "position": 0 }
-      ]
-    },
-    {
-      "lyrics": "(instrumental)",
-      "chords": [
-        { "chord": "Dm", "position": 0 }
-      ]
-    },
-    { "section": "Interlude" },
-    {
-      "lyrics": "(instrumental)",
-      "chords": [
-        { "chord": "Dm", "position": 0 },
-        { "chord": "Am", "position": 4 },
-        { "chord": "Dm", "position": 8 },
-        { "chord": "Gm", "position": 12 }
-      ]
-    },
-    {
-      "lyrics": "(instrumental)",
-      "chords": [
-        { "chord": "Dm", "position": 0 },
-        { "chord": "Bb", "position": 4 },
-        { "chord": "Am", "position": 8 },
-        { "chord": "Dm", "position": 12 }
-      ]
-    },
-    { "section": "Build Up" },
-    {
-      "lyrics": "(instrumental)",
-      "chords": [
-        { "chord": "Dm", "position": 0 }
-      ]
-    },
-    {
-      "lyrics": "(instrumental)",
-      "chords": [
-        { "chord": "F", "position": 0 }
-      ]
-    },
-    { "section": "Final Chorus" },
-    {
-      "lyrics": "(instrumental)",
-      "chords": [
-        { "chord": "Dm", "position": 0 },
-        { "chord": "Am", "position": 4 },
-        { "chord": "Gm", "position": 8 }
+        { "chord": "F", "position": 0 },
+        { "chord": "E", "position": 32 }
       ]
     },
     {
       "lyrics": "(instrumental)",
       "chords": [
         { "chord": "Dm", "position": 0 },
-        { "chord": "Am", "position": 8 }
+        { "chord": "E", "position": 8 }
       ]
     },
     {
       "lyrics": "(instrumental)",
       "chords": [
         { "chord": "F", "position": 0 },
-        { "chord": "E", "position": 4 },
-        { "chord": "Dm", "position": 8 }
+        { "chord": "G", "position": 4 },
+        { "chord": "Am", "position": 8 }
+      ]
+    },
+    { "section": "Verse 2 4:20" },
+    {
+      "lyrics": "Mit Trauer und Entscheidung im Herzen",
+      "chords": [
+        { "chord": "Am", "position": 0 }
       ]
     },
     {
-      "lyrics": "(instrumental)",
+      "lyrics": "zeigen wir den Willen weiterzugehen",
       "chords": [
-        { "chord": "Dm", "position": 0 },
-        { "chord": "Am", "position": 4 },
-        { "chord": "Gm", "position": 8 },
-        { "chord": "Dm", "position": 12 }
+        { "chord": "G", "position": 0 }
       ]
     },
     {
-      "lyrics": "(instrumental)",
+      "lyrics": "Niemand darf eigensinnig",
+      "chords": [
+        { "chord": "F", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "seines Lebens beraubt werden",
+      "chords": [
+        { "chord": "E", "position": 0 },
+        { "chord": "Am", "position": 18 }
+      ]
+    },
+    { "section": "Final Chorus 5:00" },
+    {
+      "lyrics": "Mit Trauer und Entscheidung im Herzen",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "zeigen wir den Willen weiterzugehen",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "E", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "Niemand darf eigensinnig seines Lebens beraubt werden",
       "chords": [
         { "chord": "Dm", "position": 0 },
-        { "chord": "Am", "position": 4 },
+        { "chord": "E", "position": 20 },
+        { "chord": "Am", "position": 40 }
+      ]
+    },
+    { "section": "Outro 5:30" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 4 },
         { "chord": "F", "position": 8 },
-        { "chord": "E", "position": 12 },
-        { "chord": "Dm", "position": 16 }
+        { "chord": "E", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Am", "position": 0 }
       ]
     }
   ]

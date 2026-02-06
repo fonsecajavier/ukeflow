@@ -1173,6 +1173,13 @@ const CHORDS = {
         barre: null,
         baseFret: 1
     },
+    'Dsus': {
+        name: 'Dsus',
+        frets: [0, 2, 3, 0],
+        fingers: [0, 1, 2, 0],
+        barre: null,
+        baseFret: 1
+    },
     'Gsus4': {
         name: 'Gsus4',
         frets: [0, 2, 3, 3],
@@ -1191,6 +1198,27 @@ const CHORDS = {
         name: 'Asus4',
         frets: [2, 2, 0, 0],
         fingers: [1, 2, 0, 0],
+        barre: null,
+        baseFret: 1
+    },
+    'Asus': {
+        name: 'Asus',
+        frets: [2, 2, 0, 0],
+        fingers: [1, 2, 0, 0],
+        barre: null,
+        baseFret: 1
+    },
+    'A7sus': {
+        name: 'A7sus',
+        frets: [0, 2, 0, 0],
+        fingers: [0, 2, 0, 0],
+        barre: null,
+        baseFret: 1
+    },
+    'A7sus4': {
+        name: 'A7sus4',
+        frets: [0, 2, 0, 0],
+        fingers: [0, 2, 0, 0],
         barre: null,
         baseFret: 1
     },

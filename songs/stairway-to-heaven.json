@@ -1,0 +1,542 @@
+{
+  "title": "Stairway to Heaven",
+  "artist": "Led Zeppelin",
+  "key": "Am",
+  "spotify": "https://open.spotify.com/track/5CQ30WqJwcep0pYcV4AMNc",
+  "lines": [
+    { "section": "Intro" },
+    {
+      "lyrics": "There's a lady...",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 24 },
+        { "chord": "C", "position": 40 },
+        { "chord": "D", "position": 51 }
+      ]
+    },
+    {
+      "lyrics": "and she's buying...",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 14 },
+        { "chord": "Am", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "When she gets there...",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 14 },
+        { "chord": "C", "position": 30 },
+        { "chord": "D", "position": 45 }
+      ]
+    },
+    {
+      "lyrics": "with a word...",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 25 },
+        { "chord": "Am", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "Oh... and she's buying...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 4 },
+        { "chord": "F", "position": 6 },
+        { "chord": "Am", "position": 16 },
+        { "chord": "C", "position": 22 },
+        { "chord": "G", "position": 35 },
+        { "chord": "D", "position": 48 }
+      ]
+    },
+    { "section": "Verse 1" },
+    {
+      "lyrics": "There's a sign...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 12 },
+        { "chord": "F", "position": 22 },
+        { "chord": "Am", "position": 33 }
+      ]
+    },
+    {
+      "lyrics": "cause you know...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 15 },
+        { "chord": "Fmaj7", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "In a tree...",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G#", "position": 11 },
+        { "chord": "C", "position": 30 },
+        { "chord": "D", "position": 44 }
+      ]
+    },
+    {
+      "lyrics": "Sometimes all of her thoughts...",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 25 },
+        { "chord": "Am", "position": 30 }
+      ]
+    },
+    { "section": "Interlude" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 7 },
+        { "chord": "C", "position": 13 },
+        { "chord": "D", "position": 19 },
+        { "chord": "F", "position": 25 },
+        { "chord": "G", "position": 34 },
+        { "chord": "Am", "position": 40 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Am7", "position": 7 },
+        { "chord": "Dsus4", "position": 15 }
+      ]
+    },
+    { "section": "Bridge" },
+    {
+      "lyrics": "Oh... it makes me wonder...",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "Am7", "position": 19 },
+        { "chord": "A7sus", "position": 24 },
+        { "chord": "Dsus", "position": 31 },
+        { "chord": "D", "position": 36 },
+        { "chord": "C", "position": 40 },
+        { "chord": "D", "position": 44 }
+      ]
+    },
+    {
+      "lyrics": "Oh... it makes me wonder...",
+      "chords": [
+        { "chord": "Am7", "position": 0 },
+        { "chord": "Dsus4", "position": 5 },
+        { "chord": "D", "position": 17 },
+        { "chord": "Am7", "position": 29 },
+        { "chord": "A7sus", "position": 35 },
+        { "chord": "Dsus", "position": 42 },
+        { "chord": "D", "position": 48 },
+        { "chord": "C", "position": 52 },
+        { "chord": "D", "position": 56 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "There's a feeling...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 17 },
+        { "chord": "Am", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "and my spirit...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 11 },
+        { "chord": "F", "position": 25 },
+        { "chord": "Am", "position": 29 }
+      ]
+    },
+    {
+      "lyrics": "In my thoughts...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 15 },
+        { "chord": "Am", "position": 31 }
+      ]
+    },
+    {
+      "lyrics": "and the voices...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 12 },
+        { "chord": "F", "position": 26 },
+        { "chord": "Am", "position": 30 },
+        { "chord": "C", "position": 35 },
+        { "chord": "G", "position": 39 },
+        { "chord": "Am7", "position": 47 },
+        { "chord": "A7sus", "position": 52 },
+        { "chord": "Dsus4", "position": 60 }
+      ]
+    },
+    { "section": "Bridge" },
+    {
+      "lyrics": "Oh... it makes me wonder...",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "Am7", "position": 18 },
+        { "chord": "A7sus", "position": 24 },
+        { "chord": "Dsus", "position": 32 },
+        { "chord": "D", "position": 38 },
+        { "chord": "C", "position": 42 },
+        { "chord": "D", "position": 46 }
+      ]
+    },
+    {
+      "lyrics": "Oh... it really makes me wonder...",
+      "chords": [
+        { "chord": "Am7", "position": 0 },
+        { "chord": "Dsus4", "position": 6 },
+        { "chord": "D", "position": 13 },
+        { "chord": "Am7", "position": 31 },
+        { "chord": "A7sus", "position": 36 },
+        { "chord": "Dsus", "position": 44 },
+        { "chord": "D", "position": 52 },
+        { "chord": "C", "position": 58 },
+        { "chord": "D", "position": 63 }
+      ]
+    },
+    { "section": "Verse 3" },
+    {
+      "lyrics": "And it's whispered...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 16 },
+        { "chord": "Am", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "then the piper...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 12 },
+        { "chord": "F", "position": 26 },
+        { "chord": "Am", "position": 29 }
+      ]
+    },
+    {
+      "lyrics": "And the new day...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 14 },
+        { "chord": "Am", "position": 33 }
+      ]
+    },
+    {
+      "lyrics": "and the forest...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 14 },
+        { "chord": "F", "position": 27 },
+        { "chord": "Am", "position": 33 }
+      ]
+    },
+    { "section": "Solo" },
+    {
+      "lyrics": "(solo)",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 6 }
+      ]
+    },
+    {
+      "lyrics": "(solo)",
+      "chords": [
+        { "chord": "Am7", "position": 0 },
+        { "chord": "A7sus", "position": 20 },
+        { "chord": "Dsus", "position": 29 },
+        { "chord": "D", "position": 36 }
+      ]
+    },
+    {
+      "lyrics": "(solo)",
+      "chords": [
+        { "chord": "Am7", "position": 0 },
+        { "chord": "A7sus", "position": 20 },
+        { "chord": "Dsus", "position": 29 },
+        { "chord": "D", "position": 36 },
+        { "chord": "C", "position": 43 },
+        { "chord": "D", "position": 48 }
+      ]
+    },
+    {
+      "lyrics": "(solo)",
+      "chords": [
+        { "chord": "Am7", "position": 0 },
+        { "chord": "A7sus", "position": 20 },
+        { "chord": "Dsus", "position": 29 },
+        { "chord": "D", "position": 36 }
+      ]
+    },
+    {
+      "lyrics": "(solo)",
+      "chords": [
+        { "chord": "Am7", "position": 0 },
+        { "chord": "A7sus", "position": 20 },
+        { "chord": "Dsus", "position": 29 },
+        { "chord": "D", "position": 36 },
+        { "chord": "C", "position": 43 },
+        { "chord": "D", "position": 48 }
+      ]
+    },
+    { "section": "Verse 4" },
+    {
+      "lyrics": "If there's a bustle...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 14 },
+        { "chord": "Am", "position": 38 }
+      ]
+    },
+    {
+      "lyrics": "it's just a spring clean...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 16 },
+        { "chord": "F", "position": 35 },
+        { "chord": "Am", "position": 40 }
+      ]
+    },
+    {
+      "lyrics": "Yes there are two paths...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 17 },
+        { "chord": "Am", "position": 38 }
+      ]
+    },
+    {
+      "lyrics": "there's still time...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 19 },
+        { "chord": "F", "position": 38 },
+        { "chord": "Am", "position": 43 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 4 }
+      ]
+    },
+    { "section": "Bridge" },
+    {
+      "lyrics": "Ohh... And it makes me wonder...",
+      "chords": [
+        { "chord": "Am7", "position": 0 },
+        { "chord": "A7sus", "position": 7 },
+        { "chord": "Dsus", "position": 15 },
+        { "chord": "D", "position": 22 },
+        { "chord": "Am7", "position": 35 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "A7sus", "position": 0 },
+        { "chord": "Dsus", "position": 8 },
+        { "chord": "D", "position": 14 },
+        { "chord": "C", "position": 18 },
+        { "chord": "D", "position": 22 },
+        { "chord": "Am7", "position": 26 },
+        { "chord": "A7sus", "position": 32 },
+        { "chord": "Dsus", "position": 40 },
+        { "chord": "D", "position": 46 },
+        { "chord": "Am7", "position": 50 },
+        { "chord": "A7sus", "position": 56 },
+        { "chord": "Dsus", "position": 64 },
+        { "chord": "D", "position": 70 },
+        { "chord": "C", "position": 74 },
+        { "chord": "D", "position": 78 }
+      ]
+    },
+    { "section": "Verse 5" },
+    {
+      "lyrics": "Your head is humming...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 21 },
+        { "chord": "Am", "position": 38 }
+      ]
+    },
+    {
+      "lyrics": "the piper's calling...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 11 },
+        { "chord": "F", "position": 26 },
+        { "chord": "Am", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "Dear lady can you hear...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 18 },
+        { "chord": "Am", "position": 37 }
+      ]
+    },
+    {
+      "lyrics": "your stairway lies...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 12 },
+        { "chord": "F", "position": 28 },
+        { "chord": "Am", "position": 36 }
+      ]
+    },
+    { "section": "Guitar Solo" },
+    {
+      "lyrics": "(solo)",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 4 },
+        { "chord": "D", "position": 8 },
+        { "chord": "Dsus", "position": 24 },
+        { "chord": "D", "position": 32 },
+        { "chord": "Dsus", "position": 48 },
+        { "chord": "D", "position": 56 },
+        { "chord": "Dsus", "position": 72 },
+        { "chord": "D", "position": 80 },
+        { "chord": "C", "position": 88 },
+        { "chord": "G", "position": 94 }
+      ]
+    },
+    { "section": "Finale" },
+    {
+      "lyrics": "And as we wind on down...",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 12 },
+        { "chord": "F", "position": 27 },
+        { "chord": "G", "position": 31 }
+      ]
+    },
+    {
+      "lyrics": "Our shadows taller...",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 15 },
+        { "chord": "F", "position": 31 },
+        { "chord": "G", "position": 35 }
+      ]
+    },
+    {
+      "lyrics": "There walks a lady...",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 17 },
+        { "chord": "F", "position": 28 },
+        { "chord": "G", "position": 33 }
+      ]
+    },
+    {
+      "lyrics": "Who shines white light...",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 15 },
+        { "chord": "F", "position": 37 },
+        { "chord": "G", "position": 41 }
+      ]
+    },
+    {
+      "lyrics": "how everything still turns...",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 13 },
+        { "chord": "F", "position": 32 },
+        { "chord": "G", "position": 37 }
+      ]
+    },
+    {
+      "lyrics": "And if you listen...",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 13 },
+        { "chord": "F", "position": 23 },
+        { "chord": "G", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "the time will come...",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 12 },
+        { "chord": "F", "position": 29 },
+        { "chord": "G", "position": 33 }
+      ]
+    },
+    {
+      "lyrics": "When all are one...",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 14 },
+        { "chord": "F", "position": 27 },
+        { "chord": "G", "position": 31 }
+      ]
+    },
+    {
+      "lyrics": "To be a rock...",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 9 },
+        { "chord": "F", "position": 23 },
+        { "chord": "G", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 6 },
+        { "chord": "F", "position": 12 },
+        { "chord": "G", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 6 },
+        { "chord": "F", "position": 12 },
+        { "chord": "G", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 6 },
+        { "chord": "F", "position": 12 },
+        { "chord": "G", "position": 18 },
+        { "chord": "Am", "position": 24 }
+      ]
+    },
+    { "section": "Outro" },
+    {
+      "lyrics": "(outro)",
+      "chords": [
+        { "chord": "Asus4", "position": 0 },
+        { "chord": "Am", "position": 7 },
+        { "chord": "Asus2", "position": 14 },
+        { "chord": "Asus", "position": 21 },
+        { "chord": "Am", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "And she's buying...",
+      "chords": [
+        { "chord": "Fmaj7", "position": 0 },
+        { "chord": "G", "position": 10 },
+        { "chord": "Am", "position": 19 }
+      ]
+    }
+  ]
+}
