@@ -559,6 +559,13 @@ const CHORDS = {
         barre: { fret: 3, fromString: 0, toString: 3 },
         baseFret: 1
     },
+    'Cm7b5': {
+        name: 'Cm7b5',
+        frets: [3, 3, 2, 3],
+        fingers: [2, 3, 1, 4],
+        barre: null,
+        baseFret: 1
+    },
     'C#m7': {
         name: 'C#m7',
         frets: [4, 4, 4, 4],
