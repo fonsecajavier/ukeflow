@@ -566,19 +566,21 @@ function updateChordPool() {
             if (hasFlat && !practiceState.filters.flats) return false;
         }
 
-        // Major chords: no 'm', no '7', no 'dim', no 'aug', no 'sus', no '9'
+        // Major chords: no 'm', no '7', no 'dim', no 'aug', no 'sus', no '9', no '11'
         const isMajor = !name.includes('m') &&
                         !name.includes('7') &&
                         !name.includes('dim') &&
                         !name.includes('aug') &&
                         !name.includes('sus') &&
-                        !name.includes('9');
+                        !name.includes('9') &&
+                        !name.includes('11');
 
-        // Minor chords: ends with 'm' but not 'dim', no '7'
+        // Minor chords: ends with 'm' but not 'dim', no '7', no '11'
         const isMinor = (name.endsWith('m') || name.match(/m$/)) &&
                         !name.includes('7') &&
                         !name.includes('dim') &&
-                        !name.includes('maj');
+                        !name.includes('maj') &&
+                        !name.includes('11');
 
         // 7th chords: contains '7'
         const is7th = name.includes('7');
