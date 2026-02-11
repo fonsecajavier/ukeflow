@@ -198,8 +198,8 @@ const CHORDS = {
     },
     'G#m': {
         name: 'G#m',
-        frets: [4, 3, 4, 2],
-        fingers: [3, 2, 4, 1],
+        frets: [1, 3, 4, 2],
+        fingers: [1, 3, 4, 2],
         barre: null,
         baseFret: 1
     },

@@ -131,3 +131,15 @@ When adding songs to `progressions.json`:
 3. Convert the chords to roman numerals in the song's key to confirm they match the progression
 4. Example: For "Axis of Awesome" (I-V-vi-IV), a song in C with chords C-G-Am-F is correct, but Am-F-C-G would be "Sensitive Female" (vi-IV-I-V)
 5. Be especially careful with rotations - the same 4 chords in different orders are different progressions
+
+## Reading Chord Diagrams
+When the user provides a chord diagram image:
+1. The diagram has 4 vertical lines (strings: G-C-E-A from left to right)
+2. Horizontal lines are frets (top line is nut/fret 0, then frets 1, 2, 3, 4 going down)
+3. Dots indicate where to press
+4. Read column by column (left to right), counting which row each dot is on
+5. Output as [G, C, E, A] fret numbers
+6. Open strings (fret 0) may show an "O" above the nut, or nothing at all - if no dot in a column, it's open (0)
+7. Muted strings show an "X" above the nut - record as -1
+8. A barre is shown as a thick horizontal line or curved bar spanning multiple strings on the same fret - record as `barre: { fret: N, fromString: X, toString: Y }`
+9. Do NOT guess or confirm - follow this method systematically
