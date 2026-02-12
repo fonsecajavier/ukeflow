@@ -1,0 +1,342 @@
+{
+  "title": "Basket Case",
+  "artist": "Green Day",
+  "key": "Eb",
+  "spotify": "https://open.spotify.com/track/0zWuOowhDnhikrtBH5w9eT",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Do you have the time to listen to me whine",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Bb", "position": 16 },
+        { "chord": "Cm", "position": 22 },
+        { "chord": "Gm", "position": 35 }
+      ]
+    },
+    {
+      "lyrics": "about nothing and everything all at once.",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 18 },
+        { "chord": "Bb", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "I am one of those",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Bb", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "Melodramatic fools.",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Gm", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "Neurotic to the bone no doubt about it.",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 14 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Sometimes I give myself the creeps.",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Bb", "position": 10 },
+        { "chord": "Eb", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "Sometimes my mind plays tricks on me.",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Bb", "position": 11 },
+        { "chord": "Eb", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "It all keeps adding up.",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Bb", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "I think I'm cracking up,",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Db", "position": 10 },
+        { "chord": "Cm", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Am I just paranoid? Am I just stoned?",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Bb", "position": 11 },
+        { "chord": "Eb", "position": 32 }
+      ]
+    },
+    { "section": "Interlude" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Bb", "position": 0 },
+        { "chord": "Cm", "position": 3 },
+        { "chord": "Bb", "position": 6 },
+        { "chord": "Eb", "position": 9 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Bb", "position": 3 },
+        { "chord": "Cm", "position": 6 },
+        { "chord": "Bb", "position": 9 },
+        { "chord": "Eb", "position": 12 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "I went to a shrink",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Bb", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "To analyze my dreams.",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Gm", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "She says it's lack of xxx that's bringing me down.",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 20 },
+        { "chord": "Bb", "position": 42 }
+      ]
+    },
+    {
+      "lyrics": "I went to a whore.",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Bb", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "He said my life's a bore,",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Gm", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "So quit my whining cause it's bringing her down.",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 16 },
+        { "chord": "Bb", "position": 40 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Sometimes I give myself the creeps.",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Bb", "position": 10 },
+        { "chord": "Eb", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "Sometimes my mind plays tricks on me.",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Bb", "position": 11 },
+        { "chord": "Eb", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "It all keeps adding up.",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Bb", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "I think I'm cracking up,",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Db", "position": 10 },
+        { "chord": "Cm", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Am I just paranoid? Am I just stoned?",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Bb", "position": 11 },
+        { "chord": "Eb", "position": 32 }
+      ]
+    },
+    { "section": "Bridge" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Bb", "position": 0 },
+        { "chord": "Cm", "position": 3 },
+        { "chord": "Bb", "position": 6 },
+        { "chord": "Eb", "position": 9 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Bb", "position": 0 },
+        { "chord": "Cm", "position": 3 },
+        { "chord": "Bb", "position": 6 },
+        { "chord": "Eb", "position": 9 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Bb", "position": 0 },
+        { "chord": "Cm", "position": 3 },
+        { "chord": "Bb", "position": 6 },
+        { "chord": "Eb", "position": 9 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Bb", "position": 0 },
+        { "chord": "Cm", "position": 3 },
+        { "chord": "Bb", "position": 6 },
+        { "chord": "Ab", "position": 9 }
+      ]
+    },
+    {
+      "lyrics": "Grasping to control,",
+      "chords": [
+        { "chord": "Bb", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "So I better hold on.",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Bb", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Gm", "position": 3 },
+        { "chord": "Ab", "position": 6 },
+        { "chord": "Eb", "position": 9 },
+        { "chord": "Bb", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Bb", "position": 3 },
+        { "chord": "Cm", "position": 6 },
+        { "chord": "Gm", "position": 9 },
+        { "chord": "Ab", "position": 12 },
+        { "chord": "Eb", "position": 15 },
+        { "chord": "Bb", "position": 18 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Sometimes I give myself the creeps.",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Bb", "position": 10 },
+        { "chord": "Eb", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "Sometimes my mind plays tricks on me.",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Bb", "position": 11 },
+        { "chord": "Eb", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "It all keeps adding up.",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Bb", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "I think I'm cracking up,",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Db", "position": 10 },
+        { "chord": "Cm", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Am I just paranoid? Am I just stoned?",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Bb", "position": 11 },
+        { "chord": "Eb", "position": 32 }
+      ]
+    },
+    { "section": "Outro" },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Ab", "position": 3 },
+        { "chord": "Eb", "position": 6 },
+        { "chord": "Bb", "position": 9 },
+        { "chord": "Eb", "position": 12 },
+        { "chord": "Cm", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 3 },
+        { "chord": "Bb", "position": 6 },
+        { "chord": "Eb", "position": 9 },
+        { "chord": "Cm", "position": 12 },
+        { "chord": "Ab", "position": 15 },
+        { "chord": "Eb", "position": 18 },
+        { "chord": "Bb", "position": 21 }
+      ]
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Cm", "position": 3 },
+        { "chord": "Ab", "position": 6 },
+        { "chord": "Eb", "position": 9 },
+        { "chord": "Bb", "position": 12 },
+        { "chord": "Ab", "position": 15 },
+        { "chord": "Eb", "position": 18 },
+        { "chord": "Bb", "position": 21 }
+      ]
+    }
+  ]
+}
