@@ -1,94 +1,94 @@
 {
   "title": "Bésame Mucho",
   "artist": "Consuelo Velázquez",
-  "key": "Dm",
+  "key": "Fm",
   "spotify": "https://open.spotify.com/track/7xPPK9NZmyHLiJWOjMB2uO",
   "lines": [
     { "section": "Verse 1" },
     {
       "lyrics": "Bésame, bésame mucho",
       "chords": [
-        { "chord": "Dm", "position": 0 },
-        { "chord": "Gm", "position": 16 }
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Bbm", "position": 16 }
       ]
     },
     {
       "lyrics": "Como si fuera esta noche",
       "chords": [
-        { "chord": "Dm", "position": 0 },
-        { "chord": "E7", "position": 12 }
+        { "chord": "Fm", "position": 0 },
+        { "chord": "G7", "position": 12 }
       ]
     },
     {
       "lyrics": "La última vez",
       "chords": [
-        { "chord": "A7", "position": 0 },
-        { "chord": "Dm", "position": 10 }
+        { "chord": "C7", "position": 0 },
+        { "chord": "Fm", "position": 10 }
       ]
     },
     { "section": "Verse 2" },
     {
       "lyrics": "Bésame, bésame mucho",
       "chords": [
-        { "chord": "Dm", "position": 0 },
-        { "chord": "Gm", "position": 16 }
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Bbm", "position": 16 }
       ]
     },
     {
       "lyrics": "Que tengo miedo perderte",
       "chords": [
-        { "chord": "Dm", "position": 0 },
-        { "chord": "Bb", "position": 14 }
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Db", "position": 14 }
       ]
     },
     {
       "lyrics": "Perderte después",
       "chords": [
-        { "chord": "A7", "position": 0 },
-        { "chord": "Dm", "position": 10 }
+        { "chord": "C7", "position": 0 },
+        { "chord": "Fm", "position": 10 }
       ]
     },
     { "section": "Bridge" },
     {
       "lyrics": "Quiero tenerte muy cerca",
       "chords": [
-        { "chord": "D7", "position": 0 },
-        { "chord": "Gm", "position": 14 }
+        { "chord": "F7", "position": 0 },
+        { "chord": "Bbm", "position": 14 }
       ]
     },
     {
       "lyrics": "Mirarme en tus ojos",
       "chords": [
-        { "chord": "Gm", "position": 0 }
+        { "chord": "Bbm", "position": 0 }
       ]
     },
     {
       "lyrics": "Verte junto a mí",
       "chords": [
-        { "chord": "A7", "position": 0 },
-        { "chord": "Dm", "position": 10 }
+        { "chord": "C7", "position": 0 },
+        { "chord": "Fm", "position": 10 }
       ]
     },
     { "section": "Verse 3" },
     {
       "lyrics": "Piensa que tal vez mañana",
       "chords": [
-        { "chord": "D7", "position": 0 },
-        { "chord": "Gm", "position": 14 }
+        { "chord": "F7", "position": 0 },
+        { "chord": "Bbm", "position": 14 }
       ]
     },
     {
       "lyrics": "Yo ya estaré lejos",
       "chords": [
-        { "chord": "Dm", "position": 0 },
-        { "chord": "Bb", "position": 10 }
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Db", "position": 10 }
       ]
     },
     {
       "lyrics": "Muy lejos de ti",
       "chords": [
-        { "chord": "A7", "position": 0 },
-        { "chord": "Dm", "position": 10 }
+        { "chord": "C7", "position": 0 },
+        { "chord": "Fm", "position": 10 }
       ]
     }
   ]
