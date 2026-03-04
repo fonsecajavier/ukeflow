@@ -1,0 +1,257 @@
+{
+  "title": "Sweet Child O' Mine",
+  "artist": "Guns N' Roses",
+  "key": "D",
+  "spotify": "https://open.spotify.com/track/7o2CTH4ctstm8TNelqjb51",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "She's got smile that it seems to me",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Reminds me of childhood memories",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "C9", "position": 4 },
+        { "chord": "C", "position": 7 }
+      ]
+    },
+    {
+      "lyrics": "Where everything was as fresh as the bright blue sky",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "D", "position": 42 }
+      ]
+    },
+    {
+      "lyrics": "Now and then When I see her face",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "She takes me away to that special place",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "C9", "position": 4 },
+        { "chord": "C", "position": 7 }
+      ]
+    },
+    {
+      "lyrics": "And if I stared too long",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "I'd probably break down and cry",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Woah, woah, woah, sweet child o' mine",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "C", "position": 17 },
+        { "chord": "D", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "Woah, oh, oh, oh, sweet love of mine",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "C", "position": 16 },
+        { "chord": "D", "position": 18 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "She's got eyes of the bluest skies",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "As if they thought of rain",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "C9", "position": 4 },
+        { "chord": "C", "position": 7 }
+      ]
+    },
+    {
+      "lyrics": "I hate to look into those eyes",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "And see announce of pain",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Her hair reminds me of a warm safe place",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Where as a child I'd hide",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "C9", "position": 4 },
+        { "chord": "C", "position": 7 }
+      ]
+    },
+    {
+      "lyrics": "And pray for the thunder and the rain",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "To quietly pass me by",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Woah, woah, woah, sweet child o' mine",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "C", "position": 17 },
+        { "chord": "D", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "Woah, oh, oh, oh, sweet love o' mine",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "C", "position": 16 },
+        { "chord": "D", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Woah, oh, oh, oh, sweet child o' mine",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "C", "position": 17 },
+        { "chord": "D", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "Woah, oh, oh, oh, sweet love o' mine",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "C", "position": 16 },
+        { "chord": "D", "position": 18 }
+      ]
+    },
+    { "section": "Outro" },
+    {
+      "lyrics": "Where do we go Where do we go now",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "G", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "Where do we go",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "C", "position": 9 },
+        { "chord": "D", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "Where do we go Where do we go",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "G", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "Where do we go now",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "C", "position": 9 },
+        { "chord": "D", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "Where do we go Sweet child, where do we go now",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "G", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "Where do we go",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "C", "position": 9 },
+        { "chord": "D", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "Where do we go Where do we go now",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "G", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "Where do we go",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "C", "position": 9 },
+        { "chord": "D", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "Where do we go Where do we go",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "G", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "Where do we go now",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "C", "position": 9 },
+        { "chord": "D", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "No, no, no, no, no, no, no",
+      "chords": [
+        { "chord": "E", "position": 0 },
+        { "chord": "D", "position": 4 },
+        { "chord": "B", "position": 8 },
+        { "chord": "Am", "position": 12 },
+        { "chord": "G", "position": 16 },
+        { "chord": "F", "position": 20 },
+        { "chord": "Em", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "Sweet child, sweet chiiilldddd of of mine",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Am", "position": 13 },
+        { "chord": "C", "position": 16 },
+        { "chord": "D", "position": 18 },
+        { "chord": "Em", "position": 20 }
+      ]
+    }
+  ]
+}
