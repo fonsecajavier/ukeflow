@@ -1159,9 +1159,9 @@ const CHORDS = {
     },
     'B9': {
         name: 'B9',
-        frets: [2, 3, 2, 4],
-        fingers: [1, 2, 1, 4],
-        barre: { fret: 2, fromString: 0, toString: 2 },
+        frets: [4, 3, 5, 4],
+        fingers: [2, 1, 4, 3],
+        barre: null,
         baseFret: 1
     },
     'F9': {
