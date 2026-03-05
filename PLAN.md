@@ -368,7 +368,7 @@ ukeflow/
     ├── youseebiggirl.json             # Hiroyuki Sawano - Attack on Titan (Em)
     ├── stairway-to-heaven.json        # Led Zeppelin (Am)
     ├── basket-case.json               # Green Day (Eb)
-    └── sweet-child-o-mine.json        # Guns N' Roses (D)
+    └── sweet-child-o-mine.json        # Guns N' Roses (C#)
 ```
 
 ### JavaScript Module Organization
