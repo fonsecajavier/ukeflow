@@ -1,328 +1,328 @@
 {
   "title": "La Bilirrubina",
   "artist": "Juan Luis Guerra",
-  "key": "F",
+  "key": "C#",
   "spotify": "https://open.spotify.com/track/4xzcXQrlMKwvv3kDpvBKWm",
   "lines": [
     { "section": "Verso 1" },
     {
       "lyrics": "Oye, me dio una fiebre el otro día",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 5 },
-        { "chord": "Bb", "position": 17 },
-        { "chord": "C", "position": 20 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 5 },
+        { "chord": "F#", "position": 17 },
+        { "chord": "G#", "position": 20 }
       ]
     },
     {
       "lyrics": "Por causa de tu amor, cristiana",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 10 },
-        { "chord": "Bb", "position": 16 },
-        { "chord": "C", "position": 26 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 10 },
+        { "chord": "F#", "position": 16 },
+        { "chord": "G#", "position": 26 }
       ]
     },
     {
       "lyrics": "Que fui a parar a enfermería",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 8 },
-        { "chord": "Bb", "position": 14 },
-        { "chord": "C", "position": 26 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 8 },
+        { "chord": "F#", "position": 14 },
+        { "chord": "G#", "position": 26 }
       ]
     },
     {
       "lyrics": "Sin yo tener seguro (d)e cama",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 7 },
-        { "chord": "Bb", "position": 14 },
-        { "chord": "C", "position": 25 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 7 },
+        { "chord": "F#", "position": 14 },
+        { "chord": "G#", "position": 25 }
       ]
     },
     { "section": "Verso 2" },
     {
       "lyrics": "Y me inyectaron suero de colores, ey",
       "chords": [
-        { "chord": "Bb", "position": 0 },
-        { "chord": "F", "position": 16 }
+        { "chord": "F#", "position": 0 },
+        { "chord": "C#", "position": 16 }
       ]
     },
     {
       "lyrics": "Y me sacaron la radiografía",
       "chords": [
-        { "chord": "Gm", "position": 0 },
-        { "chord": "C", "position": 14 }
+        { "chord": "Ebm", "position": 0 },
+        { "chord": "G#", "position": 14 }
       ]
     },
     {
       "lyrics": "Y me diagnosticaron mal de amores, uh",
       "chords": [
-        { "chord": "Bb", "position": 0 },
-        { "chord": "F", "position": 19 }
+        { "chord": "F#", "position": 0 },
+        { "chord": "C#", "position": 19 }
       ]
     },
     {
       "lyrics": "Al ver mi corazón como latía",
       "chords": [
-        { "chord": "G7", "position": 0 },
-        { "chord": "C", "position": 14 }
+        { "chord": "Eb7", "position": 0 },
+        { "chord": "G#", "position": 14 }
       ]
     },
     { "section": "Verso 3" },
     {
       "lyrics": "Oye, y me trastearon hasta el alma",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 6 },
-        { "chord": "Bb", "position": 19 },
-        { "chord": "C", "position": 27 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 6 },
+        { "chord": "F#", "position": 19 },
+        { "chord": "G#", "position": 27 }
       ]
     },
     {
       "lyrics": "Con rayos equis y cirugía",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 4 },
-        { "chord": "Bb", "position": 16 },
-        { "chord": "C", "position": 18 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 4 },
+        { "chord": "F#", "position": 16 },
+        { "chord": "G#", "position": 18 }
       ]
     },
     {
       "lyrics": "Y es que la ciencia no funciona",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 7 },
-        { "chord": "Bb", "position": 18 },
-        { "chord": "C", "position": 22 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 7 },
+        { "chord": "F#", "position": 18 },
+        { "chord": "G#", "position": 22 }
       ]
     },
     {
       "lyrics": "Sólo tus besos, vida mía",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 5 },
-        { "chord": "Bb", "position": 12 },
-        { "chord": "C", "position": 17 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 5 },
+        { "chord": "F#", "position": 12 },
+        { "chord": "G#", "position": 17 }
       ]
     },
     { "section": "Pre-Coro" },
     {
       "lyrics": "Ay negra, mira búscate un catéter, ey",
       "chords": [
-        { "chord": "Bb", "position": 0 },
-        { "chord": "F", "position": 21 }
+        { "chord": "F#", "position": 0 },
+        { "chord": "C#", "position": 21 }
       ]
     },
     {
       "lyrics": "E inyéctame tu amor como insulina",
       "chords": [
-        { "chord": "Gm", "position": 0 },
-        { "chord": "C", "position": 19 }
+        { "chord": "Ebm", "position": 0 },
+        { "chord": "G#", "position": 19 }
       ]
     },
     {
       "lyrics": "Y dame vitamina de cariño, ¡eh!",
       "chords": [
-        { "chord": "Bb", "position": 0 },
-        { "chord": "F", "position": 19 }
+        { "chord": "F#", "position": 0 },
+        { "chord": "C#", "position": 19 }
       ]
     },
     {
       "lyrics": "Que me ha subido la bilirrubina",
       "chords": [
-        { "chord": "G7", "position": 0 },
-        { "chord": "C", "position": 18 }
+        { "chord": "Eb7", "position": 0 },
+        { "chord": "G#", "position": 18 }
       ]
     },
     {
       "lyrics": "Ay...",
       "chords": [
-        { "chord": "Bb", "position": 0 },
-        { "chord": "C", "position": 3 }
+        { "chord": "F#", "position": 0 },
+        { "chord": "G#", "position": 3 }
       ]
     },
     { "section": "Coro" },
     {
       "lyrics": "Me sube la bilirrubina",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 3 },
-        { "chord": "Bb", "position": 9 },
-        { "chord": "C", "position": 14 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 3 },
+        { "chord": "F#", "position": 9 },
+        { "chord": "G#", "position": 14 }
       ]
     },
     {
       "lyrics": "Cuando te miro y no me miras",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 7 },
-        { "chord": "Bb", "position": 13 },
-        { "chord": "C", "position": 20 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 7 },
+        { "chord": "F#", "position": 13 },
+        { "chord": "G#", "position": 20 }
       ]
     },
     {
       "lyrics": "Y no lo quita la aspirina",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 5 },
-        { "chord": "Bb", "position": 15 },
-        { "chord": "C", "position": 18 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 5 },
+        { "chord": "F#", "position": 15 },
+        { "chord": "G#", "position": 18 }
       ]
     },
     {
       "lyrics": "Es un amor que contamina",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 6 },
-        { "chord": "Bb", "position": 11 },
-        { "chord": "C", "position": 16 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 6 },
+        { "chord": "F#", "position": 11 },
+        { "chord": "G#", "position": 16 }
       ]
     },
     {
       "lyrics": "Oye, me sube la bilirrubina",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 5 },
-        { "chord": "Bb", "position": 14 },
-        { "chord": "C", "position": 19 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 5 },
+        { "chord": "F#", "position": 14 },
+        { "chord": "G#", "position": 19 }
       ]
     },
     {
       "lyrics": "Cuando te miro y no me miras",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 7 },
-        { "chord": "Bb", "position": 13 },
-        { "chord": "C", "position": 20 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 7 },
+        { "chord": "F#", "position": 13 },
+        { "chord": "G#", "position": 20 }
       ]
     },
     {
       "lyrics": "Y no lo quita la aspirina",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 5 },
-        { "chord": "Bb", "position": 15 },
-        { "chord": "C", "position": 18 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 5 },
+        { "chord": "F#", "position": 15 },
+        { "chord": "G#", "position": 18 }
       ]
     },
     {
       "lyrics": "Es un amor que contamina",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 6 },
-        { "chord": "Bb", "position": 11 },
-        { "chord": "C", "position": 16 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 6 },
+        { "chord": "F#", "position": 11 },
+        { "chord": "G#", "position": 16 }
       ]
     },
     { "section": "Pre-Coro 2" },
     {
       "lyrics": "Ay negra, mira búscate un catéter, ey",
       "chords": [
-        { "chord": "Bb", "position": 0 },
-        { "chord": "F", "position": 21 }
+        { "chord": "F#", "position": 0 },
+        { "chord": "C#", "position": 21 }
       ]
     },
     {
       "lyrics": "E inyéctame tu amor como insulina",
       "chords": [
-        { "chord": "Gm", "position": 0 },
-        { "chord": "C", "position": 19 }
+        { "chord": "Ebm", "position": 0 },
+        { "chord": "G#", "position": 19 }
       ]
     },
     {
       "lyrics": "Y dame vitamina de cariño, ¡eh!",
       "chords": [
-        { "chord": "Bb", "position": 0 },
-        { "chord": "F", "position": 19 }
+        { "chord": "F#", "position": 0 },
+        { "chord": "C#", "position": 19 }
       ]
     },
     {
       "lyrics": "Que me ha subido la bilirrubina",
       "chords": [
-        { "chord": "G7", "position": 0 },
-        { "chord": "C", "position": 18 }
+        { "chord": "Eb7", "position": 0 },
+        { "chord": "G#", "position": 18 }
       ]
     },
     {
       "lyrics": "Ay...",
       "chords": [
-        { "chord": "Bb", "position": 0 },
-        { "chord": "C", "position": 3 }
+        { "chord": "F#", "position": 0 },
+        { "chord": "G#", "position": 3 }
       ]
     },
     { "section": "Coro Final" },
     {
       "lyrics": "Me sube la bilirrubina",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 3 },
-        { "chord": "Bb", "position": 9 },
-        { "chord": "C", "position": 14 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 3 },
+        { "chord": "F#", "position": 9 },
+        { "chord": "G#", "position": 14 }
       ]
     },
     {
       "lyrics": "Cuando te miro y no me miras",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 7 },
-        { "chord": "Bb", "position": 13 },
-        { "chord": "C", "position": 20 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 7 },
+        { "chord": "F#", "position": 13 },
+        { "chord": "G#", "position": 20 }
       ]
     },
     {
       "lyrics": "Y no lo quita la aspirina",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 5 },
-        { "chord": "Bb", "position": 15 },
-        { "chord": "C", "position": 18 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 5 },
+        { "chord": "F#", "position": 15 },
+        { "chord": "G#", "position": 18 }
       ]
     },
     {
       "lyrics": "Es un amor que contamina",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 6 },
-        { "chord": "Bb", "position": 11 },
-        { "chord": "C", "position": 16 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 6 },
+        { "chord": "F#", "position": 11 },
+        { "chord": "G#", "position": 16 }
       ]
     },
     {
       "lyrics": "Oye, me sube la bilirrubina",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 5 },
-        { "chord": "Bb", "position": 14 },
-        { "chord": "C", "position": 19 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 5 },
+        { "chord": "F#", "position": 14 },
+        { "chord": "G#", "position": 19 }
       ]
     },
     {
       "lyrics": "Cuando te miro y no me miras",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 7 },
-        { "chord": "Bb", "position": 13 },
-        { "chord": "C", "position": 20 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 7 },
+        { "chord": "F#", "position": 13 },
+        { "chord": "G#", "position": 20 }
       ]
     },
     {
       "lyrics": "Y no lo quita la aspirina",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 5 },
-        { "chord": "Bb", "position": 15 },
-        { "chord": "C", "position": 18 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 5 },
+        { "chord": "F#", "position": 15 },
+        { "chord": "G#", "position": 18 }
       ]
     },
     {
       "lyrics": "Es un amor que contamina",
       "chords": [
-        { "chord": "F", "position": 0 },
-        { "chord": "Am", "position": 6 },
-        { "chord": "Bb", "position": 11 },
-        { "chord": "C", "position": 16 }
+        { "chord": "C#", "position": 0 },
+        { "chord": "Fm", "position": 6 },
+        { "chord": "F#", "position": 11 },
+        { "chord": "G#", "position": 16 }
       ]
     }
   ]
