@@ -38,6 +38,7 @@
     { "path": "songs/youseebiggirl.json", "title": "YouSeeBIGGIRL/T:T", "artist": "Hiroyuki Sawano (Attack on Titan)" },
     { "path": "songs/stairway-to-heaven.json", "title": "Stairway to Heaven", "artist": "Led Zeppelin" },
     { "path": "songs/basket-case.json", "title": "Basket Case", "artist": "Green Day" },
-    { "path": "songs/sweet-child-o-mine.json", "title": "Sweet Child O' Mine", "artist": "Guns N' Roses" }
+    { "path": "songs/sweet-child-o-mine.json", "title": "Sweet Child O' Mine", "artist": "Guns N' Roses" },
+    { "path": "songs/la-bilirrubina.json", "title": "La Bilirrubina", "artist": "Juan Luis Guerra" }
   ]
 }
