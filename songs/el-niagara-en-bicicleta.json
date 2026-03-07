@@ -1,0 +1,407 @@
+{
+  "title": "El Niagara en Bicicleta",
+  "artist": "Juan Luis Guerra",
+  "key": "A#",
+  "spotify": "https://open.spotify.com/track/4qsuWRmELXhtTyZSxrgcnB",
+  "lines": [
+    { "section": "Verso 1" },
+    {
+      "lyrics": "Me dio una sirimba un domingo en la mañana",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "cuando menos lo pensaba",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "caí redondo como una guanabána,",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "sobre una alcantarilla",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "será la presión o me ha subido",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "la bilirrubina",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "y me entró la calentura y me fui poniendo blanco",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "como bola (d)e naftalina",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    { "section": "Verso 2" },
+    {
+      "lyrics": "Me llevaron a un hospital de gente",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "(supuestamente)",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "en la emergencia el recepcionista",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "escuchaba la lotería (treinta mil pesos!)",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "alguien se apiade de mi!",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "grite perdiendo el sentido",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "y una enfermera se acercó a mi oreja y me dijo:",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "tranquilo, Bobby, tranquilo",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    { "section": "Interludio" },
+    {
+      "lyrics": "(A#  F  D# - se repite cuatro veces)",
+      "chords": [
+        { "chord": "A#", "position": 1 },
+        { "chord": "F", "position": 5 },
+        { "chord": "D#", "position": 8 }
+      ]
+    },
+    { "section": "Verso 3" },
+    {
+      "lyrics": "Me acarició con sus manos de Ben Gay",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "y me dijo: \"que le pasa, atleta\"",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "y le conté con lujo de detalles",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "lo que me había sucedido",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "hay que chequearte la presión",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "pero la sala está ocupada,",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "y, mi querido en este hospital no hay luz",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "para un electrocardiograma",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "abri los ojos como luna llena",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "y me agarre la cabeza",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "porque es muy duro pasar",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 21 }
+      ]
+    },
+    {
+      "lyrics": "el niágara en bicicleta",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    { "section": "Coro" },
+    {
+      "lyrics": "No me digan que los médicos se fueron",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "no me digan que no tienen anestesia",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "D#", "position": 26 },
+        { "chord": "F", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "No me digan que el alcohol se lo bebieron",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 32 }
+      ]
+    },
+    {
+      "lyrics": "y que el hilo de coser, fue bordado en un mantel",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "D#", "position": 22 },
+        { "chord": "F", "position": 36 }
+      ]
+    },
+    {
+      "lyrics": "No me digan que las pinzas se perdieron",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "que el estetoscopio está de fiesta",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "D#", "position": 21 },
+        { "chord": "F", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "que los rayos X se fundieron",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "y que el suero ya se usó, para endulzar el café",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "D#", "position": 22 },
+        { "chord": "F", "position": 38 },
+        { "chord": "Gm", "position": 42 }
+      ]
+    },
+    { "section": "Interludio 2" },
+    {
+      "lyrics": "(A#  F  D# - se repite 8 veces)",
+      "chords": [
+        { "chord": "A#", "position": 1 },
+        { "chord": "F", "position": 5 },
+        { "chord": "D#", "position": 8 }
+      ]
+    },
+    { "section": "Verso 4" },
+    {
+      "lyrics": "Me apoyé de sus hombros como un cojo",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "a su muleta",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "y le dije: \"que hago, princesa?\"",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 10 },
+        { "chord": "D#", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "y en un papel de receta",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "me escribió muy dulcemente: \"lo siento, atleta\"",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    { "section": "Verso 5" },
+    {
+      "lyrics": "Me acarició con sus manos de Ben Gay",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "y siguió su destino",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "y oí claramente cuando dijo a otro paciente",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "\"tranquilo, bobby, tranquilo\"",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Bajé los ojos a media asta",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "y me agarré la cabeza",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "porque es muy duro pasar",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 21 }
+      ]
+    },
+    {
+      "lyrics": "el niágara en bicicleta",
+      "chords": [
+        { "chord": "D#", "position": 0 }
+      ]
+    },
+    { "section": "Coro 2" },
+    {
+      "lyrics": "No me digan que los médicos se fueron...",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "No me digan que las pinzas se perdieron...",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 28 }
+      ]
+    },
+    { "section": "Coro Final" },
+    {
+      "lyrics": "No me digan que me va cayendo de tanto dolor",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 32 }
+      ]
+    },
+    {
+      "lyrics": "No me digan que las aspirinas cambian de color",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "D#", "position": 26 },
+        { "chord": "F", "position": 41 }
+      ]
+    },
+    {
+      "lyrics": "No me digan que me van pariendo que le falta amor",
+      "chords": [
+        { "chord": "A#", "position": 0 },
+        { "chord": "F", "position": 33 }
+      ]
+    },
+    {
+      "lyrics": "No me digan que le está latiendo, oh no",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "D#", "position": 26 },
+        { "chord": "F", "position": 30 }
+      ]
+    }
+  ]
+}
