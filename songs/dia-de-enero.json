@@ -1,0 +1,265 @@
+{
+  "title": "Día de Enero",
+  "artist": "Shakira",
+  "key": "C",
+  "spotify": "https://open.spotify.com/track/2u24GtkbktY3HB3souJdNY",
+  "lines": [
+    { "section": "Verso 1" },
+    {
+      "lyrics": "Te conocí un día de enero,",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "E7", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "con la luna en mi nariz",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "Y como vi que eras sincero",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "E7", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "En tus ojos me perdí",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "D7", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "Que torpe distracción",
+      "chords": [
+        { "chord": "F", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Que dulce sensación",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    { "section": "Verso 2" },
+    {
+      "lyrics": "Y ahora que andamos por el mundo",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "E7", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "Como Eneas y Benitin",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 5 }
+      ]
+    },
+    {
+      "lyrics": "Ya te encontré varios rasguños",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "E7", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "Que te hicieron por ahí",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "D7", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "Pero mi loco amor",
+      "chords": [
+        { "chord": "F", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Es tu mejor doctor",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    { "section": "Pre-Coro" },
+    {
+      "lyrics": "Voy a curarte el alma en duelo",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "Voy a dejarte como nuevo",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "Y todo va a pasar",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "E7", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "Pronto verás el sol brillar",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "D7", "position": 7 }
+      ]
+    },
+    {
+      "lyrics": "Tú más que nadie mereces ser feliz",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 }
+      ]
+    },
+    { "section": "Coro" },
+    {
+      "lyrics": "Ya vas a ver como van sanando",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "Em", "position": 2 },
+        { "chord": "F", "position": 5 }
+      ]
+    },
+    {
+      "lyrics": "Poco a poco tus heridas",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Ya vas a ver como va la misma vida a",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "Em", "position": 2 },
+        { "chord": "F", "position": 5 },
+        { "chord": "G", "position": 7 }
+      ]
+    },
+    {
+      "lyrics": "decantar la sal que sobra del mar",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "Am", "position": 3 },
+        { "chord": "F", "position": 6 },
+        { "chord": "G", "position": 8 },
+        { "chord": "C", "position": 31 }
+      ]
+    },
+    { "section": "Interludio" },
+    {
+      "lyrics": "(C  G  F  G)",
+      "chords": [
+        { "chord": "C", "position": 1 },
+        { "chord": "G", "position": 4 },
+        { "chord": "F", "position": 7 },
+        { "chord": "G", "position": 10 }
+      ]
+    },
+    { "section": "Verso 3" },
+    {
+      "lyrics": "Y aunque hayas sido un extranjero",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "E7", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "hasta en tu propio país",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 5 }
+      ]
+    },
+    {
+      "lyrics": "Si yo te digo ¿como dices tu?",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "E7", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "Tu aún dices ¿que decís?",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "D7", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "Y lloras de emoción oyendo un bandoneón",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 }
+      ]
+    },
+    { "section": "Verso 4" },
+    {
+      "lyrics": "Y aunque parezcas despistado con ese caminar pausado",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 2 },
+        { "chord": "F", "position": 27 },
+        { "chord": "C", "position": 29 }
+      ]
+    },
+    {
+      "lyrics": "Conozco la razón que hace doler tu corazón",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "E7", "position": 2 },
+        { "chord": "D7", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "Por eso quise hacerte esta canción",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 }
+      ]
+    },
+    { "section": "Coro Final" },
+    {
+      "lyrics": "Ya vas a ver como van sanando",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "Em", "position": 2 },
+        { "chord": "F", "position": 5 }
+      ]
+    },
+    {
+      "lyrics": "Poco a poco tus heridas",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Ya vas a ver como va la misma vida a",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "Em", "position": 2 },
+        { "chord": "F", "position": 5 },
+        { "chord": "G", "position": 7 }
+      ]
+    },
+    {
+      "lyrics": "decantar la sal que sobra del mar",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "Am", "position": 3 },
+        { "chord": "F", "position": 6 },
+        { "chord": "G", "position": 8 },
+        { "chord": "C", "position": 31 }
+      ]
+    }
+  ]
+}
