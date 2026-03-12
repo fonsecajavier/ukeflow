@@ -42,6 +42,7 @@
     { "path": "songs/la-bilirrubina.json", "title": "La Bilirrubina", "artist": "Juan Luis Guerra" },
     { "path": "songs/el-niagara-en-bicicleta.json", "title": "El Niagara en Bicicleta", "artist": "Juan Luis Guerra" },
     { "path": "songs/dia-de-enero.json", "title": "Día de Enero", "artist": "Shakira" },
-    { "path": "songs/mi-corazon-encantado.json", "title": "Mi Corazón Encantado", "artist": "Ricardo Silva (Dragon Ball GT)" }
+    { "path": "songs/mi-corazon-encantado.json", "title": "Mi Corazón Encantado", "artist": "Ricardo Silva (Dragon Ball GT)" },
+    { "path": "songs/limon-y-sal.json", "title": "Limón y Sal", "artist": "Julieta Venegas" }
   ]
 }

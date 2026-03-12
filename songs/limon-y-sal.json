@@ -1,0 +1,292 @@
+{
+  "title": "Limón y Sal",
+  "artist": "Julieta Venegas",
+  "key": "C",
+  "spotify": "https://open.spotify.com/track/7dITAq1YP5e0kTcaDq4YWI",
+  "lines": [
+    { "section": "Verso 1" },
+    {
+      "lyrics": "Tengo que confesar que a veces",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 16 },
+        { "chord": "F", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "no me gusta tu forma de ser",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "luego te me desapareces",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 6 },
+        { "chord": "F", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "y no entiendo muy bien por que",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "no dices nada romantico",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 10 },
+        { "chord": "F", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "cuando llega el atardecer",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "te pones de un humor extraño",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 9 },
+        { "chord": "F", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "con cada luna llena al mes.",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 17 }
+      ]
+    },
+    { "section": "Pre-Coro" },
+    {
+      "lyrics": "Pero a a todo lo demas",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 9 },
+        { "chord": "C", "position": 21 }
+      ]
+    },
+    {
+      "lyrics": "le gana lo bueno que me das",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 13 },
+        { "chord": "C", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "solo tenerte cerca",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 6 },
+        { "chord": "C", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "siento que vuelvo a empezar.",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 15 },
+        { "chord": "C", "position": 26 }
+      ]
+    },
+    { "section": "Coro" },
+    {
+      "lyrics": "Yo te quiero con limon y sal,",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 13 },
+        { "chord": "Am", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "yo te quiero tal y como estas,",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "F", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "no hace falta cambiarte nada,",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "yo te quiero si vienes o si vas,",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 16 },
+        { "chord": "Am", "position": 29 }
+      ]
+    },
+    {
+      "lyrics": "si subes y bajas y no estas",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "F", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "seguro de lo que sientes.",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    { "section": "Interludio" },
+    {
+      "lyrics": "(F G Am G F D)",
+      "chords": [
+        { "chord": "F", "position": 1 },
+        { "chord": "G", "position": 3 },
+        { "chord": "Am", "position": 5 },
+        { "chord": "G", "position": 8 },
+        { "chord": "F", "position": 10 },
+        { "chord": "D", "position": 12 }
+      ]
+    },
+    { "section": "Verso 2" },
+    {
+      "lyrics": "Tengo que confesarte ahora",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 10 },
+        { "chord": "F", "position": 25 }
+      ]
+    },
+    {
+      "lyrics": "nunca crei en la felicidad",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "a veces algo se le parece, pero",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 8 },
+        { "chord": "F", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "es pura casualidad.",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 6 }
+      ]
+    },
+    { "section": "Pre-Coro 2" },
+    {
+      "lyrics": "Luego me vengo a encontrar",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 11 },
+        { "chord": "C", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "con tus ojos y me dan algo mas",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 15 },
+        { "chord": "C", "position": 29 }
+      ]
+    },
+    {
+      "lyrics": "solo tenerte cerca",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 10 },
+        { "chord": "C", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "siento que vuelvo a empezar.",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 10 },
+        { "chord": "C", "position": 22 }
+      ]
+    },
+    { "section": "Coro 2" },
+    {
+      "lyrics": "Yo te quiero con limon y sal,",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 13 },
+        { "chord": "Am", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "yo te quiero tal y como estas,",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "F", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "no hace falta cambiarte nada,",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "yo te quiero si vienes o si vas,",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 16 },
+        { "chord": "Am", "position": 29 }
+      ]
+    },
+    {
+      "lyrics": "si subes y bajas y no estas",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "F", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "seguro de lo que sientes.",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    { "section": "Outro" },
+    {
+      "lyrics": "(F G Am G F D)",
+      "chords": [
+        { "chord": "F", "position": 1 },
+        { "chord": "G", "position": 3 },
+        { "chord": "Am", "position": 5 },
+        { "chord": "G", "position": 8 },
+        { "chord": "F", "position": 10 },
+        { "chord": "D", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "Solo tenerte cerca",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 5 },
+        { "chord": "C", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "siento que vuelvo a empezar",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 12 },
+        { "chord": "C", "position": 23 }
+      ]
+    }
+  ]
+}
