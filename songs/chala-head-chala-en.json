@@ -1,0 +1,227 @@
+{
+  "title": "Cha-La Head-Cha-La (English)",
+  "artist": "Dragon Ball Z",
+  "key": "E",
+  "spotify": "https://open.spotify.com/track/6SG0mZRbq7XJmYV1WzJSVY",
+  "lines": [
+    { "section": "Intro" },
+    {
+      "lyrics": "(Bsus)",
+      "chords": [
+        { "chord": "Bsus", "position": 1 }
+      ]
+    },
+    {
+      "lyrics": "(Esus E D)",
+      "chords": [
+        { "chord": "Esus", "position": 1 },
+        { "chord": "E", "position": 6 },
+        { "chord": "D", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "(Cadd9)",
+      "chords": [
+        { "chord": "Cadd9", "position": 1 }
+      ]
+    },
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Breaking through the shining clouds",
+      "chords": [
+        { "chord": "E", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "I'm gonna fly away, fly away",
+      "chords": [
+        { "chord": "Dadd9", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Spreading through my body,",
+      "chords": [
+        { "chord": "Cadd9", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Feel the power thru my soul",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Bsus", "position": 21 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Kicked in the face,",
+      "chords": [
+        { "chord": "E", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "This earth is mad as a fire brigade, fire brigade",
+      "chords": [
+        { "chord": "Dadd9", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Can't you feel it",
+      "chords": [
+        { "chord": "Cadd9", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "building up for her to blow",
+      "chords": [
+        { "chord": "Bsus", "position": 0 },
+        { "chord": "B7", "position": 16 }
+      ]
+    },
+    { "section": "Pre-Chorus" },
+    {
+      "lyrics": "If, there ever was a dino-saur",
+      "chords": [
+        { "chord": "C#m", "position": 0 },
+        { "chord": "B", "position": 10 },
+        { "chord": "Esus", "position": 20 },
+        { "chord": "E", "position": 25 }
+      ]
+    },
+    {
+      "lyrics": "In a mount of icicles",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "Dsus", "position": 18 },
+        { "chord": "D", "position": 23 }
+      ]
+    },
+    {
+      "lyrics": "I would wanna train it to ride a ball",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "Bsus", "position": 22 },
+        { "chord": "B7", "position": 27 }
+      ]
+    },
+    { "section": "Chorus 1" },
+    {
+      "lyrics": "CHALA HEAD-CHALA",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 3 },
+        { "chord": "G", "position": 6 },
+        { "chord": "A", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "No matter, if ever anything could happen,",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 3 },
+        { "chord": "A", "position": 15 },
+        { "chord": "Bm", "position": 30 },
+        { "chord": "G", "position": 38 }
+      ]
+    },
+    {
+      "lyrics": "Nothing can stop me now.",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A7", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "CHALA HEAD-CHALA",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 3 },
+        { "chord": "G", "position": 6 },
+        { "chord": "A", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "Oh, My heart just keep sparking up",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 4 },
+        { "chord": "A", "position": 18 },
+        { "chord": "Bm", "position": 32 }
+      ]
+    },
+    {
+      "lyrics": "Like a ball of flame",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Oh yes, It makes me fired up...",
+      "chords": [
+        { "chord": "Bb", "position": 0 }
+      ]
+    },
+    { "section": "Chorus 2" },
+    {
+      "lyrics": "CHALA HEAD-CHALA",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 3 },
+        { "chord": "G", "position": 6 },
+        { "chord": "A", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "Got so much space in my burning heart now",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 4 },
+        { "chord": "A", "position": 14 },
+        { "chord": "Bm", "position": 22 },
+        { "chord": "G", "position": 31 }
+      ]
+    },
+    {
+      "lyrics": "I'll take it up with all the world.",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "A7", "position": 29 }
+      ]
+    },
+    {
+      "lyrics": "CHALA HEAD-CHALA",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 3 },
+        { "chord": "G", "position": 6 },
+        { "chord": "A", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "Smiling away, away today, I'm Ultra Z",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 3 },
+        { "chord": "A", "position": 14 },
+        { "chord": "Bm", "position": 28 },
+        { "chord": "G", "position": 36 }
+      ]
+    },
+    {
+      "lyrics": "Ai, Ai, Ai, Ai, ai",
+      "chords": [
+        { "chord": "Bb", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "SPARKING!",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 2 },
+        { "chord": "Bb", "position": 4 },
+        { "chord": "C", "position": 7 },
+        { "chord": "Dsus", "position": 9 },
+        { "chord": "D", "position": 14 }
+      ]
+    }
+  ]
+}

@@ -1508,6 +1508,84 @@ const CHORDS = {
         fingers: [1, 2, 3, 4],
         barre: null,
         baseFret: 1
+    },
+    // Shorthand sus aliases (sus = sus4)
+    'C#sus': {
+        name: 'C#sus',
+        frets: [1, 1, 2, 4],
+        fingers: [1, 1, 2, 4],
+        barre: { fret: 1, fromString: 0, toString: 1 },
+        baseFret: 1
+    },
+    'Dbsus': {
+        name: 'Dbsus',
+        frets: [1, 1, 2, 4],
+        fingers: [1, 1, 2, 4],
+        barre: { fret: 1, fromString: 0, toString: 1 },
+        baseFret: 1
+    },
+    'D#sus': {
+        name: 'D#sus',
+        frets: [1, 3, 4, 4],
+        fingers: [1, 2, 3, 4],
+        barre: null,
+        baseFret: 1
+    },
+    'Ebsus': {
+        name: 'Ebsus',
+        frets: [1, 3, 4, 4],
+        fingers: [1, 2, 3, 4],
+        barre: null,
+        baseFret: 1
+    },
+    'F#sus': {
+        name: 'F#sus',
+        frets: [4, 1, 2, 2],
+        fingers: [4, 1, 2, 3],
+        barre: null,
+        baseFret: 1
+    },
+    'Gbsus': {
+        name: 'Gbsus',
+        frets: [4, 1, 2, 2],
+        fingers: [4, 1, 2, 3],
+        barre: null,
+        baseFret: 1
+    },
+    'G#sus': {
+        name: 'G#sus',
+        frets: [1, 3, 4, 4],
+        fingers: [1, 2, 3, 4],
+        barre: null,
+        baseFret: 1
+    },
+    'Absus': {
+        name: 'Absus',
+        frets: [1, 3, 4, 4],
+        fingers: [1, 2, 3, 4],
+        barre: null,
+        baseFret: 1
+    },
+    'Bsus': {
+        name: 'Bsus',
+        frets: [4, 4, 2, 2],
+        fingers: [3, 4, 1, 2],
+        barre: null,
+        baseFret: 1
+    },
+    'Esus': {
+        name: 'Esus',
+        frets: [2, 4, 0, 2],
+        fingers: [1, 3, 0, 2],
+        barre: null,
+        baseFret: 1
+    },
+    'Cadd9': {
+        name: 'Cadd9',
+        frets: [0, 2, 0, 3],
+        fingers: [0, 2, 0, 3],
+        barre: null,
+        baseFret: 1
     }
 };
 

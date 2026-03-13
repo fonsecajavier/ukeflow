@@ -43,6 +43,9 @@
     { "path": "songs/el-niagara-en-bicicleta.json", "title": "El Niagara en Bicicleta", "artist": "Juan Luis Guerra" },
     { "path": "songs/dia-de-enero.json", "title": "Día de Enero", "artist": "Shakira" },
     { "path": "songs/mi-corazon-encantado.json", "title": "Mi Corazón Encantado", "artist": "Ricardo Silva (Dragon Ball GT)" },
-    { "path": "songs/limon-y-sal.json", "title": "Limón y Sal", "artist": "Julieta Venegas" }
+    { "path": "songs/limon-y-sal.json", "title": "Limón y Sal", "artist": "Julieta Venegas" },
+    { "path": "songs/chala-head-chala.json", "title": "Chala Head Chala", "artist": "Ricardo Silva (Dragon Ball Z)" },
+    { "path": "songs/chala-head-chala-jp.json", "title": "Cha-La Head-Cha-La (Japanese)", "artist": "Hironobu Kageyama (Dragon Ball Z)" },
+    { "path": "songs/chala-head-chala-en.json", "title": "Cha-La Head-Cha-La (English)", "artist": "Dragon Ball Z" }
   ]
 }

@@ -1,0 +1,172 @@
+{
+  "title": "Chala Head Chala",
+  "artist": "Ricardo Silva (Dragon Ball Z)",
+  "key": "E",
+  "spotify": "https://open.spotify.com/track/4vEk7TvxkWQmqddkZrAKFo",
+  "lines": [
+    { "section": "Verso 1" },
+    {
+      "lyrics": "El cielo resplandece a mi alrededor (alrededor)",
+      "chords": [
+        { "chord": "E", "position": 0 },
+        { "chord": "D", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "al volar destellos brillan en las nubes sin fin,",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 10 },
+        { "chord": "B7", "position": 37 }
+      ]
+    },
+    {
+      "lyrics": "con libertad puedes cruzar hoy el cielo azul (el cielo azul)",
+      "chords": [
+        { "chord": "E", "position": 0 },
+        { "chord": "D", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "la verdad huye a un golpe de pronto en ti,",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 10 },
+        { "chord": "B7", "position": 31 }
+      ]
+    },
+    { "section": "Pre-Coro" },
+    {
+      "lyrics": "como si un volcan hiciera una erupcion,",
+      "chords": [
+        { "chord": "C#m", "position": 0 },
+        { "chord": "B", "position": 6 },
+        { "chord": "E", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "derrite un gran glaciar,",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "podras ver de cerca un gran dragon.",
+      "chords": [
+        { "chord": "C#m", "position": 0 },
+        { "chord": "B", "position": 7 }
+      ]
+    },
+    { "section": "Coro" },
+    {
+      "lyrics": "Cha-la-head-Cha-la,",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 2 },
+        { "chord": "G", "position": 4 },
+        { "chord": "A", "position": 6 }
+      ]
+    },
+    {
+      "lyrics": "no importa lo que suceda,",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "A", "position": 4 },
+        { "chord": "F#", "position": 21 }
+      ]
+    },
+    {
+      "lyrics": "siempre el animo mantendre,",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "G", "position": 3 },
+        { "chord": "C", "position": 13 },
+        { "chord": "A", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "Cha-la-Head-Cha-la,",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 2 },
+        { "chord": "G", "position": 4 },
+        { "chord": "A", "position": 6 }
+      ]
+    },
+    {
+      "lyrics": "vibrante mi corazon siente emocion,",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "A", "position": 4 },
+        { "chord": "F#", "position": 19 },
+        { "chord": "Bm", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "hare una Genki-Dama,",
+      "chords": [
+        { "chord": "A#", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Cha-la-Head-Cha-la,",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 2 },
+        { "chord": "G", "position": 4 },
+        { "chord": "A", "position": 6 }
+      ]
+    },
+    {
+      "lyrics": "no pienses nada solo escucha, suenos hay en tu corazon,",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "A", "position": 4 },
+        { "chord": "F#", "position": 19 },
+        { "chord": "Bm", "position": 22 },
+        { "chord": "G", "position": 25 },
+        { "chord": "C", "position": 42 },
+        { "chord": "A", "position": 44 }
+      ]
+    },
+    {
+      "lyrics": "Cha-la-Head-Cha-la,",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 2 },
+        { "chord": "G", "position": 4 },
+        { "chord": "A", "position": 6 }
+      ]
+    },
+    {
+      "lyrics": "no importa lo que suceda,",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "A", "position": 4 },
+        { "chord": "F#", "position": 21 }
+      ]
+    },
+    {
+      "lyrics": "sonreire el dia de hoy.",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "A#", "position": 3 }
+      ]
+    },
+    { "section": "Outro" },
+    {
+      "lyrics": "(G E F G A)",
+      "chords": [
+        { "chord": "G", "position": 1 },
+        { "chord": "E", "position": 3 },
+        { "chord": "F", "position": 5 },
+        { "chord": "G", "position": 7 },
+        { "chord": "A", "position": 9 }
+      ]
+    }
+  ]
+}
