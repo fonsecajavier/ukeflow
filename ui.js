@@ -19,6 +19,7 @@ const elements = {
     tempoSelect: document.getElementById('tempo-select'),
     patternDisplay: document.getElementById('pattern-display'),
     toggleBtn: document.getElementById('toggle-progression'),
+    toggleTapToPlay: document.getElementById('toggle-tap-to-play'),
     toggleRelativeKey: document.getElementById('toggle-relative-key'),
     chordReference: document.getElementById('chord-reference'),
     scaleGrid: document.getElementById('scale-grid'),

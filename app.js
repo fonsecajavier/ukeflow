@@ -290,6 +290,7 @@ function setupEventListeners() {
     elements.arpeggioSelect.addEventListener('change', handleArpeggioChange);
     elements.tempoSelect.addEventListener('change', handleTempoChange);
     elements.toggleBtn.addEventListener('click', handleToggleProgression);
+    elements.toggleTapToPlay.addEventListener('click', handleToggleTapToPlay);
     elements.toggleRelativeKey.addEventListener('click', handleToggleRelativeKey);
     elements.modalOverlay.addEventListener('click', handleModalClose);
     elements.modalClose.addEventListener('click', closeModal);
@@ -1414,7 +1415,20 @@ function renderLyrics() {
                 // Add click and hover handlers to chord markers
                 chordRow.querySelectorAll('.chord-marker').forEach(marker => {
                     marker.addEventListener('click', () => {
-                        openChordModal(marker.dataset.chord);
+                        const chordName = marker.dataset.chord;
+                        if (state.tapToPlayMode) {
+                            // Play the chord immediately
+                            const chordData = CHORDS[chordName];
+                            if (chordData) {
+                                playChord(chordData);
+                                // Visual feedback
+                                marker.classList.add('playing');
+                                setTimeout(() => marker.classList.remove('playing'), 300);
+                            }
+                        } else {
+                            // Open the chord modal
+                            openChordModal(chordName);
+                        }
                     });
                     // Show tooltip on hover
                     marker.addEventListener('mouseenter', (e) => {
@@ -1459,6 +1473,14 @@ function handleToggleProgression() {
     // Re-render chord reference and lyrics
     renderChordReference();
     renderLyrics();
+}
+
+/**
+ * Handle toggle for tap-to-play mode
+ */
+function handleToggleTapToPlay() {
+    state.tapToPlayMode = !state.tapToPlayMode;
+    elements.toggleTapToPlay.classList.toggle('active', state.tapToPlayMode);
 }
 
 /**

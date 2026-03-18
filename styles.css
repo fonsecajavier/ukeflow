@@ -267,6 +267,23 @@ body {
     color: #fff;
 }
 
+/* Tap to Play button */
+.tap-to-play-btn {
+    border-color: #2ecc71;
+    color: #2ecc71;
+}
+
+.tap-to-play-btn:hover {
+    background: #2ecc71;
+    color: #fff;
+}
+
+.tap-to-play-btn.active {
+    background: #2ecc71;
+    color: #fff;
+    border-color: #2ecc71;
+}
+
 /* Chord Reference Section */
 .chord-reference {
     margin-bottom: 30px;
@@ -1262,6 +1279,11 @@ body {
 
 .chord-marker:hover {
     background: rgba(52, 152, 219, 0.3);
+}
+
+.chord-marker.playing {
+    background: rgba(46, 204, 113, 0.5);
+    transform: scale(1.1);
 }
 
 /* Chord Hover Tooltip */

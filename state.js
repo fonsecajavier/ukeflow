@@ -11,7 +11,8 @@ const state = {
     showAsNumbers: false,
     transpose: 0,
     useRelativeKey: false,
-    highlightedIndex: -1  // For dropdown keyboard navigation
+    highlightedIndex: -1,  // For dropdown keyboard navigation
+    tapToPlayMode: false   // When true, tapping chords plays them instead of opening modal
 };
 
 /**
