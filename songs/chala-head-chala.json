@@ -47,7 +47,8 @@
     {
       "lyrics": "derrite un gran glaciar,",
       "chords": [
-        { "chord": "D", "position": 0 }
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 12 }
       ]
     },
     {
