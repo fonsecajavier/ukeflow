@@ -1411,10 +1411,17 @@ function renderLyrics() {
                     }
                 );
 
-                // Add click handlers to chord markers
+                // Add click and hover handlers to chord markers
                 chordRow.querySelectorAll('.chord-marker').forEach(marker => {
                     marker.addEventListener('click', () => {
                         openChordModal(marker.dataset.chord);
+                    });
+                    // Show tooltip on hover
+                    marker.addEventListener('mouseenter', (e) => {
+                        showChordTooltip(marker.dataset.chord, e);
+                    });
+                    marker.addEventListener('mouseleave', () => {
+                        hideChordTooltip();
                     });
                 });
             }
@@ -1871,6 +1878,65 @@ function setupChordFinderListeners() {
                 chordFinderRendered = true;
             }
         });
+    }
+}
+
+// ============================================
+// Chord Hover Tooltip
+// ============================================
+
+/**
+ * Show chord tooltip on hover
+ * @param {string} chordName - The chord name to display
+ * @param {MouseEvent} event - The mouse event for positioning
+ */
+function showChordTooltip(chordName, event) {
+    const tooltip = document.getElementById('chord-tooltip');
+    const chordData = CHORDS[chordName];
+
+    if (!chordData || !tooltip) return;
+
+    // Build tooltip content
+    tooltip.innerHTML = `
+        <div class="tooltip-chord-name">${chordName}</div>
+        ${createChordSVG(chordData, false).outerHTML}
+    `;
+
+    // Position near the chord marker
+    const rect = event.target.getBoundingClientRect();
+    let left = rect.left;
+    let top = rect.bottom + 8;
+
+    // Tooltip dimensions (approximate, will be corrected after render)
+    const tooltipWidth = 86; // 70px SVG + 16px padding
+    const tooltipHeight = 130; // 100px SVG + label + padding
+
+    // Ensure tooltip stays within viewport horizontally
+    if (left + tooltipWidth > window.innerWidth) {
+        left = window.innerWidth - tooltipWidth - 10;
+    }
+    if (left < 10) {
+        left = 10;
+    }
+
+    // If tooltip would go below viewport, show it above the chord instead
+    if (top + tooltipHeight > window.innerHeight) {
+        top = rect.top - tooltipHeight - 8;
+    }
+
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${top}px`;
+
+    tooltip.classList.add('visible');
+}
+
+/**
+ * Hide the chord tooltip
+ */
+function hideChordTooltip() {
+    const tooltip = document.getElementById('chord-tooltip');
+    if (tooltip) {
+        tooltip.classList.remove('visible');
     }
 }
 
