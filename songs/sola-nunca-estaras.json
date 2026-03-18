@@ -1,0 +1,164 @@
+{
+  "title": "Sola Nunca Estarás (Caprichosa)",
+  "artist": "Ricardo Silva (Dragon Ball GT)",
+  "key": "Ab",
+  "spotify": "https://open.spotify.com/track/07cpQbAMNXCfpSkq7RZYLj",
+  "lines": [
+    { "section": "Intro" },
+    {
+      "lyrics": "Absus4 - Ab - Absus2 - Ab",
+      "chords": [
+        { "chord": "Absus4", "position": 0 },
+        { "chord": "Ab", "position": 9 },
+        { "chord": "Absus2", "position": 14 },
+        { "chord": "Ab", "position": 23 }
+      ]
+    },
+    {
+      "lyrics": "Gbsus4 - Gb - Gbsus2 - Gb",
+      "chords": [
+        { "chord": "Gbsus4", "position": 0 },
+        { "chord": "Gb", "position": 9 },
+        { "chord": "Gbsus2", "position": 14 },
+        { "chord": "Gb", "position": 23 }
+      ]
+    },
+    { "section": "Verso" },
+    {
+      "lyrics": "Caprichosa eres tu",
+      "chords": [
+        { "chord": "Ab", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "muchas veces lo se",
+      "chords": []
+    },
+    {
+      "lyrics": "no te importan los demas",
+      "chords": [
+        { "chord": "Bbm", "position": 0 },
+        { "chord": "Ab", "position": 4 },
+        { "chord": "Eb", "position": 7 }
+      ]
+    },
+    {
+      "lyrics": "y quieres todo hacer a tu manera",
+      "chords": [
+        { "chord": "Bbm", "position": 0 },
+        { "chord": "Gb", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "porque te comportas asi",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Eb", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "es solo una ilusion",
+      "chords": [
+        { "chord": "Ab", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "que quieres tu vivir",
+      "chords": []
+    },
+    {
+      "lyrics": "en el pasado que se fue",
+      "chords": [
+        { "chord": "Bbm", "position": 0 },
+        { "chord": "Ab", "position": 4 },
+        { "chord": "Eb", "position": 7 }
+      ]
+    },
+    {
+      "lyrics": "la gente te daña no lo comprendes",
+      "chords": [
+        { "chord": "Bbm", "position": 0 },
+        { "chord": "Gb", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "y te hacen llorar angustiada estas",
+      "chords": [
+        { "chord": "Fm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "con las personas nunca te entiendes",
+      "chords": [
+        { "chord": "Eb", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "pero sola nunca estaras",
+      "chords": []
+    },
+    { "section": "Coro" },
+    {
+      "lyrics": "porque yo estare ahi",
+      "chords": [
+        { "chord": "Ab", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "ya veras",
+      "chords": [
+        { "chord": "Cm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "aunque mil tormentas vendran",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Db", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "cuando de noche llegues",
+      "chords": [
+        { "chord": "C7", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "a tu casa y el alma sientas herida",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Bbm", "position": 13 },
+        { "chord": "Eb", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "cuenta conmigo amor",
+      "chords": [
+        { "chord": "Ab", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "porque tu y yo uno solo seremos los dos",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Fm", "position": 10 },
+        { "chord": "Db", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "muchas cosas juntos vamos a hacer",
+      "chords": [
+        { "chord": "C7", "position": 0 },
+        { "chord": "Fm", "position": 7 }
+      ]
+    },
+    {
+      "lyrics": "el valor va a defenderte mientras vivas aqui",
+      "chords": [
+        { "chord": "Bbm", "position": 0 },
+        { "chord": "Eb", "position": 10 },
+        { "chord": "Ab", "position": 33 }
+      ]
+    }
+  ]
+}
