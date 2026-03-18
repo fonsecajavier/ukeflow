@@ -376,7 +376,9 @@ ukeflow/
     ├── limon-y-sal.json               # Julieta Venegas (B)
     ├── chala-head-chala.json          # Ricardo Silva - Dragon Ball Z (E)
     ├── chala-head-chala-jp.json       # Hironobu Kageyama - Dragon Ball Z (G#)
-    └── chala-head-chala-en.json       # Dragon Ball Z English version (E)
+    ├── chala-head-chala-en.json       # Dragon Ball Z English version (E)
+    ├── whistle.json                   # Flo Rida (Am)
+    └── la-flaca.json                  # Jarabe de Palo (Am)
 ```
 
 ### JavaScript Module Organization

@@ -1,0 +1,261 @@
+{
+  "title": "La Flaca",
+  "artist": "Jarabe de Palo",
+  "key": "Am",
+  "spotify": "https://open.spotify.com/track/3Ug732kASNJU7EBob9uyFM",
+  "lines": [
+    { "section": "Verso 1" },
+    {
+      "lyrics": "En la vida conoci mujer igual a la flaca",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "E7", "position": 16 },
+        { "chord": "D7", "position": 36 }
+      ]
+    },
+    {
+      "lyrics": "Coral negro de La Habana",
+      "chords": [
+        { "chord": "C", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "tremendisima mulata",
+      "chords": [
+        { "chord": "E7", "position": 0 },
+        { "chord": "Am", "position": 9 }
+      ]
+    },
+    {
+      "lyrics": "Cien libras de piel y hueso",
+      "chords": [
+        { "chord": "E7", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "40 kilos de salsa y en la cara dos soles",
+      "chords": [
+        { "chord": "D7", "position": 0 },
+        { "chord": "F", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "que sin palabras hablan.",
+      "chords": [
+        { "chord": "E7", "position": 0 },
+        { "chord": "F", "position": 10 },
+        { "chord": "F#", "position": 12 },
+        { "chord": "G", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "que sin palabras hablan.",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "E7", "position": 9 }
+      ]
+    },
+    { "section": "Verso 2" },
+    {
+      "lyrics": "La flaca duerme de dia",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "E7", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "dice que asi el hambre engaña cuando cae la",
+      "chords": [
+        { "chord": "D7", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "noche baja a bailar a la tasca",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "E7", "position": 6 },
+        { "chord": "Am", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "Y bailar y bailar y tomar y tomar",
+      "chords": [
+        { "chord": "E7", "position": 0 },
+        { "chord": "D7", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "una cerveza tras otra pero ella nunca",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "E7", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "engorda, pero ella nunca engorda.",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "F#", "position": 3 },
+        { "chord": "G", "position": 6 },
+        { "chord": "Am", "position": 20 },
+        { "chord": "D7", "position": 26 }
+      ]
+    },
+    { "section": "Coro" },
+    {
+      "lyrics": "Por un beso de la flaca daria lo que fuera",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 20 },
+        { "chord": "Am", "position": 34 }
+      ]
+    },
+    {
+      "lyrics": "por un beso de ella aunque",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "solo uno fuera.",
+      "chords": [
+        { "chord": "F", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Por un beso de la flaca daria lo que fuera",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Am", "position": 34 }
+      ]
+    },
+    {
+      "lyrics": "por un beso de ella aunque",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "solo uno fuera. Aunque solo uno fuera.",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "F#", "position": 4 },
+        { "chord": "G", "position": 7 },
+        { "chord": "Am", "position": 22 },
+        { "chord": "E7", "position": 28 }
+      ]
+    },
+    { "section": "Verso 3" },
+    {
+      "lyrics": "Coge mis sabanas blancas como dice la cancion",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "E7", "position": 18 },
+        { "chord": "D7", "position": 38 }
+      ]
+    },
+    {
+      "lyrics": "recordando las caricias",
+      "chords": [
+        { "chord": "C", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "que me brindo el primer dia y",
+      "chords": [
+        { "chord": "E7", "position": 0 },
+        { "chord": "Am", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "enloquezco de ganas de dormir a su ladito",
+      "chords": [
+        { "chord": "E7", "position": 0 },
+        { "chord": "D7", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "porque Dios que esta flaca a",
+      "chords": [
+        { "chord": "F", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "mi me tiene loquito. A mi me tiene loquito.",
+      "chords": [
+        { "chord": "E7", "position": 0 },
+        { "chord": "F", "position": 5 },
+        { "chord": "F#", "position": 7 },
+        { "chord": "G", "position": 11 },
+        { "chord": "Am", "position": 22 },
+        { "chord": "D7", "position": 28 }
+      ]
+    },
+    { "section": "Coro" },
+    {
+      "lyrics": "Por un beso de la flaca daria lo que fuera",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 20 },
+        { "chord": "Am", "position": 34 }
+      ]
+    },
+    {
+      "lyrics": "por un beso de ella aunque",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "solo uno fuera.",
+      "chords": [
+        { "chord": "F", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Por un beso de la flaca daria lo que fuera",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Am", "position": 34 }
+      ]
+    },
+    {
+      "lyrics": "por un beso de ella aunque",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "solo uno fuera. Aunque solo uno fuera.",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "F#", "position": 4 },
+        { "chord": "G", "position": 7 },
+        { "chord": "Am", "position": 22 },
+        { "chord": "E7", "position": 28 }
+      ]
+    },
+    { "section": "Outro" },
+    {
+      "lyrics": "Aunque solo uno fuera.",
+      "chords": [
+        { "chord": "E7", "position": 0 },
+        { "chord": "F", "position": 7 },
+        { "chord": "G", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "Aunque solo uno fuera",
+      "chords": [
+        { "chord": "Am", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Aunque solo uno fuera.",
+      "chords": [
+        { "chord": "E7", "position": 0 },
+        { "chord": "Am", "position": 11 }
+      ]
+    }
+  ]
+}

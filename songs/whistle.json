@@ -1,0 +1,462 @@
+{
+  "title": "Whistle",
+  "artist": "Flo Rida",
+  "key": "Am",
+  "spotify": "https://open.spotify.com/track/3bC1ahPIYt1btJzSSEyyrF",
+  "lines": [
+    { "section": "Chorus" },
+    {
+      "lyrics": "Can you blow my whistle baby, whistle baby",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "Let me know",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "Girl I'm gonna show you how to do it",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "And we start real slow",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "You just put your lips together",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "And you come real close",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "Can you blow my whistle baby, whistle baby",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "Here we go",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 8 }
+      ]
+    },
+    { "section": "Interlude" },
+    {
+      "lyrics": "(Am F C G) x2",
+      "chords": [
+        { "chord": "Am", "position": 1 },
+        { "chord": "F", "position": 4 },
+        { "chord": "C", "position": 6 },
+        { "chord": "G", "position": 8 }
+      ]
+    },
+    { "section": "Verse 1" },
+    {
+      "lyrics": "I'm betting you like bebop",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "And I'm betting you love creep mode",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "And i'm betting you like girls that give love to girls",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 22 },
+        { "chord": "C", "position": 38 }
+      ]
+    },
+    {
+      "lyrics": "And stroke your little ego",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "I'm guilty your honour",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "But that's how we live in my genre",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "When in @#!*% I pay the rottweiler",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 21 }
+      ]
+    },
+    {
+      "lyrics": "There's only one flo, and one rida",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "I'm a @#!*% shame, order more champagne",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 21 }
+      ]
+    },
+    {
+      "lyrics": "Pull it down hamstring, tryna put it on ya",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "Bet your lips spin back around corner",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "Slow it down baby take a little longer",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 22 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Can you blow my whistle baby, whistle baby",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "Let me know",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "Girl I'm gonna show you how to do it",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "And we start real slow",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "You just put your lips together",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "And you come real close",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "Can you blow my whistle baby, whistle baby",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "Here we go",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 8 }
+      ]
+    },
+    { "section": "Post-Chorus" },
+    {
+      "lyrics": "Whistle baby, whistle baby,",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "Am", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "Whistle baby, whistle babe (x2)",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 15 }
+      ]
+    },
+    { "section": "Verse 2 (Rap)" },
+    {
+      "lyrics": "It's like everywhere I go",
+      "chords": []
+    },
+    {
+      "lyrics": "My whistle ready to blow",
+      "chords": []
+    },
+    {
+      "lyrics": "Shorty don't leave a note",
+      "chords": []
+    },
+    {
+      "lyrics": "She can get any by the low",
+      "chords": []
+    },
+    {
+      "lyrics": "Permission not approved",
+      "chords": []
+    },
+    {
+      "lyrics": "It's okay, it's under control",
+      "chords": []
+    },
+    {
+      "lyrics": "Show me soprano, cause girl you can handle",
+      "chords": []
+    },
+    {
+      "lyrics": "Baby we start snagging, you come in part clothes",
+      "chords": []
+    },
+    {
+      "lyrics": "Girl i'm losing wing, my bucatti the same road",
+      "chords": []
+    },
+    {
+      "lyrics": "Show me your perfect pitch,",
+      "chords": []
+    },
+    {
+      "lyrics": "You got it my banjo",
+      "chords": []
+    },
+    {
+      "lyrics": "Talented with your lips, like you blew out candles",
+      "chords": []
+    },
+    {
+      "lyrics": "So amusing, now you can make a whistle with the music",
+      "chords": []
+    },
+    {
+      "lyrics": "Hope you ain't got no issue, you can do it",
+      "chords": []
+    },
+    {
+      "lyrics": "Give me the perfect picture, never lose it",
+      "chords": []
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Can you blow my whistle baby, whistle baby",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "Let me know",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "Girl I'm gonna show you how to do it",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "And we start real slow",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "You just put your lips together",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "And you come real close",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "Can you blow my whistle baby, whistle baby",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "Here we go",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "G", "position": 8 }
+      ]
+    },
+    { "section": "Post-Chorus" },
+    {
+      "lyrics": "Whistle baby, whistle baby,",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "Whistle baby, whistle baby (x2)",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 15 }
+      ]
+    },
+    { "section": "Bridge" },
+    {
+      "lyrics": "Go girl you can work it",
+      "chords": []
+    },
+    {
+      "lyrics": "Let me see your whistle while you work it",
+      "chords": []
+    },
+    {
+      "lyrics": "I'mma lay it back, don't stop it",
+      "chords": []
+    },
+    {
+      "lyrics": "Cause I love it how you drop it, drop it, drop it, on me",
+      "chords": []
+    },
+    {
+      "lyrics": "Now, shorty let that whistle blow",
+      "chords": []
+    },
+    {
+      "lyrics": "Yeah, baby let that whistle blow",
+      "chords": []
+    },
+    { "section": "Final Chorus" },
+    {
+      "lyrics": "Can you blow my whistle baby, whistle baby",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "Let me know",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "Girl I'm gonna show you how to do it",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "And we start real slow",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "You just put your lips together",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "And you come real close",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "Can you blow my whistle baby, whistle baby",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "Here we go",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 8 }
+      ]
+    },
+    { "section": "Outro" },
+    {
+      "lyrics": "Whistle baby, whistle baby,",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "F", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "Whistle baby, whistle baby (x2)",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 15 }
+      ]
+    }
+  ]
+}

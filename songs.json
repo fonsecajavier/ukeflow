@@ -46,6 +46,8 @@
     { "path": "songs/limon-y-sal.json", "title": "Limón y Sal", "artist": "Julieta Venegas" },
     { "path": "songs/chala-head-chala.json", "title": "Chala Head Chala", "artist": "Ricardo Silva (Dragon Ball Z)" },
     { "path": "songs/chala-head-chala-jp.json", "title": "Cha-La Head-Cha-La (Japanese)", "artist": "Hironobu Kageyama (Dragon Ball Z)" },
-    { "path": "songs/chala-head-chala-en.json", "title": "Cha-La Head-Cha-La (English)", "artist": "Dragon Ball Z" }
+    { "path": "songs/chala-head-chala-en.json", "title": "Cha-La Head-Cha-La (English)", "artist": "Dragon Ball Z" },
+    { "path": "songs/whistle.json", "title": "Whistle", "artist": "Flo Rida" },
+    { "path": "songs/la-flaca.json", "title": "La Flaca", "artist": "Jarabe de Palo" }
   ]
 }
