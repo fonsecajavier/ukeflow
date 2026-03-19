@@ -319,6 +319,10 @@ function playChunk(startTime) {
  */
 async function playChord(chordData) {
     const ctx = await ensureAudioReady();
+
+    // Stop any currently playing chord before starting new one
+    stopAllSources();
+
     const now = ctx.currentTime;
     const styleConfig = getPlayStyle(currentPlayStyle);
     const pattern = styleConfig.pattern;
