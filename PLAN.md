@@ -378,7 +378,9 @@ ukeflow/
     ├── chala-head-chala-jp.json       # Hironobu Kageyama - Dragon Ball Z (G#)
     ├── chala-head-chala-en.json       # Dragon Ball Z English version (E)
     ├── whistle.json                   # Flo Rida (Am)
-    └── la-flaca.json                  # Jarabe de Palo (Am)
+    ├── la-flaca.json                  # Jarabe de Palo (Am)
+    ├── sola-nunca-estaras.json        # Ricardo Silva - Dragon Ball GT (Am)
+    └── we-gotta-power.json            # Hironobu Kageyama - Dragon Ball Z (Em)
 ```
 
 ### JavaScript Module Organization

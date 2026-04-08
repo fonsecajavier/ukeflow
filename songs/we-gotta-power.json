@@ -1,0 +1,292 @@
+{
+  "title": "We Gotta Power (English)",
+  "artist": "Hironobu Kageyama (Dragon Ball Z)",
+  "key": "Em",
+  "spotify": "https://open.spotify.com/track/08FM8w06gUVnGs1oqE2wZ7",
+  "lines": [
+    { "section": "Intro" },
+    {
+      "lyrics": "",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Gsus", "position": 2 },
+        { "chord": "G", "position": 6 }
+      ]
+    },
+    {
+      "lyrics": "",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "D", "position": 2 },
+        { "chord": "G", "position": 4 },
+        { "chord": "~", "position": 6 },
+        { "chord": "G", "position": 8 },
+        { "chord": "~", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 2 },
+        { "chord": "C", "position": 4 },
+        { "chord": "D", "position": 6 }
+      ]
+    },
+    {
+      "lyrics": "",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 2 }
+      ]
+    },
+    { "section": "Verse" },
+    {
+      "lyrics": "I see it coming down,",
+      "chords": [
+        { "chord": "Em", "position": 9 }
+      ]
+    },
+    {
+      "lyrics": "all over town, it's chaos",
+      "chords": [
+        { "chord": "D", "position": 4 },
+        { "chord": "C", "position": 20 },
+        { "chord": "Dsus", "position": 25 },
+        { "chord": "D7", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "There's no time for me to be",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "D", "position": 11 },
+        { "chord": "C", "position": 16 },
+        { "chord": "D", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "afraid",
+      "chords": [
+        { "chord": "Em", "position": 1 },
+        { "chord": "B7#9", "position": 6 }
+      ]
+    },
+    {
+      "lyrics": "Raise the excitement now",
+      "chords": [
+        { "chord": "Em", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "and be the king",
+      "chords": [
+        { "chord": "D", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "of your mountain",
+      "chords": [
+        { "chord": "C", "position": 8 },
+        { "chord": "Dsus", "position": 15 },
+        { "chord": "D7", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "Be the king now it's a masquerade,",
+      "chords": [
+        { "chord": "G", "position": 7 },
+        { "chord": "D", "position": 12 },
+        { "chord": "C", "position": 22 },
+        { "chord": "D", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "so it's made...",
+      "chords": [
+        { "chord": "Em", "position": 8 },
+        { "chord": "B7#9", "position": 14 }
+      ]
+    },
+    { "section": "Pre-Chorus" },
+    {
+      "lyrics": "Things you want",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "that you can't touch, but you know",
+      "chords": [
+        { "chord": "G", "position": 15 },
+        { "chord": "B7", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "One day you will hold that",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "special feel that make you a man",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "B7", "position": 18 }
+      ]
+    },
+    { "section": "Chorus 1" },
+    {
+      "lyrics": "No-ten, P-kan",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "D", "position": 3 },
+        { "chord": "Em", "position": 8 },
+        { "chord": "D", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "I can feel the sky so blue",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "B7", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "I'm so down right,",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "D", "position": 4 },
+        { "chord": "Em", "position": 9 },
+        { "chord": "D", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "see that I'm so cool",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "D", "position": 9 },
+        { "chord": "Em", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "Playing with them all, trouble calls",
+      "chords": [
+        { "chord": "C", "position": 8 }
+      ]
+    },
+    {
+      "lyrics": "Don't you know,",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "I take them all",
+      "chords": [
+        { "chord": "Bm", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "We gotta po-wer,",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "D", "position": 3 },
+        { "chord": "Em", "position": 10 },
+        { "chord": "D", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "Drago--n Ba--ll Z!",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "Bm", "position": 6 },
+        { "chord": "B7", "position": 12 },
+        { "chord": "Em", "position": 15 },
+        { "chord": "D", "position": 18 },
+        { "chord": "Bm", "position": 20 },
+        { "chord": "B7", "position": 23 }
+      ]
+    },
+    { "section": "Chorus 2" },
+    {
+      "lyrics": "No-ten, P-kan",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "D", "position": 3 },
+        { "chord": "Em", "position": 8 },
+        { "chord": "D", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "The time is now to risen up.",
+      "chords": [
+        { "chord": "Em", "position": 4 },
+        { "chord": "B7", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "Feel the strength come",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "D", "position": 5 },
+        { "chord": "Em", "position": 11 },
+        { "chord": "D", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "right up from your gut.",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "D", "position": 9 },
+        { "chord": "Em", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "You know the world is now,",
+      "chords": [
+        { "chord": "C", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "coming down",
+      "chords": []
+    },
+    {
+      "lyrics": "To changing times,",
+      "chords": [
+        { "chord": "D", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "we'll show them how",
+      "chords": [
+        { "chord": "Bm", "position": 6 }
+      ]
+    },
+    {
+      "lyrics": "We gotta po-wer,",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "D", "position": 3 },
+        { "chord": "Em", "position": 10 },
+        { "chord": "D", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "Drago--n Ba--ll Z!",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "Bm", "position": 6 },
+        { "chord": "B7", "position": 12 },
+        { "chord": "Em", "position": 15 },
+        { "chord": "D", "position": 18 },
+        { "chord": "Bm", "position": 20 },
+        { "chord": "B7", "position": 23 },
+        { "chord": "Em", "position": 26 }
+      ]
+    }
+  ]
+}

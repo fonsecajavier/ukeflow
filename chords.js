@@ -1242,6 +1242,15 @@ const CHORDS = {
         baseFret: 1
     },
 
+    // Sharp 9 Chords
+    'B7#9': {
+        name: 'B7#9',
+        frets: [4, 3, 5, 5],
+        fingers: [2, 1, 3, 4],
+        barre: null,
+        baseFret: 1
+    },
+
     // Suspended Chords
     'Csus2': {
         name: 'Csus2',
@@ -1280,6 +1289,13 @@ const CHORDS = {
     },
     'Gsus4': {
         name: 'Gsus4',
+        frets: [0, 2, 3, 3],
+        fingers: [0, 1, 2, 3],
+        barre: null,
+        baseFret: 1
+    },
+    'Gsus': {
+        name: 'Gsus',
         frets: [0, 2, 3, 3],
         fingers: [0, 1, 2, 3],
         barre: null,
