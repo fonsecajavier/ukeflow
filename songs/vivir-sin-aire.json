@@ -1,0 +1,216 @@
+{
+  "title": "Vivir sin Aire",
+  "artist": "Maná",
+  "key": "G",
+  "spotify": "https://open.spotify.com/track/3G9RQLOSjsXVUDyQSv2PQR",
+  "lines": [
+    { "section": "Verse" },
+    {
+      "lyrics": "Como quisiera poder vivir sin aire",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Bm", "position": 9 },
+        { "chord": "C", "position": 13 },
+        { "chord": "D", "position": 18 },
+        { "chord": "G", "position": 31 },
+        { "chord": "Bm", "position": 35 },
+        { "chord": "C", "position": 40 },
+        { "chord": "D", "position": 44 }
+      ]
+    },
+    {
+      "lyrics": "Como quisiera poder vivir sin agua",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Bm", "position": 9 },
+        { "chord": "C", "position": 13 },
+        { "chord": "D", "position": 18 },
+        { "chord": "G", "position": 31 },
+        { "chord": "Bm", "position": 35 },
+        { "chord": "C", "position": 40 },
+        { "chord": "D", "position": 44 }
+      ]
+    },
+    {
+      "lyrics": "Me encantaría quererte un poco menos",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Bm", "position": 9 },
+        { "chord": "C", "position": 13 },
+        { "chord": "D", "position": 18 },
+        { "chord": "G", "position": 32 },
+        { "chord": "Bm", "position": 36 },
+        { "chord": "C", "position": 41 },
+        { "chord": "D", "position": 45 }
+      ]
+    },
+    {
+      "lyrics": "Como quisiera poder vivir sin ti",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Bm", "position": 9 },
+        { "chord": "C", "position": 13 },
+        { "chord": "D", "position": 18 },
+        { "chord": "G", "position": 31 },
+        { "chord": "Bm", "position": 35 },
+        { "chord": "C", "position": 40 },
+        { "chord": "D", "position": 44 }
+      ]
+    },
+    {
+      "lyrics": "",
+      "chords": []
+    },
+    {
+      "lyrics": "Pero no puedo siento que muero",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 10 },
+        { "chord": "Em", "position": 17 },
+        { "chord": "C", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "Me estoy ahogando sin tu amor",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "D", "position": 25 }
+      ]
+    },
+    {
+      "lyrics": "",
+      "chords": []
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Como quisiera poder vivir sin aire",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "C", "position": 17 },
+        { "chord": "G", "position": 31 },
+        { "chord": "D", "position": 35 }
+      ]
+    },
+    {
+      "lyrics": "Como quisiera calmar mi aflicción",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "C", "position": 18 },
+        { "chord": "D", "position": 31 }
+      ]
+    },
+    {
+      "lyrics": "Como quisiera poder vivir sin agua",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "C", "position": 17 },
+        { "chord": "G", "position": 31 },
+        { "chord": "D", "position": 35 }
+      ]
+    },
+    {
+      "lyrics": "Me encantaría robar tu corazón",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "C", "position": 17 },
+        { "chord": "D", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "",
+      "chords": []
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Como pudiera un pez nadar sin agua",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Bm", "position": 9 },
+        { "chord": "C", "position": 13 },
+        { "chord": "D", "position": 18 },
+        { "chord": "G", "position": 32 },
+        { "chord": "Bm", "position": 36 },
+        { "chord": "C", "position": 41 },
+        { "chord": "D", "position": 45 }
+      ]
+    },
+    {
+      "lyrics": "Como pudiera un ave volar sin alas",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Bm", "position": 9 },
+        { "chord": "C", "position": 13 },
+        { "chord": "D", "position": 18 },
+        { "chord": "G", "position": 31 },
+        { "chord": "Bm", "position": 35 },
+        { "chord": "C", "position": 40 },
+        { "chord": "D", "position": 44 }
+      ]
+    },
+    {
+      "lyrics": "Como pudiera la flor crecer sin tierra",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Bm", "position": 9 },
+        { "chord": "C", "position": 13 },
+        { "chord": "D", "position": 18 },
+        { "chord": "G", "position": 34 },
+        { "chord": "Bm", "position": 38 },
+        { "chord": "C", "position": 43 },
+        { "chord": "D", "position": 47 }
+      ]
+    },
+    {
+      "lyrics": "Como quisiera poder vivir sin t",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Bm", "position": 9 },
+        { "chord": "C", "position": 13 },
+        { "chord": "D", "position": 18 },
+        { "chord": "G", "position": 30 },
+        { "chord": "Bm", "position": 34 },
+        { "chord": "C", "position": 39 },
+        { "chord": "D", "position": 43 }
+      ]
+    },
+    {
+      "lyrics": "",
+      "chords": []
+    },
+    { "section": "Chorus 2" },
+    {
+      "lyrics": "Como quisiera lanzarte al olvido",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "C", "position": 18 },
+        { "chord": "G", "position": 31 },
+        { "chord": "D", "position": 34 }
+      ]
+    },
+    {
+      "lyrics": "Como quisiera guardarte en un cajón",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "C", "position": 19 },
+        { "chord": "D", "position": 33 }
+      ]
+    },
+    {
+      "lyrics": "Como quisiera borrarte de un soplido",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "C", "position": 18 },
+        { "chord": "G", "position": 34 },
+        { "chord": "D", "position": 37 }
+      ]
+    },
+    {
+      "lyrics": "Me encantaría matar esta canción",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "C", "position": 17 },
+        { "chord": "D", "position": 30 }
+      ]
+    }
+  ]
+}

@@ -50,6 +50,7 @@
     { "path": "songs/whistle.json", "title": "Whistle", "artist": "Flo Rida" },
     { "path": "songs/la-flaca.json", "title": "La Flaca", "artist": "Jarabe de Palo" },
     { "path": "songs/sola-nunca-estaras.json", "title": "Sola Nunca Estarás (Caprichosa)", "artist": "Ricardo Silva (Dragon Ball GT)" },
-    { "path": "songs/we-gotta-power.json", "title": "We Gotta Power (English)", "artist": "Hironobu Kageyama (Dragon Ball Z)" }
+    { "path": "songs/we-gotta-power.json", "title": "We Gotta Power (English)", "artist": "Hironobu Kageyama (Dragon Ball Z)" },
+    { "path": "songs/vivir-sin-aire.json", "title": "Vivir sin Aire", "artist": "Maná" }
   ]
 }
