@@ -346,7 +346,7 @@ ukeflow/
     ├── la-tortura.json                # Shakira, Minor key (Am)
     ├── ojos-asi.json                  # Shakira 90s, Minor key (F#m)
     ├── bamboleo.json                  # Gipsy Kings, Flamenco (Em)
-    ├── estoy-aqui.json                # Shakira 90s, Minor key (Em)
+    ├── estoy-aqui.json                # Shakira 90s (D)
     ├── ciega-sordomuda.json           # Shakira 90s, Minor key (Am)
     ├── antologia.json                 # Shakira 90s (C)
     ├── andar-conmigo.json             # Julieta Venegas (C)
