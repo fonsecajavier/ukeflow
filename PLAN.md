@@ -381,7 +381,8 @@ ukeflow/
     ├── la-flaca.json                  # Jarabe de Palo (Am)
     ├── sola-nunca-estaras.json        # Ricardo Silva - Dragon Ball GT (Am)
     ├── we-gotta-power.json            # Hironobu Kageyama - Dragon Ball Z (Em)
-    └── vivir-sin-aire.json            # Maná (G)
+    ├── vivir-sin-aire.json            # Maná (G)
+    └── the-sound-of-silence.json      # Simon & Garfunkel (Gm)
 ```
 
 ### JavaScript Module Organization
