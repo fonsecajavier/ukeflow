@@ -382,7 +382,7 @@ ukeflow/
     ├── sola-nunca-estaras.json        # Ricardo Silva - Dragon Ball GT (Am)
     ├── we-gotta-power.json            # Hironobu Kageyama - Dragon Ball Z (Em)
     ├── vivir-sin-aire.json            # Maná (G)
-    └── the-sound-of-silence.json      # Simon & Garfunkel (Gm)
+    └── the-sound-of-silence.json      # Simon & Garfunkel (D#m)
 ```
 
 ### JavaScript Module Organization

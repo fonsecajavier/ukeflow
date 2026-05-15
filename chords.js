@@ -196,6 +196,13 @@ const CHORDS = {
         barre: null,
         baseFret: 1
     },
+    'D#m': {
+        name: 'D#m',
+        frets: [3, 3, 2, 1],
+        fingers: [3, 4, 2, 1],
+        barre: null,
+        baseFret: 1
+    },
     'G#m': {
         name: 'G#m',
         frets: [1, 3, 4, 2],
@@ -222,13 +229,6 @@ const CHORDS = {
         frets: [3, 1, 1, 1],
         fingers: [3, 1, 1, 1],
         barre: { fret: 1, fromString: 1, toString: 3 },
-        baseFret: 1
-    },
-    'D#m': {
-        name: 'D#m',
-        frets: [3, 3, 2, 1],
-        fingers: [3, 4, 2, 1],
-        barre: null,
         baseFret: 1
     },
     'Abm': {

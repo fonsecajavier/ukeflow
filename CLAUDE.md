@@ -113,7 +113,7 @@ Bamboleo, bambolea
 3. Commit with descriptive message
 
 ## Common Tasks
-- **Add chord**: Edit `chords.js`, add to CHORDS object with frets/fingers/barre
+- **Add chord**: Edit `chords.js`, add to CHORDS object with frets/fingers/barre. **Always check both enharmonic spellings** (e.g., C# AND Db, D#m AND Ebm) before adding — the library may already have the chord under its flat/sharp equivalent.
 - **Add chord variation**: Edit `chords.js`, add to CHORD_VARIATIONS object
 - **Add song**: Create JSON file in songs/, add to `songs.json`
 - **Add play style**: Edit `patterns.js`, add to PLAY_STYLES.strums or .arpeggios
