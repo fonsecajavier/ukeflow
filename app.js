@@ -292,6 +292,7 @@ function setupEventListeners() {
     elements.toggleBtn.addEventListener('click', handleToggleProgression);
     elements.toggleTapToPlay.addEventListener('click', handleToggleTapToPlay);
     elements.toggleRelativeKey.addEventListener('click', handleToggleRelativeKey);
+    elements.easyKeySuggestion.addEventListener('click', handleEasyKeyClick);
     elements.modalOverlay.addEventListener('click', handleModalClose);
     elements.modalClose.addEventListener('click', closeModal);
     document.addEventListener('keydown', handleKeyDown);
@@ -1507,6 +1508,18 @@ function handleToggleRelativeKey() {
 }
 
 /**
+ * Handle click on easy key suggestion
+ */
+function handleEasyKeyClick() {
+    const semitones = parseInt(elements.easyKeySuggestion.dataset.semitones, 10);
+    if (isNaN(semitones)) return;
+    state.transpose = semitones;
+    elements.transposeSelect.value = semitones.toString();
+    displaySong();
+    updateURL(false);
+}
+
+/**
  * Update the key display in the UI
  */
 function updateKeyDisplay() {
@@ -1536,6 +1549,17 @@ function updateKeyDisplay() {
         elements.songKey.textContent = displayKey + confidenceIndicator;
         const relativeKey = getRelativeKey(transposedKey);
         elements.toggleRelativeKey.title = `Switch to relative key (${relativeKey})`;
+    }
+
+    // Show easy key suggestion
+    const easyKey = findEasyKey(state.currentSong);
+    if (easyKey && easyKey.semitones !== state.transpose) {
+        elements.easyKeySuggestion.textContent = `Easy key: ${easyKey.key}`;
+        elements.easyKeySuggestion.title = `Transpose to ${easyKey.key} for easier chords`;
+        elements.easyKeySuggestion.style.display = 'inline-flex';
+        elements.easyKeySuggestion.dataset.semitones = easyKey.semitones;
+    } else {
+        elements.easyKeySuggestion.style.display = 'none';
     }
 }
 

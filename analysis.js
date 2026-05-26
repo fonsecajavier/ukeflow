@@ -670,6 +670,79 @@ function analyzeKeyConfidence(key) {
 }
 
 /**
+ * Get the difficulty score for a chord on ukulele
+ * 0 = easy open chord, 1 = moderate, 2 = barre chord, 3 = unknown
+ */
+function getChordDifficulty(chordName) {
+    const chord = CHORDS[chordName];
+    if (!chord) return 10; // unknown chord — heavily penalize
+    const frets = chord.frets.filter(f => f >= 0);
+    const maxFret = frets.length > 0 ? Math.max(...frets) : 0;
+    const minFret = frets.filter(f => f > 0).length > 0 ? Math.min(...frets.filter(f => f > 0)) : 0;
+    const hasOpen = chord.frets.some(f => f === 0);
+    const spread = maxFret - minFret;
+
+    // Easy open chords: no barre, has open strings, low frets
+    if (!chord.barre && hasOpen && maxFret <= 3) return 0;
+    // Low barre (fret 1-2) with small spread is manageable
+    if (chord.barre && chord.barre.fret <= 2 && spread <= 2) return 2;
+    // No barre but high frets or no open strings
+    if (!chord.barre && maxFret <= 4) return 1;
+    // Higher barre chords
+    if (chord.barre) return 3;
+    // Everything else
+    return 2;
+}
+
+/**
+ * Find the easiest key to play a song in on ukulele
+ * Tries all 12 transpositions and scores based on chord difficulty
+ * Returns { key, semitones, score } or null if already in easiest key
+ */
+function findEasyKey(song) {
+    // Common ukulele-friendly keys get a bonus (lower = better)
+    const commonKeys = new Set(['C', 'G', 'D', 'A', 'F', 'Am', 'Em', 'Dm', 'Gm']);
+
+    const originalChords = new Set();
+    song.lines.forEach(line => {
+        if (line.chords) line.chords.forEach(c => originalChords.add(c.chord));
+    });
+    const chordList = Array.from(originalChords);
+    if (chordList.length === 0) return null;
+
+    const scoreKey = (semitones) => {
+        const chordScore = chordList.reduce((sum, c) =>
+            sum + getChordDifficulty(transposeChord(c, semitones)), 0);
+        // Penalize uncommon keys slightly
+        const key = transposeKey(song.key, semitones);
+        const keyPenalty = commonKeys.has(key) ? 0 : 1;
+        return chordScore + keyPenalty;
+    };
+
+    const currentScore = scoreKey(0);
+
+    let bestSemitones = 0;
+    let bestScore = currentScore;
+
+    for (let s = 1; s < 12; s++) {
+        const score = scoreKey(s);
+        if (score < bestScore || (score === bestScore && bestSemitones !== 0 &&
+            commonKeys.has(transposeKey(song.key, s)) && !commonKeys.has(transposeKey(song.key, bestSemitones)))) {
+            bestScore = score;
+            bestSemitones = s;
+        }
+    }
+
+    if (bestSemitones === 0) return null;
+
+    // Normalize to -5..+6 range
+    if (bestSemitones > 6) bestSemitones -= 12;
+
+    const easyKey = transposeKey(song.key, bestSemitones);
+    return { key: easyKey, semitones: bestSemitones, score: bestScore };
+}
+
+/**
  * Detect if a chord is a secondary dominant (V/x)
  * @param {string} chord - The chord name
  * @param {string} key - The current key

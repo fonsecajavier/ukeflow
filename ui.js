@@ -45,7 +45,8 @@ const elements = {
     chordFinderFlip: document.getElementById('chord-finder-flip'),
     chordFinderClear: document.getElementById('chord-finder-clear'),
     chordFinderPlay: document.getElementById('chord-finder-play'),
-    chordFinderResult: document.getElementById('chord-finder-result')
+    chordFinderResult: document.getElementById('chord-finder-result'),
+    easyKeySuggestion: document.getElementById('easy-key-suggestion')
 };
 
 /**

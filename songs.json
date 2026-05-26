@@ -52,6 +52,7 @@
     { "path": "songs/sola-nunca-estaras.json", "title": "Sola Nunca Estarás (Caprichosa)", "artist": "Ricardo Silva (Dragon Ball GT)" },
     { "path": "songs/we-gotta-power.json", "title": "We Gotta Power (English)", "artist": "Hironobu Kageyama (Dragon Ball Z)" },
     { "path": "songs/vivir-sin-aire.json", "title": "Vivir sin Aire", "artist": "Maná" },
-    { "path": "songs/the-sound-of-silence.json", "title": "The Sound of Silence", "artist": "Simon & Garfunkel" }
+    { "path": "songs/the-sound-of-silence.json", "title": "The Sound of Silence", "artist": "Simon & Garfunkel" },
+    { "path": "songs/piel-canela.json", "title": "Piel Canela", "artist": "Bobby Capó" }
   ]
 }

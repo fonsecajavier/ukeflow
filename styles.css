@@ -192,6 +192,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
 }
 
 .key-display strong {
@@ -222,6 +223,25 @@ body {
     background: rgba(52, 152, 219, 0.3);
     border-color: #3498db;
     color: #3498db;
+}
+
+.easy-key-btn {
+    background: rgba(46, 204, 113, 0.15);
+    border: 1px solid rgba(46, 204, 113, 0.4);
+    color: #2ecc71;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+.easy-key-btn:hover {
+    background: rgba(46, 204, 113, 0.3);
+    border-color: #2ecc71;
 }
 
 .transpose-control {
