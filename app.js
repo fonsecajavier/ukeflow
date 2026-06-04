@@ -1113,6 +1113,12 @@ function openDom7Modal(chordName, chord7Name, romanNumeral) {
 
     elements.modalChord.appendChild(content);
     elements.modalOverlay.classList.add('active');
+
+    // In tap-to-play mode, play the chord shown right away (first one if a pair)
+    if (state.tapToPlayMode) {
+        const firstChordData = CHORDS[chordName] || (chord7Name ? CHORDS[chord7Name] : null);
+        if (firstChordData) playChordArpeggio(firstChordData);
+    }
 }
 
 // Store current key modal chords for keyboard playback
@@ -1316,6 +1322,16 @@ function openKeyModal(majorKey, minorKey) {
 
     elements.modalChord.appendChild(content);
     elements.modalOverlay.classList.add('active');
+
+    // In tap-to-play mode, play the tonic (first diatonic chord) right away
+    if (state.tapToPlayMode && keyModalChords && keyModalChords[0]) {
+        playChord(keyModalChords[0]);
+        const firstBtn = document.querySelector('.key-modal-play-btn');
+        if (firstBtn) {
+            firstBtn.classList.add('playing');
+            setTimeout(() => firstBtn.classList.remove('playing'), 400);
+        }
+    }
 }
 
 /**
@@ -1593,6 +1609,9 @@ function openChordModal(chordName) {
         : chordName;
     elements.modalChord.appendChild(nameDiv);
 
+    // First variation's play button, captured so tap-to-play can auto-trigger it
+    let firstPlayBtn = null;
+
     if (hasVariations) {
         // Create a container for all variations
         const variationsContainer = document.createElement('div');
@@ -1625,6 +1644,7 @@ function openChordModal(chordName) {
                 setTimeout(() => playBtn.classList.remove('playing'), 400);
             });
             variationItem.appendChild(playBtn);
+            if (index === 0) firstPlayBtn = playBtn;
 
             variationsContainer.appendChild(variationItem);
         });
@@ -1646,9 +1666,15 @@ function openChordModal(chordName) {
             setTimeout(() => playBtn.classList.remove('playing'), 400);
         });
         elements.modalChord.appendChild(playBtn);
+        firstPlayBtn = playBtn;
     }
 
     elements.modalOverlay.classList.add('active');
+
+    // In tap-to-play mode, auto-play the first variation right away
+    if (state.tapToPlayMode && firstPlayBtn) {
+        firstPlayBtn.click();
+    }
 }
 
 /**
