@@ -55,6 +55,7 @@
     { "path": "songs/the-sound-of-silence.json", "title": "The Sound of Silence", "artist": "Simon & Garfunkel" },
     { "path": "songs/piel-canela.json", "title": "Piel Canela", "artist": "Bobby Capó" },
     { "path": "songs/te-quiero-tanto.json", "title": "Te quiero tanto", "artist": "Onda Vaselina" },
-    { "path": "songs/bajo-del-mar.json", "title": "Bajo del mar", "artist": "La Sirenita (Disney)" }
+    { "path": "songs/bajo-del-mar.json", "title": "Bajo del mar", "artist": "La Sirenita (Disney)" },
+    { "path": "songs/tu-cumpleanos.json", "title": "Tu Cumpleaños", "artist": "Diomedes Díaz" }
   ]
 }

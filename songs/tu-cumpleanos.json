@@ -1,0 +1,163 @@
+{
+  "title": "Tu Cumpleaños",
+  "artist": "Diomedes Díaz",
+  "key": "G",
+  "spotify": "https://open.spotify.com/track/4s2DSx3SwrIsggkDyJjnAJ",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Vamos a entonar una canción",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "pa que cantemos",
+      "chords": [
+        { "chord": "D", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "vamos a festejar con emoción",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "su cumpleaños",
+      "chords": [
+        { "chord": "G", "position": 9 }
+      ]
+    },
+    {
+      "lyrics": "vamos a decirle con amor",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "que la felicitamos",
+      "chords": [
+        { "chord": "C", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "y que siga cumpliendo muchos más",
+      "chords": [
+        { "chord": "D", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "que la vírgen la tiene que cuidar",
+      "chords": []
+    },
+    {
+      "lyrics": "que de mi parte",
+      "chords": [
+        { "chord": "G", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "nada en la vida  le faltara",
+      "chords": [
+        { "chord": "D", "position": 15 },
+        { "chord": "G", "position": 25 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Y que los cumpla feliz muy feliz",
+      "chords": [
+        { "chord": "G", "position": 10 },
+        { "chord": "Am", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "deseamos todos en esta reunión (BIS)",
+      "chords": [
+        { "chord": "D", "position": 9 },
+        { "chord": "G", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "tus amistades llegamos aquí",
+      "chords": [
+        { "chord": "Em", "position": 8 },
+        { "chord": "Am", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "a compartir esa gran bendición",
+      "chords": [
+        { "chord": "D", "position": 9 },
+        { "chord": "G", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "bendición de mamá",
+      "chords": [
+        { "chord": "Am", "position": 15 },
+        { "chord": "D", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "bendición de papá (BIS)",
+      "chords": [
+        { "chord": "G", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "Y yo te vine a canta esta canción",
+      "chords": [
+        { "chord": "G", "position": 8 },
+        { "chord": "Bm", "position": 18 },
+        { "chord": "D", "position": 31 }
+      ]
+    },
+    {
+      "lyrics": "y te deseo mucha felicidad",
+      "chords": [
+        { "chord": "C", "position": 8 },
+        { "chord": "D", "position": 17 },
+        { "chord": "G", "position": 24 }
+      ]
+    },
+    { "section": "Verse 2" },
+    { "lyrics": "Vamos a abrir una botella de vino", "chords": [] },
+    { "lyrics": "pa que brindemos", "chords": [] },
+    { "lyrics": "por que hoy con toditos tus amigos", "chords": [] },
+    { "lyrics": "amanecemos", "chords": [] },
+    { "lyrics": "ay por que hoy esta cumpliendo años", "chords": [] },
+    { "lyrics": "lo que mas quiero", "chords": [] },
+    { "lyrics": "y estoy repleto de felicidad", "chords": [] },
+    { "lyrics": "que hasta me han dado ganas de llorar", "chords": [] },
+    { "lyrics": "gracias a Dios", "chords": [] },
+    { "lyrics": "por que has cumplido un año más", "chords": [] },
+    { "section": "II" },
+    { "lyrics": "Cuántos clavelitos nacerian", "chords": [] },
+    { "lyrics": "junto contigo", "chords": [] },
+    { "lyrics": "cuántas rosas blancas ese dia", "chords": [] },
+    { "lyrics": "también nacieron", "chords": [] },
+    { "lyrics": "cual seria el cura que le diria", "chords": [] },
+    { "lyrics": "a tu padrino", "chords": [] },
+    { "lyrics": "el deber que él ya tenia con su ahijada", "chords": [] },
+    { "lyrics": "que los diez mandamientos los rezaban", "chords": [] },
+    { "lyrics": "desconociendo que tu tenias", "chords": [] },
+    { "lyrics": "quien te cuidara", "chords": [] },
+    { "section": "Chorus" },
+    { "lyrics": "Y que los cumpla feliz muy feliz", "chords": [] },
+    { "lyrics": "deseamos todos en esta reunión (BIS)", "chords": [] },
+    { "lyrics": "tus amistades llegamos aqui", "chords": [] },
+    { "lyrics": "a compartir esa gran bendición", "chords": [] },
+    { "lyrics": "bendición de mamá", "chords": [] },
+    { "lyrics": "bendición de papá (BIS)", "chords": [] },
+    { "section": "Outro" },
+    { "lyrics": "Mil felicitaciones", "chords": [] },
+    { "lyrics": "que cumplas muchos mas", "chords": [] },
+    { "lyrics": "que la virgen te cuide", "chords": [] },
+    { "lyrics": "que te cuide bastante", "chords": [] },
+    { "lyrics": "por que yo de mi parte", "chords": [] },
+    { "lyrics": "también te cuidare...", "chords": [] }
+  ]
+}
