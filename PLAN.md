@@ -383,7 +383,9 @@ ukeflow/
     ├── we-gotta-power.json            # Hironobu Kageyama - Dragon Ball Z (Em)
     ├── vivir-sin-aire.json            # Maná (G)
     ├── the-sound-of-silence.json      # Simon & Garfunkel (D#m)
-    └── piel-canela.json               # Bobby Capó (Em)
+    ├── piel-canela.json               # Bobby Capó (Fm)
+    ├── te-quiero-tanto.json           # Onda Vaselina (Ab)
+    └── bajo-del-mar.json              # La Sirenita - Disney (C)
 ```
 
 ### JavaScript Module Organization

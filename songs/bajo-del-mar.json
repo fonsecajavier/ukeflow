@@ -1,0 +1,370 @@
+{
+  "title": "Bajo del mar",
+  "artist": "La Sirenita (Disney)",
+  "key": "C",
+  "spotify": "https://open.spotify.com/track/2CmPRnBGG6uVWXMR9YUGsK",
+  "lines": [
+    { "section": "Intro" },
+    { "lyrics": "Ariel, escúchame.", "chords": [] },
+    { "lyrics": "Este mundo está muy mal.", "chords": [] },
+    { "lyrics": "La vida bajo el mar es mucho mejor", "chords": [] },
+    { "lyrics": "que el mundo de allá arriba.", "chords": [] },
+    { "section": "Preverso" },
+    {
+      "lyrics": "Tú crees que en otros lagos",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "las algas más verdes son",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "Y sueñas con ir arriba,",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "¡qué gran equivocación!",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    { "section": "Verso" },
+    {
+      "lyrics": "¿No ves que tu propio mundo",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "no tiene comparación?",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "¿Qué puede haber allá fuera",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "que causa tal emoción?",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    { "section": "Estribillo" },
+    {
+      "lyrics": "Bajo del mar, bajo del mar",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "Am", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "Vives contenta, siendo sirena eres feliz",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "Sé que trabajan sin parar y bajo el sol para variar",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "Am", "position": 4 },
+        { "chord": "D", "position": 7 }
+      ]
+    },
+    {
+      "lyrics": "Mientras nosotros siempre flotamos bajo del mar",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    { "section": "Preverso" },
+    {
+      "lyrics": "Los peces son muy felices,",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "aquí tienen libertad",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "Los peces allí están tristes,",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "sus casas son de cristal",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    { "section": "Verso" },
+    {
+      "lyrics": "La vida de nuestros peces",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "muy larga no suele ser",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "Si al dueño le apetece,",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "a mí me van a comer",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    { "section": "Estribillo" },
+    {
+      "lyrics": "Bajo del mar, bajo del mar",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "Am", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "Nadie nos fríe ni nos cocina en un sartén",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "Si no te quieres arriesgar bajo del mar te quedarás",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "A", "position": 4 },
+        { "chord": "D", "position": 6 }
+      ]
+    },
+    {
+      "lyrics": "Y sin problemas entre burbujas tú vivirás",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    { "section": "Estribillo" },
+    {
+      "lyrics": "Bajo el mar, bajo el mar",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "Am", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "Hay siempre ritmo en nuestro mundo al natural",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "La manta-raya tocará, el esturión se unirá",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "A", "position": 4 },
+        { "chord": "D", "position": 6 }
+      ]
+    },
+    {
+      "lyrics": "Siempre hay ritmo, ritmo marino Bajo del mar",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    { "section": "Verso" },
+    {
+      "lyrics": "Oye la flauta, oye el arpa",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "Y al contrabajo ponle atención",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "Verás la trompetas y el tambor",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "Disfruta de tu canción, ¡sí!",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "Con la marimba y el violín",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "Las truchas volteando y el otro cantando",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "Sin olvidarnos del espadín",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "Que empiece la función",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "C", "position": 2 }
+      ]
+    },
+    { "section": "Instrumental" },
+    {
+      "lyrics": "F G Am Am F G C (x2)",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "Am", "position": 4 },
+        { "chord": "Am", "position": 7 },
+        { "chord": "F", "position": 10 },
+        { "chord": "G", "position": 12 },
+        { "chord": "C", "position": 14 }
+      ]
+    },
+    { "section": "Final" },
+    {
+      "lyrics": "Bajo del mar, bajo del mar",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "Am", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "Hay bailarines, son las sardinas, bajo del mar",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "Para qué quieres explorar si nuestra banda va a tocar",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "A", "position": 4 },
+        { "chord": "D", "position": 6 }
+      ]
+    },
+    {
+      "lyrics": "Hay castañuelas, son las almejas, bajo del mar",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "Y las babosas son tan jocosas bajo del mar",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "El caracol es saxofonista y las burbujas llenan la pista",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "A", "position": 4 },
+        { "chord": "D", "position": 6 }
+      ]
+    },
+    {
+      "lyrics": "para que bailes en esta fiesta bajo del mar",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "C", "position": 4 }
+      ]
+    }
+  ]
+}

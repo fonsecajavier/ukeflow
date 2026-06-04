@@ -1,224 +1,224 @@
 {
   "title": "Piel Canela",
   "artist": "Bobby Capó",
-  "key": "Em",
+  "key": "Fm",
   "spotify": "https://open.spotify.com/track/2hmAjUJ2YiMhg1PfqWWzcH",
   "lines": [
     { "section": "Intro" },
     {
       "lyrics": "",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "D7", "position": 3 },
-        { "chord": "G", "position": 6 },
-        { "chord": "Am", "position": 8 },
-        { "chord": "D7", "position": 11 },
-        { "chord": "G", "position": 14 }
+        { "chord": "Bbm", "position": 0 },
+        { "chord": "Eb7", "position": 3 },
+        { "chord": "Ab", "position": 6 },
+        { "chord": "Bbm", "position": 8 },
+        { "chord": "Eb7", "position": 11 },
+        { "chord": "Ab", "position": 14 }
       ]
     },
     { "section": "Verse 1" },
     {
       "lyrics": "Que se quede el infinito sin estrellas",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "D7", "position": 3 },
-        { "chord": "G", "position": 6 }
+        { "chord": "Bbm", "position": 0 },
+        { "chord": "Eb7", "position": 3 },
+        { "chord": "Ab", "position": 6 }
       ]
     },
     {
       "lyrics": "y que pierda el ancho mar su inmensidad",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "D7", "position": 3 },
-        { "chord": "G", "position": 6 }
+        { "chord": "Bbm", "position": 0 },
+        { "chord": "Eb7", "position": 3 },
+        { "chord": "Ab", "position": 6 }
       ]
     },
     {
       "lyrics": "Pero el negro de tus ojos que no muera",
       "chords": [
-        { "chord": "B7", "position": 0 },
-        { "chord": "Em", "position": 3 }
+        { "chord": "C7", "position": 0 },
+        { "chord": "Fm", "position": 3 }
       ]
     },
     {
       "lyrics": "Y el aroma de tu piel se quede igual",
       "chords": [
-        { "chord": "A7", "position": 0 },
-        { "chord": "D7", "position": 3 }
+        { "chord": "Bb7", "position": 0 },
+        { "chord": "Eb7", "position": 3 }
       ]
     },
     { "section": "Verse 2" },
     {
       "lyrics": "Aunque pierda el arco iris su belleza",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "D7", "position": 3 },
-        { "chord": "G", "position": 6 }
+        { "chord": "Bbm", "position": 0 },
+        { "chord": "Eb7", "position": 3 },
+        { "chord": "Ab", "position": 6 }
       ]
     },
     {
       "lyrics": "Y las flores su perfume y su color",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "D7", "position": 3 },
-        { "chord": "G", "position": 6 }
+        { "chord": "Bbm", "position": 0 },
+        { "chord": "Eb7", "position": 3 },
+        { "chord": "Ab", "position": 6 }
       ]
     },
     {
       "lyrics": "No seria tan inmensa mi tristeza",
       "chords": [
-        { "chord": "B7", "position": 0 },
-        { "chord": "Em", "position": 3 }
+        { "chord": "C7", "position": 0 },
+        { "chord": "Fm", "position": 3 }
       ]
     },
     {
       "lyrics": "Como aquella de quedarme sin tu amor",
       "chords": [
-        { "chord": "A7", "position": 0 },
-        { "chord": "D7", "position": 3 }
+        { "chord": "Bb7", "position": 0 },
+        { "chord": "Eb7", "position": 3 }
       ]
     },
     { "section": "Chorus" },
     {
       "lyrics": "Me importas tu y tu y tu",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "D7", "position": 3 },
-        { "chord": "Am", "position": 6 }
+        { "chord": "Bbm", "position": 0 },
+        { "chord": "Eb7", "position": 3 },
+        { "chord": "Bbm", "position": 6 }
       ]
     },
     {
       "lyrics": "Y solamente tu y tu y tu",
       "chords": [
-        { "chord": "D7", "position": 0 },
-        { "chord": "G", "position": 3 },
-        { "chord": "Am", "position": 5 },
-        { "chord": "D7", "position": 8 }
+        { "chord": "Eb7", "position": 0 },
+        { "chord": "Ab", "position": 3 },
+        { "chord": "Bbm", "position": 5 },
+        { "chord": "Eb7", "position": 8 }
       ]
     },
     {
       "lyrics": "Me importas tu y tu y tu",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "D7", "position": 3 },
-        { "chord": "Am", "position": 6 }
+        { "chord": "Bbm", "position": 0 },
+        { "chord": "Eb7", "position": 3 },
+        { "chord": "Bbm", "position": 6 }
       ]
     },
     {
       "lyrics": "Y nadie mas que tu",
       "chords": [
-        { "chord": "D7", "position": 0 },
-        { "chord": "G", "position": 3 }
+        { "chord": "Eb7", "position": 0 },
+        { "chord": "Ab", "position": 3 }
       ]
     },
     { "section": "Verse 3" },
     {
       "lyrics": "Que se quede el infinito sin estrellas",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "D7", "position": 3 },
-        { "chord": "G", "position": 6 }
+        { "chord": "Bbm", "position": 0 },
+        { "chord": "Eb7", "position": 3 },
+        { "chord": "Ab", "position": 6 }
       ]
     },
     {
       "lyrics": "y que pierda el ancho mar su inmensidad",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "D7", "position": 3 },
-        { "chord": "G", "position": 6 }
+        { "chord": "Bbm", "position": 0 },
+        { "chord": "Eb7", "position": 3 },
+        { "chord": "Ab", "position": 6 }
       ]
     },
     {
       "lyrics": "Pero el negro de tus ojos que no muera",
       "chords": [
-        { "chord": "B7", "position": 0 },
-        { "chord": "Em", "position": 3 }
+        { "chord": "C7", "position": 0 },
+        { "chord": "Fm", "position": 3 }
       ]
     },
     {
       "lyrics": "Y el aroma de tu piel se quede igual",
       "chords": [
-        { "chord": "A7", "position": 0 },
-        { "chord": "D7", "position": 3 }
+        { "chord": "Bb7", "position": 0 },
+        { "chord": "Eb7", "position": 3 }
       ]
     },
     { "section": "Verse 4" },
     {
       "lyrics": "Aunque pierda el arco iris su belleza",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "D7", "position": 3 },
-        { "chord": "G", "position": 6 }
+        { "chord": "Bbm", "position": 0 },
+        { "chord": "Eb7", "position": 3 },
+        { "chord": "Ab", "position": 6 }
       ]
     },
     {
       "lyrics": "Y las flores su perfume y su color",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "D7", "position": 3 },
-        { "chord": "G", "position": 6 }
+        { "chord": "Bbm", "position": 0 },
+        { "chord": "Eb7", "position": 3 },
+        { "chord": "Ab", "position": 6 }
       ]
     },
     {
       "lyrics": "No seria tan inmensa mi tristeza",
       "chords": [
-        { "chord": "B7", "position": 0 },
-        { "chord": "Em", "position": 3 }
+        { "chord": "C7", "position": 0 },
+        { "chord": "Fm", "position": 3 }
       ]
     },
     {
       "lyrics": "Como aquella de quedarme sin tu amor",
       "chords": [
-        { "chord": "A7", "position": 0 },
-        { "chord": "D7", "position": 3 }
+        { "chord": "Bb7", "position": 0 },
+        { "chord": "Eb7", "position": 3 }
       ]
     },
     { "section": "Bridge" },
     {
       "lyrics": "Ojos negros piel canela",
       "chords": [
-        { "chord": "B7", "position": 0 },
-        { "chord": "Em", "position": 3 }
+        { "chord": "C7", "position": 0 },
+        { "chord": "Fm", "position": 3 }
       ]
     },
     {
       "lyrics": "Que me llegan a desesperar",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "D7", "position": 3 }
+        { "chord": "Bbm", "position": 0 },
+        { "chord": "Eb7", "position": 3 }
       ]
     },
     { "section": "Chorus" },
     {
       "lyrics": "Me importas tu y tu y tu",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "D7", "position": 3 },
-        { "chord": "Am", "position": 6 }
+        { "chord": "Bbm", "position": 0 },
+        { "chord": "Eb7", "position": 3 },
+        { "chord": "Bbm", "position": 6 }
       ]
     },
     {
       "lyrics": "Y solamente tu y tu y tu",
       "chords": [
-        { "chord": "D7", "position": 0 },
-        { "chord": "G", "position": 3 },
-        { "chord": "Am", "position": 5 },
-        { "chord": "D7", "position": 8 }
+        { "chord": "Eb7", "position": 0 },
+        { "chord": "Ab", "position": 3 },
+        { "chord": "Bbm", "position": 5 },
+        { "chord": "Eb7", "position": 8 }
       ]
     },
     {
       "lyrics": "Me importas tu y tu y tu",
       "chords": [
-        { "chord": "Am", "position": 0 },
-        { "chord": "D7", "position": 3 },
-        { "chord": "Am", "position": 6 }
+        { "chord": "Bbm", "position": 0 },
+        { "chord": "Eb7", "position": 3 },
+        { "chord": "Bbm", "position": 6 }
       ]
     },
     {
       "lyrics": "Y nadie mas que tu",
       "chords": [
-        { "chord": "D7", "position": 0 },
-        { "chord": "G", "position": 3 }
+        { "chord": "Eb7", "position": 0 },
+        { "chord": "Ab", "position": 3 }
       ]
     }
   ]

@@ -1,0 +1,257 @@
+{
+  "title": "Te quiero tanto",
+  "artist": "Onda Vaselina",
+  "key": "Ab",
+  "spotify": "https://open.spotify.com/track/2S0XH9R1BVZhbcy7j9yQbx",
+  "lines": [
+    { "section": "Intro" },
+    {
+      "lyrics": "Ab Eb Bbm Db Ab Eb Bbm Db",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 3 },
+        { "chord": "Bbm", "position": 6 },
+        { "chord": "Db", "position": 10 },
+        { "chord": "Ab", "position": 13 },
+        { "chord": "Eb", "position": 16 },
+        { "chord": "Bbm", "position": 19 },
+        { "chord": "Db", "position": 23 }
+      ]
+    },
+    { "section": "Verse 1" },
+    {
+      "lyrics": "si tal vez pudieras comprender",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 4 },
+        { "chord": "Bbm", "position": 11 },
+        { "chord": "Eb", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "que no se como expresarme bien",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 4 },
+        { "chord": "Bbm", "position": 11 },
+        { "chord": "Eb", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "si tal vez pudiera hacerte ver",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Cm", "position": 4 },
+        { "chord": "Db", "position": 11 },
+        { "chord": "Cm", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "que no hay otra mujer - mejor que tu para mi",
+      "chords": [
+        { "chord": "Db", "position": 0 },
+        { "chord": "Cm", "position": 4 },
+        { "chord": "Fm", "position": 11 },
+        { "chord": "Eb", "position": 19 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "si tal vez me harias muy feliz",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 4 },
+        { "chord": "Bbm", "position": 11 },
+        { "chord": "Eb", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "si tal vez me lo podrias decir",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 4 },
+        { "chord": "Bbm", "position": 11 },
+        { "chord": "Eb", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "si tal vez detalle a detalle -",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Cm", "position": 4 },
+        { "chord": "Db", "position": 11 },
+        { "chord": "Cm", "position": 19 },
+        { "chord": "Db", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "podrias conquistarme seria tuuuuya",
+      "chords": [
+        { "chord": "Db", "position": 0 },
+        { "chord": "Cm", "position": 4 },
+        { "chord": "Fm", "position": 11 },
+        { "chord": "Eb", "position": 19 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "te quiero tanto tanto tanto tanto tanto",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Fm", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "cada dia un poco mas aaa-ha",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Db", "position": 4 },
+        { "chord": "Eb", "position": 7 }
+      ]
+    },
+    {
+      "lyrics": "te quiero tanto tanto tanto tanto",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Fm", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "para mi no hay nadie igual",
+      "chords": [
+        { "chord": "Cm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "no lo hay",
+      "chords": [
+        { "chord": "Db", "position": 0 },
+        { "chord": "Eb", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "te quiero tanto tanto tanto tanto amor",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Eb", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "que ya no puedo maaaaaaas",
+      "chords": [
+        { "chord": "Db", "position": 0 },
+        { "chord": "Ab", "position": 4 },
+        { "chord": "Eb", "position": 7 },
+        { "chord": "Bbm", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "que ya no puedo maaaaaaas",
+      "chords": [
+        { "chord": "Db", "position": 0 },
+        { "chord": "Ab", "position": 4 },
+        { "chord": "Eb", "position": 7 },
+        { "chord": "Bbm", "position": 11 },
+        { "chord": "Db", "position": 14 }
+      ]
+    },
+    { "section": "Verse 3" },
+    {
+      "lyrics": "pues tal vez el mundo aprendera",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 4 },
+        { "chord": "Bbm", "position": 11 },
+        { "chord": "Eb", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "con nuestro amor lo bello que es amar",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 4 },
+        { "chord": "Bbm", "position": 11 },
+        { "chord": "Db", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "y tal vez lo vuelva a repetir",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Cm", "position": 4 },
+        { "chord": "Db", "position": 11 },
+        { "chord": "Cm", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "pareja por pareja el mundo entero al fin",
+      "chords": [
+        { "chord": "Db", "position": 0 },
+        { "chord": "Cm", "position": 4 },
+        { "chord": "Fm", "position": 11 },
+        { "chord": "Eb", "position": 19 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "te quiero tanto tanto tanto tanto tanto",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Fm", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "cada dia un poco mas aaa-ha",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Db", "position": 4 },
+        { "chord": "Eb", "position": 7 }
+      ]
+    },
+    {
+      "lyrics": "te quiero tanto tanto tanto tanto",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Fm", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "para mi no hay nadie igual",
+      "chords": [
+        { "chord": "Cm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "no lo hay",
+      "chords": [
+        { "chord": "Db", "position": 0 },
+        { "chord": "Eb", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "te quiero tanto tanto tanto tanto amor",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Eb", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "que ya no puedo maaaaaas",
+      "chords": [
+        { "chord": "Db", "position": 0 },
+        { "chord": "Ab", "position": 4 },
+        { "chord": "Eb", "position": 7 },
+        { "chord": "Bbm", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "que ya no puedo maaaaaaas",
+      "chords": [
+        { "chord": "Db", "position": 0 },
+        { "chord": "Ab", "position": 4 },
+        { "chord": "Eb", "position": 7 },
+        { "chord": "Bbm", "position": 11 }
+      ]
+    }
+  ]
+}
