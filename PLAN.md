@@ -386,7 +386,8 @@ ukeflow/
     ├── piel-canela.json               # Bobby Capó (Ab)
     ├── te-quiero-tanto.json           # Onda Vaselina (Ab)
     ├── bajo-del-mar.json              # La Sirenita - Disney (C)
-    └── tu-cumpleanos.json             # Diomedes Díaz (G)
+    ├── tu-cumpleanos.json             # Diomedes Díaz (G)
+    └── me-dedique-a-perderte.json     # Alejandro Fernández (Ab)
 ```
 
 ### JavaScript Module Organization

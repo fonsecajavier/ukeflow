@@ -56,6 +56,7 @@
     { "path": "songs/piel-canela.json", "title": "Piel Canela", "artist": "Bobby Capó" },
     { "path": "songs/te-quiero-tanto.json", "title": "Te quiero tanto", "artist": "Onda Vaselina" },
     { "path": "songs/bajo-del-mar.json", "title": "Bajo del mar", "artist": "La Sirenita (Disney)" },
-    { "path": "songs/tu-cumpleanos.json", "title": "Tu Cumpleaños", "artist": "Diomedes Díaz" }
+    { "path": "songs/tu-cumpleanos.json", "title": "Tu Cumpleaños", "artist": "Diomedes Díaz" },
+    { "path": "songs/me-dedique-a-perderte.json", "title": "Me Dediqué a Perderte", "artist": "Alejandro Fernández" }
   ]
 }
