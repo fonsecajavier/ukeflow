@@ -57,6 +57,10 @@
     { "path": "songs/te-quiero-tanto.json", "title": "Te quiero tanto", "artist": "Onda Vaselina" },
     { "path": "songs/bajo-del-mar.json", "title": "Bajo del mar", "artist": "La Sirenita (Disney)" },
     { "path": "songs/tu-cumpleanos.json", "title": "Tu Cumpleaños", "artist": "Diomedes Díaz" },
-    { "path": "songs/me-dedique-a-perderte.json", "title": "Me Dediqué a Perderte", "artist": "Alejandro Fernández" }
+    { "path": "songs/me-dedique-a-perderte.json", "title": "Me Dediqué a Perderte", "artist": "Alejandro Fernández" },
+    { "path": "songs/estoy-enamorado.json", "title": "Estoy enamorado", "artist": "Thalía & Pedro Capó" },
+    { "path": "songs/te-amo.json", "title": "Te Amo", "artist": "Franco de Vita" },
+    { "path": "songs/sin-miedo-a-nada.json", "title": "Sin miedo a nada", "artist": "Alex Ubago (feat. Amaia Montero)" },
+    { "path": "songs/mientes-tan-bien.json", "title": "Mientes tan bien", "artist": "Sin Bandera" }
   ]
 }

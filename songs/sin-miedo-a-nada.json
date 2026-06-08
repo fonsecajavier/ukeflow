@@ -1,0 +1,230 @@
+{
+  "title": "Sin miedo a nada",
+  "artist": "Alex Ubago (feat. Amaia Montero)",
+  "key": "Bm",
+  "spotify": "https://open.spotify.com/track/0ORw9DP1rCqCDj2JgqwCVY",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Me muero por suplicarte, que no te vayas mi vida",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "Em", "position": 25 }
+      ]
+    },
+    {
+      "lyrics": "me muero por escucharte  decir las cosas que nunca digas, más",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "A7", "position": 3 },
+        { "chord": "D", "position": 25 }
+      ]
+    },
+    {
+      "lyrics": "me callo y te marchas, mantengo la esperanza",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "Em", "position": 23 }
+      ]
+    },
+    {
+      "lyrics": "de ser capaz algún día,  de no esconder las heridas",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "A7", "position": 2 },
+        { "chord": "D", "position": 25 }
+      ]
+    },
+    {
+      "lyrics": "que me duelen al pensar que te voy queriendo cada día un poco más",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "G", "position": 10 },
+        { "chord": "A", "position": 28 },
+        { "chord": "D", "position": 38 },
+        { "chord": "Em", "position": 48 }
+      ]
+    },
+    {
+      "lyrics": "Cuánto tiempo vamos a esperar",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 3 },
+        { "chord": "Bm", "position": 6 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Me muero por abrazarte y que me abraces tan fuerte",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "Em", "position": 25 }
+      ]
+    },
+    {
+      "lyrics": "me muero por divertirte   y que me beses cuando despierte",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "A7", "position": 4 },
+        { "chord": "D", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "acomodado en tu pecho hasta que el sol aparezca",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "Em", "position": 25 }
+      ]
+    },
+    {
+      "lyrics": "Me voy perdiendo en tu aroma,  me voy perdiendo en tus labios",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "A7", "position": 3 },
+        { "chord": "D", "position": 31 }
+      ]
+    },
+    {
+      "lyrics": "que se acercan susurrando palabras que llegan a este pobre corazón",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "G", "position": 10 },
+        { "chord": "A", "position": 30 },
+        { "chord": "D", "position": 42 },
+        { "chord": "Em", "position": 50 }
+      ]
+    },
+    {
+      "lyrics": "Voy sintiendo el fuego en mi interior",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 5 },
+        { "chord": "Bm", "position": 13 }
+      ]
+    },
+    { "section": "Bridge" },
+    {
+      "lyrics": "Me muero por conocerte, saber qué es lo que piensas",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 7 },
+        { "chord": "D", "position": 25 }
+      ]
+    },
+    {
+      "lyrics": "abrir todas tus puertas y vencer esas tormentas",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "G", "position": 16 },
+        { "chord": "A", "position": 25 },
+        { "chord": "D", "position": 36 }
+      ]
+    },
+    {
+      "lyrics": "que nos quieran abatir",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "G", "position": 7 }
+      ]
+    },
+    {
+      "lyrics": "Centrar en tus ojos mi mirada, cantar contigo al alba",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "D", "position": 9 },
+        { "chord": "F#", "position": 17 },
+        { "chord": "G", "position": 29 }
+      ]
+    },
+    {
+      "lyrics": "besarnos hasta desgastarnos nuestros labios",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "D", "position": 12 },
+        { "chord": "F#", "position": 26 },
+        { "chord": "G", "position": 33 }
+      ]
+    },
+    {
+      "lyrics": "Y ver en tu rostro cada día crecer esa semilla",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 8 },
+        { "chord": "D", "position": 20 },
+        { "chord": "F#", "position": 25 },
+        { "chord": "G", "position": 33 }
+      ]
+    },
+    {
+      "lyrics": "crear, soñar, dejar todo surgir, apartando el miedo, a sufrir",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "A7", "position": 6 },
+        { "chord": "D", "position": 11 },
+        { "chord": "Em", "position": 22 },
+        { "chord": "G", "position": 33 },
+        { "chord": "A", "position": 41 },
+        { "chord": "Bm", "position": 49 }
+      ]
+    },
+    { "section": "Verse 3" },
+    {
+      "lyrics": "Me muero por explicarte lo que pasa por mi mente",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "Em", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "me muero por intrigarte",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "A7", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "y seguir siendo capaz de sorprenderte",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Sentir cada día ese flechazo al verte",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "Em", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "qué más dará lo que digan",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "A7", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "qué más dará lo que piensen si estoy loco es cosa mía",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "F#", "position": 14 },
+        { "chord": "G", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "Y ahora vuelvo a mirar el mundo a mi favor",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "D", "position": 14 },
+        { "chord": "Em", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "vuelvo a ver brillar la luz del sol.",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 7 },
+        { "chord": "Bm", "position": 14 }
+      ]
+    }
+  ]
+}

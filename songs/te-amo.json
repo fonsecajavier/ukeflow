@@ -1,0 +1,366 @@
+{
+  "title": "Te Amo",
+  "artist": "Franco de Vita",
+  "key": "C",
+  "spotify": "https://open.spotify.com/track/6D3yX0b8McnqftOZbNGMwM",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Asi nos hubieran visto,",
+      "chords": [
+        { "chord": "Dm7", "position": 0 },
+        { "chord": "G", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "estabamos ahi sentados",
+      "chords": [
+        { "chord": "Dm7", "position": 0 },
+        { "chord": "G", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "frente a frente.",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "",
+      "chords": []
+    },
+    {
+      "lyrics": "No podia faltarnos la luna,",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "Am", "position": 23 }
+      ]
+    },
+    {
+      "lyrics": "y hablabamos de todo un poco,",
+      "chords": [
+        { "chord": "Dm7", "position": 0 },
+        { "chord": "G", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "y todo nos causaba risa",
+      "chords": [
+        { "chord": "Dm7", "position": 0 },
+        { "chord": "G", "position": 23 }
+      ]
+    },
+    {
+      "lyrics": "como dos tontos.",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "Y yo que no veia la hora",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "Am", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "de tenerte en mis brazos",
+      "chords": [
+        { "chord": "G", "position": 6 }
+      ]
+    },
+    {
+      "lyrics": "y poderte decir...",
+      "chords": [
+        { "chord": "G", "position": 6 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Te amo",
+      "chords": [
+        { "chord": "C", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "desde el primer momento en que te vi",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "y hace tiempo te buscaba",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "y ya te imaginaba asi.",
+      "chords": [
+        { "chord": "Dm", "position": 2 },
+        { "chord": "C", "position": 10 },
+        { "chord": "G", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "",
+      "chords": []
+    },
+    {
+      "lyrics": "te amo",
+      "chords": [
+        { "chord": "C", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "aunque no es tan facil de decir,",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "y defino lo que siento",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "con estas palabras",
+      "chords": [
+        { "chord": "Dm", "position": 0 },
+        { "chord": "C", "position": 17 },
+        { "chord": "G", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "te amo",
+      "chords": [
+        { "chord": "C", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "uuuuuuuuuuh",
+      "chords": [
+        { "chord": "F", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 9 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Y de pronto nos rodeo el silencio,",
+      "chords": [
+        { "chord": "Dm7", "position": 0 },
+        { "chord": "G", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "y nos miramos fijamente",
+      "chords": [
+        { "chord": "Dm7", "position": 0 },
+        { "chord": "G", "position": 21 }
+      ]
+    },
+    {
+      "lyrics": "uno al otro.",
+      "chords": [
+        { "chord": "F", "position": 6 },
+        { "chord": "C", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "Tus manos entre las mias",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "Am", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "talvez nos volveremos a ver",
+      "chords": [
+        { "chord": "Dm7", "position": 0 },
+        { "chord": "G", "position": 23 }
+      ]
+    },
+    {
+      "lyrics": "mañana no se si podre",
+      "chords": [
+        { "chord": "Dm7", "position": 0 },
+        { "chord": "G", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "que estas jugando",
+      "chords": [
+        { "chord": "F", "position": 5 },
+        { "chord": "C", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "Me muero si no te vuelvo a ver",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "Am", "position": 25 }
+      ]
+    },
+    {
+      "lyrics": "y tenerte en mis brazos",
+      "chords": [
+        { "chord": "G", "position": 6 }
+      ]
+    },
+    {
+      "lyrics": "y poderte decir...",
+      "chords": [
+        { "chord": "G", "position": 5 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Te amo",
+      "chords": [
+        { "chord": "C", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "desde el primer momento en que te vi",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "y hace tiempo te buscaba",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "y ya te imaginaba asi.",
+      "chords": [
+        { "chord": "Dm", "position": 2 },
+        { "chord": "C", "position": 10 },
+        { "chord": "G", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "",
+      "chords": []
+    },
+    {
+      "lyrics": "te amo",
+      "chords": [
+        { "chord": "C", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "aunque no es tan facil de decir,",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "y defino lo que siento",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "con estas palabras",
+      "chords": [
+        { "chord": "Dm", "position": 0 },
+        { "chord": "C", "position": 17 },
+        { "chord": "G", "position": 20 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Te amo",
+      "chords": [
+        { "chord": "C", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "desde el primer momento en que te vi",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "y hace tiempo te buscaba",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "y ya te imaginaba asi.",
+      "chords": [
+        { "chord": "Dm", "position": 2 },
+        { "chord": "C", "position": 10 },
+        { "chord": "G", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "",
+      "chords": []
+    },
+    {
+      "lyrics": "te amo",
+      "chords": [
+        { "chord": "C", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "aunque no es tan facil de decir,",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "y defino lo que siento",
+      "chords": [
+        { "chord": "F", "position": 0 },
+        { "chord": "C", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "con estas palabras",
+      "chords": [
+        { "chord": "Dm", "position": 0 },
+        { "chord": "C", "position": 17 },
+        { "chord": "G", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "te amo",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 6 }
+      ]
+    },
+    {
+      "lyrics": "",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "F", "position": 5 }
+      ]
+    }
+  ]
+}

@@ -387,7 +387,11 @@ ukeflow/
     ├── te-quiero-tanto.json           # Onda Vaselina (Ab)
     ├── bajo-del-mar.json              # La Sirenita - Disney (C)
     ├── tu-cumpleanos.json             # Diomedes Díaz (G)
-    └── me-dedique-a-perderte.json     # Alejandro Fernández (Ab)
+    ├── me-dedique-a-perderte.json     # Alejandro Fernández (Ab)
+    ├── estoy-enamorado.json           # Thalía & Pedro Capó (D)
+    ├── te-amo.json                    # Franco de Vita (C)
+    ├── sin-miedo-a-nada.json          # Alex Ubago feat. Amaia Montero (Bm)
+    └── mientes-tan-bien.json          # Sin Bandera (G)
 ```
 
 ### JavaScript Module Organization

@@ -1,0 +1,228 @@
+{
+  "title": "Mientes tan bien",
+  "artist": "Sin Bandera",
+  "key": "G",
+  "spotify": "https://open.spotify.com/track/513ZjPGNLwf6D2j1NPsBAy",
+  "lines": [
+    { "section": "Intro" },
+    {
+      "lyrics": "G Gadd2 D/F# (x2)",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "Gadd2", "position": 2 },
+        { "chord": "D/F#", "position": 8 }
+      ]
+    },
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Que te quedaras conmigo una vida entera",
+      "chords": [
+        { "chord": "Am", "position": 0 },
+        { "chord": "D", "position": 21 },
+        { "chord": "G", "position": 37 },
+        { "chord": "D/F#", "position": 42 }
+      ]
+    },
+    {
+      "lyrics": "Que contigo adios invierno solo primavera",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 24 },
+        { "chord": "G", "position": 38 },
+        { "chord": "D/F#", "position": 43 }
+      ]
+    },
+    {
+      "lyrics": "Que las olas son de magia y no de agua salada",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "D", "position": 25 }
+      ]
+    },
+    {
+      "lyrics": "Yo te creo todo y tu no me das nada",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G/B", "position": 18 },
+        { "chord": "Am", "position": 35 }
+      ]
+    },
+    {
+      "lyrics": "Tu no me das nada",
+      "chords": [
+        { "chord": "Am/G", "position": 0 },
+        { "chord": "D", "position": 19 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Que si sigo tu camino llegare hasta el cielo",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 18 },
+        { "chord": "G", "position": 44 },
+        { "chord": "D/F#", "position": 49 }
+      ]
+    },
+    {
+      "lyrics": "Tu me mientes en la cara y yo me vuelvo ciego",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 21 },
+        { "chord": "G", "position": 45 },
+        { "chord": "D/F#", "position": 50 }
+      ]
+    },
+    {
+      "lyrics": "Yo me trago tus palabras tu juegas un juego",
+      "chords": [
+        { "chord": "Em", "position": 0 },
+        { "chord": "D", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "Y me brilla el mundo cuendo dices \"luego\"",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "G/B", "position": 21 },
+        { "chord": "Am", "position": 38 }
+      ]
+    },
+    {
+      "lyrics": "Cuando dices \"luego\"",
+      "chords": [
+        { "chord": "Am/G", "position": 0 },
+        { "chord": "D", "position": 19 }
+      ]
+    },
+    { "section": "Pre-Chorus" },
+    {
+      "lyrics": "Cuando dices siento, siento que eres todo",
+      "chords": [
+        { "chord": "C", "position": 20 },
+        { "chord": "D", "position": 42 }
+      ]
+    },
+    {
+      "lyrics": "Cuando dices vida yo estare contigo",
+      "chords": [
+        { "chord": "G", "position": 13 },
+        { "chord": "D/F#", "position": 23 },
+        { "chord": "Em", "position": 35 }
+      ]
+    },
+    {
+      "lyrics": "Tomas en mi mano y por dentro lloro",
+      "chords": [
+        { "chord": "C", "position": 18 },
+        { "chord": "D", "position": 37 }
+      ]
+    },
+    {
+      "lyrics": "Anque sea mentira me haces sentir vivo",
+      "chords": [
+        { "chord": "G", "position": 16 },
+        { "chord": "G/F#", "position": 26 },
+        { "chord": "Em", "position": 39 }
+      ]
+    },
+    {
+      "lyrics": "Anque es falso el aire, siento que respiro",
+      "chords": [
+        { "chord": "G/D", "position": 8 },
+        { "chord": "C", "position": 18 },
+        { "chord": "D", "position": 37 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Mientes tan bien",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "Que me sabe verdad",
+      "chords": [
+        { "chord": "G", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "Todo lo que me das",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "Em", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "Y ya te estoy amando",
+      "chords": [
+        { "chord": "Em", "position": 10 }
+      ]
+    },
+    {
+      "lyrics": "Mientes tan bien",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "Que he llegado a imaginar",
+      "chords": [
+        { "chord": "Em", "position": 23 }
+      ]
+    },
+    {
+      "lyrics": "Que mi amor llenas tu piel",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 25 }
+      ]
+    },
+    {
+      "lyrics": "Y anque todo es de papel.... mmm...",
+      "chords": [
+        { "chord": "C", "position": 22 },
+        { "chord": "D", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "Mientes tan bien",
+      "chords": [
+        { "chord": "Em", "position": 15 }
+      ]
+    },
+    { "section": "(Repeat Pre-Chorus and Chorus)" },
+    { "section": "Outro" },
+    {
+      "lyrics": "  Y anque to do es papel",
+      "chords": [
+        { "chord": "A7", "position": 0 },
+        { "chord": "C", "position": 23 },
+        { "chord": "D", "position": 27 }
+      ]
+    },
+    {
+      "lyrics": "Mientes lo se",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "G D/F# (x2)",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "D/F#", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "G",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    }
+  ]
+}

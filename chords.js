@@ -1602,6 +1602,51 @@ const CHORDS = {
         fingers: [0, 2, 0, 3],
         barre: null,
         baseFret: 1
+    },
+    // Slash chords (bass note shown in name). On a re-entrant GCEA ukulele the
+    // bass note often cannot be voiced below the chord, so these reuse the
+    // parent triad shape except where the bass note is reachable.
+    'Gadd2': {
+        name: 'Gadd2',
+        frets: [0, 2, 0, 2],
+        fingers: [0, 1, 0, 2],
+        barre: null,
+        baseFret: 1
+    },
+    'D/F#': {
+        name: 'D/F#',
+        frets: [2, 2, 2, 0],
+        fingers: [1, 2, 3, 0],
+        barre: null,
+        baseFret: 1
+    },
+    'G/B': {
+        name: 'G/B',
+        frets: [4, 2, 3, 2],
+        fingers: [4, 1, 3, 2],
+        barre: null,
+        baseFret: 1
+    },
+    'Am/G': {
+        name: 'Am/G',
+        frets: [0, 0, 0, 0],
+        fingers: [0, 0, 0, 0],
+        barre: null,
+        baseFret: 1
+    },
+    'G/F#': {
+        name: 'G/F#',
+        frets: [0, 2, 3, 2],
+        fingers: [0, 1, 3, 2],
+        barre: null,
+        baseFret: 1
+    },
+    'G/D': {
+        name: 'G/D',
+        frets: [0, 2, 3, 2],
+        fingers: [0, 1, 3, 2],
+        barre: null,
+        baseFret: 1
     }
 };
 

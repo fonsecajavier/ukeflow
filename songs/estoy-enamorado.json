@@ -1,0 +1,279 @@
+{
+  "title": "Estoy enamorado",
+  "artist": "Thalía & Pedro Capó",
+  "key": "D",
+  "spotify": "https://open.spotify.com/track/4N9gzwamSUhe9oRuWgnmfJ",
+  "lines": [
+    { "section": "Intro" },
+    {
+      "lyrics": "D G A A7 D (x2)",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 2 },
+        { "chord": "A", "position": 4 },
+        { "chord": "A7", "position": 6 },
+        { "chord": "D", "position": 9 }
+      ]
+    },
+    { "section": "Verse 1 (Thalía)" },
+    {
+      "lyrics": "Quiero beber los besos de tu boca,",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "como si fueran gotas de rocío",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "y allí en el aire dibujar tu nombre",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "A7", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "junto con el mío",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    { "section": "Verse 2 (Capó)" },
+    {
+      "lyrics": "Y en un acorde dulce de guitarra",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "pasear locuras en tus sentimientos",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "y en el sutil abrazo de la noche",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "A7", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "sepas lo que siento",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    { "section": "Coro (Dueto)" },
+    {
+      "lyrics": "Estoy enamorada/o, y tu amor me hace grande eh y eh",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 7 },
+        { "chord": "D", "position": 25 },
+        { "chord": "A", "position": 31 },
+        { "chord": "Bm", "position": 36 }
+      ]
+    },
+    {
+      "lyrics": "Estoy enamorada/o, y que bien que bien me hace amarte",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 12 },
+        { "chord": "D", "position": 37 }
+      ]
+    },
+    { "section": "Interlude" },
+    {
+      "lyrics": "D, G, A, A7, D",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 3 },
+        { "chord": "A", "position": 6 },
+        { "chord": "A7", "position": 9 },
+        { "chord": "D", "position": 13 }
+      ]
+    },
+    { "section": "Verse 3 (Capó)" },
+    {
+      "lyrics": "Dentro de ti quedarme en cautiverio",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "para sumarme el aire que respiras",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "y en cada espacio unir mis ilusiones",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "A7", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "junto con tu vida",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    { "section": "Verse 4 (Thalía)" },
+    {
+      "lyrics": "Que si naufrago me quede en tu orilla",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "que de recuerdos solo me alimente",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "y que despierte del sueño profundo",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "A7", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "solo para verte…",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    { "section": "Coro (Dueto)" },
+    {
+      "lyrics": "Estoy enamorada/o, y tu amor me hace grande eh y eh",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 7 },
+        { "chord": "D", "position": 25 },
+        { "chord": "A", "position": 31 },
+        { "chord": "Bm", "position": 36 }
+      ]
+    },
+    {
+      "lyrics": "Estoy enamorada/o, y que bien que bien me hace amarte...",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 12 },
+        { "chord": "D", "position": 37 },
+        { "chord": "F#m", "position": 43 }
+      ]
+    },
+    { "section": "Puente (Dueto)" },
+    {
+      "lyrics": "Voy a encender el fuego de tu piel callada",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "E", "position": 17 },
+        { "chord": "A", "position": 41 }
+      ]
+    },
+    {
+      "lyrics": "mojaré tus labios de agua apasionada",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "Bm", "position": 36 }
+      ]
+    },
+    {
+      "lyrics": "para que tejamos sueños de la nada",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "D", "position": 19 }
+      ]
+    },
+    { "section": "Thalía" },
+    {
+      "lyrics": "que estoy enamorada..",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    { "section": "Capó" },
+    {
+      "lyrics": "que estoy enamorado",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    { "section": "Dueto" },
+    {
+      "lyrics": "y tu amor me hace grande...eee..yee",
+      "chords": [
+        { "chord": "D", "position": 19 },
+        { "chord": "A", "position": 27 },
+        { "chord": "Bm", "position": 32 }
+      ]
+    },
+    {
+      "lyrics": "que estoy enamorada y que bien",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "que bien me hace amarte",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    { "section": "Thalía" },
+    {
+      "lyrics": "que estoy enamorada..",
+      "chords": [
+        { "chord": "G", "position": 0 }
+      ]
+    },
+    { "section": "Capó" },
+    {
+      "lyrics": "que estoy enamorado",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    { "section": "Dueto" },
+    {
+      "lyrics": "y tu amor me hace grande...eee..yee",
+      "chords": [
+        { "chord": "D", "position": 19 },
+        { "chord": "A", "position": 27 },
+        { "chord": "Bm", "position": 32 }
+      ]
+    },
+    {
+      "lyrics": "que estoy enamorada y que bien",
+      "chords": [
+        { "chord": "G", "position": 0 },
+        { "chord": "A", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "que bien me hace amarte",
+      "chords": [
+        { "chord": "D", "position": 0 }
+      ]
+    },
+    { "section": "Outro" },
+    {
+      "lyrics": "D, G, A, A7, D (x2)",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "G", "position": 3 },
+        { "chord": "A", "position": 6 },
+        { "chord": "A7", "position": 9 },
+        { "chord": "D", "position": 13 }
+      ]
+    }
+  ]
+}
