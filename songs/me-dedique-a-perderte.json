@@ -61,14 +61,14 @@
     {
       "lyrics": "Y yo que no me daba cuanta",
       "chords": [
-        { "chord": "Eb", "position": 0 }
+        { "chord": "Db/Eb", "position": 0 }
       ]
     },
     {
       "lyrics": "Cuanto te dolia",
       "chords": [
         { "chord": "Ab", "position": 0 },
-        { "chord": "Eb", "position": 5 }
+        { "chord": "Eb/G", "position": 5 }
       ]
     },
     {
@@ -115,14 +115,14 @@
     {
       "lyrics": "Que aquel amor se te escapo",
       "chords": [
-        { "chord": "Eb", "position": 0 }
+        { "chord": "Db/Eb", "position": 0 }
       ]
     },
     {
       "lyrics": "Que habia llegado el dia",
       "chords": [
         { "chord": "Ab", "position": 0 },
-        { "chord": "Eb", "position": 5 }
+        { "chord": "Eb/G", "position": 5 }
       ]
     },
     {
@@ -161,7 +161,7 @@
     {
       "lyrics": "Me dedique a no verte",
       "chords": [
-        { "chord": "F", "position": 0 },
+        { "chord": "F/A", "position": 0 },
         { "chord": "Bbm7", "position": 10 }
       ]
     },
@@ -174,7 +174,7 @@
     {
       "lyrics": "Y no pudiste dete__nerme",
       "chords": [
-        { "chord": "Eb", "position": 0 },
+        { "chord": "Eb/G", "position": 0 },
         { "chord": "Ab", "position": 5 }
       ]
     },
@@ -194,7 +194,7 @@
       "lyrics": "Para siempre y quise detenerte",
       "chords": [
         { "chord": "Fsus4", "position": 0 },
-        { "chord": "F", "position": 7 },
+        { "chord": "F/A", "position": 7 },
         { "chord": "Bbm7", "position": 14 }
       ]
     },
@@ -208,7 +208,7 @@
       "lyrics": "Mirabas diferente me dedique a perderte",
       "chords": [
         { "chord": "Ab", "position": 0 },
-        { "chord": "Eb", "position": 8 },
+        { "chord": "Eb/G", "position": 8 },
         { "chord": "Fm7", "position": 19 }
       ]
     },
@@ -282,7 +282,7 @@
       "lyrics": "Y que yo estaba ciego",
       "chords": [
         { "chord": "Ab", "position": 0 },
-        { "chord": "Eb", "position": 5 }
+        { "chord": "Eb/G", "position": 5 }
       ]
     },
     {
@@ -321,7 +321,7 @@
     {
       "lyrics": "Me dedique a no verte",
       "chords": [
-        { "chord": "F", "position": 0 },
+        { "chord": "F/A", "position": 0 },
         { "chord": "Bbm7", "position": 10 }
       ]
     },
@@ -334,7 +334,7 @@
     {
       "lyrics": "Y no pudiste dete__nerme",
       "chords": [
-        { "chord": "Eb", "position": 0 },
+        { "chord": "Eb/G", "position": 0 },
         { "chord": "Ab", "position": 5 }
       ]
     },
@@ -354,7 +354,7 @@
       "lyrics": "Para siempre y quise detenerte",
       "chords": [
         { "chord": "Fsus4", "position": 0 },
-        { "chord": "F", "position": 7 },
+        { "chord": "F/A", "position": 7 },
         { "chord": "Bbm7", "position": 14 }
       ]
     },
@@ -368,7 +368,7 @@
       "lyrics": "Mirabas diferente me dedique a perderte",
       "chords": [
         { "chord": "Ab", "position": 0 },
-        { "chord": "Eb", "position": 8 },
+        { "chord": "Eb/G", "position": 8 },
         { "chord": "Fm7", "position": 19 }
       ]
     },

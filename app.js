@@ -490,7 +490,7 @@ function renderScaleReference() {
         const item = document.createElement('div');
         item.className = 'scale-item';
 
-        const chordData = CHORDS[chord];
+        const chordData = resolveChord(chord);
 
         // Make clickable if chord exists in library
         if (chordData) {
@@ -808,7 +808,7 @@ function renderHarmonicAnalysis() {
         const chordCell = document.createElement('td');
         chordCell.className = 'chord-cell';
 
-        const chordData = CHORDS[chord];
+        const chordData = resolveChord(chord);
         if (chordData) {
             // Play button
             const playBtn = document.createElement('button');
@@ -1342,7 +1342,7 @@ function renderChordReference() {
     elements.chordGrid.innerHTML = '';
 
     usedChords.forEach(chordName => {
-        const chordData = CHORDS[chordName];
+        const chordData = resolveChord(chordName);
         if (chordData) {
             const diagram = createChordDiagram(chordData, false, chordName);
             diagram.style.cursor = 'pointer';
@@ -1435,7 +1435,7 @@ function renderLyrics() {
                         const chordName = marker.dataset.chord;
                         if (state.tapToPlayMode) {
                             // Play the chord immediately
-                            const chordData = CHORDS[chordName];
+                            const chordData = resolveChord(chordName);
                             if (chordData) {
                                 playChord(chordData);
                                 // Visual feedback
@@ -1583,13 +1583,14 @@ function updateKeyDisplay() {
  * Open chord modal with all variations
  */
 function openChordModal(chordName) {
-    const chordData = CHORDS[chordName];
+    const chordData = resolveChord(chordName);
     if (!chordData) return;
 
     elements.modalChord.innerHTML = '';
 
-    // Get all variations for this chord
-    const variations = getChordVariations(chordName);
+    // Get all variations for this chord (resolve slash chords to parent for variations)
+    const lookupName = chordName.includes('/') && !CHORDS[chordName] ? chordName.split('/')[0] : chordName;
+    const variations = getChordVariations(lookupName);
     const hasVariations = variations.length > 1;
 
     // Title with chord name
@@ -1964,7 +1965,7 @@ function setupChordFinderListeners() {
  */
 function showChordTooltip(chordName, event) {
     const tooltip = document.getElementById('chord-tooltip');
-    const chordData = CHORDS[chordName];
+    const chordData = resolveChord(chordName);
 
     if (!chordData || !tooltip) return;
 

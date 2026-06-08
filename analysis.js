@@ -674,7 +674,7 @@ function analyzeKeyConfidence(key) {
  * 0 = easy open chord, 1 = moderate, 2 = barre chord, 3 = unknown
  */
 function getChordDifficulty(chordName) {
-    const chord = CHORDS[chordName];
+    const chord = resolveChord(chordName);
     if (!chord) return 10; // unknown chord — heavily penalize
     const frets = chord.frets.filter(f => f >= 0);
     const maxFret = frets.length > 0 ? Math.max(...frets) : 0;

@@ -1647,8 +1647,32 @@ const CHORDS = {
         fingers: [0, 1, 3, 2],
         barre: null,
         baseFret: 1
+    },
+    'Db/Eb': {
+        name: 'Db/Eb',
+        frets: [1, 3, 1, 4],
+        fingers: [1, 3, 1, 4],
+        barre: null,
+        baseFret: 1
     }
 };
+
+/**
+ * Resolve a chord name to its CHORDS entry.
+ * Tries the exact name first, then falls back to the parent chord for slash
+ * chords (e.g., "Eb/G" → CHORDS["Eb"]) since re-entrant GCEA ukulele often
+ * can't voice the slash bass note below the chord.
+ * @param {string} chordName
+ * @returns {Object|undefined} chord data, or undefined if not found
+ */
+function resolveChord(chordName) {
+    if (CHORDS[chordName]) return CHORDS[chordName];
+    if (chordName.includes('/')) {
+        const parent = chordName.split('/')[0];
+        return CHORDS[parent];
+    }
+    return undefined;
+}
 
 // Chromatic scale for transposition
 const CHROMATIC_SCALE = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
@@ -1662,6 +1686,12 @@ const CHROMATIC_SCALE_FLATS = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 
  */
 function transposeChord(chord, semitones) {
     if (semitones === 0) return chord;
+
+    // Slash chords (e.g. "D/F#"): transpose the chord and the bass note separately
+    if (chord.includes('/')) {
+        const [base, bass] = chord.split('/');
+        return transposeChord(base, semitones) + '/' + transposeChord(bass, semitones);
+    }
 
     // Extract root note and suffix (m, 7, maj7, etc.)
     const match = chord.match(/^([A-G][#b]?)(.*)$/);
@@ -1927,6 +1957,16 @@ const CHORD_VARIATIONS = {
             frets: [0, 2, 1, 2],
             fingers: [0, 2, 1, 3],
             barre: null,
+            baseFret: 1
+        }
+    ],
+    'Db/Eb': [
+        {
+            name: 'Db (simple)',
+            description: 'Parent triad (no bass)',
+            frets: [1, 1, 1, 4],
+            fingers: [1, 1, 1, 4],
+            barre: { fret: 1, fromString: 0, toString: 2 },
             baseFret: 1
         }
     ]

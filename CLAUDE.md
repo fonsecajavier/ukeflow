@@ -132,6 +132,15 @@ When adding songs to `progressions.json`:
 4. Example: For "Axis of Awesome" (I-V-vi-IV), a song in C with chords C-G-Am-F is correct, but Am-F-C-G would be "Sensitive Female" (vi-IV-I-V)
 5. Be especially careful with rotations - the same 4 chords in different orders are different progressions
 
+## Slash Chords
+On a re-entrant GCEA ukulele the bass note often can't physically sit below the chord (the lowest note is middle C on the open C string), so voice the bass where it's reachable, otherwise just play the parent triad. This is the standard uke convention — the slash bass is really for a bassist/guitarist.
+
+When adding songs, **keep slash chord names as-is** in the song JSON (e.g., `"chord": "Eb/G"`) for display/notational purposes. The app's `resolveChord()` function handles lookup: if the exact slash chord has a voicing in `chords.js`, it uses that; otherwise it falls back to the parent chord (the part before `/`).
+
+- If a slash chord has a meaningful ukulele voicing, add it to `chords.js` (some already exist: `D/F#`, `G/B`, `Am/G`, `Db/Eb`, etc.) and add the parent triad as a variation in `CHORD_VARIATIONS` so players have a simpler fallback
+- If not, no action needed — `resolveChord()` handles the fallback automatically
+- Shorthand sus chords (e.g., F4, Eb4) should be written as `Fsus4`, `Ebsus4`
+
 ## Reading Chord Diagrams
 When the user provides a chord diagram image:
 1. The diagram has 4 vertical lines (strings: G-C-E-A from left to right)
