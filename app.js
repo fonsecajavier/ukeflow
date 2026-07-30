@@ -301,6 +301,7 @@ function setupEventListeners() {
 
     // Setup chord finder
     setupChordFinderListeners();
+    setupChordMelodyListeners();
 }
 
 /**
@@ -408,6 +409,13 @@ function displaySong() {
     renderSpotifyEmbed();
     renderChordReference();
     renderLyrics();
+
+    // Chord Melody chips come from getUsedChords(), which applies the current
+    // transpose - so it has to re-render here or it would list chords the song no
+    // longer contains. Only if the section has been opened at least once.
+    if (chordMelodyRendered) {
+        renderChordMelody();
+    }
 }
 
 /**
@@ -1949,6 +1957,410 @@ function setupChordFinderListeners() {
             if (chordFinderDetails.open && !chordFinderRendered) {
                 renderChordFinder();
                 chordFinderRendered = true;
+            }
+        });
+    }
+}
+
+// ============================================
+// Chord Melody
+// ============================================
+
+// Which chord the voicings are built on, and which melody note sits on top.
+// melodyPick is {stringIndex, fret} - the spot the player tapped, which resolves
+// to one exact pitch. null means nothing picked yet.
+let chordMelodyChord = null;
+let chordMelodyPick = null;
+let chordMelodyFlipped = true;   // true = A-E-C-G (high to low), matching Chord Finder
+let chordMelodyRendered = false;
+let chordMelodySongTitle = null;
+let chordMelodyEasyMode = false;
+
+/**
+ * Render the whole Chord Melody section: chord chips, fretboard, results.
+ */
+function renderChordMelody() {
+    if (!elements.chordMelodyChords) return;
+
+    // A melody note picked for one song means nothing in the next one. Transposing
+    // is different - the pitch you tapped is still that pitch - so the pick only
+    // resets when the song itself changes.
+    const title = state.currentSong ? state.currentSong.title : null;
+    if (title !== chordMelodySongTitle) {
+        chordMelodySongTitle = title;
+        chordMelodyPick = null;
+        chordMelodyChord = null;
+    }
+
+    renderChordMelodyChords();
+    renderChordMelodyFretboard();
+    renderChordMelodyResult();
+}
+
+/**
+ * Chord chips - the chords actually used in the current song, in the current key.
+ */
+function renderChordMelodyChords() {
+    elements.chordMelodyChords.innerHTML = '';
+    if (!state.currentSong) return;
+
+    const chords = getUsedChords();
+
+    // Keep the selection across transposes/song changes only if it still applies
+    if (chordMelodyChord && !chords.includes(chordMelodyChord)) {
+        chordMelodyChord = null;
+    }
+    if (!chordMelodyChord && chords.length > 0) {
+        chordMelodyChord = chords[0];
+    }
+
+    chords.forEach(chord => {
+        const chip = document.createElement('button');
+        chip.className = 'chord-melody-chip';
+        chip.textContent = chord;
+        if (chord === chordMelodyChord) chip.classList.add('selected');
+        chip.addEventListener('click', () => {
+            chordMelodyChord = chord;
+            renderChordMelody();
+        });
+        elements.chordMelodyChords.appendChild(chip);
+    });
+}
+
+/**
+ * The pick fretboard. Only the tapped note is marked, so the board reads as
+ * "choose a note" rather than "build a shape" like the Chord Finder does.
+ */
+function renderChordMelodyFretboard() {
+    elements.chordMelodyFretboard.innerHTML = '';
+
+    const fretState = [null, null, null, null];
+    if (chordMelodyPick) {
+        fretState[chordMelodyPick.stringIndex] = chordMelodyPick.fret;
+    }
+
+    const svg = createFretboardSVG(fretState, {
+        onFretClick: (stringIndex, fret) => selectChordMelodyNote(stringIndex, fret),
+        onOpenClick: (stringIndex) => selectChordMelodyNote(stringIndex, 0)
+    }, chordMelodyFlipped);
+
+    elements.chordMelodyFretboard.appendChild(svg);
+}
+
+/**
+ * Pick a melody note. Tapping the same spot again clears it.
+ */
+function selectChordMelodyNote(stringIndex, fret) {
+    if (chordMelodyPick && chordMelodyPick.stringIndex === stringIndex && chordMelodyPick.fret === fret) {
+        chordMelodyPick = null;
+    } else {
+        chordMelodyPick = { stringIndex, fret };
+    }
+    renderChordMelody();
+}
+
+function clearChordMelodyNote() {
+    chordMelodyPick = null;
+    renderChordMelody();
+}
+
+function flipChordMelody() {
+    chordMelodyFlipped = !chordMelodyFlipped;
+    renderChordMelodyFretboard();
+}
+
+function toggleChordMelodyEasyMode() {
+    chordMelodyEasyMode = elements.chordMelodyEasy.checked;
+    renderChordMelodyResult();
+}
+
+/**
+ * Render the voicings for the current chord + melody note, or explain why there
+ * are none. The explanation is the teaching moment, so it gets real prose rather
+ * than an empty-results shrug.
+ */
+function renderChordMelodyResult() {
+    const container = elements.chordMelodyResult;
+    container.innerHTML = '';
+
+    if (!state.currentSong) {
+        container.appendChild(chordMelodyMessage('Pick a song first, then come back to build melody voicings from its chords.'));
+        return;
+    }
+    if (!chordMelodyChord) {
+        container.appendChild(chordMelodyMessage('This song has no chords to work with yet.'));
+        return;
+    }
+    if (!chordMelodyPick) {
+        container.appendChild(chordMelodyMessage(
+            `Tap a note on the fretboard above to see how to play it on top of ${chordMelodyChord}.`
+        ));
+        return;
+    }
+
+    // Spell the note to match the song: flat keys get flats, sharp keys get sharps
+    const useFlats = chordMelodyChord.includes('b') || getDisplayKey().includes('b');
+    const melodyMidi = fretToMidi(chordMelodyPick.stringIndex, chordMelodyPick.fret);
+    const melodyName = midiToNoteName(melodyMidi, useFlats);
+    const stringNames = ['G', 'C', 'E', 'A'];
+    const pickedWhere = chordMelodyPick.fret === 0
+        ? `the open ${stringNames[chordMelodyPick.stringIndex]} string`
+        : `${stringNames[chordMelodyPick.stringIndex]} string, fret ${chordMelodyPick.fret}`;
+
+    // In easy mode the whole list is restricted to shapes two fingers can hold,
+    // which means allowing shells - see the Easy versions section below.
+    const voicings = chordMelodyEasyMode
+        ? findMelodyVoicings(chordMelodyChord, melodyName, { limit: 6, maxFingers: 2, shell: true })
+        : findMelodyVoicings(chordMelodyChord, melodyName, { limit: 6 });
+
+    // Heading: what was asked for
+    const heading = document.createElement('div');
+    heading.className = 'chord-melody-heading';
+    heading.innerHTML = `<strong>${escapeHtml(chordMelodyChord)}</strong> with ` +
+        `<strong class="chord-melody-note">${escapeHtml(melodyName)}</strong> on top ` +
+        `<span class="chord-melody-picked">(you tapped ${escapeHtml(pickedWhere)})</span>`;
+    container.appendChild(heading);
+
+    if (voicings.length === 0) {
+        // Easy mode finding nothing is different from the chord being impossible:
+        // fall back to the full shapes rather than implying there is no way to play it
+        if (chordMelodyEasyMode) {
+            const full = findMelodyVoicings(chordMelodyChord, melodyName, { limit: 6 });
+            if (full.length > 0) {
+                const note = document.createElement('div');
+                note.className = 'chord-melody-empty';
+                note.textContent = `There is no two-finger way to put ${melodyName} on top of ` +
+                    `${chordMelodyChord} - not even a stripped-down one. Showing the full shapes instead.`;
+                container.appendChild(note);
+                renderChordMelodyVoicingList(container, full, melodyName,
+                    full.length === 1 ? '1 full voicing:' : `${full.length} full voicings, easiest first:`);
+                return;
+            }
+        }
+        const why = explainNoVoicings(chordMelodyChord, melodyName);
+        const box = document.createElement('div');
+        box.className = 'chord-melody-empty';
+        box.textContent = why.message || 'No playable voicing for this combination.';
+        container.appendChild(box);
+        return;
+    }
+
+    // What the melody note is doing in this chord - chord tone or colour
+    const first = voicings[0];
+    const role = document.createElement('div');
+    role.className = 'chord-melody-role';
+    role.textContent = first.melodyIsChordTone
+        ? `${melodyName} is the ${chordMelodyDegreeName(first.melodyDegree)} of ${chordMelodyChord}.`
+        : `${melodyName} is not in ${chordMelodyChord} - it sounds as the ${chordMelodyDegreeName(first.melodyDegree)}, ` +
+          `a passing tone. The rest of the shape stays on chord tones.`;
+    container.appendChild(role);
+
+    const label = chordMelodyEasyMode
+        ? (voicings.length === 1 ? '1 two-finger voicing:' : `${voicings.length} two-finger voicings, easiest first:`)
+        : (voicings.length === 1 ? '1 playable voicing:' : `${voicings.length} playable voicings, easiest first:`);
+    renderChordMelodyVoicingList(container, voicings, melodyName, label);
+
+    // Outside easy mode, if nothing in the list is holdable with two fingers, offer
+    // one that is. This is the answer to "three or four fingers is a stretch in
+    // weird positions" - it strips the chord to its defining tones rather than
+    // giving up, and says plainly what it dropped.
+    if (!chordMelodyEasyMode && !voicings.some(v => v.fingerCount <= 2)) {
+        const easy = findEasiestVoicing(chordMelodyChord, melodyName);
+        if (easy) renderChordMelodyEasyOption(container, easy, melodyName);
+    }
+}
+
+/**
+ * A labelled grid of voicing cards.
+ */
+function renderChordMelodyVoicingList(container, voicings, melodyName, label) {
+    const count = document.createElement('div');
+    count.className = 'chord-melody-count';
+    count.textContent = label;
+    container.appendChild(count);
+
+    const grid = document.createElement('div');
+    grid.className = 'chord-melody-voicings';
+    voicings.forEach(voicing => grid.appendChild(createChordMelodyCard(voicing, melodyName)));
+    container.appendChild(grid);
+}
+
+/**
+ * The appended easy option. A 'solid' shell still stands on its own, so it is
+ * presented as a normal alternative; a 'fragment' is a two-note double stop that
+ * needs the surrounding harmony, so it is visually demoted and says so.
+ */
+function renderChordMelodyEasyOption(container, easy, melodyName) {
+    const isFragment = easy.easyTier === 'fragment';
+
+    const heading = document.createElement('div');
+    heading.className = 'chord-melody-count chord-melody-easy-heading';
+    if (isFragment) heading.classList.add('is-fragment');
+    heading.textContent = isFragment
+        ? 'Last resort - needs the harmony around it:'
+        : 'Easiest way to play it:';
+    container.appendChild(heading);
+
+    const why = document.createElement('div');
+    why.className = 'chord-melody-easy-why';
+    const dropped = [];
+    if (!easy.hasRoot) dropped.push(`the root (${easy.chord.match(/^[A-G][#b]?/)[0]})`);
+    if (easy.noteCount < 4) dropped.push(`${4 - easy.noteCount} note${easy.noteCount === 3 ? '' : 's'}`);
+    why.textContent = isFragment
+        ? `Only two notes: the melody plus the one tone that says ${easy.chord}. Fine while the ` +
+          `rest of the harmony is sounding around you, ambiguous on its own.`
+        : `Same chord, ${easy.fingerCount} finger${easy.fingerCount === 1 ? '' : 's'}` +
+          (dropped.length ? ` - drops ${dropped.join(' and ')}, keeps what makes it ${easy.chord}.` : '.');
+    container.appendChild(why);
+
+    const grid = document.createElement('div');
+    grid.className = 'chord-melody-voicings';
+    const card = createChordMelodyCard(easy, melodyName);
+    card.classList.add('is-easy-option');
+    if (isFragment) card.classList.add('is-fragment');
+    grid.appendChild(card);
+    container.appendChild(grid);
+}
+
+/**
+ * One voicing: diagram with the melody note ringed, the notes low to high, what
+ * makes it easy or awkward, and a play button that emphasises the top note.
+ */
+function createChordMelodyCard(voicing, melodyName) {
+    const card = document.createElement('div');
+    card.className = 'chord-melody-card';
+
+    const svg = createChordSVG(voicing, true);
+    card.appendChild(svg);
+
+    // Notes in pitch order, melody last and highlighted - reading the chord the way
+    // it actually sounds, which on a re-entrant uke is not left-to-right
+    const order = voicing.midis
+        .map((midi, stringIndex) => ({ midi, stringIndex }))
+        .filter(n => n.midi !== null)
+        .sort((a, b) => a.midi - b.midi);
+
+    const notes = document.createElement('div');
+    notes.className = 'chord-melody-card-notes';
+    order.forEach(({ stringIndex }) => {
+        const span = document.createElement('span');
+        span.className = 'chord-melody-card-note';
+        if (stringIndex === voicing.melodyString) span.classList.add('is-melody');
+        span.textContent = voicing.notes[stringIndex];
+        span.title = `${['G', 'C', 'E', 'A'][stringIndex]} string - ${voicing.degrees[stringIndex]}`;
+        notes.appendChild(span);
+    });
+    card.appendChild(notes);
+
+    const melodyOn = document.createElement('div');
+    melodyOn.className = 'chord-melody-card-melody';
+    melodyOn.textContent = `${melodyName} on the ${['G', 'C', 'E', 'A'][voicing.melodyString]} string`;
+    card.appendChild(melodyOn);
+
+    // Badges: the honest cost of the shape
+    const badges = document.createElement('div');
+    badges.className = 'chord-melody-badges';
+    chordMelodyBadges(voicing).forEach(({ text, kind }) => {
+        const badge = document.createElement('span');
+        badge.className = `chord-melody-badge chord-melody-badge-${kind}`;
+        badge.textContent = text;
+        badges.appendChild(badge);
+    });
+    card.appendChild(badges);
+
+    const play = document.createElement('button');
+    play.className = 'chord-melody-play';
+    play.innerHTML = '&#9654; Play melody';
+    play.title = 'Hear the chord with the melody note on top';
+    play.addEventListener('click', () => {
+        playChordMelody(voicing);
+        play.classList.add('playing');
+        setTimeout(() => play.classList.remove('playing'), 500);
+    });
+    card.appendChild(play);
+
+    return card;
+}
+
+/**
+ * Short, honest labels for what a voicing costs to play.
+ */
+function chordMelodyBadges(voicing) {
+    const badges = [];
+
+    if (voicing.fingerCount === 0) {
+        badges.push({ text: 'all open', kind: 'good' });
+    } else {
+        badges.push({ text: `${voicing.fingerCount} finger${voicing.fingerCount === 1 ? '' : 's'}`, kind: 'neutral' });
+    }
+    if (voicing.barre) badges.push({ text: 'barre', kind: 'neutral' });
+    if (voicing.span >= 3) badges.push({ text: `${voicing.span}-fret stretch`, kind: 'warn' });
+
+    voicing.mutedStrings.forEach(stringIndex => {
+        const name = ['G', 'C', 'E', 'A'][stringIndex];
+        const kind = (stringIndex === 1 || stringIndex === 2) ? 'warn' : 'neutral';
+        badges.push({ text: `mute ${name}`, kind });
+    });
+
+    if (voicing.warnings.includes('melody-doubled-in-unison')) {
+        badges.push({ text: 'melody doubled', kind: 'warn' });
+    }
+    if (!voicing.melodyIsChordTone) {
+        badges.push({ text: `melody is the ${voicing.melodyDegree}`, kind: 'neutral' });
+    }
+
+    // Shell voicings: be explicit about what was given up to make it easy
+    if (voicing.isShell) {
+        if (voicing.noteCount === 2) {
+            badges.push({ text: '2 notes only', kind: 'warn' });
+        }
+        if (!voicing.hasRoot) {
+            badges.push({ text: 'no root', kind: 'warn' });
+        }
+    }
+
+    return badges;
+}
+
+/**
+ * Spell a degree label as words a learner can read.
+ */
+function chordMelodyDegreeName(degree) {
+    const names = {
+        'R': 'root', 'b3': 'minor 3rd', '3': 'major 3rd', '5': '5th', 'b5': 'flat 5th',
+        '#5': 'sharp 5th', '6': '6th', 'b7': 'flat 7th', '7': 'major 7th',
+        '9': '9th', 'b9': 'flat 9th', '11': '11th', '4': '4th', 'bb7': 'diminished 7th'
+    };
+    return names[degree] || degree;
+}
+
+function chordMelodyMessage(text) {
+    const div = document.createElement('div');
+    div.className = 'chord-melody-hint';
+    div.textContent = text;
+    return div;
+}
+
+/**
+ * Setup chord melody event listeners
+ */
+function setupChordMelodyListeners() {
+    if (elements.chordMelodyClear) {
+        elements.chordMelodyClear.addEventListener('click', clearChordMelodyNote);
+    }
+    if (elements.chordMelodyFlip) {
+        elements.chordMelodyFlip.addEventListener('click', flipChordMelody);
+    }
+    if (elements.chordMelodyEasy) {
+        elements.chordMelodyEasy.addEventListener('change', toggleChordMelodyEasyMode);
+    }
+
+    // Render lazily, the same way the Chord Finder does
+    if (elements.chordMelodySection) {
+        elements.chordMelodySection.addEventListener('toggle', () => {
+            if (elements.chordMelodySection.open && !chordMelodyRendered) {
+                renderChordMelody();
+                chordMelodyRendered = true;
             }
         });
     }

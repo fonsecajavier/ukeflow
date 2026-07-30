@@ -1948,3 +1948,372 @@ body {
         font-size: 0.95rem;
     }
 }
+
+/* ============================================
+   Chord Melody
+   ============================================ */
+
+.chord-melody {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.chord-melody summary {
+    padding: 12px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.chord-melody summary::-webkit-details-marker {
+    display: none;
+}
+
+.chord-melody summary::before {
+    content: '▶';
+    font-size: 0.7rem;
+    transition: transform 0.2s ease;
+}
+
+.chord-melody[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.chord-melody-container {
+    padding: 15px;
+    padding-top: 5px;
+}
+
+.chord-melody-intro {
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0 0 15px;
+    max-width: 60ch;
+}
+
+.chord-melody-step {
+    margin-bottom: 15px;
+}
+
+.chord-melody-step-label {
+    display: block;
+    color: #666;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.chord-melody-chords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chord-melody-chip {
+    padding: 6px 14px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #b8b8b8;
+    transition: all 0.2s ease;
+}
+
+.chord-melody-chip:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #e4e4e4;
+}
+
+.chord-melody-chip.selected {
+    background: rgba(243, 156, 18, 0.2);
+    border-color: #f39c12;
+    color: #f39c12;
+}
+
+.chord-melody-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.chord-melody-flip,
+.chord-melody-clear {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chord-melody-flip {
+    background: rgba(155, 89, 182, 0.2);
+    border: 1px solid #9b59b6;
+    color: #9b59b6;
+}
+
+.chord-melody-flip:hover {
+    background: rgba(155, 89, 182, 0.4);
+}
+
+.chord-melody-clear {
+    background: rgba(231, 76, 60, 0.2);
+    border: 1px solid #e74c3c;
+    color: #e74c3c;
+}
+
+.chord-melody-clear:hover {
+    background: rgba(231, 76, 60, 0.4);
+}
+
+.chord-melody-result {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    min-height: 50px;
+}
+
+.chord-melody-hint {
+    color: #888;
+    font-size: 0.95rem;
+    text-align: center;
+    margin: 0;
+}
+
+.chord-melody-heading {
+    color: #e4e4e4;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+}
+
+.chord-melody-note {
+    color: #f39c12;
+}
+
+.chord-melody-picked {
+    color: #666;
+    font-size: 0.85rem;
+    font-weight: normal;
+}
+
+.chord-melody-role {
+    color: #9b59b6;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    max-width: 65ch;
+}
+
+.chord-melody-count {
+    color: #666;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.chord-melody-empty {
+    color: #b8b8b8;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    padding: 12px 14px;
+    background: rgba(243, 156, 18, 0.08);
+    border-left: 3px solid #f39c12;
+    border-radius: 4px;
+    max-width: 65ch;
+}
+
+/* Grid rather than flex-wrap: the cards carry different numbers of badges, and
+   content-sized cards produce ragged rows of 3, then 2, then 1. */
+.chord-melody-voicings {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+    gap: 12px;
+}
+
+.chord-melody-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+}
+
+/* Push the play button to the bottom so it lines up across a row */
+.chord-melody-card .chord-melody-badges {
+    margin-top: auto;
+}
+
+.chord-melody-card-notes {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.chord-melody-card-note {
+    font-size: 0.8rem;
+    font-family: 'Courier New', monospace;
+    color: #888;
+    padding: 1px 5px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.05);
+    cursor: help;
+}
+
+.chord-melody-card-note.is-melody {
+    color: #1a1a2e;
+    background: #f39c12;
+    font-weight: bold;
+}
+
+.chord-melody-card-melody {
+    font-size: 0.75rem;
+    color: #f39c12;
+}
+
+.chord-melody-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+}
+
+.chord-melody-badge {
+    font-size: 0.68rem;
+    padding: 2px 6px;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+
+.chord-melody-badge-good {
+    background: rgba(46, 204, 113, 0.15);
+    color: #2ecc71;
+}
+
+.chord-melody-badge-neutral {
+    background: rgba(255, 255, 255, 0.07);
+    color: #888;
+}
+
+.chord-melody-badge-warn {
+    background: rgba(230, 126, 34, 0.15);
+    color: #e67e22;
+}
+
+.chord-melody-play {
+    margin-top: 4px;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    border-radius: 6px;
+    cursor: pointer;
+    background: rgba(46, 204, 113, 0.2);
+    border: 1px solid #2ecc71;
+    color: #2ecc71;
+    transition: all 0.2s ease;
+}
+
+.chord-melody-play:hover {
+    background: rgba(46, 204, 113, 0.4);
+}
+
+.chord-melody-play.playing {
+    background: #2ecc71;
+    color: #1a1a2e;
+}
+
+@media (max-width: 600px) {
+    .chord-melody-voicings {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 8px;
+    }
+
+    .chord-melody-card {
+        padding: 8px;
+    }
+}
+
+/* Easy mode toggle and easy/shell voicing cards */
+
+.chord-melody-easy-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    color: #888;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.chord-melody-easy-toggle:hover {
+    color: #b8b8b8;
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.chord-melody-easy-toggle:has(input:checked) {
+    color: #2ecc71;
+    border-color: #2ecc71;
+    background: rgba(46, 204, 113, 0.15);
+}
+
+.chord-melody-easy-toggle input {
+    cursor: pointer;
+    accent-color: #2ecc71;
+}
+
+.chord-melody-easy-heading {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #2ecc71;
+}
+
+/* A two-note double stop is honest but ambiguous alone - demote it visually so it
+   never reads as a solid voicing */
+.chord-melody-easy-heading.is-fragment {
+    color: #e67e22;
+}
+
+.chord-melody-easy-why {
+    color: #888;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: -4px 0 10px;
+    max-width: 62ch;
+}
+
+.chord-melody-card.is-easy-option {
+    border-color: rgba(46, 204, 113, 0.4);
+    background: rgba(46, 204, 113, 0.05);
+}
+
+.chord-melody-card.is-fragment {
+    border-color: rgba(230, 126, 34, 0.35);
+    border-style: dashed;
+    background: rgba(230, 126, 34, 0.04);
+    opacity: 0.85;
+}
+
+.chord-melody-card.is-fragment:hover {
+    opacity: 1;
+}

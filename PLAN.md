@@ -201,6 +201,151 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - Displayed in both Harmonic Analysis table and lyrics (when "Show as Numbers" enabled)
   - Example: E major in key of C shown as "V/vi (Secondary Dominant)"
 
+### 3k. Chord Melody Voicing Generator (voicings.js)
+Engine layer only - no UI yet. Given a chord and a melody note, produces the playable
+voicings in which the melody note is the **highest-sounding** note of the chord. This is the
+core technique of chord-melody playing: the tune must ring on top of the harmony.
+
+**API**: `findMelodyVoicings(chordSymbol, melodyNote, options)` → array of voicings, best first
+- `chordSymbol`: `"C"`, `"Am7"`, `"Cmaj7"`, `"Eb/G"` - the same vocabulary songs already use
+- `melodyNote`: `"E5"` for an exact pitch, or `"E"` to search every reachable octave
+- Each result carries `name`, `frets`, `fingers` (per-string 1-4), `barre`, `baseFret` -
+  the same field shape as a CHORDS entry, so it can be passed to `createChordSVG()` -
+  plus `fingerCount`, `notes`, `degrees` per string, `melodyString`, `melodyNote`,
+  `melodyDegree`, `melodyIsChordTone`, `bassNote`, `span`, `openStrings`, `mutedStrings`,
+  `clearance`, `score`, `warnings`
+- Barre basis matches `chords.js`: `fromString`/`toString` are **0-indexed array
+  positions**, and a barre may span under a string fretted higher (`Bb7 [1,2,1,1]`).
+  Verified against all 63 stored barre shapes - 63 exact matches, 0 disagreements.
+- **Rendering caveat**: `createChordSVG()` derives its own 5-fret window from `frets` and
+  ignores `baseFret`. The `maxSpan` limit keeps fretted notes inside that window, but a
+  high-position voicing that also has open strings renders as "7fr" plus open markers -
+  readable, but worth eyeballing when the UI is built.
+
+**Options**: `maxFret` (12), `maxSpan` (4), `minNotes` (3, or 2 in shell mode), `maxFingers`
+(4), `allowMutes` (true), `allowNonChordMelody` (true), `allowRootless` (false), `shell`
+(false), `limit` (8)
+
+**Shell voicings (`shell: true`) - the two-finger escape hatch.** 47.5% of chord+melody pairs
+in the song library have no voicing playable with two fingers, which is a real problem when a
+four-finger shape lands in an awkward position. Shell mode strips the chord to
+`CHORD_TYPES.characteristic` - the tones that define its quality - so the **root and 5th can
+be dropped**. That is normal chord-melody practice: the harmony around you supplies the root.
+
+The rule that matters: for a triad the characteristic tone is the 3rd; for a seventh chord it
+is the **guide-tone pair (3rd + 7th)**. A looser rule that kept any one characteristic tone
+reached 100% coverage but produced `A7 / E5 -> [9 9 9 0]`, which contains no G at all - an A
+major triad labelled A7. Requiring both costs ~10% coverage and is worth it.
+
+Results are tagged `isShell`, `shellTier` ('solid' for 3+ notes, 'fragment' for a two-note
+double stop), `noteCount` and `hasRoot`. Shell ranking prefers fuller voicings and a present
+root, so a shape only degrades as far as it must.
+
+**`findEasiestVoicing(chordSymbol, melodyNote, options)`** escalates only as far as needed and
+tags the result `easyTier`:
+1. `'normal'` - a full voicing already fits the finger limit (default 2)
+2. `'solid'` - a shell with 3+ notes; the root may be gone but it stands on its own
+3. `'fragment'` - a two-note double stop; honest, but needs the harmony around it
+
+Measured over all 89 library chords x every reachable melody pitch (997 valid pairs):
+523 `normal`, 335 `solid`, 94 `fragment`, 45 with no two-finger option at all - so **90.5% of
+the hard cases get a two-finger version**, and no easy option ever loses a defining tone.
+Escalating solid-before-fragment matters: it cut fragments from 162 to 94.
+
+**Re-entrant tuning drives the design.** G4 (MIDI 67) is the second-highest string, not the
+lowest, so all comparisons are on absolute pitch rather than string index. This means the
+melody sometimes belongs on the G string (E5 at fret 9), muting the G string is often the
+correct answer, and some melody notes are genuinely impossible as a top note.
+
+**Ranking** (`scoreVoicing()`, lower is better): fret span, finger count (barres counted as
+one), position on the neck, open strings, mute difficulty (interior C/E strings are heavily
+penalized, the outer G lightly), melody clearance above the next-highest note, root or
+slash-bass in the bass, chord-tone melody over passing tone.
+
+**Tests**: `node tests/voicings.test.js` - 72 assertions covering pitch math, symbol parsing,
+the melody-on-top invariant, re-entrant G behavior, passing tones, 7th chords, slash chords,
+options, barre/fingering rules, the `createChordSVG()` field contract, and a
+1134-combination invariant sweep.
+`node tests/voicings-crosscheck.js` replays all 230 hand-authored CHORDS shapes through the
+generator; it rediscovers 84.8%, and the remainder are stored shapes whose frets do not match
+their names (confirmed independently by `computeChordFromFrets`) - see below.
+
+**Known CHORDS naming mismatches** surfaced by the cross-check (unfixed, pre-existing):
+`Am7b5` `[2 0 0 0]` is really Am; `Fm7b5`, `F#m7b5`/`Gbm7b5` are augmented shapes;
+`Ebsus2`/`D#sus2` and `Ebsus4`/`Ebsus`/`D#sus4` are voiced in the wrong root; `Dadd9` is
+plain D; `Gadd9`/`Gadd2` are G6; several `9` and all `11` entries omit the b7 or the extension.
+
+**Next step (engine)**: a `melody` array in song JSON, so a whole line can be walked
+note-by-note with a voicing per chord change (see 3l for the UI that exists today).
+
+### 3l. Chord Melody UI (Collapsible)
+Collapsible section below Chord Finder. Two steps: pick a chord chip, tap a melody note on
+the fretboard, get the voicings. Renders lazily on first open, like Chord Finder.
+
+- **Chord chips**: the chords actually used in the current song, from `getUsedChords()`, so
+  they follow the current transpose. First chip auto-selected.
+- **Fretboard**: reuses `createFretboardSVG()`. Only the tapped note is marked (all other
+  strings passed as `null`), so the board reads as "choose a note" rather than "build a
+  shape". Tapping the same spot again clears it. Flip button matches Chord Finder.
+- **Result cards**: one per voicing, `createChordSVG()` with the melody note ringed in
+  orange, notes listed **in pitch order** (not string order - the re-entrant G makes those
+  differ), which string carries the melody, and honest cost badges: finger count, barre,
+  3+ fret stretch, muted strings (interior C/E flagged as a warning), melody doubled in
+  unison, and the degree when the melody is a passing tone.
+- **Teaching line**: names what the melody note is doing - "E5 is the major 3rd of C", or
+  "D5 is not in C - it sounds as the 9th, a passing tone".
+- **Empty state**: uses `explainNoVoicings()` rather than showing "no results". Real
+  examples: "C4 is too low to carry the melody: only 1 of the four strings can sound at or
+  below it... C4 is the lowest pitch on a ukulele, so nothing can sit under it." / "G needs
+  a B, and it cannot be played at or below A4."
+- **Playback**: `playChordMelody()` in `audio.js` plucks in ascending pitch order, 20ms
+  apart, melody louder (0.42 vs 0.2) with a longer tail (2.2s vs 1.4s) so the tune sings
+  on top. Calls `stopAllSources()` first, like `playChord()`.
+
+**Easy versions (2 fingers).** Two ways in, because three or four fingers in an awkward
+position is the main thing that stops a shape being playable:
+- **Appended card**: when nothing in the normal list is holdable with two fingers, one extra
+  card is appended via `findEasiestVoicing()`. A `'solid'` tier gets a green "Easiest way to
+  play it:" heading and says what it dropped ("Same chord, 2 fingers - drops the root (F),
+  keeps what makes it F"). A `'fragment'` is demoted: orange "Last resort - needs the harmony
+  around it:" heading, dashed border, reduced opacity, and `2 notes only` / `no root` badges.
+  Nothing is appended when the normal list already has a two-finger option.
+- **Easy mode toggle**: restricts the whole list to `{maxFingers: 2, shell: true}` so a full
+  song can be practised in easy mode. If even a shell is impossible (the 45 pairs), it does
+  **not** claim the note is unplayable - it explains and falls back to the full shapes.
+
+Shell cards carry honest badges wherever they appear (`no root`, `2 notes only`), so an easy
+version is never mistaken for a complete voicing.
+
+**State**: `chordMelodyChord`, `chordMelodyPick` ({stringIndex, fret}), `chordMelodyFlipped`,
+`chordMelodyRendered`, `chordMelodySongTitle` in `app.js`. The melody pick survives a
+transpose (the pitch you tapped is still that pitch) but resets when the song changes.
+
+**Supporting changes to `createChordSVG()`**. Checked against all 252 stored shapes (`CHORDS`
+plus `CHORD_VARIATIONS`): 246 render byte-identically, and the other 6 are all
+`CHORD_VARIATIONS` entries that render **better** than before - the changes fixed
+pre-existing bugs rather than introducing any:
+- `F (bar) [5,5,5,8]`, `F (alt) [5,5,6,5]` and `D (alt) [7,7,7,5]` were drawing dots
+  *outside* the diagram (the old rule left the window at fret 1, so `F (bar)`'s 8th-fret dot
+  computed to cy=204 in a 160px canvas and simply vanished). They now show a "5fr" label with
+  every dot inside the canvas.
+- `G (bar) [7,7,7,10]`, `Em (bar) [7,7,7,7]` and `A#m (6th) [6,6,6,6]` were already
+  high-position but had their fret label clipped and colliding with the first dot; they now
+  get the left padding.
+- The one shape with `baseFret: 5` (`A (bar) [4,4,4,4]`) renders unchanged. Note that
+  `createChordSVG()` ignores `baseFret` and derives the window from `frets`.
+
+The changes themselves:
+1. The fret window now keys off **maxFret**, not minFret - `[0,0,3,7]` has minFret 3 but
+   still needs the window moved or the 7th-fret dot lands off-canvas. The diagram also grows
+   its height for shapes spanning more than 5 frets, so no caller can draw outside the area.
+2. Open-string markers are drawn in high position too. They were suppressed, which left a
+   voicing like `[0,0,0,7]` showing a single dot and three blank strings.
+3. High-position diagrams get left padding via a negative `viewBox` origin, and the "12fr"
+   label is right-anchored - previously it clipped at the edge and collided with the first dot.
+4. A voicing carrying `melodyString` gets that note ringed in `#f39c12`. Done as a pass over
+   the finished diagram so it works whether the note is fretted, open, or inside a barre.
+
 ### 3j. Spotify Integration
 - Embedded Spotify player for songs with a `spotify` field
 - Displays above "Chords Used" section when available
@@ -401,6 +546,7 @@ The application JavaScript is split into modules for maintainability:
 | Module | Purpose |
 |--------|---------|
 | `chords.js` | Chord definitions (CHORDS), scale degrees, transposition functions, chord variations |
+| `voicings.js` | Chord-melody voicing generator: findMelodyVoicings, parseChordSymbol, note/MIDI helpers |
 | `state.js` | Application state object, slugify utility, getDisplayKey |
 | `patterns.js` | PLAY_STYLES (strums/arpeggios), tempo (currentBPM), getPlayStyle |
 | `audio.js` | AudioContext, Karplus-Strong synthesis, playChord, playStrum, playChunk |
@@ -410,12 +556,13 @@ The application JavaScript is split into modules for maintainability:
 
 Scripts are loaded in dependency order in `index.html`:
 1. `chords.js` - Core data
-2. `state.js` - App state (depends on nothing)
-3. `patterns.js` - Play patterns (depends on nothing)
-4. `audio.js` - Audio (depends on patterns.js globals)
-5. `analysis.js` - Analysis (depends on state.js, chords.js)
-6. `ui.js` - UI (depends on state.js, patterns.js, chords.js)
-7. `app.js` - Main app (depends on all above)
+2. `voicings.js` - Chord-melody voicing generator (self-contained, no dependencies)
+3. `state.js` - App state (depends on nothing)
+4. `patterns.js` - Play patterns (depends on nothing)
+5. `audio.js` - Audio (depends on patterns.js globals)
+6. `analysis.js` - Analysis (depends on state.js, chords.js)
+7. `ui.js` - UI (depends on state.js, patterns.js, chords.js)
+8. `app.js` - Main app (depends on all above)
 
 ## Data Structures
 

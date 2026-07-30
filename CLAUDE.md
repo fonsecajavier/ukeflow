@@ -11,14 +11,16 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
 - `songs.json` - Index of song files
 - `songs/*.json` - Individual song files
 - `PLAN.md` - Feature documentation and implementation details
+- `tests/*.js` - Plain node scripts, no framework. Run with `node tests/voicings.test.js`
 
 ### JavaScript Modules (loaded in this order)
 | File | Contents |
 |------|----------|
-| `chords.js` | CHORDS definitions, SCALE_DEGREES_MAJOR/MINOR, CHORD_VARIATIONS, transposeChord(), transposeKey(), getScaleDegree(), isMinorKey(), getChordVariations() |
+| `chords.js` | CHORDS definitions, SCALE_DEGREES_MAJOR/MINOR, CHORD_VARIATIONS, transposeChord(), transposeKey(), getScaleDegree(), isMinorKey(), getChordVariations(), resolveChord(), computeChordFromFrets() |
+| `voicings.js` | Chord-melody voicing generator. UKULELE_MIDI, CHORD_TYPES, findMelodyVoicings(), findEasiestVoicing(), explainNoVoicings(), parseChordSymbol(), parseNoteName(), midiToNoteName(), fretToMidi(), countFingers(), degreeLabel() |
 | `state.js` | `state` object (songIndex, songCache, currentSong, transpose, etc.), slugify(), getDisplayKey() |
 | `patterns.js` | PLAY_STYLES (strums/arpeggios), currentBPM, currentPlayStyle, getBeat(), getPlayStyle() |
-| `audio.js` | audioContext, UKULELE_TUNING, pluckString(), playStrum(), playChunk(), playChord(), playChordArpeggio() |
+| `audio.js` | audioContext, UKULELE_TUNING, pluckString(), playStrum(), playChunk(), playChord(), playChordArpeggio(), playChordMelody() |
 | `analysis.js` | getRelativeKey(), detectFamousProgressions(), detectBorrowedChords(), getUsedChords(), getHarmonicFunction(), detectSecondaryDominant() |
 | `ui.js` | `elements` object (DOM refs), createChordDiagram(), createChordSVG(), populatePlayStyleSelector(), updatePatternDisplay(), highlightMatch(), escapeHtml(), closeModal() |
 | `app.js` | init(), setupEventListeners(), displaySong(), renderLyrics(), renderChordReference(), renderScaleReference(), openChordModal(), all event handlers |
@@ -32,6 +34,46 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
 - **Modify chord diagrams**: `ui.js` → createChordSVG()
 - **Add harmonic analysis**: `analysis.js` → getHarmonicFunction()
 - **Modify UI elements**: `ui.js` → elements object, then `app.js` for logic
+- **Chord-melody voicings**: `voicings.js` → findMelodyVoicings(); add a chord suffix to CHORD_TYPES, tune ranking in scoreVoicing()
+- **Chord Melody UI**: `app.js` → renderChordMelody() and createChordMelodyCard(); playback in `audio.js` → playChordMelody()
+
+## Chord Melody (voicings.js)
+`findMelodyVoicings(chordSymbol, melodyNote, options)` returns playable voicings where the
+melody note is the **highest-sounding** note of the chord, best first.
+
+**Re-entrant tuning is the whole difficulty.** Standard GCEA has G4 (MIDI 67) as the
+*second-highest* string, not the lowest, so "melody on the A string" is wrong on ukulele -
+an open G sings over a melody note fretted low on the A or E string. Every comparison in
+`voicings.js` is on absolute pitch (MIDI), never string index. Consequences to preserve:
+- The melody legitimately lands on the G string sometimes (e.g. E5 at G-string fret 9)
+- Muting or re-fretting the G string is a normal, correct outcome - not a bug
+- Low melody notes are genuinely impossible as a top note (C4 is the lowest pitch on the
+  instrument, so nothing can sit under it) - an empty result is often the right answer
+
+Other behaviors worth knowing:
+- The melody note may be a non-chord tone (passing tone); it is flagged `melodyIsChordTone:
+  false` and labelled by degree (`9`, `11`, ...). Other strings stay chord tones.
+- 7th and extended chords may drop the 5th; triads may not drop anything
+- A bare `dim` may be voiced as a dim7 (uke convention, matches the CHORDS shapes)
+- `allowRootless: true` permits rootless extended-chord voicings (jazz practice, off by default)
+- `shell: true` strips the chord to `CHORD_TYPES.characteristic` so the root and 5th can be
+  dropped - this is what makes a two-finger version possible when a full shape needs four.
+  **The characteristic set is deliberately strict**: a triad must keep its 3rd, and a seventh
+  chord must keep the guide-tone PAIR (3rd + 7th). Keeping only one of them silently turns
+  `A7` into an A major triad or a sus chord, which is worse than offering nothing. Use
+  `findEasiestVoicing()` rather than calling shell mode directly - it escalates
+  normal -> solid shell -> two-note fragment and tags the result `easyTier`.
+- Slash chords: the bass note is a scoring preference, not a requirement (see Slash Chords below)
+- `CHORD_TYPES` is strict music theory, so a generated voicing for a loosely-named stored
+  shape (e.g. `C9` in CHORDS is really an add9 shape) will not match the stored diagram
+- An empty result is often the correct answer. Use `explainNoVoicings()` to say why rather
+  than reporting "no results" - it distinguishes a note below the instrument's range, a
+  chord tone that cannot be reached under the melody, and a shape that only needs a wider
+  stretch. The UI shows that text verbatim.
+
+A voicing is shaped like a CHORDS entry (`name`/`frets`/`fingers`/`barre`/`baseFret`) so it
+can go straight to `createChordSVG()`, which rings the note named by `melodyString`. Note
+that `createChordSVG()` derives its own fret window from `frets` and ignores `baseFret`.
 
 ## Song File Format
 ```json
@@ -100,6 +142,11 @@ Bamboleo, bambolea
 - Uses Karplus-Strong synthesis (no external audio files)
 - Standard ukulele tuning: G4-C4-E4-A4
 - Audio code is in `audio.js`
+- **Testing gotcha**: `ensureAudioReady()` awaits `ctx.resume()`, which never settles until
+  the page has had a real user gesture. Calling `playChord()` / `playChordMelody()`
+  programmatically (e.g. from a devtools console or an automation harness) on a fresh page
+  hangs the renderer. Click a play button first, then the context is running and direct calls
+  work. This is correct browser-autoplay behaviour, not a bug to fix.
 
 ## Music Theory
 - Minor keys use lowercase roman numerals (i, iv, v)

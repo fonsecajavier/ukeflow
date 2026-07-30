@@ -369,3 +369,48 @@ async function playChord(chordData) {
 async function playChordArpeggio(chordData) {
     await playChord(chordData);
 }
+
+/**
+ * Play a chord-melody voicing with the melody note singing on top.
+ *
+ * The strings are plucked in ascending PITCH order, not string order - on a
+ * re-entrant ukulele the G string is the second-highest pitch, so plucking
+ * G-C-E-A would put a middle voice last. Ordering by pitch means the melody note
+ * always lands last and loudest, which is the sound the whole feature is about.
+ *
+ * @param {Object} voicing - a voicing from findMelodyVoicings() in voicings.js
+ *                           (needs frets[] and melodyString)
+ */
+async function playChordMelody(voicing) {
+    const ctx = await ensureAudioReady();
+
+    // Match playChord(): never let two taps overlap
+    stopAllSources();
+
+    const now = ctx.currentTime;
+    const spread = 0.02;          // 20ms between strings - a chord, not an arpeggio
+    const melodyVolume = 0.42;    // the tune
+    const accompanimentVolume = 0.2;
+
+    const voices = voicing.frets
+        .map((fret, stringIndex) => ({
+            stringIndex,
+            fret,
+            freq: getNoteFrequency(stringIndex, fret),
+            isMelody: stringIndex === voicing.melodyString,
+        }))
+        .filter(v => v.freq !== null)
+        .sort((a, b) => a.freq - b.freq);
+
+    voices.forEach((voice, i) => {
+        const duration = voice.isMelody ? 2.2 : 1.4;
+        const volume = voice.isMelody ? melodyVolume : accompanimentVolume;
+        const buffer = pluckString(voice.freq, duration, volume);
+        const source = ctx.createBufferSource();
+        source.buffer = buffer;
+        source.connect(ctx.destination);
+        const startTime = now + i * spread;
+        source.start(startTime);
+        trackSource(source, startTime + duration);
+    });
+}

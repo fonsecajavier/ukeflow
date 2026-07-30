@@ -46,6 +46,14 @@ const elements = {
     chordFinderClear: document.getElementById('chord-finder-clear'),
     chordFinderPlay: document.getElementById('chord-finder-play'),
     chordFinderResult: document.getElementById('chord-finder-result'),
+    // Chord Melody elements
+    chordMelodySection: document.getElementById('chord-melody'),
+    chordMelodyChords: document.getElementById('chord-melody-chords'),
+    chordMelodyFretboard: document.getElementById('chord-melody-fretboard'),
+    chordMelodyFlip: document.getElementById('chord-melody-flip'),
+    chordMelodyClear: document.getElementById('chord-melody-clear'),
+    chordMelodyEasy: document.getElementById('chord-melody-easy'),
+    chordMelodyResult: document.getElementById('chord-melody-result'),
     easyKeySuggestion: document.getElementById('easy-key-suggestion')
 };
 
@@ -221,9 +229,8 @@ function createChordDiagram(chordData, large = false, displayName = null, showPl
  * @param {boolean} large - Large size flag
  */
 function createChordSVG(chord, large = false) {
-    const numFrets = 5; // Show 5 frets to support all chord shapes
+    const defaultFrets = 5; // Default window: 5 frets covers every stored chord shape
     const width = large ? 120 : 70;
-    const height = large ? 160 : 100;
     const stringSpacing = large ? 24 : 14;
     const fretSpacing = large ? 24 : 14;
     const startX = large ? 24 : 14;
@@ -231,16 +238,38 @@ function createChordSVG(chord, large = false) {
     const dotRadius = large ? 8 : 5;
     const fontSize = large ? 12 : 8;
 
-    // Calculate the starting fret (for chords played higher up the neck)
+    // Work out which frets the diagram has to cover. Generated chord-melody
+    // voicings (voicings.js) can sit anywhere up to the 12th fret, so the window
+    // follows the shape: it stays at fret 1 while every note fits, and slides up to
+    // minFret once a note would fall past the bottom of the diagram. Keying off
+    // maxFret rather than minFret matters - a shape like [0,0,3,7] has minFret 3 but
+    // still needs the window moved, or the 7th-fret dot lands off-canvas.
     const frettedPositions = chord.frets.filter(f => f > 0);
     const minFret = frettedPositions.length > 0 ? Math.min(...frettedPositions) : 1;
-    const startingFret = minFret > 5 ? minFret : 1;
+    const maxFret = frettedPositions.length > 0 ? Math.max(...frettedPositions) : 1;
+    const startingFret = maxFret > defaultFrets ? minFret : 1;
     const isHighPosition = startingFret > 1;
 
+    // Grow the diagram for a shape that spans more frets than the default window,
+    // so no caller can produce dots outside the drawing area
+    const numFrets = Math.max(defaultFrets, maxFret - startingFret + 1);
+    const height = (large ? 160 : 100) + (numFrets - defaultFrets) * fretSpacing;
+
+    // Generated voicings carry melodyString - the string whose note must ring on
+    // top. Highlighted below so a player can see which note is the tune.
+    const melodyString = Number.isInteger(chord.melodyString) ? chord.melodyString : null;
+    const melodyColor = '#f39c12';
+
+    // A high-position diagram needs room to the left for its "12fr" label. Widen the
+    // canvas and shift the origin rather than squeezing the label against the G
+    // string, or a two-digit fret number collides with the first dot and clips at
+    // the edge of the SVG.
+    const labelPad = isHighPosition ? (large ? 30 : 22) : 0;
+
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('width', width);
+    svg.setAttribute('width', width + labelPad);
     svg.setAttribute('height', height);
-    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    svg.setAttribute('viewBox', `${-labelPad} 0 ${width + labelPad} ${height}`);
 
     // Draw nut (thick line at top) - only show if at first position
     if (!isHighPosition) {
@@ -254,9 +283,11 @@ function createChordSVG(chord, large = false) {
     } else {
         // Show fret position number for high position chords
         const fretLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        fretLabel.setAttribute('x', startX - (large ? 14 : 10));
+        // Right-aligned just clear of the G string, so "5fr" and "12fr" both sit in
+        // the padding rather than overlapping the first dot
+        fretLabel.setAttribute('x', startX - (large ? 11 : 8));
         fretLabel.setAttribute('y', startY + fretSpacing * 0.5 + fontSize / 3);
-        fretLabel.setAttribute('text-anchor', 'middle');
+        fretLabel.setAttribute('text-anchor', 'end');
         fretLabel.setAttribute('font-size', large ? 14 : 10);
         fretLabel.setAttribute('fill', '#f39c12');
         fretLabel.setAttribute('font-weight', 'bold');
@@ -312,17 +343,18 @@ function createChordSVG(chord, large = false) {
         const x = startX + stringIndex * stringSpacing;
 
         if (fret === 0) {
-            // Open string - draw circle above nut (only if at first position)
-            if (!isHighPosition) {
-                const open = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                open.setAttribute('cx', x);
-                open.setAttribute('cy', startY - (large ? 12 : 8));
-                open.setAttribute('r', dotRadius - 2);
-                open.setAttribute('fill', 'none');
-                open.setAttribute('stroke', '#888');
-                open.setAttribute('stroke-width', 1.5);
-                svg.appendChild(open);
-            }
+            // Open string - draw circle above the top line. Drawn in high position
+            // too: a chord-melody voicing often mixes open strings with high frets
+            // (e.g. [0,0,0,7]), and omitting the marker would leave those strings
+            // looking unplayed. The "7fr" label supplies the position context.
+            const open = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            open.setAttribute('cx', x);
+            open.setAttribute('cy', startY - (large ? 12 : 8));
+            open.setAttribute('r', dotRadius - 2);
+            open.setAttribute('fill', 'none');
+            open.setAttribute('stroke', '#888');
+            open.setAttribute('stroke-width', 1.5);
+            svg.appendChild(open);
         } else if (fret === -1) {
             // Muted string - draw X above nut
             const xSize = dotRadius - 1;
@@ -403,6 +435,37 @@ function createChordSVG(chord, large = false) {
             text.setAttribute('font-weight', 'bold');
             text.textContent = chord.fingers[fingerIndex];
             svg.appendChild(text);
+        }
+    }
+
+    // Mark the melody note (chord-melody voicings only). Done as a pass over the
+    // finished diagram rather than by colouring the dot inline, because the melody
+    // note can be fretted, open, or swallowed by a barre - a ring on top covers all
+    // three without touching the drawing logic above.
+    if (melodyString !== null) {
+        const melodyFret = chord.frets[melodyString];
+        const mx = startX + melodyString * stringSpacing;
+
+        if (melodyFret === 0) {
+            // Redraw the open marker in the accent colour
+            const ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            ring.setAttribute('cx', mx);
+            ring.setAttribute('cy', startY - (large ? 12 : 8));
+            ring.setAttribute('r', dotRadius - 2);
+            ring.setAttribute('fill', 'none');
+            ring.setAttribute('stroke', melodyColor);
+            ring.setAttribute('stroke-width', 2.5);
+            svg.appendChild(ring);
+        } else if (melodyFret > 0) {
+            const my = startY + (melodyFret - startingFret + 0.5) * fretSpacing;
+            const ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            ring.setAttribute('cx', mx);
+            ring.setAttribute('cy', my);
+            ring.setAttribute('r', dotRadius + 2.5);
+            ring.setAttribute('fill', 'none');
+            ring.setAttribute('stroke', melodyColor);
+            ring.setAttribute('stroke-width', 2);
+            svg.appendChild(ring);
         }
     }
 

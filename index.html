@@ -103,6 +103,33 @@
                     </div>
                 </div>
             </details>
+            <details class="chord-melody" id="chord-melody">
+                <summary>Chord Melody</summary>
+                <div class="chord-melody-container">
+                    <p class="chord-melody-intro">
+                        Play the tune inside the chord: pick a chord, then tap the melody note on
+                        the fretboard. You get the shapes where that note is the highest note you
+                        hear &mdash; so the melody sings on top of the harmony.
+                    </p>
+                    <div class="chord-melody-step">
+                        <span class="chord-melody-step-label">1. Chord</span>
+                        <div class="chord-melody-chords" id="chord-melody-chords"></div>
+                    </div>
+                    <div class="chord-melody-step">
+                        <span class="chord-melody-step-label">2. Melody note</span>
+                        <div class="fretboard-wrapper" id="chord-melody-fretboard"></div>
+                    </div>
+                    <div class="chord-melody-controls">
+                        <button class="chord-melody-flip" id="chord-melody-flip" title="Flip string order">&#8645; Flip</button>
+                        <button class="chord-melody-clear" id="chord-melody-clear">Clear note</button>
+                        <label class="chord-melody-easy-toggle" title="Show only shapes you can hold with two fingers">
+                            <input type="checkbox" id="chord-melody-easy">
+                            Easy mode (2 fingers)
+                        </label>
+                    </div>
+                    <div class="chord-melody-result" id="chord-melody-result"></div>
+                </div>
+            </details>
             <div class="spotify-section" id="spotify-section" style="display: none;">
                 <h3 class="spotify-title">Listen on Spotify</h3>
                 <div class="spotify-embed" id="spotify-embed"></div>
@@ -154,6 +181,7 @@
 
     <!-- Core data and music theory -->
     <script src="chords.js"></script>
+    <script src="voicings.js"></script>
 
     <!-- Application modules (order matters - dependencies first) -->
     <script src="state.js"></script>
