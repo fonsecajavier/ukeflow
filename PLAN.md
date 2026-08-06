@@ -504,7 +504,7 @@ ukeflow/
     ├── ill-be-there-for-you.json      # The Rembrandts (C)
     ├── salvame.json                   # RBD
     ├── vuelve.json                    # Latin Dreams (B)
-    ├── happy-birthday.json            # Traditional (G)
+    ├── happy-birthday.json            # Traditional (F)
     ├── despacito.json                 # Luis Fonsi ft. Daddy Yankee (Bm)
     ├── titanium.json                  # David Guetta ft. Sia (Eb)
     ├── wonderwall.json                # Oasis (Em)
