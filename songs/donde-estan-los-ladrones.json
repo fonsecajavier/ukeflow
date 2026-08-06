@@ -1,0 +1,277 @@
+{
+  "title": "Dónde Están los Ladrones",
+  "artist": "Shakira",
+  "key": "A",
+  "spotify": "https://open.spotify.com/track/2nSd3kBslXIbBAdrmqvKM6",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Los han visto por ahi",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "los han visto en los tejados",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "dando vueltas en Paris",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 6 },
+        { "chord": "D", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "condenando en los juzgados",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "E", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "con la nariz empolvada",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "de corbata o de blue jeans",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "los han visto en las portadas todas",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 8 },
+        { "chord": "D", "position": 21 }
+      ]
+    },
+    {
+      "lyrics": "sin más nada que decir.",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "E", "position": 17 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Dónde están los ladrones",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "E", "position": 6 },
+        { "chord": "A", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "dónde está el asesino",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "E", "position": 6 },
+        { "chord": "A", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "quizá alla revolcando........se en el patio del vecino",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "A", "position": 6 },
+        { "chord": "D", "position": 11 },
+        { "chord": "E", "position": 21 },
+        { "chord": "D", "position": 29 },
+        { "chord": "C#m", "position": 38 },
+        { "chord": "Bm", "position": 48 }
+      ]
+    },
+    {
+      "lyrics": "y que pasa si son ellos",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "E", "position": 6 },
+        { "chord": "A", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "y que pasa si soy yo",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "E", "position": 6 },
+        { "chord": "A", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "la que toca esta guitarra",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "A", "position": 7 },
+        { "chord": "D", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "la que canta esta canción",
+      "chords": [
+        { "chord": "E", "position": 0 },
+        { "chord": "D", "position": 7 },
+        { "chord": "C#m", "position": 13 },
+        { "chord": "Bm", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "la que canta esta canción.",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "A", "position": 3 },
+        { "chord": "E", "position": 7 },
+        { "chord": "Bm", "position": 13 },
+        { "chord": "A", "position": 18 },
+        { "chord": "E", "position": 23 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Los han visto de rodillas",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "sentados de cuclillas",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "parados dando lecciones",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 8 },
+        { "chord": "D", "position": 14 },
+        { "chord": "A", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "en todas las posiciones",
+      "chords": [
+        { "chord": "E", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "predicando en las iglesias",
+      "chords": [
+        { "chord": "A", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "hasta ofreciendo conciertos",
+      "chords": [
+        { "chord": "Bm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "los han visto en los cocteles todos",
+      "chords": [
+        { "chord": "D", "position": 0 },
+        { "chord": "A", "position": 8 },
+        { "chord": "D", "position": 21 },
+        { "chord": "A", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "repartiendo ministerios",
+      "chords": [
+        { "chord": "E", "position": 0 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Donde están los ladrones",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "E", "position": 6 },
+        { "chord": "A", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "donde esta el asesino",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "E", "position": 6 },
+        { "chord": "A", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "quizás allá revolcando.......se en el patio del vecino",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "A", "position": 6 },
+        { "chord": "D", "position": 12 },
+        { "chord": "E", "position": 22 },
+        { "chord": "D", "position": 29 },
+        { "chord": "C#m", "position": 38 },
+        { "chord": "Bm", "position": 48 }
+      ]
+    },
+    {
+      "lyrics": "y que pasa si son ellos",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "E", "position": 6 },
+        { "chord": "A", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "y que pasa si soy yo",
+      "chords": [
+        { "chord": "F#m", "position": 0 },
+        { "chord": "E", "position": 6 },
+        { "chord": "A", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "la que toca esta guitarra",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "A", "position": 7 },
+        { "chord": "D", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "la que canta esta canción",
+      "chords": [
+        { "chord": "E", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "la que canta esta canción",
+      "chords": [
+        { "chord": "Bm", "position": 0 },
+        { "chord": "A", "position": 3 },
+        { "chord": "E", "position": 7 },
+        { "chord": "Bm", "position": 13 },
+        { "chord": "A", "position": 18 },
+        { "chord": "E", "position": 23 }
+      ]
+    },
+    { "section": "Outro" },
+    {
+      "lyrics": "",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "G", "position": 3 },
+        { "chord": "D", "position": 6 },
+        { "chord": "A", "position": 9 },
+        { "chord": "G", "position": 12 },
+        { "chord": "D", "position": 15 },
+        { "chord": "A", "position": 18 },
+        { "chord": "G", "position": 21 },
+        { "chord": "D", "position": 24 },
+        { "chord": "A", "position": 29 }
+      ]
+    }
+  ]
+}
