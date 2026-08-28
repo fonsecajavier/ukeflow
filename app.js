@@ -40,6 +40,8 @@ async function loadFromURL() {
             // Load full song data
             const songData = await loadSongData(songMeta);
             state.currentSong = songData;
+            state.accidentalStyle = detectAccidentalStyle(songData);
+            updateAccidentalsButton();
 
             // Apply transpose if specified
             if (transposeParam) {
@@ -229,6 +231,9 @@ async function selectSongFromDropdown(songMeta) {
     // Load full song data (lazy load with cache)
     const songData = await loadSongData(songMeta);
     state.currentSong = songData;
+    // Open each song in the notation it was written in; the button flips from there
+    state.accidentalStyle = detectAccidentalStyle(songData);
+    updateAccidentalsButton();
     displaySong();
     updateURL();
 }
@@ -291,6 +296,7 @@ function setupEventListeners() {
     elements.tempoSelect.addEventListener('change', handleTempoChange);
     elements.toggleBtn.addEventListener('click', handleToggleProgression);
     elements.toggleTapToPlay.addEventListener('click', handleToggleTapToPlay);
+    elements.toggleAccidentals.addEventListener('click', handleToggleAccidentals);
     elements.toggleRelativeKey.addEventListener('click', handleToggleRelativeKey);
     elements.easyKeySuggestion.addEventListener('click', handleEasyKeyClick);
     elements.modalOverlay.addEventListener('click', handleModalClose);
@@ -515,7 +521,7 @@ function renderScaleReference() {
 
         const chordName = document.createElement('span');
         chordName.className = 'scale-chord';
-        chordName.textContent = chord;
+        chordName.textContent = displayChordName(chord);
         item.appendChild(chordName);
 
         // Add play button if chord exists
@@ -579,7 +585,7 @@ function renderProgressionSummary() {
         // Count unique progressions in this section
         const progressionCounts = {};
         lines.forEach(chords => {
-            const key = chords.join(' → ');
+            const key = chords.map(c => displayChordName(c)).join(' → ');
             const degrees = chords.map(c => getScaleDegree(c, transposedKey)).join(' → ');
             const id = degrees;
             if (!progressionCounts[id]) {
@@ -634,7 +640,7 @@ function renderMusicTrivia() {
     const relativeKey = getRelativeKey(transposedKey);
     trivia.push({
         icon: '🎵',
-        text: `This song is in <strong>${transposedKey}</strong> (${keyType}). Its relative ${isMinor ? 'major' : 'minor'} is <strong>${relativeKey}</strong>.`
+        text: `This song is in <strong>${displayChordName(transposedKey)}</strong> (${keyType}). Its relative ${isMinor ? 'major' : 'minor'} is <strong>${displayChordName(relativeKey)}</strong>.`
     });
 
     // Key confidence analysis - analyze the displayed key (accounts for relative toggle)
@@ -647,9 +653,9 @@ function renderMusicTrivia() {
     if (keyAnalysis.firstChord && keyAnalysis.lastChord) {
         const indicators = [];
         if (keyAnalysis.firstChord === keyAnalysis.lastChord) {
-            indicators.push(`Opens and closes on <strong>${keyAnalysis.firstChord}</strong>`);
+            indicators.push(`Opens and closes on <strong>${displayChordName(keyAnalysis.firstChord)}</strong>`);
         } else {
-            indicators.push(`Opens on <strong>${keyAnalysis.firstChord}</strong>, closes on <strong>${keyAnalysis.lastChord}</strong>`);
+            indicators.push(`Opens on <strong>${displayChordName(keyAnalysis.firstChord)}</strong>, closes on <strong>${displayChordName(keyAnalysis.lastChord)}</strong>`);
         }
         trivia.push({
             icon: '🎯',
@@ -661,13 +667,13 @@ function renderMusicTrivia() {
     if (keyAnalysis.mostFrequent) {
         trivia.push({
             icon: '📊',
-            text: `Most frequent chord: <strong>${keyAnalysis.mostFrequent}</strong> (appears ${keyAnalysis.mostFrequentCount}×).`
+            text: `Most frequent chord: <strong>${displayChordName(keyAnalysis.mostFrequent)}</strong> (appears ${keyAnalysis.mostFrequentCount}×).`
         });
     }
 
     // Cadences
     if (keyAnalysis.cadences.length > 0) {
-        const cadenceTargets = [...new Set(keyAnalysis.cadences.map(c => c.target))];
+        const cadenceTargets = [...new Set(keyAnalysis.cadences.map(c => displayChordName(c.target)))];
         trivia.push({
             icon: '🔄',
             text: `V→I cadence${keyAnalysis.cadences.length > 1 ? 's' : ''} detected resolving to: <strong>${cadenceTargets.join(', ')}</strong>.`
@@ -676,7 +682,7 @@ function renderMusicTrivia() {
 
     // ii-V-I progressions (strong key indicator)
     if (keyAnalysis.iiVI && keyAnalysis.iiVI.length > 0) {
-        const iiViTargets = [...new Set(keyAnalysis.iiVI.map(c => c.target))];
+        const iiViTargets = [...new Set(keyAnalysis.iiVI.map(c => displayChordName(c.target)))];
         trivia.push({
             icon: '🎹',
             text: `<strong>ii-V-I progression</strong> detected to: <strong>${iiViTargets.join(', ')}</strong>. This is a very strong key indicator!`
@@ -687,7 +693,7 @@ function renderMusicTrivia() {
     if (keyAnalysis.missingTonic) {
         trivia.push({
             icon: '🚫',
-            text: `No <strong>${keyAnalysis.missingTonicChord}</strong> (tonic) chord found! The key's main chord doesn't appear in the song.`
+            text: `No <strong>${displayChordName(keyAnalysis.missingTonicChord)}</strong> (tonic) chord found! The key's main chord doesn't appear in the song.`
         });
     }
 
@@ -695,7 +701,7 @@ function renderMusicTrivia() {
     if (keyAnalysis.missingDominant) {
         trivia.push({
             icon: '⚠️',
-            text: `No <strong>${keyAnalysis.missingDominantChord}</strong> (V chord) found. Songs typically use their dominant chord to establish the key.`
+            text: `No <strong>${displayChordName(keyAnalysis.missingDominantChord)}</strong> (V chord) found. Songs typically use their dominant chord to establish the key.`
         });
     }
 
@@ -703,24 +709,24 @@ function renderMusicTrivia() {
     if (keyAnalysis.confidence === 'ambiguous' && keyAnalysis.alternativeKey) {
         trivia.push({
             icon: '🤔',
-            text: `<strong>Ambiguous key</strong>: Could be interpreted as <strong>${transposedKey}</strong> or <strong>${keyAnalysis.alternativeKey}</strong>.`
+            text: `<strong>Ambiguous key</strong>: Could be interpreted as <strong>${displayChordName(transposedKey)}</strong> or <strong>${displayChordName(keyAnalysis.alternativeKey)}</strong>.`
         });
     } else if (keyAnalysis.confidence === 'likely different' && keyAnalysis.alternativeKey) {
         trivia.push({
             icon: '💡',
-            text: `<strong>Suggested key: ${keyAnalysis.alternativeKey}</strong> — ${keyAnalysis.alternativeReasons.slice(0, 3).join(', ')}.`
+            text: `<strong>Suggested key: ${displayChordName(keyAnalysis.alternativeKey)}</strong> — ${keyAnalysis.alternativeReasons.slice(0, 3).join(', ')}.`
         });
     } else if (keyAnalysis.confidence === 'likely relative' && keyAnalysis.alternativeKey) {
         trivia.push({
             icon: '💡',
-            text: `This might actually be in <strong>${keyAnalysis.alternativeKey}</strong>: ${keyAnalysis.alternativeReasons.join(', ')}.`
+            text: `This might actually be in <strong>${displayChordName(keyAnalysis.alternativeKey)}</strong>: ${keyAnalysis.alternativeReasons.join(', ')}.`
         });
     }
 
     // Chord count
     trivia.push({
         icon: '🎸',
-        text: `Uses <strong>${usedChords.length}</strong> unique chord${usedChords.length > 1 ? 's' : ''}: <span class="highlight">${usedChords.join(', ')}</span>.`
+        text: `Uses <strong>${usedChords.length}</strong> unique chord${usedChords.length > 1 ? 's' : ''}: <span class="highlight">${usedChords.map(c => displayChordName(c)).join(', ')}</span>.`
     });
 
     // Check for famous progressions
@@ -739,13 +745,13 @@ function renderMusicTrivia() {
     if (borrowedChords.length > 0) {
         trivia.push({
             icon: '🎭',
-            text: `Uses borrowed chord${borrowedChords.length > 1 ? 's' : ''}: <strong>${borrowedChords.join(', ')}</strong>. These add color by borrowing from ${isMinor ? 'major modes' : 'minor modes'}.`
+            text: `Uses borrowed chord${borrowedChords.length > 1 ? 's' : ''}: <strong>${borrowedChords.map(displayChordName).join(', ')}</strong>. These add color by borrowing from ${isMinor ? 'major modes' : 'minor modes'}.`
         });
     } else if (usedChords.length >= 3 && keyAnalysis.confidence === 'strong') {
         // All chords are diatonic - strong key confirmation
         trivia.push({
             icon: '✅',
-            text: `All ${usedChords.length} chords are diatonic (belong to the scale) to <strong>${transposedKey}</strong> — the key fits perfectly!`
+            text: `All ${usedChords.length} chords are diatonic (belong to the scale) to <strong>${displayChordName(transposedKey)}</strong> — the key fits perfectly!`
         });
     }
 
@@ -833,7 +839,7 @@ function renderHarmonicAnalysis() {
         }
 
         const chordName = document.createElement('span');
-        chordName.textContent = chord;
+        chordName.textContent = displayChordName(chord);
         if (chordData) {
             chordName.style.cursor = 'pointer';
             chordName.addEventListener('click', () => openChordModal(chord));
@@ -1362,7 +1368,7 @@ function renderChordReference() {
             // Chord not in library, show name only
             const placeholder = document.createElement('div');
             placeholder.className = 'chord-diagram';
-            placeholder.innerHTML = `<div class="chord-name">${chordName}</div><div style="color:#666;font-size:0.8rem;">No diagram</div>`;
+            placeholder.innerHTML = `<div class="chord-name">${escapeHtml(displayChordName(chordName))}</div><div style="color:#666;font-size:0.8rem;">No diagram</div>`;
             elements.chordGrid.appendChild(placeholder);
         }
     });
@@ -1421,7 +1427,10 @@ function renderLyrics() {
                         }
                         displayChord = degree;
                     } else {
-                        displayChord = transposedChord;
+                        // Respell for display only - the marker's data-chord below
+                        // keeps transposedChord so clicks still resolve a voicing.
+                        // Safe for column alignment: respellChord() never changes length.
+                        displayChord = displayChordName(transposedChord);
                     }
 
                     // Create a placeholder for the chord marker
@@ -1509,6 +1518,38 @@ function handleToggleTapToPlay() {
 }
 
 /**
+ * Handle toggle between flat and sharp chord spellings.
+ * Purely cosmetic - nothing under the hood is renamed, so scale degrees,
+ * voicings and analysis are unaffected.
+ */
+function handleToggleAccidentals() {
+    state.accidentalStyle = state.accidentalStyle === 'flat' ? 'sharp' : 'flat';
+    updateAccidentalsButton();
+
+    if (!state.currentSong) return;
+
+    updateKeyDisplay();
+    renderScaleReference();
+    renderProgressionSummary();
+    renderMusicTrivia();
+    renderHarmonicAnalysis();
+    renderChordReference();
+    renderLyrics();
+}
+
+/**
+ * Sync the accidentals button label with the current style.
+ * Like the "Show as Numbers" button, the label names the action, not the state.
+ */
+function updateAccidentalsButton() {
+    const toFlats = state.accidentalStyle === 'sharp';
+    elements.toggleAccidentals.textContent = toFlats ? 'Use Flats (♭)' : 'Use Sharps (♯)';
+    elements.toggleAccidentals.title = toFlats
+        ? 'Spell chord names with flats (C# → Db)'
+        : 'Spell chord names with sharps (Db → C#)';
+}
+
+/**
  * Handle toggle between original key and relative key
  */
 function handleToggleRelativeKey() {
@@ -1559,7 +1600,7 @@ function updateKeyDisplay() {
     } else if (keyAnalysis.confidence === 'likely relative') {
         confidenceIndicator = ' 🔀';
     } else if (keyAnalysis.confidence === 'likely different') {
-        confidenceIndicator = ` 💡→${keyAnalysis.alternativeKey}?`;
+        confidenceIndicator = ` 💡→${displayChordName(keyAnalysis.alternativeKey)}?`;
     } else if (keyAnalysis.confidence === 'weak') {
         confidenceIndicator = ' ❓';
     }
@@ -1567,19 +1608,19 @@ function updateKeyDisplay() {
     if (state.useRelativeKey) {
         const originalType = isMinorKey(transposedKey) ? 'minor' : 'major';
         const relativeType = isMinorKey(displayKey) ? 'minor' : 'major';
-        elements.songKey.textContent = `${displayKey} (rel. ${relativeType})${confidenceIndicator}`;
-        elements.toggleRelativeKey.title = `Switch back to ${transposedKey}`;
+        elements.songKey.textContent = `${displayChordName(displayKey)} (rel. ${relativeType})${confidenceIndicator}`;
+        elements.toggleRelativeKey.title = `Switch back to ${displayChordName(transposedKey)}`;
     } else {
-        elements.songKey.textContent = displayKey + confidenceIndicator;
+        elements.songKey.textContent = displayChordName(displayKey) + confidenceIndicator;
         const relativeKey = getRelativeKey(transposedKey);
-        elements.toggleRelativeKey.title = `Switch to relative key (${relativeKey})`;
+        elements.toggleRelativeKey.title = `Switch to relative key (${displayChordName(relativeKey)})`;
     }
 
     // Show easy key suggestion
     const easyKey = findEasyKey(state.currentSong);
     if (easyKey && easyKey.semitones !== state.transpose) {
-        elements.easyKeySuggestion.textContent = `Easy key: ${easyKey.key}`;
-        elements.easyKeySuggestion.title = `Transpose to ${easyKey.key} for easier chords`;
+        elements.easyKeySuggestion.textContent = `Easy key: ${displayChordName(easyKey.key)}`;
+        elements.easyKeySuggestion.title = `Transpose to ${displayChordName(easyKey.key)} for easier chords`;
         elements.easyKeySuggestion.style.display = 'inline-flex';
         elements.easyKeySuggestion.dataset.semitones = easyKey.semitones;
     } else {
@@ -1614,8 +1655,8 @@ function openChordModal(chordName) {
         }
     }
     nameDiv.textContent = state.showAsNumbers
-        ? `${modalDegree} (${chordName})`
-        : chordName;
+        ? `${modalDegree} (${displayChordName(chordName)})`
+        : displayChordName(chordName);
     elements.modalChord.appendChild(nameDiv);
 
     // First variation's play button, captured so tap-to-play can auto-trigger it

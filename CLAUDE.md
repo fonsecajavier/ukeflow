@@ -16,9 +16,9 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
 ### JavaScript Modules (loaded in this order)
 | File | Contents |
 |------|----------|
-| `chords.js` | CHORDS definitions, SCALE_DEGREES_MAJOR/MINOR, CHORD_VARIATIONS, transposeChord(), transposeKey(), getScaleDegree(), isMinorKey(), getChordVariations(), resolveChord(), computeChordFromFrets() |
+| `chords.js` | CHORDS definitions, SCALE_DEGREES_MAJOR/MINOR, CHORD_VARIATIONS, transposeChord(), transposeKey(), getScaleDegree(), isMinorKey(), getChordVariations(), resolveChord(), computeChordFromFrets(), respellChord() |
 | `voicings.js` | Chord-melody voicing generator. UKULELE_MIDI, CHORD_TYPES, findMelodyVoicings(), findEasiestVoicing(), explainNoVoicings(), parseChordSymbol(), parseNoteName(), midiToNoteName(), fretToMidi(), countFingers(), degreeLabel() |
-| `state.js` | `state` object (songIndex, songCache, currentSong, transpose, etc.), slugify(), getDisplayKey() |
+| `state.js` | `state` object (songIndex, songCache, currentSong, transpose, etc.), slugify(), getDisplayKey(), displayChordName(), detectAccidentalStyle() |
 | `patterns.js` | PLAY_STYLES (strums/arpeggios), currentBPM, currentPlayStyle, getBeat(), getPlayStyle() |
 | `audio.js` | audioContext, UKULELE_TUNING, pluckString(), playStrum(), playChunk(), playChord(), playChordArpeggio(), playChordMelody() |
 | `analysis.js` | getRelativeKey(), detectFamousProgressions(), detectBorrowedChords(), getUsedChords(), getHarmonicFunction(), detectSecondaryDominant() |
@@ -33,6 +33,7 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
 - **Modify song rendering**: `app.js` → renderLyrics(), displaySong()
 - **Modify chord diagrams**: `ui.js` → createChordSVG()
 - **Add harmonic analysis**: `analysis.js` → getHarmonicFunction()
+- **Change how a chord name is spelled on screen**: `chords.js` → respellChord(); call it via displayChordName() at the point the text enters the DOM, never before a CHORDS/getScaleDegree lookup
 - **Modify UI elements**: `ui.js` → elements object, then `app.js` for logic
 - **Chord-melody voicings**: `voicings.js` → findMelodyVoicings(); add a chord suffix to CHORD_TYPES, tune ranking in scoreVoicing()
 - **Chord Melody UI**: `app.js` → renderChordMelody() and createChordMelodyCard(); playback in `audio.js` → playChordMelody()

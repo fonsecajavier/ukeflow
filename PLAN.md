@@ -454,6 +454,34 @@ The changes themselves:
 - Visual indicator when viewing relative key
 - Resets when switching songs
 
+### 6b. Accidental Notation Toggle (Flats ↔ Sharps)
+- Button in the song controls that respells chord names between flats and sharps
+  (`Db` ↔ `C#`, `Bbm` ↔ `A#m`). Label names the action, so it reads "Use Sharps (♯)"
+  while flats are showing.
+- Applies to the song view: lyric chord markers, chord reference diagrams, scale
+  reference, progression summary, key display, easy-key suggestion, chord modal title.
+- **Purely cosmetic.** `respellChord()` (chords.js) is applied at the DOM boundary only,
+  via `displayChordName()` (state.js). The respelled name is never fed back into
+  `CHORDS[]`, `resolveChord()`, `getScaleDegree()`, `getChordVariations()` or analysis.js
+  — those match chord names as exact strings, so a leaked respelling silently turns a
+  scale degree into `?`. Chord markers keep the original name in `data-chord`, which is
+  what clicks and voicing lookups use.
+- **Only black keys are respelled.** `B`↔`Cb` and `E`↔`Fb` are deliberately excluded:
+  they change the name's length, and `renderLyrics()` builds the chord row as a
+  character-positioned string, so a length change would shift every chord after it.
+- Each song opens in the notation it was authored in — `detectAccidentalStyle()` counts
+  the accidentals actually used (key + all chords) rather than trusting the key, since a
+  natural key like C fills up with sharps once transposed. Ties fall back to `sharp`,
+  matching `transposeChord()`'s default.
+- **Deliberately not covered:** the Circle of Fifths and Songwriter's Circle (their
+  sharp/flat sides are conventional, and `D#m`/`Ebm` is already dual-labelled), the Chord
+  Library browser and Chord Finder chips (they enumerate actual `CHORDS` keys, and both
+  spellings exist as separate entries — respelling would show visible duplicates).
+- Known pre-existing limitation this does not fix: transposing into `G#`/`D#`/`A#` still
+  yields `?` for some degrees, because `SCALE_DEGREES_MAJOR['G#']` is spelled with
+  `B#m`/`E#m`. The toggle changes only what is displayed, so the `?` is identical in both
+  notations. Authoring a song in the flat key (see `songs/libre-soy.json`) avoids it.
+
 ### 7. URL Bookmarking
 - URL updates when selecting a song (e.g., `?song=somewhere-over-the-rainbow`)
 - Transpose value included in URL when not 0 (e.g., `?song=riptide&transpose=2`)

@@ -1728,6 +1728,49 @@ function transposeKey(key, semitones) {
     return transposeChord(key, semitones);
 }
 
+/**
+ * Respell a chord's root using sharps or flats. DISPLAY ONLY.
+ *
+ * The result must never be fed back into CHORDS[], resolveChord(),
+ * getScaleDegree(), getChordVariations() or anything in analysis.js - those all
+ * match chord names as exact strings, so a respelled name silently turns a
+ * scale degree into '?'. Keep the original name for lookups and respell only
+ * the text that reaches the DOM.
+ *
+ * @param {string} chord - Chord name (e.g. "Db", "A#m7", "D/F#")
+ * @param {string|null} accidental - 'sharp', 'flat', or null/anything else to leave as-is
+ * @returns {string} - The respelled name, or the original when nothing applies
+ */
+function respellChord(chord, accidental) {
+    if (!chord || (accidental !== 'sharp' && accidental !== 'flat')) return chord;
+
+    // Slash chords (e.g. "D/F#"): respell the chord and the bass note separately
+    if (chord.includes('/')) {
+        const [base, bass] = chord.split('/');
+        return respellChord(base, accidental) + '/' + respellChord(bass, accidental);
+    }
+
+    const match = chord.match(/^([A-G][#b]?)(.*)$/);
+    if (!match) return chord;
+
+    const [, root, suffix] = match;
+
+    // Only black keys get respelled. B<->Cb and E<->Fb are deliberately left
+    // alone: they change the name's length, which would shift every chord after
+    // them in renderLyrics()'s character-positioned chord row.
+    if (!root.includes('#') && !root.includes('b')) return chord;
+
+    // Look the root up in the *opposite* scale - a miss means it is already
+    // spelled the way we want (or is something exotic like E#), so leave it.
+    const from = accidental === 'flat' ? CHROMATIC_SCALE : CHROMATIC_SCALE_FLATS;
+    const to = accidental === 'flat' ? CHROMATIC_SCALE_FLATS : CHROMATIC_SCALE;
+
+    const index = from.indexOf(root);
+    if (index === -1) return chord;
+
+    return to[index] + suffix;
+}
+
 // Enharmonic equivalents - maps uncommon keys to their commonly used equivalent
 const ENHARMONIC_EQUIVALENTS = {
     // Uncommon sharp keys -> common flat equivalents
@@ -1991,8 +2034,10 @@ function getChordVariations(chordName) {
 }
 
 // Expose to global scope for access from app.js
-window.getChordVariations = getChordVariations;
-window.CHORD_VARIATIONS = CHORD_VARIATIONS;
+if (typeof window !== 'undefined') {
+    window.getChordVariations = getChordVariations;
+    window.CHORD_VARIATIONS = CHORD_VARIATIONS;
+}
 
 // Scale degree mappings for major keys
 const SCALE_DEGREES_MAJOR = {
@@ -2372,5 +2417,17 @@ function computeChordFromFrets(inputFrets) {
 }
 
 // Expose to global scope
-window.findChordByFrets = findChordByFrets;
-window.computeChordFromFrets = computeChordFromFrets;
+if (typeof window !== 'undefined') {
+    window.findChordByFrets = findChordByFrets;
+    window.computeChordFromFrets = computeChordFromFrets;
+}
+
+// CommonJS export for the node test scripts in tests/ (same pattern as voicings.js)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        CHORDS, CHORD_VARIATIONS, SCALE_DEGREES_MAJOR, SCALE_DEGREES_MINOR,
+        CHROMATIC_SCALE, CHROMATIC_SCALE_FLATS,
+        transposeChord, transposeKey, respellChord, getScaleDegree, isMinorKey,
+        getChordVariations, resolveChord, findChordByFrets, computeChordFromFrets,
+    };
+}

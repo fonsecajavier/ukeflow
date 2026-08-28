@@ -12,7 +12,8 @@ const state = {
     transpose: 0,
     useRelativeKey: false,
     highlightedIndex: -1,  // For dropdown keyboard navigation
-    tapToPlayMode: false   // When true, tapping chords plays them instead of opening modal
+    tapToPlayMode: false,  // When true, tapping chords plays them instead of opening modal
+    accidentalStyle: 'sharp'  // 'sharp' | 'flat' - how chord names are spelled on screen
 };
 
 /**
@@ -26,6 +27,44 @@ function slugify(text) {
         .replace(/[^\w\s-]/g, '')            // Remove non-word chars except spaces/hyphens
         .replace(/\s+/g, '-')                // Replace spaces with hyphens
         .trim();
+}
+
+/**
+ * Chord name as it should appear on screen.
+ *
+ * Display only - callers must keep the original name for CHORDS lookups,
+ * getScaleDegree() and analysis. See respellChord() in chords.js.
+ */
+function displayChordName(chord) {
+    return respellChord(chord, state.accidentalStyle);
+}
+
+/**
+ * Pick the accidental style a song is already written in, so opening it shows
+ * the chord names exactly as authored. Counts the accidentals actually used
+ * rather than trusting the key, since a natural key (C) can still be full of
+ * sharps once transposed. Ties and accidental-free songs fall back to 'sharp',
+ * which is what transposeChord() produces by default.
+ */
+function detectAccidentalStyle(song) {
+    if (!song || !song.lines) return 'sharp';
+
+    let sharps = 0;
+    let flats = 0;
+
+    const tally = (name) => {
+        const root = (name.match(/^([A-G][#b]?)/) || [])[1];
+        if (!root) return;
+        if (root.includes('#')) sharps++;
+        else if (root.includes('b')) flats++;
+    };
+
+    tally(song.key || '');
+    song.lines.forEach(line => {
+        (line.chords || []).forEach(c => c.chord.split('/').forEach(tally));
+    });
+
+    return flats > sharps ? 'flat' : 'sharp';
 }
 
 /**

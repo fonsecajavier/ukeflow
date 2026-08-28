@@ -21,6 +21,7 @@ const elements = {
     toggleBtn: document.getElementById('toggle-progression'),
     toggleTapToPlay: document.getElementById('toggle-tap-to-play'),
     toggleRelativeKey: document.getElementById('toggle-relative-key'),
+    toggleAccidentals: document.getElementById('toggle-accidentals'),
     chordReference: document.getElementById('chord-reference'),
     scaleGrid: document.getElementById('scale-grid'),
     progressionContent: document.getElementById('progression-content'),
@@ -175,8 +176,10 @@ function createChordDiagram(chordData, large = false, displayName = null, showPl
 
     const name = document.createElement('div');
     name.className = 'chord-name';
+    // chordName stays as-authored for getScaleDegree()/getChordVariations() below;
+    // only the label is respelled
     const chordName = displayName || chordData.name;
-    name.textContent = chordName;
+    name.textContent = displayChordName(chordName);
     container.appendChild(name);
 
     // Add scale degree below chord name
