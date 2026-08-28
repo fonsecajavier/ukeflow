@@ -76,13 +76,16 @@ function detectBorrowedChords(key, usedChords) {
 
     const borrowed = [];
     usedChords.forEach(chord => {
-        // Normalize chord for comparison
-        const baseChord = chord.replace(/7|maj7|m7|dim7|aug/, '');
+        // Normalize chord for comparison. chordBaseName() keeps the quality
+        // ('Am7' -> 'Am'), and canonicalRoot() makes the match spelling-agnostic
+        // so a diatonic Bb is not reported as borrowed in F.
+        const baseChord = canonicalRoot(chordBaseName(chord));
 
         // Check if it's in the diatonic scale
         const inScale = diatonicScale.some(scaleChord => {
-            const scaleBase = scaleChord.replace(/dim/, '');
-            return scaleBase === baseChord || scaleChord === baseChord;
+            const canonicalScaleChord = canonicalRoot(scaleChord);
+            const scaleBase = canonicalScaleChord.replace(/dim/, '');
+            return scaleBase === baseChord || canonicalScaleChord === baseChord;
         });
 
         if (!inScale) {

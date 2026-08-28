@@ -1699,6 +1699,23 @@ const LETTER_PITCH_CLASS = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
  * @param {string} name - A chord or key name
  * @returns {string} - The same name with its root respelled, or the input unchanged
  */
+/**
+ * Strip 7th/aug extensions from a chord name, keeping the chord's QUALITY.
+ *
+ * "Am7" -> "Am", "Cmaj7" -> "C", "G7" -> "G", "Bdim7" -> "Bdim", "Caug" -> "C".
+ *
+ * The 'm' must survive: an earlier `/7|maj7|m7|dim7|aug/` stripped "m7" whole,
+ * so "Am7" became "A", matched no scale entry, and was reported both as an
+ * unknown degree and as a borrowed chord. Match 'maj7' before the bare '7' so
+ * "Cmaj7" loses the whole suffix rather than just its digit.
+ *
+ * @param {string} chord - A chord name
+ * @returns {string} - The name without its 7th/aug extension
+ */
+function chordBaseName(chord) {
+    return String(chord).replace(/maj7|7|aug/, '');
+}
+
 function canonicalRoot(name) {
     const match = String(name).match(/^([A-G])((?:#|b|x)*)(.*)$/);
     if (!match) return name;
@@ -2148,7 +2165,7 @@ function getScaleDegree(chord, key) {
     if (!scale) return chord;
 
     // Normalize chord for comparison (handle 7ths, maj7, etc.)
-    const baseChord = chord.replace(/7|maj7|m7|dim7|aug/, '');
+    const baseChord = chordBaseName(chord);
     // NB: suffix is derived from the un-canonicalised baseChord, so that
     // canonicalising never disturbs the 7th detection below
     const suffix = chord.replace(baseChord, '');
@@ -2468,7 +2485,8 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         CHORDS, CHORD_VARIATIONS, SCALE_DEGREES_MAJOR, SCALE_DEGREES_MINOR,
         CHROMATIC_SCALE, CHROMATIC_SCALE_FLATS,
-        transposeChord, transposeKey, respellChord, canonicalRoot, getScaleDegree, isMinorKey,
+        transposeChord, transposeKey, respellChord, canonicalRoot, chordBaseName,
+        getScaleDegree, isMinorKey,
         getChordVariations, resolveChord, findChordByFrets, computeChordFromFrets,
     };
 }

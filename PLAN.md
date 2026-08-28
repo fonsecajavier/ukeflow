@@ -775,10 +775,33 @@ Still `?` by design, and correctly so: borrowed chords and secondary dominants (
 tables hold only the 7 diatonic chords; those are picked up downstream by
 `detectBorrowedChords()` / `detectSecondaryDominant()`), and slash chords.
 
-**Known remaining quirk**, pinned in `tests/degrees.test.js` but not fixed: the suffix
-regex `/7|maj7|m7|dim7|aug/` strips `m7` whole, so `Am7` reduces to `A`, matches no scale
-entry and reports `?` even though `Am` is `vi`. Affects 60 of 72 minor-7th chord/key cells
-in the library. `maj7` is also reported as a plain `7` (`Cmaj7` → `I7`).
+#### Chord quality and the 7th suffix
+A second bug lived in the same comparison. The suffix regex `/7|maj7|m7|dim7|aug/`
+stripped `m7` **whole**, so `Am7` reduced to `A` — losing the chord's minor quality. Two
+consequences:
+
+- In a major key it matched no scale entry at all: `Am7` in C reported `?` even though
+  `Am` is `vi`. 60 of 72 minor-7th chord/key cells in the library were affected.
+- In a **minor** key it was worse than unknown — it silently matched the wrong chord.
+  `SCALE_DEGREES_MINOR['Em']` holds both `Am` (index 3, the minor `iv`) and `A`
+  (index 7, the borrowed major `IV`). Stripped to `A`, an `Am7` matched the *borrowed
+  major* and was reported as `IV7` instead of `iv7`.
+
+`chordBaseName()` in chords.js now strips extensions while keeping quality — `Am7`→`Am`,
+`Cmaj7`→`C`, `G7`→`G`, `Bdim7`→`Bdim`, `Caug`→`C`. `maj7` is matched before the bare `7`
+so `Cmaj7` loses the whole suffix rather than just its digit. Both `getScaleDegree()` and
+`detectBorrowedChords()` call it; keeping the regex in one place is the point, since
+having it in two files is how the two copies drifted.
+
+`detectBorrowedChords()` also needed `canonicalRoot()` — it was flagging diatonic chords
+as borrowed for the same spelling reason as everything above.
+
+Measured: `getScaleDegree` over the library's 1219 chord/key pairs — 55 `?` resolved, 12
+corrected from `IV7` to `iv7`, 0 regressed. `detectBorrowedChords` over 768
+song/transpose states — **523 false "borrowed chord" reports removed, 0 newly flagged**.
+
+Still pinned in `tests/degrees.test.js` and deliberately not changed: `maj7` reports as a
+plain `7` (`Cmaj7` → `I7`).
 
 ## UI Mockup
 

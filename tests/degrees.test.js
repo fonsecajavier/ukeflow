@@ -2,7 +2,7 @@
 // Run with: node tests/degrees.test.js
 const fs = require('fs');
 const {
-    canonicalRoot, getScaleDegree, transposeChord,
+    canonicalRoot, chordBaseName, getScaleDegree, transposeChord,
     SCALE_DEGREES_MAJOR, SCALE_DEGREES_MINOR,
 } = require(__dirname + '/../chords.js');
 
@@ -66,15 +66,37 @@ check('A#7 is IV7 in F', ...eq(getScaleDegree('A#7', 'F'), 'IV7'));
 check('Bbmaj7 is IV7 in F, same as A#maj7',
     ...eq(getScaleDegree('Bbmaj7', 'F'), getScaleDegree('A#maj7', 'F')));
 
-// Two pre-existing quirks of the suffix regex, unchanged by canonicalRoot() and
-// pinned here so a future edit to it has to be deliberate:
-//   /7|maj7|m7|dim7|aug/ strips 'm7' whole, so 'Am7' becomes 'A' and matches no
-//   scale entry; and 'maj7' is reported as a plain '7'.
-section('Pre-existing suffix quirks (pinned, not introduced here)');
-check('maj7 is labelled like a dominant 7 (Cmaj7 -> I7)', ...eq(getScaleDegree('Cmaj7', 'C'), 'I7'));
-check('minor 7ths lose their quality and report "?" (Am7 in C)',
-    ...eq(getScaleDegree('Am7', 'C'), '?'));
-check('...while the plain triad resolves fine (Am in C)', ...eq(getScaleDegree('Am', 'C'), 'vi'));
+// chordBaseName() keeps the chord's quality. The old /7|maj7|m7|dim7|aug/ stripped
+// 'm7' whole, so 'Am7' became 'A': it matched no scale entry in a major key, and in a
+// minor key it matched the BORROWED MAJOR IV instead of the minor iv.
+section('Minor 7ths keep their quality');
+check('Am7 is vi7 in C (was "?")', ...eq(getScaleDegree('Am7', 'C'), 'vi7'));
+check('Am is vi in C', ...eq(getScaleDegree('Am', 'C'), 'vi'));
+check('Dm7 is ii7 in C', ...eq(getScaleDegree('Dm7', 'C'), 'ii7'));
+check('Bbm7 is ii7 in Ab', ...eq(getScaleDegree('Bbm7', 'Ab'), 'ii7'));
+check('A#m7 is ii7 in Ab too (spelling-agnostic)', ...eq(getScaleDegree('A#m7', 'Ab'), 'ii7'));
+
+section('Minor iv vs borrowed major IV are no longer confused');
+check('Am7 is iv7 in Em (was IV7, the borrowed major)', ...eq(getScaleDegree('Am7', 'Em'), 'iv7'));
+check('Am is iv in Em', ...eq(getScaleDegree('Am', 'Em'), 'iv'));
+check('A is still the borrowed IV in Em', ...eq(getScaleDegree('A', 'Em'), 'IV'));
+check('A7 is still IV7 in Em', ...eq(getScaleDegree('A7', 'Em'), 'IV7'));
+
+section('Other suffixes are unaffected');
+check('G7 stays V7 in C', ...eq(getScaleDegree('G7', 'C'), 'V7'));
+check('Bdim7 stays vii°7 in C', ...eq(getScaleDegree('Bdim7', 'C'), 'vii°7'));
+check('Caug reduces to the triad (I in C)', ...eq(getScaleDegree('Caug', 'C'), 'I'));
+// still a known quirk, pinned so a future edit is deliberate: maj7 reports as plain 7
+check('maj7 is still labelled like a dominant 7 (Cmaj7 -> I7)',
+    ...eq(getScaleDegree('Cmaj7', 'C'), 'I7'));
+
+section('chordBaseName strips extensions but keeps quality');
+check('Am7 -> Am', ...eq(chordBaseName('Am7'), 'Am'));
+check('Cmaj7 -> C', ...eq(chordBaseName('Cmaj7'), 'C'));
+check('G7 -> G', ...eq(chordBaseName('G7'), 'G'));
+check('Bdim7 -> Bdim', ...eq(chordBaseName('Bdim7'), 'Bdim'));
+check('Caug -> C', ...eq(chordBaseName('Caug'), 'C'));
+check('Am (no extension) unchanged', ...eq(chordBaseName('Am'), 'Am'));
 
 section('Non-diatonic chords still report "?"');
 check('F# is not in C', ...eq(getScaleDegree('F#', 'C'), '?'));

@@ -180,7 +180,8 @@ body {
 .song-controls {
     display: flex;
     align-items: center;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 12px 20px;
 }
 
 .key-display {
@@ -267,6 +268,8 @@ body {
 }
 
 .toggle-btn {
+    /* Never break a label mid-phrase - the row wraps instead (.song-controls) */
+    white-space: nowrap;
     padding: 10px 20px;
     font-size: 0.95rem;
     border: 2px solid #3498db;
