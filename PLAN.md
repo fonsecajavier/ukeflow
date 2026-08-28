@@ -508,6 +508,33 @@ The changes themselves:
   notations. (Degrees used to break in four keys regardless of the toggle — see
   "Chord Spelling and Scale Degrees" below, now fixed.)
 
+### 6c. Touch: hover styles are gated
+On touch devices `:hover` **sticks** to the last-tapped element until you tap somewhere else.
+Three rules painted exactly the same as a persistent state class, so a control that had just
+been switched OFF kept looking ON — the state was correct, the pixels lied:
+
+| selector | `:hover` | state class |
+|---|---|---|
+| `.toggle-btn` | `background:#3498db; color:#fff` | `.active` — identical |
+| `.tap-to-play-btn` | `background:#2ecc71; color:#fff` | `.active` — identical |
+| `.song-dropdown li` | `background:#3d4a5f` | `.highlighted` — identical |
+
+Each `:hover` rule is now wrapped in `@media (hover: hover)`, so it only applies to pointers
+that can actually hover. The state classes are deliberately left ungated — they must always
+apply. The `.song-dropdown` rule had to be split out of a comma group it shared with
+`.highlighted`.
+
+Only these three collided; the other ~47 `:hover` rules paint differently from any state
+class, so a stuck hover on them is merely a transient highlight, not a false state.
+
+`tests/hover-styles.test.js` re-derives the collision set from `styles.css` and fails if a new
+one appears (verified to fail when a gate is removed).
+
+**Debugging note:** `getComputedStyle()` under headless Chrome's `--virtual-time-budget`
+returns *pre-transition* values, because CSS transitions do not tick on the virtual clock.
+Anything with `transition: all 0.2s` reads as its starting value and looks broken. Disable
+transitions (`* { transition: none !important }`) or verify from a screenshot instead.
+
 ### 7. URL Bookmarking
 - URL updates when selecting a song (e.g., `?song=somewhere-over-the-rainbow`)
 - Transpose value included in URL when not 0 (e.g., `?song=riptide&transpose=2`)
