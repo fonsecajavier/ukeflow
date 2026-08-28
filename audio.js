@@ -40,24 +40,100 @@ function stopAllSources(stopTime) {
 }
 
 /**
+ * States the context can be woken from.
+ *
+ * 'interrupted' is a WebKit-only state and the reason audio would die on
+ * iPhones: Safari moves the context there when the screen locks, a call comes
+ * in, the tab is backgrounded, or another app takes the audio session. It is
+ * NOT 'suspended', so checking for 'suspended' alone left the context dead and
+ * every later tap silent until the page was reloaded.
+ */
+const RESUMABLE_AUDIO_STATES = ['suspended', 'interrupted'];
+
+// resume() can hang forever rather than reject when the gesture is not
+// accepted; without this the caller awaits it and plays nothing, silently.
+const AUDIO_RESUME_TIMEOUT_MS = 1000;
+
+/**
+ * Make chord playback audible even with the iPhone ringer switch on silent.
+ *
+ * On iOS the hardware silent switch mutes Web Audio (HTML <audio> elements are
+ * exempt, Web Audio is not), so an app like this is mute for anyone whose phone
+ * is on silent - with no visible cause. Safari 16.4+ lets a page opt out by
+ * declaring its audio session type. Safari-only; a no-op everywhere else.
+ *
+ * KNOWN TRADE-OFF, accepted deliberately: 'playback' is an EXCLUSIVE type. Per
+ * spec it "will pause other playback audio on the device", which may include
+ * the Spotify embed each song carries. Behaving like an instrument app -
+ * always audible - was judged more valuable than play-along mixing. 'ambient'
+ * would mix but is still muted by the ringer switch, so it is not an option.
+ *
+ * Called from getAudioContext(), so the exclusive session is only claimed once
+ * the user actually plays a chord. Someone who only uses the Spotify embed
+ * never triggers it.
+ */
+function configureAudioSession() {
+    try {
+        if (typeof navigator !== 'undefined' && navigator.audioSession) {
+            navigator.audioSession.type = 'playback';
+        }
+    } catch (e) {
+        // Unsupported or disallowed - playback still works, it just follows
+        // the ringer switch as before
+    }
+}
+
+/**
+ * iOS interrupts the context when the page is hidden. Try to recover as soon as
+ * we are visible again. iOS often refuses a resume() outside a user gesture, so
+ * this is best-effort - the load-bearing path is ensureAudioReady() retrying on
+ * the next tap.
+ */
+function watchAudioContextState() {
+    if (typeof document === 'undefined') return;
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+            ensureAudioReady();
+        }
+    });
+}
+
+/**
  * Get or create the audio context (must be initialized after user interaction)
  */
 function getAudioContext() {
     if (!audioContext) {
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        configureAudioSession();
+        watchAudioContextState();
     }
     return audioContext;
 }
 
 /**
- * Ensure audio context is ready to play (handles iOS suspend/resume)
+ * Ensure audio context is ready to play (handles iOS suspend/interrupt/resume)
  * @returns {Promise<AudioContext>}
  */
 async function ensureAudioReady() {
     const ctx = getAudioContext();
-    if (ctx.state === 'suspended') {
-        await ctx.resume();
+    if (!RESUMABLE_AUDIO_STATES.includes(ctx.state)) return ctx;
+
+    try {
+        // Race the timeout so a resume() that never settles cannot wedge
+        // playback. If it does time out we still attempt to play - the worst
+        // case is the same silence we would have had while awaiting forever.
+        await Promise.race([
+            ctx.resume(),
+            new Promise(resolve => setTimeout(resolve, AUDIO_RESUME_TIMEOUT_MS)),
+        ]);
+    } catch (e) {
+        // resume() rejects if the gesture was refused; fall through and try
     }
+
+    if (ctx.state !== 'running') {
+        console.warn(`[UkeFlow] audio context is "${ctx.state}" after resume; tap a play button again`);
+    }
+
     return ctx;
 }
 

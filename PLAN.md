@@ -371,6 +371,33 @@ The changes themselves:
   - Quadratic attack/release envelopes for natural feel
   - Subtle high-frequency roll-off for woody tone
 
+- **iOS / Safari audio lifecycle** (`ensureAudioReady()` in audio.js):
+  - Safari parks an `AudioContext` in a WebKit-only **`'interrupted'`** state when the screen
+    locks, a call arrives, the tab is backgrounded, or another app takes the audio session.
+    It is *not* `'suspended'`. The original check handled only `'suspended'`, so after any of
+    those the context stayed dead and every later tap was silent until the page was reloaded
+    — the "sometimes nothing plays on my iPhone" symptom.
+  - `RESUMABLE_AUDIO_STATES = ['suspended', 'interrupted']` now covers both.
+  - `ctx.resume()` can hang forever instead of rejecting when a gesture is not accepted, which
+    left the caller awaiting and playing nothing. It is raced against
+    `AUDIO_RESUME_TIMEOUT_MS` (1s) and warns to the console rather than failing silently.
+  - A `visibilitychange` listener retries the resume on return to the page. This is
+    best-effort — iOS often refuses a resume outside a user gesture, so the load-bearing path
+    is `ensureAudioReady()` retrying on the next tap.
+  - **Ringer switch** (`configureAudioSession()`): on iOS the hardware silent switch mutes
+    Web Audio (HTML `<audio>` is exempt), so the app was mute for anyone with their phone on
+    silent, with no visible cause — the actual cause of the reported "sounds don't play".
+    Safari 16.4+ lets a page opt out by setting `navigator.audioSession.type = 'playback'`,
+    which we do. Safari-only, `try`/`catch`-guarded, a no-op elsewhere.
+    - **Accepted trade-off:** `'playback'` is an *exclusive* type that per spec "will pause
+      other playback audio on the device" — possibly the Spotify embed each song carries.
+      Behaving like an instrument app (always audible) was chosen over play-along mixing.
+      `'ambient'` mixes but is still muted by the switch, so it is not an alternative.
+    - It is claimed lazily, at context creation, so a visitor who only plays the Spotify
+      embed and never taps a chord never has the session taken from them.
+  - Verified by logic tests in `tests/audio-context.test.js` (stubbed contexts in each state).
+    A real WebKit `'interrupted'` state cannot be reproduced headlessly — it needs a device.
+
 - **Play Style Selector** with grouped options:
 
   **Strums** (D=down, U=up, x=muted chunk):

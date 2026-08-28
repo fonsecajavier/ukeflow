@@ -144,11 +144,21 @@ Bamboleo, bambolea
 - Uses Karplus-Strong synthesis (no external audio files)
 - Standard ukulele tuning: G4-C4-E4-A4
 - Audio code is in `audio.js`
-- **Testing gotcha**: `ensureAudioReady()` awaits `ctx.resume()`, which never settles until
-  the page has had a real user gesture. Calling `playChord()` / `playChordMelody()`
-  programmatically (e.g. from a devtools console or an automation harness) on a fresh page
-  hangs the renderer. Click a play button first, then the context is running and direct calls
-  work. This is correct browser-autoplay behaviour, not a bug to fix.
+- **iOS/Safari lifecycle**: `ensureAudioReady()` must wake the context from BOTH `'suspended'`
+  and `'interrupted'`. `'interrupted'` is a WebKit-only state that Safari parks the context in
+  after a screen lock, phone call, or the tab being backgrounded — checking only `'suspended'`
+  leaves it dead and every later tap silent until reload. See `RESUMABLE_AUDIO_STATES`.
+- **Ringer switch**: `configureAudioSession()` sets `navigator.audioSession.type = 'playback'`
+  (Safari 16.4+) so chords are audible with the iPhone on silent — without it Web Audio is
+  muted by the hardware switch with no visible cause. Accepted trade-off: `'playback'` is an
+  *exclusive* type that per spec pauses other playback audio, possibly the song's Spotify
+  embed. It is claimed lazily at context creation, so someone who only uses Spotify never
+  triggers it. `'ambient'` would mix but stays muted by the switch, so it is not an option.
+- **Testing gotcha**: `ctx.resume()` never settles until the page has had a real user gesture,
+  so calling `playChord()` / `playChordMelody()` programmatically on a fresh page used to hang
+  the renderer. `ensureAudioReady()` now races it against `AUDIO_RESUME_TIMEOUT_MS`, so such a
+  call returns (silently producing nothing) instead of hanging. Click a play button first for
+  actual sound — that part is correct browser-autoplay behaviour, not a bug to fix.
 
 ## Music Theory
 - Minor keys use lowercase roman numerals (i, iv, v)
