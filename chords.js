@@ -1678,6 +1678,40 @@ function resolveChord(chordName) {
 const CHROMATIC_SCALE = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 const CHROMATIC_SCALE_FLATS = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
 
+// Semitone offset of each natural note, for canonicalRoot()
+const LETTER_PITCH_CLASS = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+
+/**
+ * Rewrite a chord's root to one canonical spelling (sharps), leaving the suffix
+ * alone. "Fxm" -> "Gm", "Bb" -> "A#", "B#dim" -> "Cdim", "Cb" -> "B".
+ *
+ * This exists because two vocabularies meet in getScaleDegree():
+ * transposeChord() emits sharps unless the source chord had a flat, while
+ * SCALE_DEGREES_MAJOR/MINOR spell each key the musically correct way (Bb as the
+ * IV of F, E#m as the vi of G#). Comparing those as raw strings makes a
+ * perfectly diatonic chord look foreign. Canonicalising both sides first lets
+ * the existing string comparison work on any spelling, double accidentals
+ * included.
+ *
+ * Handles the root only - "D/F#" is returned unchanged, since the bass note
+ * lands in the suffix.
+ *
+ * @param {string} name - A chord or key name
+ * @returns {string} - The same name with its root respelled, or the input unchanged
+ */
+function canonicalRoot(name) {
+    const match = String(name).match(/^([A-G])((?:#|b|x)*)(.*)$/);
+    if (!match) return name;
+
+    const [, letter, accidentals, rest] = match;
+    let pc = LETTER_PITCH_CLASS[letter];
+    for (const a of accidentals) {
+        pc += a === '#' ? 1 : a === 'x' ? 2 : -1;
+    }
+
+    return CHROMATIC_SCALE[((pc % 12) + 12) % 12] + rest;
+}
+
 /**
  * Transpose a chord by a number of semitones
  * @param {string} chord - The chord name (e.g., "Am", "F#m7")
@@ -2115,11 +2149,18 @@ function getScaleDegree(chord, key) {
 
     // Normalize chord for comparison (handle 7ths, maj7, etc.)
     const baseChord = chord.replace(/7|maj7|m7|dim7|aug/, '');
+    // NB: suffix is derived from the un-canonicalised baseChord, so that
+    // canonicalising never disturbs the 7th detection below
     const suffix = chord.replace(baseChord, '');
 
+    // Compare on canonical roots so a diatonic chord is recognised whatever
+    // spelling it arrives in - Bb vs A# in F, Fm vs E#m in G#
+    const canonicalBase = canonicalRoot(baseChord);
+
     const index = scale.findIndex(c => {
-        const scaleBase = c.replace(/dim/, '');
-        return scaleBase === baseChord || c === baseChord;
+        const canonicalScaleChord = canonicalRoot(c);
+        const scaleBase = canonicalScaleChord.replace(/dim/, '');
+        return scaleBase === canonicalBase || canonicalScaleChord === canonicalBase;
     });
 
     if (index === -1) return '?';
@@ -2427,7 +2468,7 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         CHORDS, CHORD_VARIATIONS, SCALE_DEGREES_MAJOR, SCALE_DEGREES_MINOR,
         CHROMATIC_SCALE, CHROMATIC_SCALE_FLATS,
-        transposeChord, transposeKey, respellChord, getScaleDegree, isMinorKey,
+        transposeChord, transposeKey, respellChord, canonicalRoot, getScaleDegree, isMinorKey,
         getChordVariations, resolveChord, findChordByFrets, computeChordFromFrets,
     };
 }

@@ -382,11 +382,13 @@ function analyzeKeyConfidence(key) {
     const dominant = transposeChord(keyRoot, 7);
 
     // Check if tonic and dominant chords are present in the song
-    const uniqueChords = [...new Set(allChords.map(c => c.replace(/7|maj7|m7/, '')))];
+    // Canonical roots (A# not Bb) so membership tests below are spelling-agnostic;
+    // transposeChord() emits sharps while song files may be written in flats
+    const uniqueChords = [...new Set(allChords.map(c => canonicalRoot(c.replace(/7|maj7|m7/, ''))))];
 
     // Check for tonic chord (e.g., "Em" for E minor, "E" for E major)
     const tonicChord = isMinor ? keyRoot + 'm' : keyRoot;
-    const hasTonic = uniqueChords.includes(tonicChord) || uniqueChords.includes(keyRoot);
+    const hasTonic = uniqueChords.includes(canonicalRoot(tonicChord)) || uniqueChords.includes(canonicalRoot(keyRoot));
 
     if (!hasTonic) {
         indicators.missingTonic = true;
@@ -394,7 +396,7 @@ function analyzeKeyConfidence(key) {
     }
 
     // Check for dominant chord
-    const hasDominant = uniqueChords.includes(dominant);
+    const hasDominant = uniqueChords.includes(canonicalRoot(dominant));
 
     if (!hasDominant) {
         indicators.missingDominant = true;
@@ -504,7 +506,7 @@ function analyzeKeyConfidence(key) {
         }
 
         // Has dominant chord present
-        if (uniqueChords.includes(candidateDominant)) {
+        if (uniqueChords.includes(canonicalRoot(candidateDominant))) {
             score += 1;
         }
 
@@ -534,7 +536,7 @@ function analyzeKeyConfidence(key) {
 
             const isDiatonic = diatonicChords.some(d => {
                 const dIsMinor = d.endsWith('m') && !d.endsWith('dim');
-                const dRoot = d.replace(/m$|dim$/, '');
+                const dRoot = canonicalRoot(d.replace(/m$|dim$/, ''));
                 // Must match both root AND quality (major/minor)
                 return chordRoot === dRoot && isMinorChord === dIsMinor;
             });
@@ -608,20 +610,23 @@ function analyzeKeyConfidence(key) {
     }
 
     for (const [candidateKey, data] of Object.entries(keyScores)) {
-        // Skip if this is the stated key
-        if (candidateKey === keyRoot || candidateKey === statedKeyLookup) continue;
+        // Skip if this is the stated key. Compared canonically, so a song in Ab
+        // is not offered "G#" as an alternative - it is the same key respelled.
+        const candidateCanonical = canonicalRoot(candidateKey);
+        if (candidateCanonical === canonicalRoot(keyRoot) ||
+            candidateCanonical === canonicalRoot(statedKeyLookup)) continue;
 
         // Only consider keys whose tonic chord is actually in the song
         const candidateIsMinor = candidateKey.endsWith('m');
         const candidateTonic = candidateIsMinor ? candidateKey : candidateKey;
-        const candidateTonicInSong = uniqueChords.includes(candidateTonic) ||
-            uniqueChords.includes(candidateKey.replace('m', ''));
+        const candidateTonicInSong = uniqueChords.includes(canonicalRoot(candidateTonic)) ||
+            uniqueChords.includes(canonicalRoot(candidateKey.replace('m', '')));
 
         // Also check if the candidate key's dominant is in the song
         // A key without its V chord is very unlikely to be correct
         const candidateRoot = candidateKey.replace('m', '');
         const candidateDominant = transposeChord(candidateRoot, 7);
-        const candidateDominantInSong = uniqueChords.includes(candidateDominant);
+        const candidateDominantInSong = uniqueChords.includes(canonicalRoot(candidateDominant));
 
         // Reject candidate if its dominant is missing (strong disqualifier)
         if (!candidateDominantInSong) {

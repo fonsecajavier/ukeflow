@@ -477,10 +477,9 @@ The changes themselves:
   sharp/flat sides are conventional, and `D#m`/`Ebm` is already dual-labelled), the Chord
   Library browser and Chord Finder chips (they enumerate actual `CHORDS` keys, and both
   spellings exist as separate entries — respelling would show visible duplicates).
-- Known pre-existing limitation this does not fix: transposing into `G#`/`D#`/`A#` still
-  yields `?` for some degrees, because `SCALE_DEGREES_MAJOR['G#']` is spelled with
-  `B#m`/`E#m`. The toggle changes only what is displayed, so the `?` is identical in both
-  notations. Authoring a song in the flat key (see `songs/libre-soy.json`) avoids it.
+- The toggle changes only what is displayed, so scale degrees read the same in both
+  notations. (Degrees used to break in four keys regardless of the toggle — see
+  "Chord Spelling and Scale Degrees" below, now fixed.)
 
 ### 7. URL Bookmarking
 - URL updates when selecting a song (e.g., `?song=somewhere-over-the-rainbow`)
@@ -723,6 +722,63 @@ Uncommon keys are supported but display a notice suggesting the common equivalen
 - A# → Bb, D# → Eb, G# → Ab
 - A#m → Bbm, D#m → Ebm, G#m → Abm
 - Cb → B, Fb → E
+
+### Chord Spelling and Scale Degrees
+Two spelling vocabularies meet inside `getScaleDegree()`:
+
+- `transposeChord()` emits **sharps**, unless the source chord happened to contain a
+  flat. Transposing anything out of C gives `A#`, `D#`, `G#`.
+- `SCALE_DEGREES_MAJOR`/`MINOR` spell each key the **musically correct** way: `Bb` is the
+  IV of F, `E#m` is the vi of G#, `Fxdim` (F double sharp) is its vii°. Those tables are
+  right — G# major really does have eight sharps — but nothing else in the app speaks
+  that vocabulary.
+
+Comparing the two as raw strings made perfectly diatonic chords look foreign, so
+`getScaleDegree()` returned `?`. It broke **four keys**, and not only exotic ones:
+
+| key | I–vi–IV–V after transposing | was |
+|-----|-----------------------------|-----|
+| D#  | `D# Cm G# A#`               | `I ? IV V` |
+| F   | `F Dm A# C`                 | `I vi ? V` |
+| G#  | `G# Fm C# D#`               | `I ? IV V` |
+| A#  | `A# Gm D# F`                | `I ? IV V` |
+
+`F` is the giveaway that this was never about theoretical keys — the table says `Bb`,
+transposition produces `A#`.
+
+**Fix:** `canonicalRoot()` in chords.js rewrites a chord's root to one spelling
+(sharps) while leaving the suffix alone — `Fxm`→`Gm`, `Bb`→`A#`, `B#dim`→`Cdim`. It
+handles double accidentals (`x`, `##`, `bb`) and wraps at `B#`/`Cb`. `getScaleDegree()`
+canonicalises both the chord and each scale entry before its existing string comparison,
+so all the 7th/dim suffix handling is untouched.
+
+`analyzeKeyConfidence()` in analysis.js canonicalises `uniqueChords` at construction for
+the same reason — it was emitting spurious "missing dominant" warnings when a song
+spelled the V as `Gb` and the key expected `F#`. **Its stated-key skip must be compared
+canonically too** (`candidateCanonical === canonicalRoot(keyRoot)`): without that, a song
+in `Ab` gets offered `G#` as an "alternative key", which is the same key respelled.
+Measured over 768 song/transpose states, 760 are unchanged and the 8 that differ are all
+improvements — 7 false "missing dominant" warnings removed, plus Mad World at +2
+(`Gm C F Bb`) now correctly reads as **ii–V–I–IV in F** rather than a strong `Gm`.
+
+Notes for anyone touching this:
+- `suffix` must keep being derived from the **un-canonicalised** `baseChord`, or 7th
+  detection breaks.
+- `canonicalRoot()` handles the root only. `D/F#` comes back unchanged, because the bass
+  note lands in the suffix — slash chords still report `?`.
+- Verified in `tests/degrees.test.js`: all 12 keys resolve I–vi–IV–V, every table entry
+  resolves to its own numeral under both spellings, and no diatonic chord reports `?` in
+  any key across the song library at all 12 transpositions. A before/after differential
+  over the library's 1219 chord/key pairs showed 84 improved and **0 regressed**.
+
+Still `?` by design, and correctly so: borrowed chords and secondary dominants (the major
+tables hold only the 7 diatonic chords; those are picked up downstream by
+`detectBorrowedChords()` / `detectSecondaryDominant()`), and slash chords.
+
+**Known remaining quirk**, pinned in `tests/degrees.test.js` but not fixed: the suffix
+regex `/7|maj7|m7|dim7|aug/` strips `m7` whole, so `Am7` reduces to `A`, matches no scale
+entry and reports `?` even though `Am` is `vi`. Affects 60 of 72 minor-7th chord/key cells
+in the library. `maj7` is also reported as a plain `7` (`Cmaj7` → `I7`).
 
 ## UI Mockup
 

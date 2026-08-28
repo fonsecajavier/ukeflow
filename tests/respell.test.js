@@ -83,13 +83,21 @@ for (const name of names) {
 check('round trip is stable', noRound.length === 0, noRound.slice(0, 8).join(' '));
 
 // ------------------------------------------- the reason this is display-only
-// getScaleDegree() matches chord names as exact strings, so a respelled name
-// must never reach it. This documents what breaks if that rule is violated.
-section('Why respelled names must not reach analysis');
+// getScaleDegree() used to match names as exact strings, so a respelled name
+// reaching it turned a degree into '?'. canonicalRoot() has since made it
+// spelling-tolerant, so that particular hazard is gone - but the display-only
+// rule still stands for CHORDS lookups, where the two spellings are separate
+// entries and can carry different shapes.
+section('Analysis is now spelling-tolerant (canonicalRoot)');
 check('Db is IV in Ab', getScaleDegree('Db', 'Ab') === 'IV');
-check('respelled C# is NOT IV in Ab (would silently become "?")',
-    getScaleDegree(respellChord('Db', 'sharp'), 'Ab') === '?');
+check('respelled C# is IV in Ab too', getScaleDegree(respellChord('Db', 'sharp'), 'Ab') === 'IV');
 check('Fm is vi in Ab', getScaleDegree('Fm', 'Ab') === 'vi');
+
+section('...but CHORDS lookups still need the original name');
+check('C# and Db are separate CHORDS entries', 'C#' in CHORDS && 'Db' in CHORDS);
+check('G#m and Abm carry genuinely different shapes',
+    JSON.stringify(CHORDS['G#m'].frets) !== JSON.stringify(CHORDS['Abm'].frets),
+    `${JSON.stringify(CHORDS['G#m'].frets)} vs ${JSON.stringify(CHORDS['Abm'].frets)}`);
 
 console.log(`\n${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);
