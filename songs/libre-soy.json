@@ -1,0 +1,320 @@
+{
+  "title": "Libre Soy",
+  "artist": "Carmen Sarahí (Frozen)",
+  "key": "Ab",
+  "spotify": "https://open.spotify.com/track/3VQQOCE4dofPiM8Hz40O87",
+  "lines": [
+    { "section": "Verse 1" },
+    {
+      "lyrics": "La nieve pinta la montaña hoy",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Db", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "No hay huellas que seguir",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Bbm", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "En la soledad un reino, Y la reina, vive en mi",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Db", "position": 3 },
+        { "chord": "Eb", "position": 6 },
+        { "chord": "Bbm", "position": 9 }
+      ]
+    },
+    {
+      "lyrics": "El viento ruge y hay tormenta en mi interior",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Db", "position": 3 },
+        { "chord": "Eb", "position": 6 },
+        { "chord": "Bbm", "position": 9 }
+      ]
+    },
+    {
+      "lyrics": "Una tempestad que de mi salió",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Eb", "position": 3 },
+        { "chord": "Bb", "position": 6 }
+      ]
+    },
+    {
+      "lyrics": "Lo que hay en ti no dejes ver",
+      "chords": [
+        { "chord": "Bb", "position": 0 },
+        { "chord": "Db", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "Buena chica, tu siempre debes ser",
+      "chords": [
+        { "chord": "Eb", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "No haz abrir tu corazón",
+      "chords": [
+        { "chord": "Db", "position": 0 }
+      ]
+    },
+    { "lyrics": "Pues ya se abrió...", "chords": [] },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Libre Soy, Libre Soy",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "No puedo ocultarlo más",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Db", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "Libre Soy, Libre Soy",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "Libertad sin vuelta atrás",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Db", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "¿Qué más da?",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "No me importa ya",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Db", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "Gran Tormenta Habra",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "B", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "El frio es parte también de mí",
+      "chords": [
+        { "chord": "Db", "position": 0 }
+      ]
+    },
+    { "section": "Interlude" },
+    {
+      "lyrics": "Ab Eb",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 3 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "Mirando a la distancia",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Db", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "Pequeño todo es",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Bbm", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "Y los miedos que me ataban",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Eb", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "Muy lejos los dejé",
+      "chords": [
+        { "chord": "Bb", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Voy a probar que puedo hacer",
+      "chords": [
+        { "chord": "Eb", "position": 0 },
+        { "chord": "Db", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "Sin limitar mi proceder",
+      "chords": [
+        { "chord": "Eb", "position": 0 }
+      ]
+    },
+    { "lyrics": "Ni mal, ni bien, eh obedecer", "chords": [] },
+    {
+      "lyrics": "Jamás...",
+      "chords": [
+        { "chord": "Db", "position": 0 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Libre Soy, Libre Soy",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "El viento me abrazará",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Db", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "Libre Soy, Libre Soy",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "No me verán llorar",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Db", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "Firme así,",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "Me quedo aquí",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Db", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "Gran tormenta habrá",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "B", "position": 3 }
+      ]
+    },
+    { "section": "Piano Solo (arpeggio on Db)" },
+    {
+      "lyrics": "Db",
+      "chords": [
+        { "chord": "Db", "position": 0 }
+      ]
+    },
+    { "section": "Bridge" },
+    {
+      "lyrics": "Por viento y tierra my poder florecera,",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "B", "position": 3 },
+        { "chord": "Cm", "position": 7 },
+        { "chord": "Dbm", "position": 12 },
+        { "chord": "Dm", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "Mi alma congelada en fragmentos rompera",
+      "chords": [
+        { "chord": "Dm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "Ideas nuevas pronto cristalizare",
+      "chords": [
+        { "chord": "Eb", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "No volveré jamás",
+      "chords": [
+        { "chord": "Fm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "No queda nada atrás",
+      "chords": [
+        { "chord": "Cm", "position": 0 },
+        { "chord": "Eb", "position": 3 }
+      ]
+    },
+    { "section": "Final Chorus" },
+    {
+      "lyrics": "Libre Soy, Libre Soy",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "Surgire como el despertar",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Db", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "Libre Soy, Libre Soy",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "Se fue la chica ideal",
+      "chords": [
+        { "chord": "Fm", "position": 0 },
+        { "chord": "Db", "position": 3 }
+      ]
+    },
+    {
+      "lyrics": "Firme aquí, a la luz del sol",
+      "chords": [
+        { "chord": "Ab", "position": 0 },
+        { "chord": "Eb", "position": 3 },
+        { "chord": "Fm", "position": 6 },
+        { "chord": "Db", "position": 9 },
+        { "chord": "Dm", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "Gran tormenta habrá...",
+      "chords": [
+        { "chord": "C", "position": 0 },
+        { "chord": "D", "position": 2 }
+      ]
+    }
+  ]
+}

@@ -537,7 +537,8 @@ ukeflow/
     ├── te-amo.json                    # Franco de Vita (C)
     ├── sin-miedo-a-nada.json          # Alex Ubago feat. Amaia Montero (Bm)
     ├── mientes-tan-bien.json          # Sin Bandera (G)
-    └── donde-estan-los-ladrones.json  # Shakira 90s (A)
+    ├── donde-estan-los-ladrones.json  # Shakira 90s (A)
+    └── libre-soy.json                 # Carmen Sarahí - Frozen (Ab)
 ```
 
 ### JavaScript Module Organization
