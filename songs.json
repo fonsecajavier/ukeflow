@@ -63,6 +63,8 @@
     { "path": "songs/sin-miedo-a-nada.json", "title": "Sin miedo a nada", "artist": "Alex Ubago (feat. Amaia Montero)" },
     { "path": "songs/mientes-tan-bien.json", "title": "Mientes tan bien", "artist": "Sin Bandera" },
     { "path": "songs/donde-estan-los-ladrones.json", "title": "Dónde Están los Ladrones", "artist": "Shakira" },
-    { "path": "songs/libre-soy.json", "title": "Libre Soy", "artist": "Carmen Sarahí (Frozen)" }
+    { "path": "songs/libre-soy.json", "title": "Libre Soy", "artist": "Carmen Sarahí (Frozen)" },
+    { "path": "songs/tan-natural.json", "title": "Tan Natural", "artist": "Felipe Peláez" },
+    { "path": "songs/tan-natural-v2.json", "title": "Tan Natural (Versión 2)", "artist": "Felipe Peláez" }
   ]
 }

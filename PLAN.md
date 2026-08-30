@@ -619,7 +619,9 @@ ukeflow/
     ├── sin-miedo-a-nada.json          # Alex Ubago feat. Amaia Montero (Bm)
     ├── mientes-tan-bien.json          # Sin Bandera (G)
     ├── donde-estan-los-ladrones.json  # Shakira 90s (A)
-    └── libre-soy.json                 # Carmen Sarahí - Frozen (Ab)
+    ├── libre-soy.json                 # Carmen Sarahí - Frozen (Ab)
+    ├── tan-natural.json               # Felipe Peláez (E)
+    └── tan-natural-v2.json            # Felipe Peláez - versión con tríadas (E)
 ```
 
 ### JavaScript Module Organization

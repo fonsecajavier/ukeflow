@@ -1150,10 +1150,24 @@ const CHORDS = {
         barre: null,
         baseFret: 1
     },
+    'Aadd9': {
+        name: 'Aadd9',
+        frets: [2, 1, 0, 2],
+        fingers: [2, 1, 0, 3],
+        barre: null,
+        baseFret: 1
+    },
     'E9': {
         name: 'E9',
         frets: [1, 2, 2, 2],
         fingers: [1, 2, 3, 4],
+        barre: null,
+        baseFret: 1
+    },
+    'Eadd9': {
+        name: 'Eadd9',
+        frets: [1, 4, 2, 2],
+        fingers: [1, 4, 2, 3],
         barre: null,
         baseFret: 1
     },
@@ -1164,10 +1178,24 @@ const CHORDS = {
         barre: null,
         baseFret: 1
     },
+    'Badd9': {
+        name: 'Badd9',
+        frets: [4, 3, 2, 4],
+        fingers: [3, 2, 1, 4],
+        barre: null,
+        baseFret: 1
+    },
     'F9': {
         name: 'F9',
         frets: [0, 3, 1, 0],
         fingers: [0, 3, 1, 0],
+        barre: null,
+        baseFret: 1
+    },
+    'Fadd9': {
+        name: 'Fadd9',
+        frets: [0, 0, 1, 0],
+        fingers: [0, 0, 1, 0],
         barre: null,
         baseFret: 1
     },
@@ -1178,11 +1206,25 @@ const CHORDS = {
         barre: { fret: 1, fromString: 0, toString: 3 },
         baseFret: 1
     },
+    'Bbadd9': {
+        name: 'Bbadd9',
+        frets: [3, 2, 1, 3],
+        fingers: [3, 2, 1, 4],
+        barre: null,
+        baseFret: 1
+    },
     'A#9': {
         name: 'A#9',
         frets: [1, 2, 1, 1],
         fingers: [1, 2, 1, 1],
         barre: { fret: 1, fromString: 0, toString: 3 },
+        baseFret: 1
+    },
+    'A#add9': {
+        name: 'A#add9',
+        frets: [3, 2, 1, 3],
+        fingers: [3, 2, 1, 4],
+        barre: null,
         baseFret: 1
     },
     'Eb9': {
@@ -1192,11 +1234,25 @@ const CHORDS = {
         barre: null,
         baseFret: 1
     },
+    'Ebadd9': {
+        name: 'Ebadd9',
+        frets: [0, 3, 1, 1],
+        fingers: [0, 3, 1, 1],
+        barre: { fret: 1, fromString: 2, toString: 3 },
+        baseFret: 1
+    },
     'D#9': {
         name: 'D#9',
         frets: [0, 1, 1, 1],
         fingers: [0, 1, 2, 3],
         barre: null,
+        baseFret: 1
+    },
+    'D#add9': {
+        name: 'D#add9',
+        frets: [0, 3, 1, 1],
+        fingers: [0, 3, 1, 1],
+        barre: { fret: 1, fromString: 2, toString: 3 },
         baseFret: 1
     },
     'Ab9': {
@@ -1206,6 +1262,13 @@ const CHORDS = {
         barre: null,
         baseFret: 1
     },
+    'Abadd9': {
+        name: 'Abadd9',
+        frets: [3, 3, 4, 3],
+        fingers: [1, 1, 2, 1],
+        barre: { fret: 3, fromString: 0, toString: 3 },
+        baseFret: 1
+    },
     'G#9': {
         name: 'G#9',
         frets: [1, 0, 2, 1],
@@ -1213,10 +1276,24 @@ const CHORDS = {
         barre: null,
         baseFret: 1
     },
+    'G#add9': {
+        name: 'G#add9',
+        frets: [3, 3, 4, 3],
+        fingers: [1, 1, 2, 1],
+        barre: { fret: 3, fromString: 0, toString: 3 },
+        baseFret: 1
+    },
     'Db9': {
         name: 'Db9',
         frets: [1, 1, 1, 4],
         fingers: [1, 1, 1, 4],
+        barre: { fret: 1, fromString: 0, toString: 2 },
+        baseFret: 1
+    },
+    'Dbadd9': {
+        name: 'Dbadd9',
+        frets: [1, 3, 1, 4],
+        fingers: [1, 3, 1, 4],
         barre: { fret: 1, fromString: 0, toString: 2 },
         baseFret: 1
     },
@@ -1227,6 +1304,13 @@ const CHORDS = {
         barre: { fret: 1, fromString: 0, toString: 2 },
         baseFret: 1
     },
+    'C#add9': {
+        name: 'C#add9',
+        frets: [1, 3, 1, 4],
+        fingers: [1, 3, 1, 4],
+        barre: { fret: 1, fromString: 0, toString: 2 },
+        baseFret: 1
+    },
     'F#9': {
         name: 'F#9',
         frets: [1, 1, 2, 1],
@@ -1234,8 +1318,22 @@ const CHORDS = {
         barre: { fret: 1, fromString: 0, toString: 3 },
         baseFret: 1
     },
+    'F#add9': {
+        name: 'F#add9',
+        frets: [1, 1, 2, 1],
+        fingers: [1, 1, 2, 1],
+        barre: { fret: 1, fromString: 0, toString: 3 },
+        baseFret: 1
+    },
     'Gb9': {
         name: 'Gb9',
+        frets: [1, 1, 2, 1],
+        fingers: [1, 1, 2, 1],
+        barre: { fret: 1, fromString: 0, toString: 3 },
+        baseFret: 1
+    },
+    'Gbadd9': {
+        name: 'Gbadd9',
         frets: [1, 1, 2, 1],
         fingers: [1, 1, 2, 1],
         barre: { fret: 1, fromString: 0, toString: 3 },

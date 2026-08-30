@@ -1,0 +1,488 @@
+{
+  "title": "Tan Natural (Versión 2)",
+  "artist": "Felipe Peláez",
+  "key": "E",
+  "spotify": "https://open.spotify.com/track/0CNuKlYBAx8xa28X4J6Iy6",
+  "lines": [
+    { "section": "Verso 1" },
+    {
+      "lyrics": "Tal vez casualidad",
+      "chords": [
+        { "chord": "F#m", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "tu algo del mas allá",
+      "chords": [
+        { "chord": "B", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "pero ahora estás conmigo.",
+      "chords": [
+        { "chord": "E", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "Y sin mirar atrás,",
+      "chords": [
+        { "chord": "F#m", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "vamos a caminar",
+      "chords": [
+        { "chord": "B", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "por el mismo camino.",
+      "chords": [
+        { "chord": "E", "position": 16 }
+      ]
+    },
+    { "section": "Verso 2" },
+    {
+      "lyrics": "Por que en algún lugar",
+      "chords": [
+        { "chord": "F#m", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "por fin yo iba a encontrar",
+      "chords": [
+        { "chord": "G#7", "position": 23 }
+      ]
+    },
+    {
+      "lyrics": "un amor tan divino.",
+      "chords": [
+        { "chord": "C#m", "position": 15 },
+        { "chord": "C#m/B", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "Por que ahora yo vivo.",
+      "chords": [
+        { "chord": "A", "position": 18 },
+        { "chord": "A/G#", "position": 23 }
+      ]
+    },
+    {
+      "lyrics": "por que ahora respiro...OOOOhh",
+      "chords": [
+        { "chord": "F#m", "position": 18 },
+        { "chord": "B", "position": 27 }
+      ]
+    },
+    { "section": "Pre-Coro" },
+    {
+      "lyrics": "Y es que es tan natural",
+      "chords": [
+        { "chord": "F#m", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "cuando me dices",
+      "chords": [
+        { "chord": "B", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "que jamas había sentido",
+      "chords": [
+        { "chord": "E", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "un amor tan inmenso",
+      "chords": [
+        { "chord": "F#m", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "luego de un te amo",
+      "chords": [
+        { "chord": "B", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "luego de un suspiro.",
+      "chords": [
+        { "chord": "E", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "Y yo te doy un beso",
+      "chords": [
+        { "chord": "F#m", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "y tu muerdes mis labios",
+      "chords": [
+        { "chord": "G#7", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "sin pedir permiso.",
+      "chords": [
+        { "chord": "C#m", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "Yo te hago lo mismo,",
+      "chords": [
+        { "chord": "A", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "momentos tan lindos,",
+      "chords": [
+        { "chord": "F#m", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "te siento tan feliz.",
+      "chords": [
+        { "chord": "B", "position": 15 }
+      ]
+    },
+    { "section": "Coro" },
+    {
+      "lyrics": "Por que es tan natural",
+      "chords": [
+        { "chord": "E", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "sentir que ya te amo",
+      "chords": [
+        { "chord": "A", "position": 21 }
+      ]
+    },
+    {
+      "lyrics": "y que me estoy muriendo...",
+      "chords": [
+        { "chord": "B", "position": 21 }
+      ]
+    },
+    {
+      "lyrics": "por tenerte en mis brazos.",
+      "chords": [
+        { "chord": "E", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "por acariciarte",
+      "chords": [
+        { "chord": "A", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "y por sentir tu cuerpo.",
+      "chords": [
+        { "chord": "B", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "Por que vale la pena",
+      "chords": [
+        { "chord": "C#m", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "darte y darte amor",
+      "chords": [
+        { "chord": "A", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "aunque te encuentres lejos.",
+      "chords": [
+        { "chord": "B", "position": 23 }
+      ]
+    },
+    {
+      "lyrics": "No le temas a nada",
+      "chords": [
+        { "chord": "C#m", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "por que aquí estoy yo",
+      "chords": [
+        { "chord": "A", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "y yo soy tu complemento.",
+      "chords": [
+        { "chord": "B", "position": 19 }
+      ]
+    },
+    { "section": "Piano" },
+    {
+      "lyrics": "(piano)",
+      "chords": [
+        { "chord": "A", "position": 1 },
+        { "chord": "C#m", "position": 8 },
+        { "chord": "A", "position": 15 },
+        { "chord": "B", "position": 21 }
+      ]
+    },
+    { "section": "Pre-Coro" },
+    {
+      "lyrics": "Y es que es tan natural",
+      "chords": [
+        { "chord": "F#m", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "cuando me dices",
+      "chords": [
+        { "chord": "B", "position": 12 }
+      ]
+    },
+    {
+      "lyrics": "que jamas había sentido",
+      "chords": [
+        { "chord": "E", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "un amor tan inmenso",
+      "chords": [
+        { "chord": "F#m", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "luego de un te amo",
+      "chords": [
+        { "chord": "B", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "luego de un suspiro.",
+      "chords": [
+        { "chord": "E", "position": 16 }
+      ]
+    },
+    {
+      "lyrics": "Y yo te doy un beso",
+      "chords": [
+        { "chord": "F#m", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "y tu muerdes mis labios",
+      "chords": [
+        { "chord": "G#7", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "sin pedir permiso.",
+      "chords": [
+        { "chord": "C#m", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "Yo te hago lo mismo,",
+      "chords": [
+        { "chord": "A", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "momentos tan lindos,",
+      "chords": [
+        { "chord": "F#m", "position": 19 }
+      ]
+    },
+    {
+      "lyrics": "te siento tan feliz.",
+      "chords": [
+        { "chord": "B", "position": 15 }
+      ]
+    },
+    { "section": "Coro" },
+    {
+      "lyrics": "Por que es tan natural",
+      "chords": [
+        { "chord": "E", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "sentir que ya te amo",
+      "chords": [
+        { "chord": "A", "position": 21 }
+      ]
+    },
+    {
+      "lyrics": "y que me estoy muriendo...",
+      "chords": [
+        { "chord": "B", "position": 21 }
+      ]
+    },
+    {
+      "lyrics": "por tenerte en mis brazos.",
+      "chords": [
+        { "chord": "E", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "por acariciarte",
+      "chords": [
+        { "chord": "A", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "y por sentir tu cuerpo.",
+      "chords": [
+        { "chord": "B", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "Por que vale la pena",
+      "chords": [
+        { "chord": "C#m", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "darte y darte amor",
+      "chords": [
+        { "chord": "A", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "aunque te encuentres lejos.",
+      "chords": [
+        { "chord": "B", "position": 23 }
+      ]
+    },
+    {
+      "lyrics": "No le temas a nada",
+      "chords": [
+        { "chord": "C#m", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "por que aquí estoy yo",
+      "chords": [
+        { "chord": "A", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "y yo soy tu complemento.",
+      "chords": [
+        { "chord": "B", "position": 19 }
+      ]
+    },
+    { "section": "Puente" },
+    {
+      "lyrics": "Yo te protegeré",
+      "chords": [
+        { "chord": "A", "position": 14 }
+      ]
+    },
+    {
+      "lyrics": "yo te acompañare",
+      "chords": [
+        { "chord": "G#m", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "a lo desconocido",
+      "chords": [
+        { "chord": "A", "position": 13 }
+      ]
+    },
+    { "lyrics": "a lo jamas sentido" },
+    {
+      "lyrics": "ay siempre estaré.",
+      "chords": [
+        { "chord": "B", "position": 16 }
+      ]
+    },
+    { "section": "Coro" },
+    {
+      "lyrics": "Por que es tan natural",
+      "chords": [
+        { "chord": "E", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "sentir que ya te amo",
+      "chords": [
+        { "chord": "A", "position": 21 }
+      ]
+    },
+    {
+      "lyrics": "y que me estoy muriendo...",
+      "chords": [
+        { "chord": "B", "position": 21 }
+      ]
+    },
+    {
+      "lyrics": "por tenerte en mis brazos.",
+      "chords": [
+        { "chord": "E", "position": 22 }
+      ]
+    },
+    {
+      "lyrics": "por acariciarte",
+      "chords": [
+        { "chord": "A", "position": 15 }
+      ]
+    },
+    {
+      "lyrics": "y por sentir tu cuerpo.",
+      "chords": [
+        { "chord": "B", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "Por que vale la pena",
+      "chords": [
+        { "chord": "C#m", "position": 17 }
+      ]
+    },
+    {
+      "lyrics": "darte y darte amor",
+      "chords": [
+        { "chord": "A", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "aunque te encuentres lejos.",
+      "chords": [
+        { "chord": "B", "position": 23 }
+      ]
+    },
+    {
+      "lyrics": "No le temas a nada",
+      "chords": [
+        { "chord": "C#m", "position": 18 }
+      ]
+    },
+    {
+      "lyrics": "por que aquí estoy yo",
+      "chords": [
+        { "chord": "A", "position": 20 }
+      ]
+    },
+    {
+      "lyrics": "y yo soy tu complemento.",
+      "chords": [
+        { "chord": "B", "position": 19 }
+      ]
+    },
+    { "section": "Final" },
+    {
+      "lyrics": "(final)",
+      "chords": [
+        { "chord": "A", "position": 0 },
+        { "chord": "E", "position": 7 }
+      ]
+    }
+  ]
+}
