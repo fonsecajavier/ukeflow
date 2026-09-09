@@ -769,6 +769,61 @@
     border-radius: 4px;
 }
 
+/* Ear drill scaffolding: replay, walk-up, difficulty */
+.scale-drill-controls {
+    margin-bottom: 15px;
+    padding: 12px;
+    background: rgba(52, 152, 219, 0.06);
+    border-radius: 8px;
+}
+
+.scale-drill-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.scale-help-btn {
+    padding: 9px 16px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #3498db;
+    background: rgba(52, 152, 219, 0.12);
+    border: 1px solid rgba(52, 152, 219, 0.45);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+@media (hover: hover) {
+    .scale-help-btn:hover:not(:disabled) {
+        background: rgba(52, 152, 219, 0.22);
+    }
+}
+
+.scale-help-btn:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+.scale-drill-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+}
+
+.scale-level-hint {
+    margin: 10px 0 0;
+    text-align: center;
+    color: #8a95a1;
+    font-size: 0.8rem;
+    line-height: 1.45;
+}
+
 @media (max-width: 600px) {
     .practice-controls {
         flex-direction: column;
@@ -822,6 +877,15 @@
     }
 
     .scale-controls {
+        gap: 10px;
+    }
+
+    .scale-drill-buttons {
+        flex-direction: column;
+    }
+
+    .scale-drill-options {
+        flex-direction: column;
         gap: 10px;
     }
 

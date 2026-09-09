@@ -386,7 +386,7 @@ four strings and locked into `tests/scales.test.js`:
 | Drill | Trains | How it works |
 |-------|--------|--------------|
 | Listen | The ear | Plays the box over a held tonic drone, lighting each note as it sounds |
-| Ear Drill | Ear to fretboard | Sounds one degree with the dots HIDDEN; you tap where it is. Scored with a streak |
+| Ear Drill | Ear to fretboard | Sounds one degree; you tap where it is. Scored with a streak |
 | Play Along | The hand | Metronome names the next note and sounds nothing; you play it |
 
 The **tonic drone** is what makes this ear training rather than finger drilling:
@@ -397,6 +397,33 @@ Ear-drill answers are judged on **pitch, not fret position**: on a re-entrant
 instrument the same note genuinely exists in more than one place (G4 is both the
 open G string and C-string fret 7), so finding it elsewhere is a right answer and
 is acknowledged as such.
+
+##### Ear drill scaffolding
+
+The first version of this drill asked about all eight notes on a blank neck with
+one hearing, which is an expert-level task and teaches nothing to a learner who
+cannot place any of the notes yet. It now starts at the easy end and provides the
+method rather than assuming it:
+
+- `EAR_LEVELS` in `scales.js` with `filterPathByLevel()` restricts which degrees
+  may be asked about. Selection is by **semitone above the tonic**, not by degree
+  label, so one level definition covers a major scale, a natural minor, a
+  pentatonic and the blues scale without a table per scale type. It falls back to
+  the whole path if a level would leave fewer than two notes, since a drill with
+  one possible answer is not a drill (locrian, which has no perfect 5th, is the
+  case that exercises this).
+  Default is **Anchors**: tonic, third, fifth.
+- **Show the shape** (default on) leaves the dots up, so the question is "which
+  of these" rather than "where on the neck". Blanking the neck also tests recall
+  of the shape, which is a different skill from identifying the pitch.
+- **Hear it again** replays the target without limit - it is not a memory test.
+- **Walk up from the tonic** plays 1, 2, b3, 4, 5... to the target, naming each
+  degree as it sounds. This demonstrates the technique the drill is really about:
+  you do not recognise a pitch, you count steps up from a reference you can
+  always hear. It names degrees but never highlights positions, so it reveals the
+  answer without revealing where the answer lives. Such questions increment
+  `score.assisted` and are excluded from the score, which stays a measure of
+  unaided ability.
 
 #### Audio (audio.js additions)
 

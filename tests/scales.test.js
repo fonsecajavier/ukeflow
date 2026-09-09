@@ -280,6 +280,70 @@ check('Bb partial run carries the notice',
     typeof S.getMelodyBox('Bb', 'major').notice === 'string');
 
 // ---------------------------------------------------------------------------
+section('Ear drill difficulty levels');
+
+Object.entries(S.EAR_LEVELS).forEach(([key, level]) => {
+    check(`${key} has a name`, typeof level.name === 'string' && level.name.length > 0);
+    check(`${key} has a hint`, typeof level.hint === 'string' && level.hint.length > 0);
+    check(`${key} semitones are null or a list`,
+        level.semitones === null || Array.isArray(level.semitones));
+});
+
+const gmPath = S.getMelodyBox('Gm', 'minor').path;
+
+check('every path step carries its semitone above the tonic',
+    gmPath.every(step => Number.isInteger(step.semitone)));
+check('the first step is the tonic at semitone 0', gmPath[0].semitone === 0);
+check('the last step is the octave at semitone 12',
+    gmPath[gmPath.length - 1].semitone === 12);
+
+// Anchors: tonic, third, fifth - told apart by feel, not measurement
+check('Gm anchors level asks only 1, b3, 5 and the octave',
+    S.filterPathByLevel(gmPath, 'anchors').map(s => s.degree).join(',') === '1,b3,5,1',
+    S.filterPathByLevel(gmPath, 'anchors').map(s => s.degree).join(','));
+check('C major anchors level asks only 1, 3, 5 and the octave',
+    S.filterPathByLevel(S.getMelodyBox('C', 'major').path, 'anchors')
+        .map(s => s.degree).join(',') === '1,3,5,1');
+check('anchors is strictly smaller than the full path',
+    S.filterPathByLevel(gmPath, 'anchors').length < gmPath.length);
+check('core level sits between anchors and all',
+    S.filterPathByLevel(gmPath, 'core').length > S.filterPathByLevel(gmPath, 'anchors').length &&
+    S.filterPathByLevel(gmPath, 'core').length < gmPath.length);
+check('all level returns the whole path',
+    S.filterPathByLevel(gmPath, 'all').length === gmPath.length);
+check('the returned steps are the same objects, so indexOf into the path works',
+    S.filterPathByLevel(gmPath, 'anchors').every(step => gmPath.indexOf(step) !== -1));
+
+// Every level, every scale must leave something drillable
+let thinPools = [];
+TYPES.forEach(type => {
+    ROOTS.forEach(root => {
+        const path = S.getMelodyBox(root, type).path;
+        Object.keys(S.EAR_LEVELS).forEach(levelKey => {
+            const pool = S.filterPathByLevel(path, levelKey);
+            if (pool.length < 2) thinPools.push(`${root} ${type} @ ${levelKey} (${pool.length})`);
+            if (!pool.every(step => path.includes(step))) {
+                failed++;
+                console.log(`  FAIL  ${root} ${type} @ ${levelKey}: pool escaped the path`);
+            }
+        });
+    });
+});
+check('no level leaves fewer than two notes to choose between, in any key or scale',
+    thinPools.length === 0, thinPools.join(', '));
+
+// A scale with no perfect fifth still has to work - locrian is the awkward case
+const locrianAnchors = S.filterPathByLevel(S.getMelodyBox('C', 'locrian').path, 'anchors');
+check('locrian, which has no perfect 5th, still yields a usable anchor pool',
+    locrianAnchors.length >= 2 && !locrianAnchors.some(s => s.degree === '5'),
+    locrianAnchors.map(s => s.degree).join(','));
+
+check('an unknown level falls back to the whole path',
+    S.filterPathByLevel(gmPath, 'no-such-level').length === gmPath.length);
+check('a non-array path yields an empty pool',
+    S.filterPathByLevel(null, 'anchors').length === 0);
+
+// ---------------------------------------------------------------------------
 section('Practice patterns');
 
 const eightNotes = 8;

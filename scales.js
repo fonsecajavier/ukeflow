@@ -399,6 +399,9 @@ function getMelodyBox(root, typeKey) {
             midi: step.midi,
             noteName: scaleNoteName(step.midi, root, typeKey),
             noteNameWithOctave: scaleNoteName(step.midi, root, typeKey, true),
+            // Semitones above the tonic. Carried so the ear-drill difficulty
+            // levels can select notes by interval (see filterPathByLevel).
+            semitone,
             degree: semitone === 12 ? '1' : (note ? note.degree : SCALE_DEGREE_LABELS[semitone % 12]),
             isRoot: semitone % 12 === 0,
             isOctave: semitone === 12,
@@ -474,6 +477,64 @@ function explainScaleRange(root, typeKey) {
 }
 
 /**
+ * Ear-drill difficulty levels: which notes of the box may be asked about.
+ *
+ * Eight notes on a blank neck is an expert-level task, and starting there
+ * teaches nothing - you cannot count up to a note you cannot place at all. The
+ * levels narrow the pool to the degrees with the strongest character first:
+ *
+ *   Anchors - the tonic, the third and the fifth. The tonic sounds identical to
+ *             the drone, the fifth nearly disappears into it, and the third is
+ *             what makes the key major or minor. Three sounds that are told
+ *             apart by feel rather than by measurement.
+ *   Core    - adds the 2nd and the 7th, the two that lean most audibly (the 7th
+ *             wants to fall, the 2nd sits a step off home).
+ *   All     - every note in the shape.
+ *
+ * Selection is by SEMITONE above the tonic rather than by degree label, so the
+ * same level works for a major scale, a natural minor, a pentatonic or the blues
+ * scale without needing a table per scale type. `semitones: null` means all.
+ */
+const EAR_LEVELS = {
+    'anchors': {
+        name: 'Anchors (1, 3, 5)',
+        // major and minor thirds both, so one entry covers either quality
+        semitones: [0, 3, 4, 7, 12],
+        hint: 'The tonic sounds like the drone, the 5 almost vanishes into it, and the 3 carries the major or minor colour.',
+    },
+    'core': {
+        name: 'Core (adds 2 and 7)',
+        semitones: [0, 2, 3, 4, 7, 10, 11, 12],
+        hint: 'The 7 leans downward and wants to fall; the 2 sits one step off home.',
+    },
+    'all': {
+        name: 'Every note in the shape',
+        semitones: null,
+        hint: 'The full scale, including the 4 and the 6 - the two that need the most listening.',
+    },
+};
+
+/**
+ * Narrow a melody box path to the notes a difficulty level may ask about.
+ *
+ * Falls back to the whole path if a level would leave fewer than two notes to
+ * choose between, since a drill with one possible answer is not a drill.
+ *
+ * @param {Array} path - `path` from getMelodyBox()
+ * @param {string} levelKey - key into EAR_LEVELS
+ * @returns {Array} the subset of path that may be used as targets
+ */
+function filterPathByLevel(path, levelKey) {
+    if (!Array.isArray(path)) return [];
+    const level = EAR_LEVELS[levelKey];
+    if (!level || !level.semitones) return path.slice();
+
+    const allowed = new Set(level.semitones);
+    const filtered = path.filter(step => allowed.has(step.semitone));
+    return filtered.length >= 2 ? filtered : path.slice();
+}
+
+/**
  * Practice patterns over a melody box path. Each returns indices into the path.
  *
  * These are what turns a shape into muscle memory - a scale played only straight
@@ -517,6 +578,8 @@ if (typeof window !== 'undefined') {
     window.SCALE_TYPES = SCALE_TYPES;
     window.SCALE_DEGREE_LABELS = SCALE_DEGREE_LABELS;
     window.SCALE_PATTERNS = SCALE_PATTERNS;
+    window.EAR_LEVELS = EAR_LEVELS;
+    window.filterPathByLevel = filterPathByLevel;
     window.parseScaleRoot = parseScaleRoot;
     window.scaleUsesFlats = scaleUsesFlats;
     window.scaleNoteName = scaleNoteName;
@@ -527,9 +590,10 @@ if (typeof window !== 'undefined') {
 }
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
-        SCALE_TYPES, SCALE_DEGREE_LABELS, SCALE_PATTERNS,
+        SCALE_TYPES, SCALE_DEGREE_LABELS, SCALE_PATTERNS, EAR_LEVELS,
         LOWEST_MIDI, HIGHEST_MIDI, MAX_FRET, MIN_BOX_WIDTH, MAX_BOX_WIDTH,
         parseScaleRoot, scaleUsesFlats, scaleNoteName,
         getScaleNotes, getScalePositions, getMelodyBox, explainScaleRange,
+        filterPathByLevel,
     };
 }

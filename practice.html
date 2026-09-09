@@ -119,6 +119,30 @@
                 </label>
             </div>
 
+            <!-- Ear drill only: the scaffolding that makes the drill learnable -->
+            <div class="scale-drill-controls" id="scale-drill-controls" style="display: none;">
+                <div class="scale-drill-buttons">
+                    <button class="scale-help-btn" id="scale-replay" disabled title="Play the note again">
+                        &#128266; Hear it again
+                    </button>
+                    <button class="scale-help-btn" id="scale-walk" disabled
+                            title="Play up the scale from the tonic, naming each degree, so you hear the counting">
+                        &#8599; Walk up from the tonic
+                    </button>
+                </div>
+                <div class="scale-drill-options">
+                    <div class="scale-control">
+                        <label for="scale-level">Ask about:</label>
+                        <select id="scale-level"></select>
+                    </div>
+                    <label class="scale-toggle" title="Leave the shape on screen, so you only pick which dot you heard">
+                        <input type="checkbox" id="scale-show-box" checked>
+                        Show the shape
+                    </label>
+                </div>
+                <p class="scale-level-hint" id="scale-level-hint"></p>
+            </div>
+
             <div class="scale-status" id="scale-status"></div>
             <div class="scale-score" id="scale-score" style="display: none;"></div>
             <p class="scale-insight" id="scale-insight"></p>

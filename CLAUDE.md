@@ -20,7 +20,7 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
 |------|----------|
 | `chords.js` | CHORDS definitions, SCALE_DEGREES_MAJOR/MINOR, CHORD_VARIATIONS, transposeChord(), transposeKey(), getScaleDegree(), isMinorKey(), getChordVariations(), resolveChord(), computeChordFromFrets(), respellChord(), canonicalRoot(), chordBaseName() |
 | `voicings.js` | Chord-melody voicing generator. UKULELE_MIDI, CHORD_TYPES, findMelodyVoicings(), findEasiestVoicing(), explainNoVoicings(), parseChordSymbol(), parseNoteName(), midiToNoteName(), fretToMidi(), countFingers(), degreeLabel() |
-| `scales.js` | Scale theory and the melody box finder. SCALE_TYPES, SCALE_DEGREE_LABELS, SCALE_PATTERNS, getScaleNotes(), getScalePositions(), getMelodyBox(), explainScaleRange(), scaleNoteName(). Borrows the MIDI/tuning helpers from voicings.js. No DOM. Loaded by practice.html only |
+| `scales.js` | Scale theory and the melody box finder. SCALE_TYPES, SCALE_DEGREE_LABELS, SCALE_PATTERNS, EAR_LEVELS, getScaleNotes(), getScalePositions(), getMelodyBox(), filterPathByLevel(), explainScaleRange(), scaleNoteName(). Borrows the MIDI/tuning helpers from voicings.js. No DOM. Loaded by practice.html only |
 | `state.js` | `state` object (songIndex, songCache, currentSong, transpose, etc.), slugify(), getDisplayKey(), displayChordName(), detectAccidentalStyle() |
 | `patterns.js` | PLAY_STYLES (strums/arpeggios), currentBPM, currentPlayStyle, getBeat(), getPlayStyle() |
 | `audio.js` | audioContext, UKULELE_TUNING, pluckString(), playStrum(), playChunk(), playChord(), playChordArpeggio(), playChordMelody(), playFretNote(), startDrone(), stopDrone(), isDroneRunning(), restartDroneIfRunning() |
@@ -45,6 +45,7 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
 - **Change the scale fingering chosen**: `scales.js` → bestPathInWindow() cost function, or MIN_BOX_WIDTH/MAX_BOX_WIDTH
 - **Scales & Melody UI**: `melody.js`; markup in `practice.html` (`#scales-section`), styles in `practice.css`
 - **Add a scale practice pattern**: `scales.js` → SCALE_PATTERNS
+- **Change ear-drill difficulty**: `scales.js` → EAR_LEVELS and filterPathByLevel() (selection is by SEMITONE, so one level works for every scale type)
 - **Scale note dots on the fretboard**: `ui.js` → createFretboardSVG()'s `markers` argument; colours in `styles.css` (`.fretboard-note*`)
 - **Drone / single notes**: `audio.js` → startDrone(), stopDrone(), playFretNote()
 
@@ -113,6 +114,16 @@ Other things to preserve:
 - Ear-drill answers are judged on **pitch, not fret position** - the same note
   genuinely exists in several places on a re-entrant uke (G4 is both the open G
   string and C-string fret 7), so finding it elsewhere is correct.
+- The ear drill is **scaffolded, and the defaults are the easy end**: the shape
+  stays visible (so it tests the ear, not recall of the shape) and the pool is
+  the three anchors. Eight notes on a blank neck teaches nothing to someone who
+  cannot place any of them yet. Keep "Hear it again" unlimited - it is not a
+  memory test - and keep `walkUpFromTonic()` naming degrees WITHOUT highlighting
+  positions, so it reveals the answer but not its location. Assisted answers are
+  counted in `score.assisted` and kept out of the score proper.
+- `emptyScore()` is the single definition of a fresh scoreboard. A second
+  initialiser that forgot a counter is how `assisted` once incremented from
+  undefined into NaN.
 - Scale note names are spelled **for the key**: G minor shows Bb, never A#. See
   `scaleUsesFlats()`.
 - `SCALE_DEGREE_LABELS` is deliberately NOT `DEGREE_LABELS` from `voicings.js`:

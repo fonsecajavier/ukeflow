@@ -61,7 +61,7 @@ scale types, asserted in `tests/scales.test.js`):
 | Drill | Trains | Behaviour |
 |-------|--------|-----------|
 | 1. Listen | Ear | Plays the box over a held tonic drone, lighting each note as it sounds |
-| 2. Ear Drill | Ear to fretboard | Sounds one degree with the dots hidden; tap where it is. Scored with a streak |
+| 2. Ear Drill | Ear to fretboard | Sounds one degree; tap where it is. Scored with a streak |
 | 3. Play Along | Hand | Metronome names the next note but plays nothing - you play it |
 
 **Features:**
@@ -77,10 +77,42 @@ scale types, asserted in `tests/scales.test.js`):
 - **Tap any dot** to hear that note
 - **Flip** string order, as elsewhere in the app
 - **Bookmarkable URLs**: `practice.html?mode=scales&root=G&scale=minor&drill=ear`
+  (plus `&level=core|all` and `&hideshape=1` for the ear drill's difficulty)
 
 **Ear-drill answers are judged on pitch, not position.** On a re-entrant ukulele
 the same note exists in more than one place (G4 is both the open G string and
 C-string fret 7), so finding it somewhere else is correct, and the app says so.
+
+#### Ear drill scaffolding
+
+Eight notes on a blank neck is an expert-level task, and it teaches nothing if
+you have no way in - you cannot count up to a note you cannot place at all. So
+the drill starts easy and has training wheels:
+
+- **Hear it again** - replay the note as often as you like. It is not a memory
+  test.
+- **Walk up from the tonic** - plays 1, 2, b3, 4, 5... up to the target, naming
+  each degree as it sounds, so you *hear* the counting method being used.
+  Positions are never highlighted during the walk, only degrees named, so it
+  gives away the answer without giving away where the answer lives. Questions
+  answered this way are counted separately and kept out of the score, since they
+  say nothing about unaided ability.
+- **Ask about** - the pool of degrees. Defaults to **Anchors (1, 3, 5)**: the
+  tonic sounds identical to the drone, the 5 nearly vanishes into it, and the 3
+  carries the major or minor colour, so all three are told apart by feel rather
+  than by measurement. Then **Core** adds the 2 and the 7, and **Every note**
+  opens it up.
+- **Show the shape** (on by default) - leaves the dots on screen, so the question
+  is "which of these did you hear" rather than "where is this on the neck".
+  Turning it off blanks the neck for the hard version. With it on you are only
+  being tested on your ear; with it off you are also being tested on recall of
+  the shape, which is a separate skill.
+
+**The method the drill is teaching:** don't try to name the pitch. Hum the drone,
+step your voice up the scale until it matches the note, and count where you
+stopped - that is the degree. Then find that degree on the shape. You are
+measuring an interval from a reference you can always hear, not identifying an
+absolute pitch.
 
 ## Files
 
@@ -90,7 +122,7 @@ C-string fret 7), so finding it somewhere else is correct, and the app says so.
 | `practice.css` | Layout, animations, responsive styles |
 | `practice.js` | Metronome loop, chord selection, progression logic |
 | `progressions.json` | Library of 15 common progressions with metadata |
-| `scales.js` | SCALE_TYPES, getMelodyBox(), getScalePositions(), explainScaleRange() - no DOM |
+| `scales.js` | SCALE_TYPES, EAR_LEVELS, getMelodyBox(), getScalePositions(), filterPathByLevel(), explainScaleRange() - no DOM |
 | `melody.js` | The Scales tab: the three drills, drone control, fretboard rendering |
 
 ## How It Works
@@ -126,8 +158,10 @@ C-string fret 7), so finding it somewhere else is correct, and the app says so.
 5. User picks a drill:
    - **Listen**: Start plays the box over the drone, lighting each note; the
      status line names the note, its degree, and where it is
-   - **Ear Drill**: dots vanish, a note sounds, the user taps their answer, and
-     the app confirms or reveals the right position. Streak is tracked
+   - **Ear Drill**: a note sounds, the user taps their answer, and the app
+     confirms or reveals the right position. Streak is tracked. "Hear it again"
+     replays; "Walk up from the tonic" counts up to the note out loud; the degree
+     pool and whether the shape stays visible are both adjustable
    - **Play Along**: the beat indicator appears and the metronome names each next
      note without sounding it
 6. Tapping any visible dot plays that note at any time

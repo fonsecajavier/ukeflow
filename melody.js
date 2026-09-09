@@ -20,6 +20,14 @@
  * Loaded after practice.js, and uses playMetronomeTick() from it.
  */
 
+/**
+ * A fresh scoreboard. Single definition on purpose: a second initialiser that
+ * forgot a counter is how `assisted` ended up incrementing from undefined.
+ */
+function emptyScore() {
+    return { correct: 0, total: 0, streak: 0, bestStreak: 0, assisted: 0 };
+}
+
 const melodyState = {
     root: 'G',
     type: 'minor',
@@ -39,6 +47,21 @@ const melodyState = {
 
     // Ear drill
     target: null,
+    // Which notes the drill may ask about (see EAR_LEVELS in scales.js).
+    // Starts at the three anchors: eight notes is an expert-level pool.
+    earLevel: 'anchors',
+    // Leave the shape on screen while asking, turning "where is this note on the
+    // neck" into "which of these dots is it" - much the easier question, and the
+    // one a learner actually wants at the start.
+    showBoxInDrill: true,
+    // The "walk up from the tonic" demonstration
+    walkTimerId: null,
+    // Tracked separately from walkTimerId, which is still null during the very
+    // first note (that call comes straight from walkUpFromTonic, not from a
+    // timer) and would otherwise make the status flash its finished message.
+    walking: false,
+    walkDegrees: [],
+    usedHelp: false,
     // The pending "move to the next question" timer. Tracked so it can be
     // cancelled: an untracked timer fired after a Stop and a quick Start again,
     // double-advancing the drill.
@@ -46,7 +69,7 @@ const melodyState = {
     awaitingAnswer: false,
     revealed: false,
     lastAnswerCorrect: null,
-    score: { correct: 0, total: 0, streak: 0, bestStreak: 0 },
+    score: emptyScore(),
 };
 
 const melodyElements = {};
@@ -65,9 +88,10 @@ const DRILL_HINTS = {
     listen: 'The app plays the scale over a held tonic. Just listen first - the drone ' +
             'is what makes each degree sound like a job (the 5 settles, the b7 wants to fall) ' +
             'instead of just a pitch. Play along once it sticks.',
-    ear: 'A single note from the scale is played over the tonic. Tap where you think it ' +
-         'is on the fretboard. The dots are hidden on purpose - this is the drill that ' +
-         'makes a key feel familiar.',
+    ear: 'A note from the scale is played over the tonic. Do not try to name it - hum ' +
+         'the drone, then step your voice up the scale (1, 2, 3...) until it matches, and ' +
+         'count where you stopped. Then tap that degree. "Walk up from the tonic" does the ' +
+         'counting out loud for you.',
     play: 'The metronome names the next note and waits for you to play it. Nothing is ' +
           'sounded for you, so your hand has to know the shape.',
 };
@@ -94,6 +118,12 @@ function initMelodyPractice() {
         status: 'scale-status',
         score: 'scale-score',
         insight: 'scale-insight',
+        drillControls: 'scale-drill-controls',
+        replay: 'scale-replay',
+        walk: 'scale-walk',
+        level: 'scale-level',
+        levelHint: 'scale-level-hint',
+        showBox: 'scale-show-box',
     };
     Object.entries(ids).forEach(([key, id]) => {
         melodyElements[key] = document.getElementById(id);
@@ -121,6 +151,14 @@ function initMelodyPractice() {
     melodyElements.drillTabs.querySelectorAll('.scale-drill-tab').forEach(tab => {
         tab.addEventListener('click', () => setMelodyDrill(tab.dataset.drill));
     });
+
+    melodyElements.replay.addEventListener('click', playEarTarget);
+    melodyElements.walk.addEventListener('click', walkUpFromTonic);
+    melodyElements.showBox.addEventListener('change', () => {
+        melodyState.showBoxInDrill = melodyElements.showBox.checked;
+        renderMelodyFretboard();
+    });
+    melodyElements.level.addEventListener('change', handleEarLevelChange);
 
     // Runs the drill setup for the default drill, so the hint and the pattern
     // selector are correct before the user touches anything.
@@ -150,6 +188,15 @@ function populateMelodySelectors() {
         option.textContent = type.name;
         if (key === melodyState.type) option.selected = true;
         melodyElements.type.appendChild(option);
+    });
+
+    melodyElements.level.innerHTML = '';
+    Object.entries(EAR_LEVELS).forEach(([key, level]) => {
+        const option = document.createElement('option');
+        option.value = key;
+        option.textContent = level.name;
+        if (key === melodyState.earLevel) option.selected = true;
+        melodyElements.level.appendChild(option);
     });
 
     melodyElements.pattern.innerHTML = '';
@@ -260,15 +307,19 @@ function renderMelodyFretboard() {
     melodyElements.fretboard.innerHTML = '';
     if (!box || !box.path.length) return;
 
-    const hideNotes = melodyState.drill === 'ear' && !melodyState.revealed;
+    // Blank the neck only if the learner asked for the hard version. With the
+    // shape left up, the question becomes "which of these dots" - and crucially
+    // it stops testing recall of the shape at the same time as the ear.
+    const hideNotes = melodyState.drill === 'ear'
+        && !melodyState.revealed
+        && !melodyState.showBoxInDrill;
 
     const markers = [];
     box.path.forEach((step, index) => {
         const isActive = melodyState.activePathIndex === index;
         const isTarget = melodyState.target && melodyState.target.pathIndex === index;
 
-        if (hideNotes && !isTarget) return;
-        if (hideNotes && isTarget && !melodyState.revealed) return;
+        if (hideNotes) return;
 
         const classes = [];
         if (step.isRoot) classes.push('scale-note-root');
@@ -335,6 +386,7 @@ function setMelodyDrill(drill) {
     melodyState.awaitingAnswer = false;
     melodyState.lastAnswerCorrect = null;
     melodyState.lastGuess = null;
+    clearWalk();
 
     melodyElements.drillTabs.querySelectorAll('.scale-drill-tab').forEach(tab => {
         tab.classList.toggle('active', tab.dataset.drill === drill);
@@ -346,6 +398,12 @@ function setMelodyDrill(drill) {
     if (melodyElements.patternControl) {
         melodyElements.patternControl.style.display = drill === 'ear' ? 'none' : '';
     }
+    // Replay / walk-up / difficulty only mean anything in the ear drill
+    if (melodyElements.drillControls) {
+        melodyElements.drillControls.style.display = drill === 'ear' ? '' : 'none';
+    }
+    renderEarLevelHint();
+    updateEarButtonState();
 
     renderMelodyFretboard();
     renderMelodyStatus();
@@ -372,7 +430,7 @@ async function startMelodyPractice() {
 
     melodyState.isRunning = true;
     melodyState.beat = 0;
-    melodyState.score = { correct: 0, total: 0, streak: 0, bestStreak: 0 };
+    melodyState.score = emptyScore();
 
     if (melodyState.droneEnabled) await startMelodyDrone();
 
@@ -392,6 +450,7 @@ function stopMelodyPractice() {
     melodyState.isRunning = false;
     stopMelodyLoop();
     clearEarTimeout();
+    clearWalk();
     stopDrone(true);
 
     melodyState.activePathIndex = null;
@@ -400,6 +459,7 @@ function stopMelodyPractice() {
     melodyState.revealed = false;
 
     updateMelodyButtonState();
+    updateEarButtonState();
     renderMelodyFretboard();
     renderMelodyStatus();
     clearMelodyBeatIndicator();
@@ -513,15 +573,23 @@ function nextEarQuestion() {
     if (!box || !box.path.length) return;
 
     clearEarTimeout();
+    clearWalk();
+    melodyState.usedHelp = false;
+
+    // Only the degrees this difficulty level allows. Indices are into the FULL
+    // path, so the fretboard and the reveal still work unchanged.
+    const pool = filterPathByLevel(box.path, melodyState.earLevel);
+    const candidates = pool.map(step => box.path.indexOf(step)).filter(i => i !== -1);
 
     const previous = melodyState.target ? melodyState.target.pathIndex : null;
-    let pathIndex = previous;
-    if (box.path.length > 1) {
-        while (pathIndex === previous) {
-            pathIndex = Math.floor(Math.random() * box.path.length);
-        }
+    let pathIndex;
+    if (candidates.length > 1) {
+        // Never ask the same note twice running - a repeat gets answered from
+        // memory instead of by listening.
+        const fresh = candidates.filter(i => i !== previous);
+        pathIndex = fresh[Math.floor(Math.random() * fresh.length)];
     } else {
-        pathIndex = 0;
+        pathIndex = candidates.length ? candidates[0] : 0;
     }
 
     melodyState.target = { pathIndex, step: box.path[pathIndex] };
@@ -532,6 +600,7 @@ function nextEarQuestion() {
 
     renderMelodyFretboard();
     renderMelodyStatus();
+    updateEarButtonState();
     playEarTarget();
 }
 
@@ -539,6 +608,82 @@ function playEarTarget() {
     if (!melodyState.target) return;
     const { step } = melodyState.target;
     playFretNote(step.string, step.fret, { duration: 1.8, volume: 0.36 });
+}
+
+/**
+ * Difficulty changed. Applies to the next question rather than yanking the
+ * current one away mid-answer.
+ */
+function handleEarLevelChange() {
+    melodyState.earLevel = melodyElements.level.value;
+    renderEarLevelHint();
+    updateMelodyUrlParams();
+}
+
+function renderEarLevelHint() {
+    if (!melodyElements.levelHint) return;
+    const level = EAR_LEVELS[melodyState.earLevel];
+    melodyElements.levelHint.textContent = level ? level.hint : '';
+}
+
+/**
+ * Play up the scale from the tonic to the target, one note at a time, naming
+ * each degree as it sounds.
+ *
+ * This demonstrates the actual technique rather than assuming it: you do not
+ * identify a note by recognising its pitch, you count steps up from a reference
+ * you can always hear. Hearing the count done for you a few times is what makes
+ * it possible to do silently later.
+ *
+ * Positions are never highlighted during the walk - only the degrees are named -
+ * so it gives away the ANSWER without giving away where the answer lives, which
+ * is the part being practised.
+ */
+function walkUpFromTonic() {
+    if (!melodyState.target || melodyState.walking) return;
+    const box = melodyState.box;
+    if (!box || !box.path.length) return;
+
+    // Using the help means this question no longer measures unaided ability, so
+    // it is counted separately rather than inflating the score.
+    melodyState.usedHelp = true;
+    melodyState.walkDegrees = [];
+    melodyState.walking = true;
+
+    const lastIndex = melodyState.target.pathIndex;
+    const stepMs = 460;
+    let index = 0;
+
+    const playNext = () => {
+        if (index > lastIndex) {
+            melodyState.walkTimerId = null;
+            melodyState.walking = false;
+            renderMelodyStatus();
+            updateEarButtonState();
+            return;
+        }
+        const step = box.path[index];
+        playFretNote(step.string, step.fret, { duration: 0.9, volume: 0.3 });
+        melodyState.walkDegrees.push(step.degree);
+        renderMelodyStatus();
+        index++;
+        melodyState.walkTimerId = setTimeout(playNext, stepMs);
+    };
+
+    playNext();
+    updateEarButtonState();
+}
+
+/**
+ * Stop a walk in progress.
+ */
+function clearWalk() {
+    if (melodyState.walkTimerId !== null) {
+        clearTimeout(melodyState.walkTimerId);
+        melodyState.walkTimerId = null;
+    }
+    melodyState.walking = false;
+    melodyState.walkDegrees = [];
 }
 
 /**
@@ -570,18 +715,25 @@ function submitEarAnswer(stringIndex, fret) {
                                 fret === melodyState.target.step.fret),
     };
 
-    melodyState.score.total++;
-    if (correct) {
-        melodyState.score.correct++;
-        melodyState.score.streak++;
-        melodyState.score.bestStreak = Math.max(melodyState.score.bestStreak, melodyState.score.streak);
+    if (melodyState.usedHelp) {
+        // Answered with the counting done for you, so it says nothing about
+        // unaided ability. Tracked, but kept out of the score.
+        melodyState.score.assisted++;
     } else {
-        melodyState.score.streak = 0;
+        melodyState.score.total++;
+        if (correct) {
+            melodyState.score.correct++;
+            melodyState.score.streak++;
+            melodyState.score.bestStreak = Math.max(melodyState.score.bestStreak, melodyState.score.streak);
+        } else {
+            melodyState.score.streak = 0;
+        }
     }
 
     renderMelodyFretboard();
     renderMelodyStatus();
     renderMelodyScore();
+    updateEarButtonState();
 
     // Let the answer be seen and heard before moving on.
     clearEarTimeout();
@@ -621,8 +773,21 @@ function renderMelodyStatus() {
             melodyElements.status.className = 'scale-status';
             return;
         }
+        if (melodyState.walkDegrees.length) {
+            const walking = melodyState.walking;
+            const counted = melodyState.walkDegrees.join(' · ');
+            melodyElements.status.textContent = walking
+                ? `Counting up from the tonic: ${counted}…`
+                : `Counting up from the tonic: ${counted} — the last one is your note. ` +
+                  `Now find the ${melodyState.walkDegrees[melodyState.walkDegrees.length - 1]}.`;
+            melodyElements.status.className = 'scale-status scale-status-waiting';
+            if (!melodyState.awaitingAnswer) melodyElements.status.className = 'scale-status';
+            return;
+        }
         if (melodyState.awaitingAnswer) {
-            melodyElements.status.textContent = 'Listening… tap where that note is.';
+            melodyElements.status.textContent = melodyState.showBoxInDrill
+                ? 'Listening… tap which of the dots you just heard.'
+                : 'Listening… tap where that note is.';
             melodyElements.status.className = 'scale-status scale-status-waiting';
             return;
         }
@@ -671,16 +836,24 @@ function renderMelodyStatus() {
 function renderMelodyScore() {
     if (!melodyElements.score) return;
 
-    if (melodyState.drill !== 'ear' || melodyState.score.total === 0) {
+    const { correct, total, streak, bestStreak, assisted } = melodyState.score;
+
+    if (melodyState.drill !== 'ear' || (total === 0 && assisted === 0)) {
         melodyElements.score.style.display = 'none';
         return;
     }
 
-    const { correct, total, streak, bestStreak } = melodyState.score;
-    const percent = Math.round((correct / total) * 100);
     melodyElements.score.style.display = '';
-    melodyElements.score.textContent =
-        `${correct}/${total} correct (${percent}%) · streak ${streak} · best ${bestStreak}`;
+    const parts = [];
+    if (total > 0) {
+        parts.push(`${correct}/${total} correct (${Math.round((correct / total) * 100)}%)`);
+        parts.push(`streak ${streak}`);
+        parts.push(`best ${bestStreak}`);
+    }
+    if (assisted > 0) {
+        parts.push(`${assisted} walked up (not scored)`);
+    }
+    melodyElements.score.textContent = parts.join(' · ');
 }
 
 /**
@@ -700,6 +873,18 @@ function updateMelodyButtonState() {
         btn.classList.remove('playing');
         icon.innerHTML = '&#9654;';
         text.textContent = melodyState.drill === 'ear' ? 'Start ear drill' : 'Start';
+    }
+}
+
+/**
+ * Replay and walk-up only work while a note is in play, so they are disabled
+ * rather than silently doing nothing.
+ */
+function updateEarButtonState() {
+    const hasTarget = melodyState.drill === 'ear' && melodyState.target !== null;
+    if (melodyElements.replay) melodyElements.replay.disabled = !hasTarget;
+    if (melodyElements.walk) {
+        melodyElements.walk.disabled = !hasTarget || melodyState.walking;
     }
 }
 
@@ -782,6 +967,10 @@ function updateMelodyUrlParams() {
     params.set('root', melodyState.root);
     params.set('scale', melodyState.type);
     if (melodyState.drill !== 'listen') params.set('drill', melodyState.drill);
+    if (melodyState.drill === 'ear') {
+        if (melodyState.earLevel !== 'anchors') params.set('level', melodyState.earLevel);
+        if (!melodyState.showBoxInDrill) params.set('hideshape', '1');
+    }
     if (getMelodyTempo() !== 120) params.set('tempo', getMelodyTempo());
 
     window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
@@ -809,6 +998,16 @@ function loadMelodyFromUrlParams() {
     }
     if (drill && DRILL_HINTS[drill]) {
         melodyState.drill = drill;
+    }
+
+    const level = params.get('level');
+    if (level && EAR_LEVELS[level]) {
+        melodyState.earLevel = level;
+        if (melodyElements.level) melodyElements.level.value = level;
+    }
+    if (params.get('hideshape') === '1') {
+        melodyState.showBoxInDrill = false;
+        if (melodyElements.showBox) melodyElements.showBox.checked = false;
     }
     return true;
 }
