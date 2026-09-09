@@ -977,12 +977,24 @@ function createFretboardSVG(fretState, callbacks, flipped = true, markers = []) 
     const numStrings = 4;
 
     // Dimensions
-    const width = 480;
+    const width = 500;
     const height = 180;
-    const leftPadding = 35;  // Space for string labels
-    const topPadding = 30;   // Space for open/muted markers
+    const leftPadding = 52;  // string labels PLUS the open-string column
+    const topPadding = 30;
     const rightPadding = 20;
     const bottomPadding = 25; // Space for fret numbers
+
+    // The open string gets a column of its own, to the LEFT of the nut, with a
+    // dead gap before it. Previously the open hit area (x 23-47) overlapped
+    // fret 1's (x 35-70) and lost, because the fret areas are appended later and
+    // so sit on top - the open marker was drawn at x 35, which is fret 1's very
+    // first pixel, so clicking the middle of the O selected fret 1 instead.
+    // These two zones must never overlap; tests/fretboard-hitboxes.test.js
+    // fails if they do.
+    const openColumnLeft = 22;
+    const openColumnRight = leftPadding - 4;   // 4px of dead space before the nut
+    const openColumnCenter = (openColumnLeft + openColumnRight) / 2;
+    const labelX = 11;                          // clear of the open column
 
     const fretboardWidth = width - leftPadding - rightPadding;
     const fretboardHeight = height - topPadding - bottomPadding;
@@ -1045,7 +1057,7 @@ function createFretboardSVG(fretState, callbacks, flipped = true, markers = []) 
 
         // String label on the left
         const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        label.setAttribute('x', leftPadding - 15);
+        label.setAttribute('x', labelX);
         label.setAttribute('y', y + 4);
         label.setAttribute('text-anchor', 'middle');
         label.setAttribute('class', 'fretboard-label');
@@ -1104,19 +1116,21 @@ function createFretboardSVG(fretState, callbacks, flipped = true, markers = []) 
         const openGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
         openGroup.style.cursor = 'pointer';
 
+        // As tall as a fret cell, so it is no harder to hit than any other note
         const openArea = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        openArea.setAttribute('x', leftPadding - 12);
-        openArea.setAttribute('y', y - 10);
-        openArea.setAttribute('width', 24);
-        openArea.setAttribute('height', 20);
+        openArea.setAttribute('x', openColumnLeft);
+        openArea.setAttribute('y', y - stringSpacing / 2);
+        openArea.setAttribute('width', openColumnRight - openColumnLeft);
+        openArea.setAttribute('height', stringSpacing);
         openArea.setAttribute('fill', 'transparent');
+        openArea.setAttribute('class', 'fretboard-open-position');
         openGroup.appendChild(openArea);
 
         // Show open (O) or muted (X) marker
         if (currentValue === 0) {
             // Open string - solid green circle
             const openCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-            openCircle.setAttribute('cx', leftPadding);
+            openCircle.setAttribute('cx', openColumnCenter);
             openCircle.setAttribute('cy', y);
             openCircle.setAttribute('r', 6);
             openCircle.setAttribute('class', 'fretboard-open');
@@ -1124,17 +1138,17 @@ function createFretboardSVG(fretState, callbacks, flipped = true, markers = []) 
         } else if (currentValue === -1) {
             // Muted string - X
             const line1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line1.setAttribute('x1', leftPadding - 5);
+            line1.setAttribute('x1', openColumnCenter - 5);
             line1.setAttribute('y1', y - 5);
-            line1.setAttribute('x2', leftPadding + 5);
+            line1.setAttribute('x2', openColumnCenter + 5);
             line1.setAttribute('y2', y + 5);
             line1.setAttribute('class', 'fretboard-muted');
             openGroup.appendChild(line1);
 
             const line2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line2.setAttribute('x1', leftPadding + 5);
+            line2.setAttribute('x1', openColumnCenter + 5);
             line2.setAttribute('y1', y - 5);
-            line2.setAttribute('x2', leftPadding - 5);
+            line2.setAttribute('x2', openColumnCenter - 5);
             line2.setAttribute('y2', y + 5);
             line2.setAttribute('class', 'fretboard-muted');
             openGroup.appendChild(line2);
@@ -1194,7 +1208,7 @@ function createFretboardSVG(fretState, callbacks, flipped = true, markers = []) 
         // An open string has no fret space of its own, so its marker sits on
         // the nut where the "O" would go.
         const x = marker.fret === 0
-            ? leftPadding
+            ? openColumnCenter
             : leftPadding + (marker.fret - 0.5) * fretSpacing;
 
         const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');

@@ -1703,6 +1703,19 @@ body {
     fill: rgba(243, 156, 18, 0.2);
 }
 
+/* The open string's own hit area, in the column left of the nut. Styled to
+   match .fretboard-position because it is the same kind of target - it must not
+   be a smaller or harder one just because the note happens to be open. */
+.fretboard-open-position {
+    fill: transparent;
+    cursor: pointer;
+    transition: fill 0.15s ease;
+}
+
+.fretboard-open-position:hover {
+    fill: rgba(46, 204, 113, 0.18);
+}
+
 .fretboard-dot {
     fill: #f39c12;
     pointer-events: none;

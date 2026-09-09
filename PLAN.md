@@ -136,8 +136,31 @@ A single-page HTML/JS app that displays ukulele chord charts, lyrics with chords
   - Flip button toggles to G-C-E-A orientation
 - **Click interactions**:
   - Click any fret position to place a finger dot (click again to remove)
-  - Click on string near the nut to toggle: open (O) ↔ muted (X)
+  - Click the open-string column, left of the nut, to toggle: open (O) ↔ muted (X)
   - All strings default to **open** (green circles)
+
+#### Hit-target geometry (createFretboardSVG)
+
+The open string has a **column of its own to the left of the nut**, with a gap of
+dead space before fret 1. This is load-bearing rather than cosmetic. The original
+layout gave the open string a 24×20 area at x 23-47 while fret 1 occupied
+x 35-70, and the fret areas are appended to the SVG *after* the open ones, so in
+hit-test order fret 1 sat on top and won every click in the 12px overlap. The
+open marker was itself drawn at x 35 - fret 1's first pixel - so clicking the
+visible centre of the "O" selected fret 1. It was reported from real use as
+misclicking between open and the first frets.
+
+The rules now, asserted in `tests/fretboard-hitboxes.test.js`:
+- the open column and fret 1 **must not overlap**, and there must be a positive
+  gap between them
+- the open marker is drawn at the **centre of its own hit area**, so what you aim
+  at is what you hit
+- the open target is **as tall as a fret cell** (`stringSpacing`, not a fixed 20),
+  so an open note is no harder to hit than a fretted one
+- the string label stays clear of the open column
+
+Canvas width went 480 → 500 and `leftPadding` 35 → 52 to make room; fret spacing
+is essentially unchanged (35.4 → 35.7).
 - **Notes display**:
   - Shows which note is playing on each string (e.g., "G: G  C: C  E: E  A: A")
   - Muted strings show × and appear dimmed

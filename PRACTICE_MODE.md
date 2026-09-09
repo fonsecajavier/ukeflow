@@ -74,7 +74,8 @@ scale types, asserted in `tests/scales.test.js`):
 - **Patterns**: ascending, descending, up-then-down, in thirds, random degrees
 - **Degrees or note names** on the dots, spelled for the key (G minor shows Bb,
   never A#)
-- **Tap any dot** to hear that note
+- **Tap any dot** to hear that note (open strings have their own column left of
+  the nut, so they cannot be confused with fret 1)
 - **Flip** string order, as elsewhere in the app
 - **Bookmarkable URLs**: `practice.html?mode=scales&root=G&scale=minor&drill=ear`
   (plus `&level=core|all` and `&hideshape=1` for the ear drill's difficulty)

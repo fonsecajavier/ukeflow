@@ -14,6 +14,7 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
 - `practice.html` / `practice.js` / `practice.css` - Practice Mode (a separate page)
 - `melody.js` - the Scales & Melody tab of Practice Mode (loaded by practice.html only)
 - `tests/*.js` - Plain node scripts, no framework. Run with `node tests/voicings.test.js`
+  (some read source files rather than importing them - see `fretboard-hitboxes.test.js`, `hover-styles.test.js`)
 
 ### JavaScript Modules (loaded in this order)
 | File | Contents |
@@ -47,6 +48,7 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
 - **Add a scale practice pattern**: `scales.js` → SCALE_PATTERNS
 - **Change ear-drill difficulty**: `scales.js` → EAR_LEVELS and filterPathByLevel() (selection is by SEMITONE, so one level works for every scale type)
 - **Scale note dots on the fretboard**: `ui.js` → createFretboardSVG()'s `markers` argument; colours in `styles.css` (`.fretboard-note*`)
+- **Fretboard click targets / hit boxes**: `ui.js` → createFretboardSVG() geometry constants (`openColumnLeft`, `openColumnRight`, `openColumnCenter`, `labelX`); guarded by `tests/fretboard-hitboxes.test.js`
 - **Drone / single notes**: `audio.js` → startDrone(), stopDrone(), playFretNote()
 
 ## Chord Melody (voicings.js)
@@ -135,6 +137,15 @@ Other things to preserve:
 - `createFretboardSVG()`'s `markers` argument exists because `fretState` holds one
   value per string and so can only ever describe a chord shape. Markers are
   `pointer-events: none` so they do not swallow taps meant for the fret beneath.
+- **The open string owns a column left of the nut, and it must not overlap fret
+  1.** The fret hit areas are appended after the open ones, so any overlap is won
+  by the fret and the open string becomes unclickable there. The original layout
+  drew the open marker at `leftPadding`, which is fret 1's first pixel, so
+  clicking the middle of the "O" selected fret 1 - reported from real use as
+  misclicking near the nut. Keep the marker drawn at `openColumnCenter`, keep the
+  open hit area `stringSpacing` tall rather than a fixed 20, and keep a gap
+  before the nut. `tests/fretboard-hitboxes.test.js` fails if any of that
+  regresses.
 
 ## Song File Format
 ```json
