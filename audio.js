@@ -93,7 +93,14 @@ function watchAudioContextState() {
     if (typeof document === 'undefined') return;
     document.addEventListener('visibilitychange', () => {
         if (document.visibilityState === 'visible') {
-            ensureAudioReady();
+            // A drone has to be rebuilt rather than resumed - its oscillators
+            // were started against a clock that has since moved on. Plucks need
+            // no such help because each one makes a fresh source.
+            ensureAudioReady().then(() => {
+                if (typeof restartDroneIfRunning === 'function') {
+                    restartDroneIfRunning();
+                }
+            });
         }
     });
 }
@@ -489,4 +496,164 @@ async function playChordMelody(voicing) {
         source.start(startTime);
         trackSource(source, startTime + duration);
     });
+}
+
+// ---------------------------------------------------------------------------
+// Tonic drone and single notes (Melody Practice)
+// ---------------------------------------------------------------------------
+
+/**
+ * The running drone, or null. Held outside `activeSources` on purpose: every
+ * pluck goes through stopAllSources(), so a drone registered with trackSource()
+ * would be cut off by the first note played over it.
+ */
+let droneNodes = null;
+
+// What the drone is currently sounding, so it can be rebuilt after the audio
+// context is interrupted (see restartDroneIfRunning).
+let droneFrequency = null;
+
+// Quiet enough to sit under the melody, loud enough to hear the tonic pull.
+const DRONE_VOLUME = 0.055;
+const DRONE_RAMP_SECONDS = 0.08;
+
+/**
+ * Start a sustained tonic drone, replacing any drone already running.
+ *
+ * A drone is what turns scale practice into ear training: against a held tonic
+ * the degrees stop being abstract pitches and start sounding like functions -
+ * the b3 sounds minor, the 5 sounds stable, the b7 wants to fall. Without it
+ * you are only memorising finger positions.
+ *
+ * Deliberately NOT Karplus-Strong: pluckString() renders a fixed-length,
+ * DECAYING buffer with a synchronous per-sample loop (about 1.4 million
+ * iterations for 30 seconds of audio), so it would both fade out and block the
+ * main thread. Two oscillators cost nothing and sustain indefinitely.
+ *
+ * @param {number} frequency - the tonic, in Hz
+ * @returns {Promise<void>}
+ */
+async function startDrone(frequency) {
+    const ctx = await ensureAudioReady();
+    stopDrone();
+
+    // Remember the pitch even if it cannot be sounded yet, so a later gesture
+    // or a visibilitychange can retry it.
+    droneFrequency = frequency;
+
+    // ensureAudioReady() gives up after AUDIO_RESUME_TIMEOUT_MS and returns a
+    // context that may still be suspended or interrupted. Starting oscillators
+    // on one would set droneNodes and make isDroneRunning() report true while
+    // producing silence - a dead drone under a toggle that reads ON, which is
+    // the whole failure this module is trying to avoid. Leave it unstarted and
+    // let the next attempt do it properly.
+    if (ctx.state !== 'running') {
+        console.warn(`[UkeFlow] audio context is "${ctx.state}"; drone deferred until the next tap`);
+        return;
+    }
+
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0, ctx.currentTime);
+    gain.gain.linearRampToValueAtTime(DRONE_VOLUME, ctx.currentTime + DRONE_RAMP_SECONDS);
+    gain.connect(ctx.destination);
+
+    // The tonic plus its fifth - a bare open fifth, which states the key
+    // without committing to major or minor. A third here would fight scales
+    // that disagree with it (playing a minor scale over a major drone).
+    const tonic = ctx.createOscillator();
+    tonic.type = 'triangle';
+    tonic.frequency.value = frequency;
+
+    const fifth = ctx.createOscillator();
+    fifth.type = 'triangle';
+    fifth.frequency.value = frequency * 1.5;
+
+    const fifthGain = ctx.createGain();
+    fifthGain.gain.value = 0.6;
+    fifth.connect(fifthGain);
+    fifthGain.connect(gain);
+    tonic.connect(gain);
+
+    tonic.start();
+    fifth.start();
+
+    droneNodes = { gain, oscillators: [tonic, fifth] };
+}
+
+/**
+ * Stop the drone. Safe to call when nothing is playing.
+ * @param {boolean} forget - also clear the remembered pitch, so an interruption
+ *        does not bring the drone back. Pass true when the user turns it off.
+ */
+function stopDrone(forget = false) {
+    if (droneNodes) {
+        const ctx = getAudioContext();
+        const { gain, oscillators } = droneNodes;
+        // Ramp down rather than cutting, which would click.
+        try {
+            gain.gain.cancelScheduledValues(ctx.currentTime);
+            gain.gain.setValueAtTime(gain.gain.value, ctx.currentTime);
+            gain.gain.linearRampToValueAtTime(0, ctx.currentTime + DRONE_RAMP_SECONDS);
+        } catch (e) {
+            // Context may be closed or interrupted; stopping below still works
+        }
+        oscillators.forEach(osc => {
+            try {
+                osc.stop(ctx.currentTime + DRONE_RAMP_SECONDS * 2);
+            } catch (e) {
+                // Already stopped
+            }
+        });
+        droneNodes = null;
+    }
+    if (forget) droneFrequency = null;
+}
+
+/**
+ * @returns {boolean} whether a drone is currently sounding
+ */
+function isDroneRunning() {
+    return droneNodes !== null;
+}
+
+/**
+ * Rebuild the drone after the audio context has been interrupted.
+ *
+ * This is the iOS bug this function exists to prevent: Safari parks the context
+ * in 'interrupted' after a screen lock or a phone call (see
+ * RESUMABLE_AUDIO_STATES). Oscillators started before that are still nominally
+ * running, but the context clock has moved on and they are silent - leaving a
+ * dead drone under a toggle the UI still shows as ON. Plucks recover on their
+ * own because each one creates a new source; a drone is long-lived, so it has
+ * to be torn down and started again.
+ *
+ * @returns {Promise<void>}
+ */
+async function restartDroneIfRunning() {
+    if (droneFrequency === null) return;
+    const frequency = droneFrequency;
+    stopDrone();
+    await startDrone(frequency);
+}
+
+/**
+ * Play a single fretted note.
+ * @param {number} stringIndex - 0-3 for [G, C, E, A]
+ * @param {number} fret
+ * @param {Object} options - { duration, volume }
+ * @returns {Promise<void>}
+ */
+async function playFretNote(stringIndex, fret, options = {}) {
+    const { duration = 1.6, volume = 0.34 } = options;
+    const ctx = await ensureAudioReady();
+
+    const frequency = getNoteFrequency(stringIndex, fret);
+    if (frequency === null) return;
+
+    const buffer = pluckString(frequency, duration, volume);
+    const source = ctx.createBufferSource();
+    source.buffer = buffer;
+    source.connect(ctx.destination);
+    source.start(ctx.currentTime);
+    trackSource(source, ctx.currentTime + duration);
 }

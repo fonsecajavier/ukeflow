@@ -24,7 +24,7 @@ const practiceState = {
     rootCycleIndex: 0,
     rootChords: [],
     // Progression mode
-    mode: 'progression', // 'random' or 'progression'
+    mode: 'progression', // 'random', 'progression' or 'scales'
     progressions: [],
     selectedProgression: null,
     progressionKey: 'C',
@@ -122,6 +122,9 @@ function initPractice() {
         if (e.target === practiceElements.modalOverlay) closeModal();
     });
 
+    // Scales & Melody tab
+    initMelodyPractice();
+
     // Load progressions
     loadProgressions();
 
@@ -151,6 +154,11 @@ function handleTabChange(mode) {
     if (practiceState.isPlaying) {
         stopPractice();
     }
+    // Scales mode runs its own loop and holds a drone, neither of which
+    // stopPractice() knows about.
+    if (typeof melodyState !== 'undefined' && melodyState.isRunning) {
+        stopMelodyPractice();
+    }
 
     practiceState.mode = mode;
 
@@ -160,6 +168,19 @@ function handleTabChange(mode) {
     });
 
     // Show/hide sections
+    if (mode === 'scales') {
+        // Scales mode owns its own display and controls (see melody.js); the
+        // chord machinery below would have nothing to show.
+        practiceElements.randomControls.style.display = 'none';
+        practiceElements.progressionSection.style.display = 'none';
+        showPracticeControls(false);
+        showMelodySection(true);
+        return;
+    }
+
+    showMelodySection(false);
+    restoreSharedPracticeControls();
+
     if (mode === 'random') {
         practiceElements.randomControls.style.display = '';
         practiceElements.progressionSection.style.display = 'none';
@@ -307,6 +328,21 @@ function updateUrlParams() {
  */
 function loadFromUrlParams() {
     const params = new URLSearchParams(window.location.search);
+
+    // ?mode=scales belongs to melody.js and shares nothing with progressions
+    if (loadMelodyFromUrlParams()) {
+        const scalesTempo = parseInt(params.get('tempo'));
+        if (scalesTempo >= 60 && scalesTempo <= 180) {
+            practiceState.tempo = scalesTempo;
+            practiceElements.tempoSlider.value = scalesTempo;
+            practiceElements.tempoDisplay.textContent = `${scalesTempo} BPM`;
+        }
+        handleTabChange('scales');
+        setMelodyDrill(melodyState.drill);
+        updateMelodyBox();
+        return;
+    }
+
     const progressionId = params.get('progression');
     const key = params.get('key');
     const tempo = params.get('tempo');
@@ -482,6 +518,13 @@ function updateProgressionChords() {
 function handleTempoChange() {
     practiceState.tempo = parseInt(practiceElements.tempoSlider.value);
     practiceElements.tempoDisplay.textContent = `${practiceState.tempo} BPM`;
+
+    if (practiceState.mode === 'scales') {
+        handleMelodyTempoChange();
+        updateMelodyUrlParams();
+        return;
+    }
+
     updateUrlParams();
 
     // If playing, restart with new tempo
@@ -506,7 +549,9 @@ function handleKeyPress(e) {
     // Ignore if typing in an input field
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
-    if (e.key === 'p' || e.key === 'P') {
+    // The chord-sound toggle is hidden in scales mode, so the shortcut would
+    // flip a control the user cannot see.
+    if ((e.key === 'p' || e.key === 'P') && practiceState.mode !== 'scales') {
         handleSoundToggle();
     }
 }
@@ -736,6 +781,13 @@ function getRandomChord() {
  * Toggle practice on/off
  */
 function togglePractice() {
+    // Scales mode has its own notion of "playing" (a scale loop or an ear
+    // drill), so hand the button over to melody.js.
+    if (practiceState.mode === 'scales') {
+        toggleMelodyPractice();
+        return;
+    }
+
     if (practiceState.isPlaying) {
         stopPractice();
     } else {

@@ -546,6 +546,229 @@
 }
 
 /* Responsive */
+/* ---------------------------------------------------------------------------
+   Scales & Melody tab
+   --------------------------------------------------------------------------- */
+
+.scales-section {
+    margin-bottom: 20px;
+}
+
+.scale-setup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.scale-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 160px;
+}
+
+.scale-control label {
+    color: #888;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.scale-control select {
+    flex: 1;
+    padding: 8px 10px;
+    font-size: 0.95rem;
+    color: #e4e4e4;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.scale-description {
+    margin: 0 0 15px;
+    color: #999;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Drill selector */
+.scale-drill-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.scale-drill-tab {
+    flex: 1;
+    padding: 10px 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #888;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Gated: on touch, :hover sticks to the last-tapped element, so an ungated
+   hover style leaves an unselected drill looking selected. Same reasoning as
+   the gated rules in styles.css. */
+@media (hover: hover) {
+    .scale-drill-tab:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #ccc;
+    }
+}
+
+.scale-drill-tab.active {
+    background: rgba(52, 152, 219, 0.15);
+    border-color: #3498db;
+    color: #3498db;
+}
+
+.scale-drill-hint {
+    margin: 0 0 15px;
+    padding: 10px 12px;
+    color: #9aa5b1;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    background: rgba(52, 152, 219, 0.07);
+    border-left: 3px solid rgba(52, 152, 219, 0.5);
+    border-radius: 4px;
+}
+
+/* Box summary */
+.scale-box-info {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.scale-box-heading {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #f39c12;
+}
+
+.scale-box-detail {
+    margin-top: 4px;
+    color: #888;
+    font-size: 0.85rem;
+}
+
+/* Controls under the fretboard */
+.scale-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.scale-flip-btn {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    color: #ccc;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+@media (hover: hover) {
+    .scale-flip-btn:hover {
+        background: rgba(255, 255, 255, 0.15);
+    }
+}
+
+.scale-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #999;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.scale-toggle input {
+    cursor: pointer;
+    accent-color: #3498db;
+}
+
+/* Status line - what is sounding, or how the last answer went */
+.scale-status {
+    min-height: 2.6em;
+    padding: 10px 14px;
+    text-align: center;
+    color: #999;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    transition: color 0.15s ease, background 0.15s ease;
+}
+
+.scale-status-playing {
+    color: #e4e4e4;
+}
+
+.scale-status-playing strong {
+    color: #2ecc71;
+}
+
+.scale-status-waiting {
+    color: #3498db;
+}
+
+.scale-status-correct {
+    color: #2ecc71;
+    background: rgba(46, 204, 113, 0.1);
+}
+
+.scale-status-wrong {
+    color: #e74c3c;
+    background: rgba(231, 76, 60, 0.1);
+}
+
+.scale-score {
+    margin-top: 8px;
+    text-align: center;
+    color: #888;
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+}
+
+/* The re-entrant-tuning teaching point */
+.scale-insight {
+    margin: 15px 0 0;
+    padding: 10px 12px;
+    color: #9aa5b1;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 3px solid rgba(243, 156, 18, 0.5);
+    border-radius: 4px;
+}
+
+/* What the instrument cannot give you, from explainScaleRange() */
+.scale-notice {
+    margin: 10px 0 0;
+    padding: 10px 12px;
+    color: #d4a76a;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    background: rgba(243, 156, 18, 0.08);
+    border-left: 3px solid rgba(243, 156, 18, 0.6);
+    border-radius: 4px;
+}
+
 @media (max-width: 600px) {
     .practice-controls {
         flex-direction: column;
@@ -583,6 +806,23 @@
 
     .practice-tabs {
         flex-direction: column;
+    }
+
+    .scale-setup {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .scale-control {
+        min-width: 0;
+    }
+
+    .scale-drill-tabs {
+        flex-direction: column;
+    }
+
+    .scale-controls {
+        gap: 10px;
     }
 
     .progression-header {

@@ -11,6 +11,8 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
 - `songs.json` - Index of song files
 - `songs/*.json` - Individual song files
 - `PLAN.md` - Feature documentation and implementation details
+- `practice.html` / `practice.js` / `practice.css` - Practice Mode (a separate page)
+- `melody.js` - the Scales & Melody tab of Practice Mode (loaded by practice.html only)
 - `tests/*.js` - Plain node scripts, no framework. Run with `node tests/voicings.test.js`
 
 ### JavaScript Modules (loaded in this order)
@@ -18,9 +20,10 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
 |------|----------|
 | `chords.js` | CHORDS definitions, SCALE_DEGREES_MAJOR/MINOR, CHORD_VARIATIONS, transposeChord(), transposeKey(), getScaleDegree(), isMinorKey(), getChordVariations(), resolveChord(), computeChordFromFrets(), respellChord(), canonicalRoot(), chordBaseName() |
 | `voicings.js` | Chord-melody voicing generator. UKULELE_MIDI, CHORD_TYPES, findMelodyVoicings(), findEasiestVoicing(), explainNoVoicings(), parseChordSymbol(), parseNoteName(), midiToNoteName(), fretToMidi(), countFingers(), degreeLabel() |
+| `scales.js` | Scale theory and the melody box finder. SCALE_TYPES, SCALE_DEGREE_LABELS, SCALE_PATTERNS, getScaleNotes(), getScalePositions(), getMelodyBox(), explainScaleRange(), scaleNoteName(). Borrows the MIDI/tuning helpers from voicings.js. No DOM. Loaded by practice.html only |
 | `state.js` | `state` object (songIndex, songCache, currentSong, transpose, etc.), slugify(), getDisplayKey(), displayChordName(), detectAccidentalStyle() |
 | `patterns.js` | PLAY_STYLES (strums/arpeggios), currentBPM, currentPlayStyle, getBeat(), getPlayStyle() |
-| `audio.js` | audioContext, UKULELE_TUNING, pluckString(), playStrum(), playChunk(), playChord(), playChordArpeggio(), playChordMelody() |
+| `audio.js` | audioContext, UKULELE_TUNING, pluckString(), playStrum(), playChunk(), playChord(), playChordArpeggio(), playChordMelody(), playFretNote(), startDrone(), stopDrone(), isDroneRunning(), restartDroneIfRunning() |
 | `analysis.js` | getRelativeKey(), detectFamousProgressions(), detectBorrowedChords(), getUsedChords(), getHarmonicFunction(), detectSecondaryDominant() |
 | `ui.js` | `elements` object (DOM refs), createChordDiagram(), createChordSVG(), populatePlayStyleSelector(), updatePatternDisplay(), highlightMatch(), escapeHtml(), closeModal() |
 | `app.js` | init(), setupEventListeners(), displaySong(), renderLyrics(), renderChordReference(), renderScaleReference(), openChordModal(), all event handlers |
@@ -38,6 +41,12 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
 - **Modify UI elements**: `ui.js` → elements object, then `app.js` for logic
 - **Chord-melody voicings**: `voicings.js` → findMelodyVoicings(); add a chord suffix to CHORD_TYPES, tune ranking in scoreVoicing()
 - **Chord Melody UI**: `app.js` → renderChordMelody() and createChordMelodyCard(); playback in `audio.js` → playChordMelody()
+- **Add a scale type**: `scales.js` → SCALE_TYPES (set `minorish` so the note spelling picks flats correctly)
+- **Change the scale fingering chosen**: `scales.js` → bestPathInWindow() cost function, or MIN_BOX_WIDTH/MAX_BOX_WIDTH
+- **Scales & Melody UI**: `melody.js`; markup in `practice.html` (`#scales-section`), styles in `practice.css`
+- **Add a scale practice pattern**: `scales.js` → SCALE_PATTERNS
+- **Scale note dots on the fretboard**: `ui.js` → createFretboardSVG()'s `markers` argument; colours in `styles.css` (`.fretboard-note*`)
+- **Drone / single notes**: `audio.js` → startDrone(), stopDrone(), playFretNote()
 
 ## Chord Melody (voicings.js)
 `findMelodyVoicings(chordSymbol, melodyNote, options)` returns playable voicings where the
@@ -76,6 +85,45 @@ Other behaviors worth knowing:
 A voicing is shaped like a CHORDS entry (`name`/`frets`/`fingers`/`barre`/`baseFret`) so it
 can go straight to `createChordSVG()`, which rings the note named by `melodyString`. Note
 that `createChordSVG()` derives its own fret window from `frets` and ignores `baseFret`.
+
+## Scales & Melody (scales.js, melody.js)
+`getMelodyBox(chordRoot, scaleType)` returns ONE hand position that plays an
+ascending octave of the scale with no *backward string jumps* - no point where the
+pitch rises but the fingering must move back toward the G string. It widens the
+fret window until such a fingering exists.
+
+**Four measured facts, asserted in `tests/scales.test.js`.** They are properties of
+the instrument, not choices in the code, so if an assertion starts failing the UI
+copy needs rewriting rather than the test:
+- **The box never uses the G string** - true for all 144 combinations of 12 roots
+  and 12 scale types. Melody lives on C-E-A. The G string is G4, *higher* than the
+  C and E strings, so including it is what forces a backward jump. This is why
+  guitar scale charts mislead on ukulele, and `melody.js` states it to the user
+  rather than hiding it.
+- Major scales fit a **4-fret** hand position; natural minor needs a **5-fret**
+  stretch. That follows from the interval pattern.
+- **Two octaves never fit, in any key.** The range is C4 (MIDI 60, the open C
+  string - not the open G) to A5 (MIDI 81 at fret 12), a span of 21 semitones.
+- **Bb and B roots cannot complete one octave** (a tonic octave needs the tonic at
+  or below A4). They get a truncated 7-note run plus text from
+  `explainScaleRange()`, which the UI prints verbatim in the manner of
+  `explainNoVoicings()`.
+
+Other things to preserve:
+- Ear-drill answers are judged on **pitch, not fret position** - the same note
+  genuinely exists in several places on a re-entrant uke (G4 is both the open G
+  string and C-string fret 7), so finding it elsewhere is correct.
+- Scale note names are spelled **for the key**: G minor shows Bb, never A#. See
+  `scaleUsesFlats()`.
+- `SCALE_DEGREE_LABELS` is deliberately NOT `DEGREE_LABELS` from `voicings.js`:
+  a scale learner wants "2" and "4", where a chord wants "9" and "11".
+- The **drone must stay out of `activeSources`** - every pluck calls
+  `stopAllSources()`, which would otherwise cut it off - and must be rebuilt, not
+  resumed, after an iOS interruption (see `restartDroneIfRunning()`), or you get a
+  silent drone under a toggle that still reads ON.
+- `createFretboardSVG()`'s `markers` argument exists because `fretState` holds one
+  value per string and so can only ever describe a chord shape. Markers are
+  `pointer-events: none` so they do not swallow taps meant for the fret beneath.
 
 ## Song File Format
 ```json

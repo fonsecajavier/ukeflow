@@ -2335,3 +2335,60 @@ body {
 .chord-melody-card.is-fragment:hover {
     opacity: 1;
 }
+
+/* ---------------------------------------------------------------------------
+   Scale note markers on the shared fretboard
+
+   Drawn by the `markers` argument of createFretboardSVG(), which chord shapes
+   do not use. Kept here rather than in practice.css because the fretboard
+   component itself lives here - a scale view added to index.html later would
+   need these same colours.
+   --------------------------------------------------------------------------- */
+
+.fretboard-note-circle {
+    fill: #3498db;
+}
+
+.fretboard-note-text {
+    fill: #10101c;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+/* Notes not currently sounding recede while a sequence plays */
+.fretboard-note-dimmed {
+    opacity: 0.4;
+}
+
+/* The tonic. Highlighting it is the whole point of a scale diagram - without
+   it you are looking at a set of dots rather than a key. */
+.fretboard-note.scale-note-root .fretboard-note-circle {
+    fill: #f39c12;
+}
+
+/* The note sounding right now */
+.fretboard-note.scale-note-active .fretboard-note-circle {
+    fill: #2ecc71;
+    stroke: #eafaf1;
+    stroke-width: 2;
+}
+
+.fretboard-note.scale-note-active {
+    opacity: 1;
+}
+
+/* The answer, once the ear drill reveals it */
+.fretboard-note.scale-note-target .fretboard-note-circle {
+    fill: #2ecc71;
+    stroke: #eafaf1;
+    stroke-width: 2;
+}
+
+/* Where a wrong guess was tapped, shown next to the right answer */
+.fretboard-note.scale-note-wrong .fretboard-note-circle {
+    fill: #e74c3c;
+}
+
+.fretboard-note.scale-note-wrong .fretboard-note-text {
+    fill: #fdedec;
+}

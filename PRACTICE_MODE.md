@@ -1,8 +1,9 @@
 # Practice Mode
 
-A chord transition practice tool with metronome supporting both random chords and structured progressions.
+A practice tool with metronome: chord transitions (random chords or structured
+progressions) and scale/melody drills for learning a key.
 
-## Two Practice Modes
+## Three Practice Modes
 
 ### Progression Mode (Default)
 Practice common chord progressions used in popular songs.
@@ -36,14 +37,61 @@ Practice with randomly selected chords based on filters.
 - **Count-in**: 4-beat preparation showing "Get Ready!" before first chord
 - **Chord sound**: Toggle to play chord as downroll strum on each change (on by default, press "p" to toggle)
 
+### Scales & Melody Mode
+Learn to play melodies in a key, so songs written in that key come naturally.
+Notes on the fretboard, as opposed to the chord-based modes above.
+
+**The melody box:** one hand position per key, computed by `getMelodyBox()` in
+`scales.js`. It is the narrowest fret window that plays an ascending octave with
+no *backward string jumps* - no point where the pitch rises but the fingering has
+to move back toward the G string.
+
+**What the instrument turns out to dictate** (measured across all 12 roots and 12
+scale types, asserted in `tests/scales.test.js`):
+- The box **never uses the G string** - melody lives on C-E-A. The G string is
+  G4, higher than the C and E strings, so using it forces a backward jump. Guitar
+  scale charts do not transfer for exactly this reason, and the UI says so.
+- Major scales fit **4 frets**; natural minor needs a **5-fret stretch**.
+- **Two octaves never fit**: the range is C4 to A5, 21 semitones.
+- **Bb and B keys cannot complete an octave** - they get a 7-note run and an
+  explanation instead of a broken diagram.
+
+**Three drills:**
+
+| Drill | Trains | Behaviour |
+|-------|--------|-----------|
+| 1. Listen | Ear | Plays the box over a held tonic drone, lighting each note as it sounds |
+| 2. Ear Drill | Ear to fretboard | Sounds one degree with the dots hidden; tap where it is. Scored with a streak |
+| 3. Play Along | Hand | Metronome names the next note but plays nothing - you play it |
+
+**Features:**
+- **Key selector**: all 12 roots
+- **12 scale types**: major, natural/harmonic/melodic minor, major & minor
+  pentatonic, blues, and the modes
+- **Tonic drone**: a held tonic and fifth (no third, so it suits major and minor
+  alike). This is what makes each degree sound like a *function* rather than a
+  pitch, and is the difference between ear training and finger drilling
+- **Patterns**: ascending, descending, up-then-down, in thirds, random degrees
+- **Degrees or note names** on the dots, spelled for the key (G minor shows Bb,
+  never A#)
+- **Tap any dot** to hear that note
+- **Flip** string order, as elsewhere in the app
+- **Bookmarkable URLs**: `practice.html?mode=scales&root=G&scale=minor&drill=ear`
+
+**Ear-drill answers are judged on pitch, not position.** On a re-entrant ukulele
+the same note exists in more than one place (G4 is both the open G string and
+C-string fret 7), so finding it somewhere else is correct, and the app says so.
+
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `practice.html` | Page structure with tabs for both modes |
+| `practice.html` | Page structure with tabs for all three modes |
 | `practice.css` | Layout, animations, responsive styles |
 | `practice.js` | Metronome loop, chord selection, progression logic |
 | `progressions.json` | Library of 15 common progressions with metadata |
+| `scales.js` | SCALE_TYPES, getMelodyBox(), getScalePositions(), explainScaleRange() - no DOM |
+| `melody.js` | The Scales tab: the three drills, drone control, fretboard rendering |
 
 ## How It Works
 
@@ -69,6 +117,21 @@ Practice with randomly selected chords based on filters.
 6. After 4 beats, advances to next chord with subtle animation
 7. Next chord always shown in preview corner
 8. Filters update chord pool in real-time
+
+### Scales & Melody Mode
+1. User switches to the Scales & Melody tab (defaults to G Natural Minor)
+2. Picks a key and scale type; `getMelodyBox()` computes the one hand position
+3. The fretboard shows that box with the tonic highlighted, degrees on the dots
+4. An explanation appears if the instrument cannot give a full octave in that key
+5. User picks a drill:
+   - **Listen**: Start plays the box over the drone, lighting each note; the
+     status line names the note, its degree, and where it is
+   - **Ear Drill**: dots vanish, a note sounds, the user taps their answer, and
+     the app confirms or reveals the right position. Streak is tracked
+   - **Play Along**: the beat indicator appears and the metronome names each next
+     note without sounding it
+6. Tapping any visible dot plays that note at any time
+7. URL updates for bookmarking (e.g. `?mode=scales&root=G&scale=minor&drill=ear`)
 
 ## Progressions Library
 
@@ -99,3 +162,8 @@ From main app:
 - `getAudioContext()` (audio.js)
 - `playChord()` (audio.js) - for chord sound playback
 - Color scheme and chord diagram styles (styles.css)
+- `createFretboardSVG()` (ui.js) - with its new `markers` argument, for the scale view
+- `startDrone()` / `stopDrone()` / `playFretNote()` (audio.js)
+- `getMelodyBox()` and friends (scales.js), which in turn borrow the MIDI/tuning
+  helpers from voicings.js so GCEA is defined in exactly one place
+- `playMetronomeTick()` and the tempo slider from practice.js

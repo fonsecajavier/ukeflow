@@ -959,12 +959,20 @@ function createDominant7thCircleSVG(currentKey, onChordClick, suggestedTonic = n
 }
 
 /**
- * Create interactive fretboard SVG for Chord Finder
+ * Create interactive fretboard SVG for Chord Finder, Chord Melody and Scales
  * @param {Array} fretState - Array of 4 values [G, C, E, A], each can be: null, 0 (open), -1 (muted), or 1-12 (fret)
  * @param {Object} callbacks - Object with onFretClick(string, fret) and onOpenClick(string)
+ * @param {boolean} flipped - true shows A-E-C-G (high string on top)
+ * @param {Array} markers - Optional extra dots, drawn in ADDITION to fretState.
+ *        Each is { string, fret, label, className, dimmed }. This is what lets a
+ *        SCALE be displayed: fretState holds one value per string and so can
+ *        only ever describe a chord shape, whereas a scale needs several notes
+ *        on the same string at once (C major on the C string alone is frets
+ *        0, 2, 4, 5, 7, 9, 11, 12). Callers that only draw chord shapes pass
+ *        nothing and are unaffected.
  * @returns {SVGElement} - The SVG fretboard
  */
-function createFretboardSVG(fretState, callbacks, flipped = true) {
+function createFretboardSVG(fretState, callbacks, flipped = true, markers = []) {
     const numFrets = 12;
     const numStrings = 4;
 
@@ -1174,6 +1182,49 @@ function createFretboardSVG(fretState, callbacks, flipped = true) {
             }
         }
     }
+
+    // Extra markers (scale notes). Drawn last so they sit above the clickable
+    // areas, and positioned by PITCH-BEARING string index rather than visual
+    // row, so a flipped board places them correctly without the caller caring.
+    markers.forEach(marker => {
+        const visualPos = displayOrder.indexOf(marker.string);
+        if (visualPos === -1 || marker.fret < 0 || marker.fret > numFrets) return;
+
+        const y = topPadding + visualPos * stringSpacing;
+        // An open string has no fret space of its own, so its marker sits on
+        // the nut where the "O" would go.
+        const x = marker.fret === 0
+            ? leftPadding
+            : leftPadding + (marker.fret - 0.5) * fretSpacing;
+
+        const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        group.setAttribute('class', 'fretboard-note' +
+            (marker.className ? ` ${marker.className}` : '') +
+            (marker.dimmed ? ' fretboard-note-dimmed' : ''));
+        // Markers are drawn on top of the click targets, so they must be
+        // transparent to pointers or tapping a scale note would hit the dot
+        // instead of the fret underneath it.
+        group.style.pointerEvents = 'none';
+
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('r', 9);
+        circle.setAttribute('class', 'fretboard-note-circle');
+        group.appendChild(circle);
+
+        if (marker.label) {
+            const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            text.setAttribute('x', x);
+            text.setAttribute('y', y + 3.5);
+            text.setAttribute('text-anchor', 'middle');
+            text.setAttribute('class', 'fretboard-note-text');
+            text.textContent = marker.label;
+            group.appendChild(text);
+        }
+
+        svg.appendChild(group);
+    });
 
     return svg;
 }

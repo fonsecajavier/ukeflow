@@ -346,6 +346,89 @@ The changes themselves:
 4. A voicing carrying `melodyString` gets that note ringed in `#f39c12`. Done as a pass over
    the finished diagram so it works whether the note is fretted, open, or inside a barre.
 
+### 3m. Scales & Melody Practice (scales.js, melody.js)
+
+A tab in Practice Mode (`practice.html?mode=scales`) for learning to play melodies
+in a key, so that songs written in that key come naturally. It is a drill, not a
+reference chart, which is why it lives in Practice Mode rather than as a
+collapsible on the song page - you practise a key on its own, not only while a
+song in that key happens to be loaded.
+
+**Not to be confused with "Scale Reference" (§3a)**, which lists the CHORDS in a
+key. This feature is about individual NOTES on the fretboard.
+
+#### The melody box
+
+`getMelodyBox(root, type)` in `scales.js` returns ONE hand position that plays a
+single ascending octave of the scale, chosen by widening the fret window until a
+fingering exists with no *backward string jumps* - no point where the pitch keeps
+rising but the fingering has to move back toward the G string.
+
+Four facts about the instrument, measured by enumerating every fret 0-12 on all
+four strings and locked into `tests/scales.test.js`:
+
+1. **The melody box never uses the G string** - in all 144 combinations of 12
+   roots and 12 scale types. Melody lives on C-E-A. The G string is tuned to G4,
+   higher than the C and E strings, so including it is what forces a backward
+   jump. This is precisely why guitar scale charts mislead on a ukulele, and the
+   UI states it as a teaching point rather than hiding it.
+2. **Major scales fit a 4-fret hand position; natural minor needs a 5-fret
+   stretch.** That comes from the interval pattern, not from a code choice.
+3. **Two octaves never fit, in any key.** The instrument spans C4 (MIDI 60, the
+   open C string - NOT the open G) to A5 (MIDI 81 at fret 12), 21 semitones.
+4. **Bb and B roots cannot complete even one octave**, since a tonic octave needs
+   the tonic at or below A4. Those keys get a truncated 7-note run plus an
+   explanation from `explainScaleRange()`, in the manner of
+   `explainNoVoicings()` - a specific musical reason, printed verbatim.
+
+#### The three drills (melody.js)
+
+| Drill | Trains | How it works |
+|-------|--------|--------------|
+| Listen | The ear | Plays the box over a held tonic drone, lighting each note as it sounds |
+| Ear Drill | Ear to fretboard | Sounds one degree with the dots HIDDEN; you tap where it is. Scored with a streak |
+| Play Along | The hand | Metronome names the next note and sounds nothing; you play it |
+
+The **tonic drone** is what makes this ear training rather than finger drilling:
+against a held tonic the degrees stop being abstract pitches and start sounding
+like functions - the b3 sounds minor, the 5 settles, the b7 wants to fall.
+
+Ear-drill answers are judged on **pitch, not fret position**: on a re-entrant
+instrument the same note genuinely exists in more than one place (G4 is both the
+open G string and C-string fret 7), so finding it elsewhere is a right answer and
+is acknowledged as such.
+
+#### Audio (audio.js additions)
+
+- `startDrone(freq)` / `stopDrone()` / `isDroneRunning()` - two oscillators
+  (tonic plus its bare fifth, no third, so it does not fight a minor scale) into
+  their own gain node. Held **outside** `activeSources`, because every pluck calls
+  `stopAllSources()` and would otherwise cut the drone off.
+- Karplus-Strong is deliberately not used for the drone: `pluckString()` renders
+  a fixed-length DECAYING buffer in a synchronous per-sample loop, so it would
+  both fade out and block the main thread.
+- `restartDroneIfRunning()` is called from `watchAudioContextState()`. After iOS
+  parks the context in `'interrupted'` (screen lock, phone call), oscillators
+  started beforehand are silent though nominally running - a dead drone under a
+  toggle still showing ON. Plucks recover by themselves because each makes a new
+  source; a long-lived drone must be torn down and rebuilt.
+- `playFretNote(string, fret)` - a single note.
+
+#### Fretboard rendering (ui.js)
+
+`createFretboardSVG()` gained an optional 4th argument, `markers`, drawn in
+addition to `fretState`. This was necessary because `fretState` holds one value
+per string and so can only describe a chord shape, whereas a scale needs several
+notes on the same string at once. Markers are `pointer-events: none` so they do
+not intercept taps meant for the fret underneath. The Chord Finder and Chord
+Melody callers pass no markers and are unchanged.
+
+#### Deliberately out of scope
+
+- **Melodies from the song library.** No song file contains melody data (they hold
+  chords and lyrics only), so this would mean authoring note data per song.
+- **Microphone pitch detection** to check what you actually played.
+
 ### 3j. Spotify Integration
 - Embedded Spotify player for songs with a `spotify` field
 - Displays above "Chords Used" section when available
@@ -551,6 +634,7 @@ ukeflow/
 ├── state.js        # Application state management
 ├── patterns.js     # Play styles (strums, arpeggios) and tempo settings
 ├── audio.js        # Audio synthesis (Karplus-Strong) and playback
+├── scales.js       # Scale definitions and the single-position "melody box" finder
 ├── analysis.js     # Music theory analysis (progressions, harmonic functions)
 ├── ui.js           # UI utilities, DOM elements, chord diagram rendering
 ├── app.js          # Main application logic, event handlers, rendering
@@ -632,6 +716,7 @@ The application JavaScript is split into modules for maintainability:
 |--------|---------|
 | `chords.js` | Chord definitions (CHORDS), scale degrees, transposition functions, chord variations |
 | `voicings.js` | Chord-melody voicing generator: findMelodyVoicings, parseChordSymbol, note/MIDI helpers |
+| `scales.js` | Scale definitions (SCALE_TYPES), melody box finder: getMelodyBox, getScalePositions, explainScaleRange |
 | `state.js` | Application state object, slugify utility, getDisplayKey |
 | `patterns.js` | PLAY_STYLES (strums/arpeggios), tempo (currentBPM), getPlayStyle |
 | `audio.js` | AudioContext, Karplus-Strong synthesis, playChord, playStrum, playChunk |

@@ -18,6 +18,7 @@
         <div class="practice-tabs">
             <button class="practice-tab active" data-mode="progression">Progressions</button>
             <button class="practice-tab" data-mode="random">Random Chords</button>
+            <button class="practice-tab" data-mode="scales">Scales &amp; Melody</button>
         </div>
 
         <!-- Shared Tempo Control -->
@@ -75,6 +76,53 @@
 
             <div class="progression-chords" id="progression-chords" style="display: none;"></div>
             <div class="progression-sequence" id="progression-sequence" style="display: none;"></div>
+        </div>
+
+        <!-- Scales & Melody Mode -->
+        <div class="scales-section" id="scales-section" style="display: none;">
+            <div class="scale-setup">
+                <div class="scale-control">
+                    <label for="scale-root">Key:</label>
+                    <select id="scale-root"></select>
+                </div>
+                <div class="scale-control">
+                    <label for="scale-type">Scale:</label>
+                    <select id="scale-type"></select>
+                </div>
+                <div class="scale-control" id="scale-pattern-control">
+                    <label for="scale-pattern">Pattern:</label>
+                    <select id="scale-pattern"></select>
+                </div>
+            </div>
+
+            <p class="scale-description" id="scale-description"></p>
+
+            <div class="scale-drill-tabs" id="scale-drill-tabs">
+                <button class="scale-drill-tab active" data-drill="listen">1. Listen</button>
+                <button class="scale-drill-tab" data-drill="ear">2. Ear Drill</button>
+                <button class="scale-drill-tab" data-drill="play">3. Play Along</button>
+            </div>
+            <p class="scale-drill-hint" id="scale-drill-hint"></p>
+
+            <div class="scale-box-info" id="scale-box-info"></div>
+            <div class="fretboard-wrapper" id="scale-fretboard"></div>
+
+            <div class="scale-controls">
+                <button class="scale-flip-btn" id="scale-flip" title="Flip string order">&#8645; Flip</button>
+                <label class="scale-toggle" title="Hold the tonic underneath so each degree sounds like a function">
+                    <input type="checkbox" id="scale-drone" checked>
+                    Tonic drone
+                </label>
+                <label class="scale-toggle" title="Show scale degrees instead of note names">
+                    <input type="checkbox" id="scale-degrees" checked>
+                    Show degrees
+                </label>
+            </div>
+
+            <div class="scale-status" id="scale-status"></div>
+            <div class="scale-score" id="scale-score" style="display: none;"></div>
+            <p class="scale-insight" id="scale-insight"></p>
+            <p class="scale-notice" id="scale-notice" style="display: none;"></p>
         </div>
 
         <!-- Random Chords Mode Controls -->
@@ -160,10 +208,15 @@
 
     <!-- Load shared scripts in dependency order -->
     <script src="chords.js"></script>
+    <!-- voicings.js supplies the MIDI/tuning helpers that scales.js borrows -->
+    <script src="voicings.js"></script>
+    <script src="scales.js"></script>
     <script src="state.js"></script>
     <script src="patterns.js"></script>
     <script src="audio.js"></script>
     <script src="ui.js"></script>
     <script src="practice.js"></script>
+    <!-- after practice.js: melody.js uses its metronome tick and tempo state -->
+    <script src="melody.js"></script>
 </body>
 </html>
