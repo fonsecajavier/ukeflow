@@ -87,6 +87,33 @@ check('the open marker centre is NOT inside fret 1',
 // Size: an open note must be no harder to hit than a fretted one
 const openWidth = openRight - openLeft;
 check('the open column is a usable width (>= 20px)', openWidth >= 20, `${openWidth}px`);
+
+// THE SECOND regression, and the one that made the first fix feel ineffective:
+// the SVG scales to fit its container, so a target that is comfortable at
+// scale 1.0 on a desktop can be untappable on a phone. Removing the overlap was
+// necessary but not sufficient - the target has to survive being shrunk.
+//
+// Reference sizes: Apple's HIG minimum touch target is 44px, and a fingertip
+// contact patch is roughly 30-40px across. An 18.8px target with a 2.9px gap
+// (what this was) is narrower than the finger aiming at it.
+const PHONE_CONTENT_WIDTH = 362;      // iPhone 14: 402 viewport - 40px container padding
+const SMALL_PHONE_CONTENT_WIDTH = 286; // iPhone SE
+const phoneScale = Math.min(width, PHONE_CONTENT_WIDTH) / width;
+const smallPhoneScale = Math.min(width, SMALL_PHONE_CONTENT_WIDTH) / width;
+const openWidthOnPhone = openWidth * phoneScale;
+const gapOnPhone = openInset * phoneScale;
+
+console.log(`       on a phone (scale ${phoneScale.toFixed(3)}): open column ` +
+            `${openWidthOnPhone.toFixed(1)}px, gap ${gapOnPhone.toFixed(1)}px`);
+
+check('the open column is still fingertip-sized on a phone (>= 35px)',
+    openWidthOnPhone >= 35, `${openWidthOnPhone.toFixed(1)}px at scale ${phoneScale.toFixed(3)}`);
+check('the open column stays tappable even on a small phone (>= 28px)',
+    openWidth * smallPhoneScale >= 28, `${(openWidth * smallPhoneScale).toFixed(1)}px`);
+check('the dead gap survives shrinking (>= 4px on a phone)',
+    gapOnPhone >= 4, `${gapOnPhone.toFixed(1)}px`);
+check('the open column is wide enough in viewBox units to survive scaling (>= 40)',
+    openWidth >= 40, `${openWidth} units`);
 check('the open hit area is as tall as a fret cell',
     /openArea\.setAttribute\('height', stringSpacing\)/.test(UI),
     'height must be stringSpacing, not a fixed 20');

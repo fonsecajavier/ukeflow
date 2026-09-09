@@ -979,9 +979,9 @@ function createFretboardSVG(fretState, callbacks, flipped = true, markers = []) 
     // Dimensions
     const width = 500;
     const height = 180;
-    const leftPadding = 52;  // string labels PLUS the open-string column
+    const leftPadding = 86;  // string labels PLUS the open-string column
     const topPadding = 30;
-    const rightPadding = 20;
+    const rightPadding = 12;
     const bottomPadding = 25; // Space for fret numbers
 
     // The open string gets a column of its own, to the LEFT of the nut, with a
@@ -991,8 +991,16 @@ function createFretboardSVG(fretState, callbacks, flipped = true, markers = []) 
     // first pixel, so clicking the middle of the O selected fret 1 instead.
     // These two zones must never overlap; tests/fretboard-hitboxes.test.js
     // fails if they do.
+    // Sized for a FINGERTIP, not a mouse pointer. The SVG scales to fit its
+    // container, so on a phone (~362px of content width) everything renders at
+    // roughly 0.72 - and at that scale the previous 26-unit column was only
+    // 18.8 CSS px wide with a 2.9px gap, against Apple's 44px minimum and a
+    // contact patch of 30-40px. Removing the overlap was not enough on its own:
+    // the target has to survive being shrunk. 56 units lands at ~40px on a
+    // phone. The gap is dead space on purpose - a near miss should do nothing
+    // rather than sound the wrong note.
     const openColumnLeft = 22;
-    const openColumnRight = leftPadding - 4;   // 4px of dead space before the nut
+    const openColumnRight = leftPadding - 8;   // 8 units of dead space before the nut
     const openColumnCenter = (openColumnLeft + openColumnRight) / 2;
     const labelX = 11;                          // clear of the open column
 

@@ -137,6 +137,15 @@ Other things to preserve:
 - `createFretboardSVG()`'s `markers` argument exists because `fretState` holds one
   value per string and so can only ever describe a chord shape. Markers are
   `pointer-events: none` so they do not swallow taps meant for the fret beneath.
+- **The open-string target must survive being SCALED DOWN.** The SVG is
+  `max-width: 100%`, so on a phone (~362px of content) it renders at about 0.72.
+  A 26-unit column that felt fine at scale 1.0 on a desktop was 18.8 CSS px on an
+  iPhone with a 2.9px gap - narrower than the fingertip aiming at it, against
+  Apple's 44px guideline. Removing the overlap was necessary but not sufficient,
+  and the fix looked ineffective in real use until the column was widened to 56
+  units (~40px on a phone). Judge these targets in CSS pixels AT PHONE WIDTH, not
+  in viewBox units; `tests/fretboard-hitboxes.test.js` asserts the phone-scale
+  sizes directly.
 - **The open string owns a column left of the nut, and it must not overlap fret
   1.** The fret hit areas are appended after the open ones, so any overlap is won
   by the fret and the open string becomes unclickable there. The original layout
@@ -248,6 +257,19 @@ Bamboleo, bambolea
 - **Add play style**: Edit `patterns.js`, add to PLAY_STYLES.strums or .arpeggios
 - **Add collapsible section**: Follow pattern in index.html (details/summary), add matching CSS
 - **Add Spotify link**: Add `"spotify": "https://open.spotify.com/track/TRACK_ID"` to song JSON. **Always search the web** to find the correct Spotify track URL - do not guess or make up track IDs.
+
+## Local Development
+Use `npm run dev` (http://localhost:8899), which runs `serve.py`.
+
+**Do not use `python3 -m http.server`.** It sends no `Cache-Control`, only
+`Last-Modified`, so Chrome applies heuristic freshness and serves a stale
+`ui.js` / `melody.js` from memory cache without revalidating. You edit a file,
+reload, and see the old behaviour - which once made a fretboard fix look
+completely ineffective and sent the debugging in the wrong direction.
+`serve.py` sends `no-store` and strips `Last-Modified`/`ETag` so there is
+nothing to revalidate against.
+
+Run the tests with `npm test`.
 
 ## Deployment
 1. Push to git: `git push`

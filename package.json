@@ -2,5 +2,9 @@
   "dependencies": {
     "serve": "^14.2.5",
     "vercel": "^50.4.10"
+  },
+  "scripts": {
+    "dev": "python3 serve.py 8899",
+    "test": "for f in tests/*.test.js; do echo \"== $f\"; node \"$f\" || exit 1; done"
   }
 }

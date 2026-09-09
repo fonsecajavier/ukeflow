@@ -159,8 +159,16 @@ The rules now, asserted in `tests/fretboard-hitboxes.test.js`:
   so an open note is no harder to hit than a fretted one
 - the string label stays clear of the open column
 
-Canvas width went 480 → 500 and `leftPadding` 35 → 52 to make room; fret spacing
-is essentially unchanged (35.4 → 35.7).
+Canvas width went 480 → 500 and `leftPadding` 35 → 86 to make room; fret spacing
+went 35.4 → 33.5.
+
+**The target must also survive scaling.** The SVG is `max-width: 100%`, so on a
+phone (~362px of content width) it renders at roughly 0.72. Removing the overlap
+alone left the open column at 18.8 CSS px with a 2.9px gap on an iPhone —
+narrower than the fingertip aiming at it, against Apple's 44px guideline — and
+the first fix was correctly reported as making no practical difference. The
+column is now 56 viewBox units, which is ~40px on an iPhone 14 and ~32px on an
+SE. Judge these targets in CSS pixels at phone width, not in viewBox units.
 - **Notes display**:
   - Shows which note is playing on each string (e.g., "G: G  C: C  E: E  A: A")
   - Muted strings show × and appear dimmed
