@@ -1,0 +1,551 @@
+{
+  "title": "Dos Oruguitas",
+  "artist": "Sebastián Yatra",
+  "key": "C",
+  "spotify": "https://open.spotify.com/track/3sfQu8ixdx7IHvoEVwnx8s",
+  "lines": [
+    {
+      "section": "Verse 1"
+    },
+    {
+      "lyrics": "Dos oruguitas enamoradas",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 0
+        },
+        {
+          "chord": "Em",
+          "position": 14
+        }
+      ]
+    },
+    {
+      "lyrics": "Pasan sus noches y madrugadas",
+      "chords": [
+        {
+          "chord": "Edim",
+          "position": 0
+        },
+        {
+          "chord": "F",
+          "position": 19
+        }
+      ]
+    },
+    {
+      "lyrics": "Llenas de hambre",
+      "chords": [
+        {
+          "chord": "Fm",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Siguen andando",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Y navegando un mundo - o",
+      "chords": [
+        {
+          "chord": "E7",
+          "position": 0
+        },
+        {
+          "chord": "A",
+          "position": 12
+        }
+      ]
+    },
+    {
+      "lyrics": "Que cambia y sigue cambiando - o",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 0
+        },
+        {
+          "chord": "C",
+          "position": 13
+        }
+      ]
+    },
+    {
+      "lyrics": "Navegando un mundo - o",
+      "chords": [
+        {
+          "chord": "E7",
+          "position": 0
+        },
+        {
+          "chord": "A",
+          "position": 10
+        }
+      ]
+    },
+    {
+      "lyrics": "Que cambia y sigue cambiando - o",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 0
+        },
+        {
+          "chord": "C",
+          "position": 13
+        }
+      ]
+    },
+    {
+      "section": "Verse 2"
+    },
+    {
+      "lyrics": "Dos oruguitas paran el viento",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 0
+        },
+        {
+          "chord": "Em",
+          "position": 14
+        }
+      ]
+    },
+    {
+      "lyrics": "Mientras se abrazan con sentimiento",
+      "chords": [
+        {
+          "chord": "Edim",
+          "position": 0
+        },
+        {
+          "chord": "F",
+          "position": 20
+        }
+      ]
+    },
+    {
+      "lyrics": "Siguen creciendo",
+      "chords": [
+        {
+          "chord": "Fm",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "No saben cuando",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Buscar algun rincon",
+      "chords": [
+        {
+          "chord": "E7",
+          "position": 0
+        },
+        {
+          "chord": "Am",
+          "position": 7
+        }
+      ]
+    },
+    {
+      "lyrics": "El tiempo sigue cambiando - o",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 0
+        },
+        {
+          "chord": "C",
+          "position": 10
+        }
+      ]
+    },
+    {
+      "lyrics": "Inseparables son",
+      "chords": [
+        {
+          "chord": "E7",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "El tiempo sigue cambiando - o",
+      "chords": [
+        {
+          "chord": "Am",
+          "position": 0
+        },
+        {
+          "chord": "G",
+          "position": 10
+        },
+        {
+          "chord": "C",
+          "position": 16
+        }
+      ]
+    },
+    {
+      "section": "Chorus (x2)"
+    },
+    {
+      "lyrics": "Ay oruguitas",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "No se aguanten mas",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Hay que crecer",
+      "chords": [
+        {
+          "chord": "Am",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Partir y volver",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Hacia adelante seguiras",
+      "chords": [
+        {
+          "chord": "Fm",
+          "position": 0
+        },
+        {
+          "chord": "G",
+          "position": 15
+        }
+      ]
+    },
+    {
+      "lyrics": "Vienen milagros",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Vienen crisálidas",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Hay que partir y construir",
+      "chords": [
+        {
+          "chord": "Am",
+          "position": 0
+        },
+        {
+          "chord": "F",
+          "position": 17
+        }
+      ]
+    },
+    {
+      "lyrics": "Su propio futuro - o",
+      "chords": [
+        {
+          "chord": "Fm",
+          "position": 0
+        },
+        {
+          "chord": "G",
+          "position": 10
+        }
+      ]
+    },
+    {
+      "section": "Interlude"
+    },
+    {
+      "lyrics": "ohhh, ohhh, ohhh, ohh, oh, oh",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 0
+        },
+        {
+          "chord": "G",
+          "position": 6
+        },
+        {
+          "chord": "Am",
+          "position": 12
+        },
+        {
+          "chord": "F",
+          "position": 18
+        },
+        {
+          "chord": "Fm",
+          "position": 23
+        },
+        {
+          "chord": "G",
+          "position": 27
+        }
+      ]
+    },
+    {
+      "section": "Verse 3"
+    },
+    {
+      "lyrics": "Dos oruguitas desorientadas",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 0
+        },
+        {
+          "chord": "Em",
+          "position": 14
+        }
+      ]
+    },
+    {
+      "lyrics": "En dos capullos bien abrigadas",
+      "chords": [
+        {
+          "chord": "Edim",
+          "position": 0
+        },
+        {
+          "chord": "F",
+          "position": 16
+        }
+      ]
+    },
+    {
+      "lyrics": "Con sueños nuevos",
+      "chords": [
+        {
+          "chord": "Fm",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Ya solo falta hacer lo necesario - o",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 0
+        },
+        {
+          "chord": "E7",
+          "position": 8
+        },
+        {
+          "chord": "Am",
+          "position": 20
+        }
+      ]
+    },
+    {
+      "lyrics": "En el mundo que sigue cambiando",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 0
+        },
+        {
+          "chord": "C",
+          "position": 12
+        }
+      ]
+    },
+    {
+      "lyrics": "Tumbando sus paredes",
+      "chords": [
+        {
+          "chord": "E7",
+          "position": 0
+        },
+        {
+          "chord": "Am",
+          "position": 9
+        }
+      ]
+    },
+    {
+      "lyrics": "Ahí viene nuestro milagro",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 0
+        },
+        {
+          "chord": "C",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "lyrics": "(Nuestro milagro)",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "(Nuestro milagro)",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "(Nuestro milagro)",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "section": "Chorus (x3)"
+    },
+    {
+      "lyrics": "Hay mariposas",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "No se aguanten mas",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Hay que crecer",
+      "chords": [
+        {
+          "chord": "Am",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Partir y volver",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Hacia adelante seguiras",
+      "chords": [
+        {
+          "chord": "Fm",
+          "position": 0
+        },
+        {
+          "chord": "G",
+          "position": 15
+        }
+      ]
+    },
+    {
+      "lyrics": "Ya son milagros",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Rompiendo crisálidas",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Hay que volar, hay que encontrar",
+      "chords": [
+        {
+          "chord": "Am",
+          "position": 0
+        },
+        {
+          "chord": "F",
+          "position": 15
+        }
+      ]
+    },
+    {
+      "lyrics": "Su propio futuro - o",
+      "chords": [
+        {
+          "chord": "Fm",
+          "position": 0
+        },
+        {
+          "chord": "C",
+          "position": 10
+        }
+      ]
+    }
+  ]
+}

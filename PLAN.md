@@ -763,7 +763,8 @@ ukeflow/
     ├── donde-estan-los-ladrones.json  # Shakira 90s (A)
     ├── libre-soy.json                 # Carmen Sarahí - Frozen (Ab)
     ├── tan-natural.json               # Felipe Peláez (E)
-    └── tan-natural-v2.json            # Felipe Peláez - versión con tríadas (E)
+    ├── tan-natural-v2.json            # Felipe Peláez - versión con tríadas (E)
+    └── dos-oruguitas.json             # Sebastián Yatra - Encanto (C)
 ```
 
 ### JavaScript Module Organization
