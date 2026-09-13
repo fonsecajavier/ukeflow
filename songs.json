@@ -66,6 +66,7 @@
     { "path": "songs/libre-soy.json", "title": "Libre Soy", "artist": "Carmen Sarahí (Frozen)" },
     { "path": "songs/tan-natural.json", "title": "Tan Natural", "artist": "Felipe Peláez" },
     { "path": "songs/tan-natural-v2.json", "title": "Tan Natural (Versión 2)", "artist": "Felipe Peláez" },
-    { "path": "songs/dos-oruguitas.json", "title": "Dos Oruguitas", "artist": "Sebastián Yatra" }
+    { "path": "songs/dos-oruguitas.json", "title": "Dos Oruguitas", "artist": "Sebastián Yatra" },
+    { "path": "songs/cuan-lejos-voy.json", "title": "Cuán lejos voy", "artist": "Sara Paula Gómez Arias" }
   ]
 }

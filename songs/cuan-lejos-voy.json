@@ -1,0 +1,432 @@
+{
+  "title": "Cuán lejos voy",
+  "artist": "Sara Paula Gómez Arias",
+  "key": "E",
+  "spotify": "https://open.spotify.com/track/2mkl0RWJn36fe0cX0oLahS",
+  "lines": [
+    {
+      "section": "Verse 1"
+    },
+    {
+      "lyrics": "Me contemplo por la orilla del agua",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 0
+        },
+        {
+          "chord": "F#m",
+          "position": 31
+        }
+      ]
+    },
+    {
+      "lyrics": "Desde que yo recuerdo",
+      "chords": [
+        {
+          "chord": "C#m",
+          "position": 15
+        }
+      ]
+    },
+    {
+      "lyrics": "No sabiendo el por qué",
+      "chords": [
+        {
+          "chord": "A",
+          "position": 19
+        }
+      ]
+    },
+    {
+      "lyrics": "Nunca la perfecta niña he sido",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 0
+        },
+        {
+          "chord": "F#m",
+          "position": 26
+        }
+      ]
+    },
+    {
+      "lyrics": "De vuelta al agua he venido",
+      "chords": [
+        {
+          "chord": "C#m",
+          "position": 23
+        }
+      ]
+    },
+    {
+      "lyrics": "Es duro y lo intentaré",
+      "chords": [
+        {
+          "chord": "A",
+          "position": 20
+        }
+      ]
+    },
+    {
+      "section": "Pre-Chorus"
+    },
+    {
+      "lyrics": "Una y otra vez, cada ruta que hay",
+      "chords": [
+        {
+          "chord": "C#m",
+          "position": 6
+        }
+      ]
+    },
+    {
+      "lyrics": "Sendas que tomé me regresarán",
+      "chords": [
+        {
+          "chord": "B/D#",
+          "position": 7
+        }
+      ]
+    },
+    {
+      "lyrics": "Al lugar aquel donde anhelo estar",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "lyrics": "Y no hay que ir jamás",
+      "chords": [
+        {
+          "chord": "Am",
+          "position": 13
+        }
+      ]
+    },
+    {
+      "section": "Chorus"
+    },
+    {
+      "lyrics": "Ese punto en que están cielo y mar",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "lyrics": "Me llama,",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 6
+        }
+      ]
+    },
+    {
+      "lyrics": "¿y yo qué sé cuán lejos es?",
+      "chords": [
+        {
+          "chord": "C#m",
+          "position": 10
+        },
+        {
+          "chord": "A",
+          "position": 24
+        }
+      ]
+    },
+    {
+      "lyrics": "Si el viento en mi vela ha de acompañarme",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 7
+        },
+        {
+          "chord": "B",
+          "position": 40
+        }
+      ]
+    },
+    {
+      "lyrics": "Un día sabré,",
+      "chords": [
+        {
+          "chord": "C#m",
+          "position": 9
+        }
+      ]
+    },
+    {
+      "lyrics": "y si voy ignoro aun",
+      "chords": [
+        {
+          "chord": "Am",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "lyrics": "que tan lejos voy",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 14
+        }
+      ]
+    },
+    {
+      "section": "Verse 2"
+    },
+    {
+      "lyrics": "Yo sé bien que todos en la isla",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 0
+        },
+        {
+          "chord": "F#m",
+          "position": 27
+        }
+      ]
+    },
+    {
+      "lyrics": "Son felices en su isla,",
+      "chords": [
+        {
+          "chord": "C#m",
+          "position": 18
+        }
+      ]
+    },
+    {
+      "lyrics": "por designio todo es",
+      "chords": [
+        {
+          "chord": "A",
+          "position": 18
+        }
+      ]
+    },
+    {
+      "lyrics": "Yo sé bien que todos en la isla",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 0
+        },
+        {
+          "chord": "F#m",
+          "position": 27
+        }
+      ]
+    },
+    {
+      "lyrics": "Cumplen bien sus papeles",
+      "chords": [
+        {
+          "chord": "C#m",
+          "position": 19
+        }
+      ]
+    },
+    {
+      "lyrics": "El mío es rodar tal vez",
+      "chords": [
+        {
+          "chord": "A",
+          "position": 20
+        }
+      ]
+    },
+    {
+      "section": "Pre-Chorus"
+    },
+    {
+      "lyrics": "Puedo liderar, darnos fuerza hoy",
+      "chords": [
+        {
+          "chord": "C#m",
+          "position": 6
+        }
+      ]
+    },
+    {
+      "lyrics": "Y contenta estar, seguir mi actuación",
+      "chords": [
+        {
+          "chord": "B/D#",
+          "position": 7
+        }
+      ]
+    },
+    {
+      "lyrics": "Mi voz interior canta otra canción",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 7
+        }
+      ]
+    },
+    {
+      "lyrics": "¿Qué esta mal en mí?",
+      "chords": [
+        {
+          "chord": "Am",
+          "position": 10
+        }
+      ]
+    },
+    {
+      "section": "Chorus"
+    },
+    {
+      "lyrics": "Una luz veo en el mar relucir",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "lyrics": "intensa",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 5
+        }
+      ]
+    },
+    {
+      "lyrics": "¿Y yo qué sé cuan hondo va?",
+      "chords": [
+        {
+          "chord": "C#m",
+          "position": 10
+        },
+        {
+          "chord": "A",
+          "position": 24
+        }
+      ]
+    },
+    {
+      "lyrics": "¿Y será que me dice desde ahí «ya ven a mí»?",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 6
+        },
+        {
+          "chord": "B",
+          "position": 41
+        }
+      ]
+    },
+    {
+      "lyrics": "Que quiero ver",
+      "chords": [
+        {
+          "chord": "C#m",
+          "position": 11
+        }
+      ]
+    },
+    {
+      "lyrics": "que hay más allán, sí voy a cruzar",
+      "chords": [
+        {
+          "chord": "A",
+          "position": 12
+        }
+      ]
+    },
+    {
+      "section": "Chorus (key change)"
+    },
+    {
+      "lyrics": "El punto en que el cielo es el mar",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "lyrics": "Me llama,",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "lyrics": "¿y yo qué sé cuán lejos es?",
+      "chords": [
+        {
+          "chord": "Dm",
+          "position": 10
+        },
+        {
+          "chord": "Bb",
+          "position": 24
+        }
+      ]
+    },
+    {
+      "lyrics": "Si el viento en mi vela ha de acompañarme",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 7
+        },
+        {
+          "chord": "C",
+          "position": 40
+        }
+      ]
+    },
+    {
+      "lyrics": "Por fin sabré,",
+      "chords": [
+        {
+          "chord": "Dm",
+          "position": 10
+        }
+      ]
+    },
+    {
+      "lyrics": "cuan lejos voy",
+      "chords": [
+        {
+          "chord": "Ab",
+          "position": 11
+        },
+        {
+          "chord": "Fm",
+          "position": 15
+        },
+        {
+          "chord": "Ab/D",
+          "position": 18
+        },
+        {
+          "chord": "C",
+          "position": 23
+        }
+      ]
+    }
+  ]
+}
