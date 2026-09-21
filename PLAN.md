@@ -765,7 +765,8 @@ ukeflow/
     ├── tan-natural.json               # Felipe Peláez (E)
     ├── tan-natural-v2.json            # Felipe Peláez - versión con tríadas (E)
     ├── dos-oruguitas.json             # Sebastián Yatra - Encanto (C)
-    └── cuan-lejos-voy.json            # Sara Paula Gómez Arias - Moana (E, key change to F)
+    ├── cuan-lejos-voy.json            # Sara Paula Gómez Arias - Moana (E, key change to F)
+    └── lo-mejor-para-los-dos.json     # Kaleth Morales (C)
 ```
 
 ### JavaScript Module Organization

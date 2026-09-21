@@ -1,0 +1,929 @@
+{
+  "title": "Lo mejor para los dos (Todo de cabeza)",
+  "artist": "Kaleth Morales",
+  "key": "C",
+  "spotify": "https://open.spotify.com/track/4Whk1B6Al3GbgcytidwkBo",
+  "lines": [
+    {
+      "section": "Intro"
+    },
+    {
+      "lyrics": "",
+      "chords": [
+        {
+          "chord": "C9",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "section": "First Part"
+    },
+    {
+      "lyrics": "Esta es mi canción de despedida",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Será lo mejor para los dos",
+      "chords": [
+        {
+          "chord": "Em",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "lyrics": "Pues no soy el dueño de tu vida",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 2
+        }
+      ]
+    },
+    {
+      "lyrics": "Y lo más grave",
+      "chords": [
+        {
+          "chord": "Dm",
+          "position": 11
+        }
+      ]
+    },
+    {
+      "lyrics": "no sé porque no lo entiende el corazón",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 7
+        },
+        {
+          "chord": "F#dim",
+          "position": 23
+        },
+        {
+          "chord": "G",
+          "position": 36
+        }
+      ]
+    },
+    {
+      "lyrics": "Dime como hago para explicarle",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "lyrics": "A mi alma envuelta entre la fe",
+      "chords": [
+        {
+          "chord": "Em",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Que aunque sea difícil olvidarte",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 2
+        }
+      ]
+    },
+    {
+      "lyrics": "Debo intentarlo",
+      "chords": [
+        {
+          "chord": "Dm",
+          "position": 11
+        }
+      ]
+    },
+    {
+      "lyrics": "Porque creo que nunca te podré tener",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 9
+        },
+        {
+          "chord": "F#dim",
+          "position": 23
+        },
+        {
+          "chord": "G",
+          "position": 34
+        }
+      ]
+    },
+    {
+      "section": "Pre-Chorus"
+    },
+    {
+      "lyrics": "   Si no deseas que me marche",
+      "chords": [
+        {
+          "chord": "E7",
+          "position": 0
+        },
+        {
+          "chord": "F",
+          "position": 18
+        }
+      ]
+    },
+    {
+      "lyrics": "Demuestra que",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "lyrics": "Al igual que yo, quieres amarme",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 22
+        }
+      ]
+    },
+    {
+      "lyrics": "Y que también te estás",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 11
+        }
+      ]
+    },
+    {
+      "lyrics": "Muriendo por besarme",
+      "chords": [
+        {
+          "chord": "Dm",
+          "position": 4
+        },
+        {
+          "chord": "G",
+          "position": 16
+        }
+      ]
+    },
+    {
+      "lyrics": "   Y así yo intentaré esperarte",
+      "chords": [
+        {
+          "chord": "E7",
+          "position": 0
+        },
+        {
+          "chord": "F",
+          "position": 20
+        }
+      ]
+    },
+    {
+      "lyrics": "Hasta cuando decidas entregarte",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 4
+        },
+        {
+          "chord": "C",
+          "position": 27
+        }
+      ]
+    },
+    {
+      "lyrics": "A este hombre que",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 16
+        }
+      ]
+    },
+    {
+      "lyrics": "Ha hecho todo para enamorarte",
+      "chords": [
+        {
+          "chord": "Dm",
+          "position": 15
+        },
+        {
+          "chord": "G",
+          "position": 25
+        }
+      ]
+    },
+    {
+      "section": "Chorus"
+    },
+    {
+      "lyrics": "Ay, porque estoy enloqueciendo",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 26
+        }
+      ]
+    },
+    {
+      "lyrics": "Y tengo todo de cabeza",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 19
+        }
+      ]
+    },
+    {
+      "lyrics": "Te voy a seguir queriendo",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "lyrics": "Aunque tú no te des cuenta",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 22
+        }
+      ]
+    },
+    {
+      "lyrics": "Que el maldito sufrimiento",
+      "chords": [
+        {
+          "chord": "G/B",
+          "position": 11
+        },
+        {
+          "chord": "Am",
+          "position": 22
+        }
+      ]
+    },
+    {
+      "lyrics": "Es quien causa mis tristezas",
+      "chords": [
+        {
+          "chord": "E7",
+          "position": 24
+        }
+      ]
+    },
+    {
+      "lyrics": "Y de paso a mi conquista",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 20
+        }
+      ]
+    },
+    {
+      "lyrics": "Le va quitando la fuerza",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 8
+        },
+        {
+          "chord": "C",
+          "position": 20
+        }
+      ]
+    },
+    {
+      "lyrics": "Que no puedo darte el mundo",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 23
+        }
+      ]
+    },
+    {
+      "lyrics": "Para nadie es un secreto",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "lyrics": "Yo tan solo te aseguro",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 19
+        }
+      ]
+    },
+    {
+      "lyrics": "Que serás mi amor eterno",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 20
+        }
+      ]
+    },
+    {
+      "lyrics": "Quien controle mi futuro",
+      "chords": [
+        {
+          "chord": "G/B",
+          "position": 11
+        },
+        {
+          "chord": "Am",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "lyrics": "Y me saque de este infierno",
+      "chords": [
+        {
+          "chord": "Em",
+          "position": 23
+        }
+      ]
+    },
+    {
+      "lyrics": "Donde lo bello y lo puro",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "lyrics": "Se destruye con el tiempo",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 8
+        },
+        {
+          "chord": "C",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "section": "Interlude"
+    },
+    {
+      "lyrics": "",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 0
+        },
+        {
+          "chord": "F",
+          "position": 3
+        },
+        {
+          "chord": "G",
+          "position": 6
+        },
+        {
+          "chord": "C",
+          "position": 9
+        }
+      ]
+    },
+    {
+      "lyrics": "",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 0
+        },
+        {
+          "chord": "G",
+          "position": 3
+        },
+        {
+          "chord": "C",
+          "position": 6
+        }
+      ]
+    },
+    {
+      "section": "First Part"
+    },
+    {
+      "lyrics": "Esta es mi canción de despedida",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Será lo mejor para los dos",
+      "chords": [
+        {
+          "chord": "Em7",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "lyrics": "Pues no soy el dueño de tu vida",
+      "chords": [
+        {
+          "chord": "Fmaj7",
+          "position": 2
+        }
+      ]
+    },
+    {
+      "lyrics": "Y lo más grave",
+      "chords": [
+        {
+          "chord": "Dm",
+          "position": 11
+        }
+      ]
+    },
+    {
+      "lyrics": "no sé porque no lo entiende el corazón",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 7
+        },
+        {
+          "chord": "F#dim",
+          "position": 23
+        },
+        {
+          "chord": "G",
+          "position": 36
+        }
+      ]
+    },
+    {
+      "lyrics": "Dime como hago para explicarle",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "lyrics": "A mi alma envuelta entre la fe",
+      "chords": [
+        {
+          "chord": "Em7",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Que aunque sea difícil olvidarte",
+      "chords": [
+        {
+          "chord": "Fmaj7",
+          "position": 2
+        }
+      ]
+    },
+    {
+      "lyrics": "Debo intentarlo",
+      "chords": [
+        {
+          "chord": "Dm",
+          "position": 11
+        }
+      ]
+    },
+    {
+      "lyrics": "Porque creo que nunca te podré tener",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 9
+        },
+        {
+          "chord": "F#dim",
+          "position": 23
+        },
+        {
+          "chord": "G",
+          "position": 34
+        }
+      ]
+    },
+    {
+      "section": "Pre-Chorus"
+    },
+    {
+      "lyrics": "   Si no deseas que me marche",
+      "chords": [
+        {
+          "chord": "E7",
+          "position": 0
+        },
+        {
+          "chord": "F",
+          "position": 18
+        }
+      ]
+    },
+    {
+      "lyrics": "Demuestra que",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "lyrics": "Al igual que yo, quieres amarme",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 22
+        }
+      ]
+    },
+    {
+      "lyrics": "Y que también te estás",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 11
+        }
+      ]
+    },
+    {
+      "lyrics": "Muriendo por besarme",
+      "chords": [
+        {
+          "chord": "Dm",
+          "position": 4
+        },
+        {
+          "chord": "G",
+          "position": 16
+        }
+      ]
+    },
+    {
+      "lyrics": "   Y así yo intentaré esperarte",
+      "chords": [
+        {
+          "chord": "E7",
+          "position": 0
+        },
+        {
+          "chord": "F",
+          "position": 20
+        }
+      ]
+    },
+    {
+      "lyrics": "Hasta cuando decidas entregarte",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 4
+        },
+        {
+          "chord": "C",
+          "position": 27
+        }
+      ]
+    },
+    {
+      "lyrics": "A este hombre que",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 16
+        }
+      ]
+    },
+    {
+      "lyrics": "Ha hecho todo para enamorarte",
+      "chords": [
+        {
+          "chord": "Dm",
+          "position": 15
+        },
+        {
+          "chord": "G",
+          "position": 25
+        }
+      ]
+    },
+    {
+      "section": "Final Chorus"
+    },
+    {
+      "lyrics": "Ay, porque estoy enloqueciendo",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 26
+        }
+      ]
+    },
+    {
+      "lyrics": "Y tengo todo de cabeza",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 19
+        }
+      ]
+    },
+    {
+      "lyrics": "Te voy a seguir queriendo",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "lyrics": "Aunque tú no te des cuenta",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 22
+        }
+      ]
+    },
+    {
+      "lyrics": "Que el maldito sufrimiento",
+      "chords": [
+        {
+          "chord": "G/B",
+          "position": 11
+        },
+        {
+          "chord": "Am",
+          "position": 22
+        }
+      ]
+    },
+    {
+      "lyrics": "Es quien causa mis tristezas",
+      "chords": [
+        {
+          "chord": "E7",
+          "position": 24
+        }
+      ]
+    },
+    {
+      "lyrics": "Y de paso a mi conquista",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 20
+        }
+      ]
+    },
+    {
+      "lyrics": "Le va quitando la fuerza",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 8
+        },
+        {
+          "chord": "C",
+          "position": 20
+        }
+      ]
+    },
+    {
+      "lyrics": "Que no puedo darte el mundo",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 23
+        }
+      ]
+    },
+    {
+      "lyrics": "Para nadie es un secreto",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "lyrics": "Yo tan solo te aseguro",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 19
+        }
+      ]
+    },
+    {
+      "lyrics": "Que serás mi amor eterno",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 20
+        }
+      ]
+    },
+    {
+      "lyrics": "Quien controle mi futuro",
+      "chords": [
+        {
+          "chord": "G/B",
+          "position": 11
+        },
+        {
+          "chord": "Am",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "lyrics": "Y me saque de este infierno",
+      "chords": [
+        {
+          "chord": "Em",
+          "position": 23
+        }
+      ]
+    },
+    {
+      "lyrics": "Donde lo bello y lo puro",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "lyrics": "Se destruye con el tiempo",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 8
+        },
+        {
+          "chord": "C",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "lyrics": "Ay, porque estoy enloqueciendo",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 26
+        }
+      ]
+    },
+    {
+      "lyrics": "Y tengo todo de cabeza",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 19
+        }
+      ]
+    },
+    {
+      "lyrics": "Te voy a seguir queriendo",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "lyrics": "Aunque tú no te des cuenta",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 22
+        }
+      ]
+    },
+    {
+      "lyrics": "Que el maldito sufrimiento",
+      "chords": [
+        {
+          "chord": "G/B",
+          "position": 11
+        },
+        {
+          "chord": "Am",
+          "position": 22
+        }
+      ]
+    },
+    {
+      "lyrics": "Es quien causa mis tristezas",
+      "chords": [
+        {
+          "chord": "E7",
+          "position": 24
+        }
+      ]
+    },
+    {
+      "lyrics": "Y de paso a mi conquista",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 20
+        }
+      ]
+    },
+    {
+      "lyrics": "Le va quitando la fuerza",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 8
+        },
+        {
+          "chord": "C",
+          "position": 20
+        }
+      ]
+    },
+    {
+      "lyrics": "Que no puedo darte el mundo",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 23
+        }
+      ]
+    },
+    {
+      "lyrics": "Para nadie es un secreto",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "lyrics": "Yo tan solo te aseguro",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 19
+        }
+      ]
+    },
+    {
+      "lyrics": "Que serás mi amor eterno",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 20
+        }
+      ]
+    }
+  ]
+}
