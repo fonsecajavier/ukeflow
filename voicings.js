@@ -15,9 +15,71 @@
  * a guitar arrangement.
  */
 
+// The two tunings this app understands, as MIDI numbers for [G, C, E, A].
+//
+// high-g is the standard re-entrant tuning: the G string sounds G4, ABOVE the C
+// and E strings, so the strings are not in ascending pitch order. That is the
+// assumption most of this module is written around.
+//
+// low-g re-strings the G an octave down to G3, making the instrument linear -
+// the G string becomes the lowest note and the fourth string finally behaves the
+// way a guitarist expects. It widens the range downward by a fifth (G3 vs C4)
+// and genuinely changes which voicings exist, which is why it is a setting
+// rather than a cosmetic label.
+const TUNINGS = {
+    'high-g': { name: 'High-G (re-entrant)', midi: [67, 60, 64, 69], reentrant: true },
+    'low-g':  { name: 'Low-G (linear)',      midi: [55, 60, 64, 69], reentrant: false },
+};
+
+const DEFAULT_TUNING = 'high-g';
+let currentTuning = DEFAULT_TUNING;
+
 // MIDI note numbers for each open string [G, C, E, A].
-// Note the order is NOT ascending - that is the re-entrant G.
-const UKULELE_MIDI = [67, 60, 64, 69]; // G4, C4, E4, A4
+// In high-g the order is NOT ascending - that is the re-entrant G.
+//
+// MUTATED IN PLACE by setUkuleleTuning(), never reassigned. scales.js captures
+// this array by reference at load time, so a reassignment here would leave that
+// module silently reading the old tuning while everything else moved.
+const UKULELE_MIDI = TUNINGS[DEFAULT_TUNING].midi.slice();
+
+/**
+ * Switch tuning. Returns the tuning key actually in effect.
+ *
+ * Also updates audio.js's frequency table if that module is loaded, because a
+ * voicing found for one tuning and played back through another is simply the
+ * wrong notes - the melody string would sound an octave out.
+ *
+ * @param {string} name - 'high-g' or 'low-g'
+ * @returns {string}
+ */
+function setUkuleleTuning(name) {
+    const tuning = TUNINGS[name];
+    if (!tuning) return currentTuning;
+
+    currentTuning = name;
+    // Splice, do not reassign - see the note on UKULELE_MIDI above.
+    UKULELE_MIDI.splice(0, UKULELE_MIDI.length, ...tuning.midi);
+
+    if (typeof UKULELE_TUNING !== 'undefined' && Array.isArray(UKULELE_TUNING)) {
+        const freqs = tuning.midi.map(midi => 440 * Math.pow(2, (midi - 69) / 12));
+        UKULELE_TUNING.splice(0, UKULELE_TUNING.length, ...freqs);
+    }
+    return currentTuning;
+}
+
+/**
+ * @returns {string} the tuning key currently in effect
+ */
+function getUkuleleTuning() {
+    return currentTuning;
+}
+
+/**
+ * @returns {boolean} whether the current tuning is re-entrant (high-g)
+ */
+function isReentrantTuning() {
+    return TUNINGS[currentTuning].reentrant;
+}
 
 const NOTE_NAMES_SHARP = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 const NOTE_NAMES_FLAT = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
@@ -727,6 +789,10 @@ function explainNoVoicings(chordSymbol, melodyNote, options = {}) {
 // exercised from node without a browser.
 if (typeof window !== 'undefined') {
     window.UKULELE_MIDI = UKULELE_MIDI;
+    window.TUNINGS = TUNINGS;
+    window.setUkuleleTuning = setUkuleleTuning;
+    window.getUkuleleTuning = getUkuleleTuning;
+    window.isReentrantTuning = isReentrantTuning;
     window.CHORD_TYPES = CHORD_TYPES;
     window.parseNoteName = parseNoteName;
     window.midiToNoteName = midiToNoteName;
@@ -741,7 +807,8 @@ if (typeof window !== 'undefined') {
 }
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
-        UKULELE_MIDI, CHORD_TYPES, parseNoteName, midiToNoteName, fretToMidi,
+        UKULELE_MIDI, TUNINGS, setUkuleleTuning, getUkuleleTuning, isReentrantTuning,
+        CHORD_TYPES, parseNoteName, midiToNoteName, fretToMidi,
         parseChordSymbol, countFingers, degreeLabel, pitchClassName,
         findMelodyVoicings, findEasiestVoicing, explainNoVoicings,
     };

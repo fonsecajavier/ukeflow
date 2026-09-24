@@ -6,6 +6,12 @@
  * rather than opinions about the code. They are the reason the Melody Practice
  * UI can teach "melody lives on C-E-A" as a rule instead of a hunch, so if one
  * of them starts failing the UI copy needs rewriting, not the assertion.
+ *
+ * Those facts are properties of HIGH-G tuning specifically, so the suite now
+ * pins the tuning before asserting them - otherwise a stray setUkuleleTuning()
+ * elsewhere would make them fail for a reason that is not a regression. The
+ * low-G section at the end asserts the CONTRASTING facts, which is what stops
+ * the range constants silently reverting to hardcoded high-G values.
  */
 
 const S = require(__dirname + '/../scales.js');
@@ -113,14 +119,17 @@ check('4th is "4" in a scale but "11" in a chord',
     `voicings says ${V.degreeLabel(5, cChord)}, scales says ${S.SCALE_DEGREE_LABELS[5]}`);
 
 // ---------------------------------------------------------------------------
-section('Instrument range');
+section('Instrument range (high-G)');
 
-check('lowest pitch is C4 / MIDI 60', S.LOWEST_MIDI === 60);
-check('highest pitch inside 12 frets is A5 / MIDI 81', S.HIGHEST_MIDI === 81);
+// Everything below this line assumes high-G until the low-G section.
+V.setUkuleleTuning('high-g');
+
+check('lowest pitch is C4 / MIDI 60', S.lowestMidi() === 60);
+check('highest pitch inside 12 frets is A5 / MIDI 81', S.highestMidi() === 81);
 check('lowest pitch is the open C string, not the open G',
-    V.fretToMidi(1, 0) === S.LOWEST_MIDI && V.fretToMidi(0, 0) > S.LOWEST_MIDI);
+    V.fretToMidi(1, 0) === S.lowestMidi() && V.fretToMidi(0, 0) > S.lowestMidi());
 check('range spans 21 semitones, so two octaves never fit',
-    S.HIGHEST_MIDI - S.LOWEST_MIDI === 21 && S.HIGHEST_MIDI - S.LOWEST_MIDI < 24);
+    S.highestMidi() - S.lowestMidi() === 21 && S.highestMidi() - S.lowestMidi() < 24);
 
 // ---------------------------------------------------------------------------
 section('Full-neck scale positions');
@@ -370,5 +379,50 @@ check('patterns cope with a short pentatonic path',
     Object.values(S.SCALE_PATTERNS).every(p => p.build(6).every(i => i >= 0 && i < 6)));
 
 // ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+section('Low-G tuning');
+
+// The point of this section is that the range is DERIVED from the live tuning.
+// scales.js captures UKULELE_MIDI by reference, so these only pass while
+// setUkuleleTuning() keeps mutating that array in place instead of replacing it.
+V.setUkuleleTuning('low-g');
+
+check('tuning switch takes effect', V.getUkuleleTuning() === 'low-g');
+check('open G string drops an octave to G3', V.fretToMidi(0, 0) === 55);
+check('low-G is not re-entrant', V.isReentrantTuning() === false);
+check('strings are now in ascending pitch order',
+    V.UKULELE_MIDI.every((m, i) => i === 0 || m > V.UKULELE_MIDI[i - 1]));
+
+check('scales.js follows the tuning through its captured reference',
+    S.lowestMidi() === 55, `got ${S.lowestMidi()}`);
+check('the floor is now the open G string, not the open C',
+    S.lowestMidi() === V.fretToMidi(0, 0) && V.fretToMidi(1, 0) > S.lowestMidi());
+check('range widens by a fifth, to 26 semitones',
+    S.highestMidi() - S.lowestMidi() === 26);
+
+// The headline consequence: the "melody never uses the G string" rule is a
+// high-G fact, and melody.js must not print its explanation under low-G.
+let lowGUsesG = 0;
+let total = 0;
+for (const root of ROOTS) {
+    for (const typeKey of Object.keys(S.SCALE_TYPES)) {
+        const box = S.getMelodyBox(root, typeKey);
+        total++;
+        if (box && box.usesGString) lowGUsesG++;
+    }
+}
+check('the melody box DOES use the G string in low-G, unlike high-G',
+    lowGUsesG > 0, `${lowGUsesG}/${total} boxes`);
+
+// Voicing lookup must widen too, or the checkbox would change nothing that matters.
+check('explainNoVoicings names G3 as the lowest pitch under low-G',
+    V.explainNoVoicings('C', 'A3').message.includes('G3'));
+
+V.setUkuleleTuning('high-g');
+check('switching back restores high-G everywhere',
+    V.fretToMidi(0, 0) === 67 && S.lowestMidi() === 60 && V.isReentrantTuning() === true);
+check('an unknown tuning name is ignored rather than applied',
+    V.setUkuleleTuning('nonsense') === 'high-g' && S.lowestMidi() === 60);
+
 console.log(`\n${passed} passed, ${failed} failed`);
 process.exit(failed ? 1 : 0);

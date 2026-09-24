@@ -20,9 +20,9 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
 | File | Contents |
 |------|----------|
 | `chords.js` | CHORDS definitions, SCALE_DEGREES_MAJOR/MINOR, CHORD_VARIATIONS, transposeChord(), transposeKey(), getScaleDegree(), isMinorKey(), getChordVariations(), resolveChord(), computeChordFromFrets(), respellChord(), canonicalRoot(), chordBaseName() |
-| `voicings.js` | Chord-melody voicing generator. UKULELE_MIDI, CHORD_TYPES, findMelodyVoicings(), findEasiestVoicing(), explainNoVoicings(), parseChordSymbol(), parseNoteName(), midiToNoteName(), fretToMidi(), countFingers(), degreeLabel() |
+| `voicings.js` | Chord-melody voicing generator, and the TUNING AUTHORITY: TUNINGS, setUkuleleTuning(), getUkuleleTuning(), isReentrantTuning(), UKULELE_MIDI, CHORD_TYPES, findMelodyVoicings(), findEasiestVoicing(), explainNoVoicings(), parseChordSymbol(), parseNoteName(), midiToNoteName(), fretToMidi(), countFingers(), degreeLabel() |
 | `scales.js` | Scale theory and the melody box finder. SCALE_TYPES, SCALE_DEGREE_LABELS, SCALE_PATTERNS, EAR_LEVELS, getScaleNotes(), getScalePositions(), getMelodyBox(), filterPathByLevel(), explainScaleRange(), scaleNoteName(). Borrows the MIDI/tuning helpers from voicings.js. No DOM. Loaded by practice.html only |
-| `state.js` | `state` object (songIndex, songCache, currentSong, transpose, etc.), slugify(), getDisplayKey(), displayChordName(), detectAccidentalStyle() |
+| `state.js` | `state` object (songIndex, songCache, currentSong, transpose, etc.), slugify(), getDisplayKey(), displayChordName(), detectAccidentalStyle(), and the cookie layer: readCookie(), writeCookie(), applyStoredTuning(), setAndStoreTuning() |
 | `patterns.js` | PLAY_STYLES (strums/arpeggios), currentBPM, currentPlayStyle, getBeat(), getPlayStyle() |
 | `audio.js` | audioContext, UKULELE_TUNING, pluckString(), playStrum(), playChunk(), playChord(), playChordArpeggio(), playChordMelody(), playFretNote(), startDrone(), stopDrone(), isDroneRunning(), restartDroneIfRunning() |
 | `analysis.js` | getRelativeKey(), detectFamousProgressions(), detectBorrowedChords(), getUsedChords(), getHarmonicFunction(), detectSecondaryDominant() |
@@ -50,12 +50,23 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
 - **Scale note dots on the fretboard**: `ui.js` → createFretboardSVG()'s `markers` argument; colours in `styles.css` (`.fretboard-note*`)
 - **Fretboard click targets / hit boxes**: `ui.js` → createFretboardSVG() geometry constants (`openColumnLeft`, `openColumnRight`, `openColumnCenter`, `labelX`); guarded by `tests/fretboard-hitboxes.test.js`
 - **Drone / single notes**: `audio.js` → startDrone(), stopDrone(), playFretNote()
+- **High-G / low-G tuning**: `voicings.js` → TUNINGS and setUkuleleTuning(); persistence in `state.js` → applyStoredTuning(); the checkbox in `index.html` (`#chord-melody-lowg`) wired by `app.js` → toggleChordMelodyTuning(). Guarded by `tests/tuning-cookie.test.js`
 
 ## Chord Melody (voicings.js)
 `findMelodyVoicings(chordSymbol, melodyNote, options)` returns playable voicings where the
 melody note is the **highest-sounding** note of the chord, best first.
 
-**Re-entrant tuning is the whole difficulty.** Standard GCEA has G4 (MIDI 67) as the
+**Tuning is a setting, not a constant.** `UKULELE_MIDI` is MUTATED IN PLACE by
+`setUkuleleTuning()` and must never be reassigned: `scales.js` captures the array by
+reference at load time, so a reassignment would leave that module silently reading
+high-G while everything else moved. Everything in `voicings.js` derives from the
+array (`Math.min(...UKULELE_MIDI)` and friends), so the generator, the range
+diagnostics in `explainNoVoicings()` and `audio.js`'s playback all follow for free.
+The checkbox is scoped to Chord Melody in the UI but the setting itself is global,
+because a voicing found for low-G and played back at high-G frequencies is simply
+the wrong notes.
+
+**Re-entrant tuning is the whole difficulty (in high-G).** Standard GCEA has G4 (MIDI 67) as the
 *second-highest* string, not the lowest, so "melody on the A string" is wrong on ukulele -
 an open G sings over a melody note fretted low on the A or E string. Every comparison in
 `voicings.js` is on absolute pitch (MIDI), never string index. Consequences to preserve:
@@ -97,16 +108,23 @@ fret window until such a fingering exists.
 
 **Four measured facts, asserted in `tests/scales.test.js`.** They are properties of
 the instrument, not choices in the code, so if an assertion starts failing the UI
-copy needs rewriting rather than the test:
-- **The box never uses the G string** - true for all 144 combinations of 12 roots
-  and 12 scale types. Melody lives on C-E-A. The G string is G4, *higher* than the
+copy needs rewriting rather than the test. **All four are HIGH-G facts** - the test
+pins the tuning before asserting them, and the low-G section asserts the contrasting
+results (measured: the box uses the G string in 86 of the same 144 combinations, and
+the range widens from 21 to 26 semitones). Anything in the UI that states one of
+these as a fact of the instrument must branch on `isReentrantTuning()`:
+- **The box never uses the G string** *(high-G only)* - true for all 144
+  combinations of 12 roots and 12 scale types. Melody lives on C-E-A. The G string is G4, *higher* than the
   C and E strings, so including it is what forces a backward jump. This is why
   guitar scale charts mislead on ukulele, and `melody.js` states it to the user
   rather than hiding it.
 - Major scales fit a **4-fret** hand position; natural minor needs a **5-fret**
   stretch. That follows from the interval pattern.
-- **Two octaves never fit, in any key.** The range is C4 (MIDI 60, the open C
-  string - not the open G) to A5 (MIDI 81 at fret 12), a span of 21 semitones.
+- **Two octaves never fit, in any key** *(high-G only)*. The range is C4 (MIDI 60,
+  the open C string - not the open G) to A5 (MIDI 81 at fret 12), a span of 21
+  semitones. Under low-G the floor drops to G3 and the span is 26, so this stops
+  being true - which is why `lowestMidi()`/`highestMidi()` in `scales.js` are
+  DERIVED from the live tuning rather than the hardcoded 60/81 they used to be.
 - **Bb and B roots cannot complete one octave** (a tonic octave needs the tonic at
   or below A4). They get a truncated 7-note run plus text from
   `explainScaleRange()`, which the UI prints verbatim in the manner of
@@ -221,7 +239,8 @@ Bamboleo, bambolea
 
 ## Audio
 - Uses Karplus-Strong synthesis (no external audio files)
-- Standard ukulele tuning: G4-C4-E4-A4
+- Ukulele tuning: G4-C4-E4-A4 by default (high-G), or G3-C4-E4-A4 (low-g). `UKULELE_TUNING`
+  is MUTATED IN PLACE by `setUkuleleTuning()` - never reassign it
 - Audio code is in `audio.js`
 - **iOS/Safari lifecycle**: `ensureAudioReady()` must wake the context from BOTH `'suspended'`
   and `'interrupted'`. `'interrupted'` is a WebKit-only state that Safari parks the context in

@@ -145,11 +145,16 @@ async function ensureAudioReady() {
 }
 
 /**
- * Ukulele string frequencies (standard tuning: G4-C4-E4-A4)
- * Note: G4 is actually higher than C4 (reentrant tuning)
+ * Ukulele string frequencies, in string order [G, C, E, A].
+ *
+ * Defaults to standard high-G tuning, where G4 is actually HIGHER than C4 and E4
+ * (re-entrant). MUTATED IN PLACE by setUkuleleTuning() in voicings.js when the
+ * player switches to low-G, which drops this first entry to G3 (196.00 Hz) and
+ * makes the instrument linear. Never reassign it - the tuning switch and
+ * getNoteFrequency() both rely on this one array identity.
  */
 const UKULELE_TUNING = [
-    392.00,  // G4
+    392.00,  // G4 (196.00 in low-G)
     261.63,  // C4
     329.63,  // E4
     440.00   // A4
@@ -327,8 +332,10 @@ function playChunk(startTime) {
     const buffer = ctx.createBuffer(1, samples, sampleRate);
     const data = buffer.getChannelData(0);
 
-    // Muted string frequencies (deadened but still have some pitch)
-    const mutedFreqs = [392, 262, 330, 440]; // G, C, E, A but muted
+    // Muted string frequencies (deadened but still have some pitch). Taken from
+    // the live tuning rather than a second literal, so a low-G chunk thuds an
+    // octave lower on the G string like the real instrument does.
+    const mutedFreqs = UKULELE_TUNING;
 
     for (let i = 0; i < samples; i++) {
         const t = i / sampleRate;

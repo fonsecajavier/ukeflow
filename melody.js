@@ -279,15 +279,31 @@ function renderMelodyInfo() {
         `${box.path.length} notes${box.fullOctave ? ', tonic to octave' : ', no octave available'}.`;
     melodyElements.boxInfo.appendChild(detail);
 
-    // The finding worth teaching: melody sits on C-E-A, the re-entrant G string
-    // stays out of the way. Stated from the computed path, not hardcoded.
+    // The finding worth teaching, and it is TUNING-SPECIFIC. On a high-G uke the
+    // melody sits on C-E-A and the re-entrant G string stays out of the way
+    // (measured: true for all 144 root x scale-type combinations). Re-string to
+    // low-G and that stops being true - the G becomes the lowest string and the
+    // box uses it in most keys - so the explanation must not be printed as a
+    // fact of the instrument. Stated from the computed path, never hardcoded.
     if (melodyElements.insight) {
         const strings = [...new Set(melodyState.box.path.map(step => 'GCEA'[step.string]))];
-        melodyElements.insight.textContent = box.usesGString
-            ? `This shape uses the G string (${strings.join('-')}).`
-            : `Notice the shape only uses the ${strings.join('-')} strings. The G string is ` +
-              `tuned higher than the C and E strings, so leaving it out is what keeps the run ` +
-              `ascending under your fingers - this is why guitar scale charts do not transfer.`;
+        const reentrant = typeof isReentrantTuning === 'function' ? isReentrantTuning() : true;
+
+        if (box.usesGString) {
+            melodyElements.insight.textContent = reentrant
+                ? `This shape uses the G string (${strings.join('-')}).`
+                : `This shape uses the G string (${strings.join('-')}). With low-G that string ` +
+                  `is your lowest note, so the run can start below the C string - a shape a ` +
+                  `high-G uke simply cannot play.`;
+        } else {
+            melodyElements.insight.textContent = reentrant
+                ? `Notice the shape only uses the ${strings.join('-')} strings. The G string is ` +
+                  `tuned higher than the C and E strings, so leaving it out is what keeps the run ` +
+                  `ascending under your fingers - this is why guitar scale charts do not transfer.`
+                : `This shape only uses the ${strings.join('-')} strings - it just happens to fit ` +
+                  `there. With low-G the G string is your lowest note, so it is available when a ` +
+                  `key needs it.`;
+        }
     }
 
     melodyElements.notice.textContent = box.notice || '';

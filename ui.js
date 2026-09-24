@@ -54,6 +54,7 @@ const elements = {
     chordMelodyFlip: document.getElementById('chord-melody-flip'),
     chordMelodyClear: document.getElementById('chord-melody-clear'),
     chordMelodyEasy: document.getElementById('chord-melody-easy'),
+    chordMelodyLowG: document.getElementById('chord-melody-lowg'),
     chordMelodyResult: document.getElementById('chord-melody-result'),
     easyKeySuggestion: document.getElementById('easy-key-suggestion')
 };

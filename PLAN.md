@@ -377,6 +377,56 @@ The changes themselves:
 4. A voicing carrying `melodyString` gets that note ringed in `#f39c12`. Done as a pass over
    the finished diagram so it works whether the note is fretted, open, or inside a barre.
 
+### 3n. High-G / Low-G Tuning Switch
+
+A **Low-G tuning** checkbox in the Chord Melody controls (`#chord-melody-lowg`),
+persisted in a cookie so it survives a reload and carries across to Practice Mode.
+
+**What low-G is.** Standard ukulele tuning is *re-entrant*: the 4th string sounds G4,
+a tone ABOVE the C and E strings, so the strings are not in ascending pitch order. A
+low-G set re-strings that course an octave down to G3, making the instrument linear -
+the G string becomes the lowest note, and the range widens downward by a fifth.
+
+**Why it drives the lookup rather than just relabelling.** The voicing generator is
+built entirely on absolute pitch, so dropping the G string changes which shapes exist:
+
+| Chord / melody note | High-G | Low-G |
+|---|---|---|
+| C with E4 on top | impossible - only C4 sits under E4, and a chord needs 3 notes | `[0,0,0,-1]`: the open G3 finally fits underneath |
+| F with C5 on top | `[5,5,5,0]`, a 5th-position barre | `[2,0,1,3]`, open position |
+| C with G4 on top | `[0,0,0,-1]`, the open G string | `[12,0,0,-1]` - G4 is now the 12th fret |
+
+**Implementation.**
+- `voicings.js` owns the tuning: `TUNINGS`, `setUkuleleTuning()`, `getUkuleleTuning()`,
+  `isReentrantTuning()`.
+- `UKULELE_MIDI` is **mutated in place, never reassigned** - `scales.js` captures the
+  array by reference at load time, so a reassignment would leave the Scales tab
+  silently on high-G while the rest of the app moved. This is the one detail that
+  makes the whole feature work; `tests/tuning-cookie.test.js` pins it.
+- `setUkuleleTuning()` also retunes `audio.js`'s `UKULELE_TUNING` in place, so a
+  voicing found for low-G is never heard through high-G frequencies. It reaches it by
+  bare identifier lookup across a file boundary (`const` at a script's top level lives
+  in the global lexical scope, not on `window`), guarded by `typeof`.
+- `scales.js`'s `lowestMidi()` / `highestMidi()` are now **derived** from the live
+  tuning. They were hardcoded `60` / `81`, which would have made every range check
+  quietly wrong for a low-G player.
+- Persistence is `state.js` → `applyStoredTuning()` / `setAndStoreTuning()`, a cookie
+  named `ukeflow_tuning` (`path=/`, `SameSite=Lax`, one year). Reads are defensive: a
+  blocked cookie jar or an unrecognised value falls back to high-G rather than
+  throwing, and `setUkuleleTuning()` ignores names it does not know.
+- Applied from `init()` (app.js) and `initPractice()` (practice.js), **after** every
+  script has loaded - `setUkuleleTuning()` touches `audio.js`, which does not exist
+  yet while `state.js` itself is being parsed.
+
+**Consequence for the Scales tab.** "The melody box never uses the G string" is a
+*high-G* fact. Measured under low-G, the box uses the G string in 86 of the same 144
+root x scale-type combinations, so `melody.js` branches on `isReentrantTuning()`
+rather than printing the re-entrant explanation as a fact of the instrument.
+
+**Known scope limit.** The Scales tab has no tuning control of its own - it follows
+the cookie set in Chord Melody. Its measured findings in this document and in
+`CLAUDE.md` are documented for high-G.
+
 ### 3m. Scales & Melody Practice (scales.js, melody.js)
 
 A tab in Practice Mode (`practice.html?mode=scales`) for learning to play melodies

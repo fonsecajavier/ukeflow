@@ -15,6 +15,10 @@
  * Initialize the application
  */
 async function init() {
+    // Before any rendering: a low-G player must not see one high-G fretboard
+    // first. Safe here and not at state.js load time, because every module
+    // (audio.js included) has been parsed by now.
+    applyStoredTuning();
     await loadSongs();
     populatePlayStyleSelector();
     updatePatternDisplay();
@@ -2116,6 +2120,21 @@ function toggleChordMelodyEasyMode() {
 }
 
 /**
+ * Switch between high-G and low-G, remember it in a cookie, and redraw.
+ *
+ * The whole section has to be rebuilt, not just the results: low-G moves the
+ * lowest pitch on the instrument from C4 down to G3, so the fretboard's note
+ * labels change and melody notes that were impossible become reachable. Playback
+ * follows automatically - setUkuleleTuning() retunes audio.js too, so a voicing
+ * found for low-G is never heard through high-G frequencies.
+ */
+function toggleChordMelodyTuning() {
+    setAndStoreTuning(elements.chordMelodyLowG.checked ? 'low-g' : 'high-g');
+    renderChordMelodyFretboard();
+    renderChordMelodyResult();
+}
+
+/**
  * Render the voicings for the current chord + melody note, or explain why there
  * are none. The explanation is the teaching moment, so it gets real prose rather
  * than an empty-results shrug.
@@ -2391,6 +2410,13 @@ function setupChordMelodyListeners() {
     }
     if (elements.chordMelodyFlip) {
         elements.chordMelodyFlip.addEventListener('click', flipChordMelody);
+    }
+    if (elements.chordMelodyLowG) {
+        // Reflect the stored tuning: the markup defaults to unchecked, so
+        // without this a returning low-G player would see an OFF box over a
+        // fretboard that is already low-G.
+        elements.chordMelodyLowG.checked = getUkuleleTuning() === 'low-g';
+        elements.chordMelodyLowG.addEventListener('change', toggleChordMelodyTuning);
     }
     if (elements.chordMelodyEasy) {
         elements.chordMelodyEasy.addEventListener('change', toggleChordMelodyEasyMode);

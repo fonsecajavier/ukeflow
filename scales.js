@@ -35,11 +35,21 @@ const SCALES_UKULELE_MIDI = SCALE_DEPS.UKULELE_MIDI;
 const scalesFretToMidi = SCALE_DEPS.fretToMidi;
 const scalesMidiToNoteName = SCALE_DEPS.midiToNoteName;
 
-// Playable extremes with a 12-fret neck. LOWEST is the open C string - note it
-// is NOT the open G, which sounds a fifth higher.
-const LOWEST_MIDI = 60;   // C4, open C string
-const HIGHEST_MIDI = 81;  // A5, A string at fret 12
 const MAX_FRET = 12;
+
+// Playable extremes with a 12-fret neck. DERIVED from the live tuning rather
+// than hardcoded, because low-G moves the floor: in high-g the lowest pitch is
+// the open C string (C4/60) - NOT the open G, which sounds a fifth higher - but
+// in low-g the open G string becomes the lowest note on the instrument (G3/55),
+// widening the range downward by a fifth. Hardcoding 60 here would have made
+// every range check quietly wrong for a low-G player.
+function lowestMidi() {
+    return Math.min(...SCALES_UKULELE_MIDI);
+}
+
+function highestMidi() {
+    return Math.max(...SCALES_UKULELE_MIDI) + MAX_FRET;
+}
 
 // A hand position spans four frets comfortably; five is a stretch but still one
 // position. Beyond that it stops being a "box" and becomes a shift.
@@ -223,7 +233,7 @@ function getScalePositions(root, typeKey, maxFret = MAX_FRET) {
  * The ascending run this module tries to make playable: the tonic, each scale
  * degree above it, and the octave on top.
  *
- * Truncated at HIGHEST_MIDI rather than refused, so a high root still gets a
+ * Truncated at highestMidi() rather than refused, so a high root still gets a
  * useful partial run (Bb major reaches its 7th at A5 and only loses the octave).
  * @param {number} tonicMidi
  * @param {Array<number>} intervals
@@ -233,7 +243,7 @@ function buildAscendingRun(tonicMidi, intervals) {
     const run = intervals
         .map(semitone => tonicMidi + semitone)
         .concat([tonicMidi + 12])
-        .filter(midi => midi <= HIGHEST_MIDI);
+        .filter(midi => midi <= highestMidi());
     return run.sort((a, b) => a - b);
 }
 
@@ -243,7 +253,7 @@ function buildAscendingRun(tonicMidi, intervals) {
  * @returns {number|null}
  */
 function lowestMidiForPitchClass(pc) {
-    for (let midi = LOWEST_MIDI; midi <= HIGHEST_MIDI; midi++) {
+    for (let midi = lowestMidi(); midi <= highestMidi(); midi++) {
         if (((midi % 12) + 12) % 12 === pc) return midi;
     }
     return null;
@@ -446,30 +456,30 @@ function explainScaleRange(root, typeKey) {
     const octaveMidi = tonicMidi + 12;
     const rootLabel = `${scale.root} ${type.name}`;
 
-    if (octaveMidi > HIGHEST_MIDI) {
+    if (octaveMidi > highestMidi()) {
         const reached = buildAscendingRun(tonicMidi, type.intervals);
         const top = reached[reached.length - 1];
         // Spell the octave the way the scale spells it - Bb major must not be
         // told its octave is "A#5".
         return `${rootLabel} starts on ${scaleNoteName(tonicMidi, root, typeKey, true)}, and the octave ` +
-               `above it (${scaleNoteName(octaveMidi, root, typeKey, true)}) is past ${scalesMidiToNoteName(HIGHEST_MIDI)} ` +
+               `above it (${scaleNoteName(octaveMidi, root, typeKey, true)}) is past ${scalesMidiToNoteName(highestMidi())} ` +
                `- the highest note on a 12-fret neck. You get the scale up to ` +
                `${scaleNoteName(top, root, typeKey, true)} and no octave to land on. ` +
                `Practising it an octave down is not an option either: ` +
-               `${scalesMidiToNoteName(LOWEST_MIDI)} is the lowest pitch the instrument has.`;
+               `${scalesMidiToNoteName(lowestMidi())} is the lowest pitch the instrument has.`;
     }
 
     // A low root means the notes BELOW the tonic are unreachable, so the box
     // cannot be extended downward - worth saying, because on a guitar it could.
-    if (tonicMidi > LOWEST_MIDI) {
-        const belowTonic = tonicMidi - LOWEST_MIDI;
-        const lowestDegree = SCALE_DEGREE_LABELS[((LOWEST_MIDI - tonicMidi) % 12 + 12) % 12];
-        const isScaleTone = scale.notes.some(n => n.pc === ((LOWEST_MIDI % 12) + 12) % 12);
+    if (tonicMidi > lowestMidi()) {
+        const belowTonic = tonicMidi - lowestMidi();
+        const lowestDegree = SCALE_DEGREE_LABELS[((lowestMidi() - tonicMidi) % 12 + 12) % 12];
+        const isScaleTone = scale.notes.some(n => n.pc === ((lowestMidi() % 12) + 12) % 12);
         if (belowTonic > 0 && isScaleTone) {
             return `The whole octave fits. Below the tonic you only have ${belowTonic} ` +
                    `semitone${belowTonic === 1 ? '' : 's'} of room, so the lowest note of ` +
                    `${rootLabel} you can reach is the ${lowestDegree} ` +
-                   `(${scalesMidiToNoteName(LOWEST_MIDI)}) - there is nothing under it.`;
+                   `(${scalesMidiToNoteName(lowestMidi())}) - there is nothing under it.`;
         }
     }
 
@@ -587,11 +597,13 @@ if (typeof window !== 'undefined') {
     window.getScalePositions = getScalePositions;
     window.getMelodyBox = getMelodyBox;
     window.explainScaleRange = explainScaleRange;
+    window.scalesLowestMidi = lowestMidi;
+    window.scalesHighestMidi = highestMidi;
 }
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         SCALE_TYPES, SCALE_DEGREE_LABELS, SCALE_PATTERNS, EAR_LEVELS,
-        LOWEST_MIDI, HIGHEST_MIDI, MAX_FRET, MIN_BOX_WIDTH, MAX_BOX_WIDTH,
+        lowestMidi, highestMidi, MAX_FRET, MIN_BOX_WIDTH, MAX_BOX_WIDTH,
         parseScaleRoot, scaleUsesFlats, scaleNoteName,
         getScaleNotes, getScalePositions, getMelodyBox, explainScaleRange,
         filterPathByLevel,

@@ -85,6 +85,11 @@ const practiceElements = {
  * Initialize practice mode
  */
 function initPractice() {
+    // Honour the tuning chosen in the main app: the cookie is path=/, and the
+    // Scales tab's whole range depends on it (low-G drops the floor from C4 to
+    // G3). Silently staying high-G here would contradict the other page.
+    applyStoredTuning();
+
     // Set up tab listeners
     practiceElements.tabs.forEach(tab => {
         tab.addEventListener('click', () => handleTabChange(tab.dataset.mode));
