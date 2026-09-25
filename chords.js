@@ -1718,6 +1718,17 @@ const CHORDS = {
         barre: null,
         baseFret: 1
     },
+    // The E shape [1,4,0,2] with the C string pulled back one fret, which is
+    // exactly the classic E -> E/D# -> C#m descending bass move. Sounds
+    // G#4 D#4 E4 B4: an E triad over a D# bass, so strictly it is Emaj7 in
+    // third inversion - the D# is the major 7th, not a chord tone of E.
+    'E/D#': {
+        name: 'E/D#',
+        frets: [1, 3, 0, 2],
+        fingers: [1, 3, 0, 2],
+        barre: null,
+        baseFret: 1
+    },
     'G/B': {
         name: 'G/B',
         frets: [4, 2, 3, 2],
@@ -2159,6 +2170,16 @@ const CHORD_VARIATIONS = {
             frets: [1, 1, 1, 4],
             fingers: [1, 1, 1, 4],
             barre: { fret: 1, fromString: 0, toString: 2 },
+            baseFret: 1
+        }
+    ],
+    'E/D#': [
+        {
+            name: 'E (simple)',
+            description: 'Parent triad (no bass)',
+            frets: [1, 4, 0, 2],
+            fingers: [1, 3, 0, 2],
+            barre: null,
             baseFret: 1
         }
     ]

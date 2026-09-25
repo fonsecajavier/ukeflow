@@ -1,0 +1,865 @@
+{
+  "title": "Eres Mi Religión",
+  "artist": "Maná",
+  "key": "E",
+  "spotify": "https://open.spotify.com/track/3NTaEHQg5iVrRRNWlnK4RY",
+  "lines": [
+    {
+      "section": "Intro"
+    },
+    {
+      "lyrics": "",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 0
+        },
+        {
+          "chord": "E/D#",
+          "position": 3
+        },
+        {
+          "chord": "C#m",
+          "position": 9
+        }
+      ]
+    },
+    {
+      "section": "First Part"
+    },
+    {
+      "lyrics": "Iba caminando",
+      "chords": [
+        {
+          "chord": "F#m",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Por las calles",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 9
+        }
+      ]
+    },
+    {
+      "lyrics": "Empapadas en olvido",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 16
+        },
+        {
+          "chord": "A",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "lyrics": "Iba por los",
+      "chords": [
+        {
+          "chord": "F#m",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Parques con fantasmas",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 16
+        }
+      ]
+    },
+    {
+      "lyrics": "Y con ángeles caídos",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 16
+        }
+      ]
+    },
+    {
+      "lyrics": "Iba sin luz, iba sin sol",
+      "chords": [
+        {
+          "chord": "F#m",
+          "position": 0
+        },
+        {
+          "chord": "B",
+          "position": 22
+        }
+      ]
+    },
+    {
+      "lyrics": "Iba sin un sentido",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 15
+        }
+      ]
+    },
+    {
+      "lyrics": "Iba muriéndome.",
+      "chords": [
+        {
+          "chord": "A",
+          "position": 11
+        }
+      ]
+    },
+    {
+      "lyrics": "Iba volando sobre el mar",
+      "chords": [
+        {
+          "chord": "F#m",
+          "position": 0
+        },
+        {
+          "chord": "B",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "lyrics": "Con las alas rotas",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 14
+        }
+      ]
+    },
+    {
+      "lyrics": "Ay amor apareciste en mi vida",
+      "chords": [
+        {
+          "chord": "F#m",
+          "position": 0
+        },
+        {
+          "chord": "B",
+          "position": 26
+        }
+      ]
+    },
+    {
+      "lyrics": "Y me curaste las heridas",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 20
+        },
+        {
+          "chord": "A",
+          "position": 25
+        }
+      ]
+    },
+    {
+      "lyrics": "Ay amor eres mi luna, eres mi sol",
+      "chords": [
+        {
+          "chord": "F#m",
+          "position": 0
+        },
+        {
+          "chord": "B",
+          "position": 31
+        }
+      ]
+    },
+    {
+      "lyrics": "Eres mi pan de cada día",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "lyrics": "Apareciste con tu luz",
+      "chords": [
+        {
+          "chord": "F#m",
+          "position": 0
+        },
+        {
+          "chord": "B",
+          "position": 19
+        }
+      ]
+    },
+    {
+      "lyrics": "No, nunca te vayas",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 14
+        }
+      ]
+    },
+    {
+      "lyrics": "Oh, no te vayas, no",
+      "chords": [
+        {
+          "chord": "A",
+          "position": 11
+        }
+      ]
+    },
+    {
+      "lyrics": "    Tú eres la gloria",
+      "chords": [
+        {
+          "chord": "F#m",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "De los dos",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 8
+        }
+      ]
+    },
+    {
+      "lyrics": "Hasta la muerte",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 11
+        }
+      ]
+    },
+    {
+      "section": "Pre-Chorus"
+    },
+    {
+      "lyrics": "En un mundo de ilusión",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Yo estaba desahuciado",
+      "chords": [
+        {
+          "chord": "C#m",
+          "position": 15
+        }
+      ]
+    },
+    {
+      "lyrics": "Yo estaba abandonado",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 3
+        },
+        {
+          "chord": "F#/A#",
+          "position": 17
+        }
+      ]
+    },
+    {
+      "lyrics": "Vivía sin sentido",
+      "chords": [
+        {
+          "chord": "A",
+          "position": 14
+        }
+      ]
+    },
+    {
+      "lyrics": "Pero llegaste tú",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 15
+        }
+      ]
+    },
+    {
+      "section": "Chorus"
+    },
+    {
+      "lyrics": "Ay, amor tú eres mi religión",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 0
+        },
+        {
+          "chord": "G#m",
+          "position": 6
+        },
+        {
+          "chord": "C#m",
+          "position": 21
+        },
+        {
+          "chord": "E7",
+          "position": 29
+        }
+      ]
+    },
+    {
+      "lyrics": "Tú eres luz, tú eres mi sol",
+      "chords": [
+        {
+          "chord": "A",
+          "position": 22
+        },
+        {
+          "chord": "A/G#",
+          "position": 28
+        }
+      ]
+    },
+    {
+      "lyrics": "Abre el corazón, abre el corazón",
+      "chords": [
+        {
+          "chord": "F#m",
+          "position": 0
+        },
+        {
+          "chord": "B",
+          "position": 17
+        }
+      ]
+    },
+    {
+      "section": "Interlude"
+    },
+    {
+      "lyrics": "",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 0
+        },
+        {
+          "chord": "E/D#",
+          "position": 3
+        },
+        {
+          "chord": "C#m",
+          "position": 9
+        }
+      ]
+    },
+    {
+      "section": "Second Part"
+    },
+    {
+      "lyrics": "Hace tanto tiempo corazón",
+      "chords": [
+        {
+          "chord": "F#m",
+          "position": 1
+        },
+        {
+          "chord": "B",
+          "position": 23
+        }
+      ]
+    },
+    {
+      "lyrics": "Vivía en el dolor",
+      "chords": []
+    },
+    {
+      "lyrics": "En el olvido",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 9
+        },
+        {
+          "chord": "A",
+          "position": 13
+        }
+      ]
+    },
+    {
+      "lyrics": "Ay, amor eres mi bendición",
+      "chords": [
+        {
+          "chord": "F#m",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Mi religión",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "lyrics": "Eres mi sol",
+      "chords": []
+    },
+    {
+      "lyrics": "Que cura el frío",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 14
+        }
+      ]
+    },
+    {
+      "lyrics": "Apareciste con tu luz",
+      "chords": [
+        {
+          "chord": "F#m",
+          "position": 0
+        },
+        {
+          "chord": "B",
+          "position": 19
+        }
+      ]
+    },
+    {
+      "lyrics": "No, no, no me abandones",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 9
+        }
+      ]
+    },
+    {
+      "lyrics": "No, nunca mi amor",
+      "chords": [
+        {
+          "chord": "A",
+          "position": 1
+        }
+      ]
+    },
+    {
+      "lyrics": "    Gloria de los dos",
+      "chords": [
+        {
+          "chord": "F#m",
+          "position": 0
+        },
+        {
+          "chord": "B",
+          "position": 19
+        }
+      ]
+    },
+    {
+      "lyrics": "Tú eres sol, tu eres mi todo",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 9
+        }
+      ]
+    },
+    {
+      "lyrics": "Toda tú eres bendición",
+      "chords": []
+    },
+    {
+      "section": "Pre-Chorus"
+    },
+    {
+      "lyrics": "En un mundo de ilusión",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "Yo estaba desahuciado",
+      "chords": [
+        {
+          "chord": "C#m",
+          "position": 15
+        }
+      ]
+    },
+    {
+      "lyrics": "Yo estaba abandonado",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 3
+        },
+        {
+          "chord": "F#/A#",
+          "position": 17
+        }
+      ]
+    },
+    {
+      "lyrics": "Vivía sin sentido",
+      "chords": [
+        {
+          "chord": "A",
+          "position": 14
+        }
+      ]
+    },
+    {
+      "lyrics": "Pero llegaste tú",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 15
+        }
+      ]
+    },
+    {
+      "section": "Chorus"
+    },
+    {
+      "lyrics": "Ay, amor tú eres mi religión",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 0
+        },
+        {
+          "chord": "G#m",
+          "position": 6
+        },
+        {
+          "chord": "C#m",
+          "position": 21
+        },
+        {
+          "chord": "E7",
+          "position": 29
+        }
+      ]
+    },
+    {
+      "lyrics": "Tú eres luz, tú eres mi sol",
+      "chords": [
+        {
+          "chord": "A",
+          "position": 22
+        },
+        {
+          "chord": "A/G#",
+          "position": 28
+        }
+      ]
+    },
+    {
+      "lyrics": "Abre el corazón, abre el corazón",
+      "chords": [
+        {
+          "chord": "F#m",
+          "position": 0
+        },
+        {
+          "chord": "B",
+          "position": 17
+        }
+      ]
+    },
+    {
+      "lyrics": "Ay, amor tú eres mi religión",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 0
+        },
+        {
+          "chord": "G#m",
+          "position": 6
+        },
+        {
+          "chord": "C#m",
+          "position": 21
+        },
+        {
+          "chord": "E7",
+          "position": 29
+        }
+      ]
+    },
+    {
+      "lyrics": "Tú eres luz, tú eres mi sol",
+      "chords": [
+        {
+          "chord": "A",
+          "position": 22
+        },
+        {
+          "chord": "A/G#",
+          "position": 28
+        }
+      ]
+    },
+    {
+      "lyrics": "Abre el corazón, abre el corazón",
+      "chords": [
+        {
+          "chord": "F#m",
+          "position": 0
+        },
+        {
+          "chord": "B",
+          "position": 17
+        }
+      ]
+    },
+    {
+      "section": "Third Part"
+    },
+    {
+      "lyrics": "Viviré siempre a tu lado",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 1
+        },
+        {
+          "chord": "E/D#",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "lyrics": "Con tu luz.",
+      "chords": [
+        {
+          "chord": "C#m",
+          "position": 8
+        },
+        {
+          "chord": "B",
+          "position": 15
+        }
+      ]
+    },
+    {
+      "lyrics": "Oh, oh, oh",
+      "chords": []
+    },
+    {
+      "lyrics": "Moriré estando a tu lado",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 0
+        },
+        {
+          "chord": "E/D#",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "lyrics": "Eres gloria y bendición",
+      "chords": [
+        {
+          "chord": "C#m",
+          "position": 15
+        },
+        {
+          "chord": "B",
+          "position": 24
+        }
+      ]
+    },
+    {
+      "lyrics": "Eres tu mi bendición",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 0
+        },
+        {
+          "chord": "E/D#",
+          "position": 18
+        }
+      ]
+    },
+    {
+      "lyrics": "Eres tú mi religión, yee",
+      "chords": [
+        {
+          "chord": "C#m",
+          "position": 12
+        },
+        {
+          "chord": "B",
+          "position": 22
+        }
+      ]
+    },
+    {
+      "lyrics": "Oh, oh, oh",
+      "chords": []
+    },
+    {
+      "lyrics": "Eres tú mi eternidad",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 0
+        },
+        {
+          "chord": "E/D#",
+          "position": 18
+        }
+      ]
+    },
+    {
+      "lyrics": "Y hasta eres salvación",
+      "chords": [
+        {
+          "chord": "C#m",
+          "position": 14
+        },
+        {
+          "chord": "B",
+          "position": 23
+        }
+      ]
+    },
+    {
+      "lyrics": "Oh, oh, oh",
+      "chords": []
+    },
+    {
+      "lyrics": "No tenia nada",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 0
+        },
+        {
+          "chord": "E/D#",
+          "position": 12
+        }
+      ]
+    },
+    {
+      "lyrics": "Y hoy te tengo con la gloria",
+      "chords": [
+        {
+          "chord": "C#m",
+          "position": 24
+        }
+      ]
+    },
+    {
+      "lyrics": "Con la gloria, con la gloria",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 24
+        }
+      ]
+    },
+    {
+      "lyrics": "Amor, amor, amor, amor, amor",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 26
+        }
+      ]
+    },
+    {
+      "lyrics": "Eres tú mi bendición",
+      "chords": [
+        {
+          "chord": "E/D#",
+          "position": 0
+        },
+        {
+          "chord": "C#m",
+          "position": 17
+        }
+      ]
+    },
+    {
+      "lyrics": "Eres mi luz, eres mi sol",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 0
+        },
+        {
+          "chord": "E",
+          "position": 22
+        }
+      ]
+    },
+    {
+      "section": "Ending"
+    },
+    {
+      "lyrics": "",
+      "chords": [
+        {
+          "chord": "E",
+          "position": 0
+        },
+        {
+          "chord": "E/D#",
+          "position": 3
+        },
+        {
+          "chord": "C#m",
+          "position": 9
+        },
+        {
+          "chord": "B",
+          "position": 14
+        },
+        {
+          "chord": "E",
+          "position": 23
+        },
+        {
+          "chord": "E/D#",
+          "position": 26
+        },
+        {
+          "chord": "C#m",
+          "position": 32
+        },
+        {
+          "chord": "B",
+          "position": 37
+        }
+      ]
+    }
+  ]
+}

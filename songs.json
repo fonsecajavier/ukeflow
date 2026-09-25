@@ -68,6 +68,7 @@
     { "path": "songs/tan-natural-v2.json", "title": "Tan Natural (Versión 2)", "artist": "Felipe Peláez" },
     { "path": "songs/dos-oruguitas.json", "title": "Dos Oruguitas", "artist": "Sebastián Yatra (Encanto)" },
     { "path": "songs/cuan-lejos-voy.json", "title": "Cuán lejos voy", "artist": "Sara Paula Gómez Arias (Moana)" },
-    { "path": "songs/lo-mejor-para-los-dos.json", "title": "Lo mejor para los dos (Todo de cabeza)", "artist": "Kaleth Morales" }
+    { "path": "songs/lo-mejor-para-los-dos.json", "title": "Lo mejor para los dos (Todo de cabeza)", "artist": "Kaleth Morales" },
+    { "path": "songs/eres-mi-religion.json", "title": "Eres Mi Religión", "artist": "Maná" }
   ]
 }
