@@ -183,6 +183,18 @@ function createChordDiagram(chordData, large = false, displayName = null, showPl
     name.textContent = displayChordName(chordName);
     container.appendChild(name);
 
+    // A slash chord re-voiced for low-G is a different shape from the one a
+    // high-G player would use, so say so on the diagram rather than letting it
+    // look like the library changed under them.
+    if (chordData.lowG) {
+        const badge = document.createElement('span');
+        badge.className = 'chord-lowg-badge';
+        badge.textContent = 'Low-G';
+        badge.title = chordData.note
+            || 'Voiced for low-G: the G string sounds G3, so the slash bass can actually be the lowest note.';
+        name.appendChild(badge);
+    }
+
     // Add scale degree below chord name
     if (state.currentSong) {
         const transposedKey = getDisplayKey();

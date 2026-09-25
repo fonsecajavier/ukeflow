@@ -1774,7 +1774,171 @@ const CHORDS = {
  * @param {string} chordName
  * @returns {Object|undefined} chord data, or undefined if not found
  */
+
+/**
+ * Slash-chord shapes that are only correct on a LOW-G ukulele.
+ *
+ * The whole point of a slash chord is which note is underneath, and low-G moves
+ * that floor. On high-G the G string sounds G4, ABOVE the C and E strings, so it
+ * can never be the bass and the standard uke convention is to voice the bass
+ * where it is reachable or fall back to the parent triad. Re-string to low-G and
+ * the G string becomes G3, the LOWEST note on the instrument - which cuts both
+ * ways:
+ *
+ *   - bass notes from G3 to B3 become reachable at last, so A/G# collapses from
+ *     a 6th-fret shape to a one-finger barre and Am/G is just all four strings
+ *     open. F/A, F#/A# and G/B need no entry here at all: the ordinary F, F# and
+ *     G shapes already put the right note on the now-lowest string.
+ *   - but an open G string now sits UNDER the intended bass and steals it. Every
+ *     entry below that mutes the G is muting it for that reason, not for comfort.
+ *
+ * Consulted by resolveChord() only while the low-G tuning is active. Anything
+ * absent here falls through to the normal shape.
+ */
+const LOW_G_CHORDS = {
+    'A/G#': {
+        // G#3 C#4 E4 A4  (1 finger)
+        // One finger. On high-G this needs [6,-1,4,0] up at the 6th fret.
+        name: 'A/G#',
+        frets: [1,1,0,0],
+        fingers: [1,1,0,0],
+        barre: {fret: 1, fromString: 0, toString: 1},
+        baseFret: 1,
+        lowG: true
+    },
+    'C#m/B': {
+        // B3 E4 G#4 C#5  (1 finger)
+        // A straight barre. High-G needs [6,-1,7,7] with a muted string.
+        name: 'C#m/B',
+        frets: [4,4,4,4],
+        fingers: [1,1,1,1],
+        barre: {fret: 4, fromString: 0, toString: 3},
+        baseFret: 1,
+        lowG: true
+    },
+    'C#/F': {
+        // x F4 G#4 C#5  (2 fingers)
+        // F is below the C string, so the low G is muted to keep it the bass.
+        name: 'C#/F',
+        frets: [-1,5,4,4],
+        fingers: [0,2,1,1],
+        barre: {fret: 4, fromString: 2, toString: 3},
+        baseFret: 1,
+        lowG: true
+    },
+    'Eb/G': {
+        // G3 D#4 G4 x  (1 finger)
+        // The open low G IS the bass note - nothing to fret for it.
+        name: 'Eb/G',
+        frets: [0,3,3,-1],
+        fingers: [0,1,1,0],
+        barre: {fret: 3, fromString: 1, toString: 2},
+        baseFret: 1,
+        lowG: true
+    },
+    'B/D#': {
+        // x D#4 F#4 B4  (2 fingers)
+        // G muted: the open low G would sit under the D# and take over the bass.
+        name: 'B/D#',
+        frets: [-1,3,2,2],
+        fingers: [0,2,1,1],
+        barre: {fret: 2, fromString: 2, toString: 3},
+        baseFret: 1,
+        lowG: true
+    },
+    'Ab/D': {
+        // x D4 G#4 C5  (3 fingers)
+        // G muted so D stays the lowest note.
+        name: 'Ab/D',
+        frets: [-1,2,4,3],
+        fingers: [0,1,3,2],
+        barre: null,
+        baseFret: 1,
+        lowG: true
+    },
+    'D/F#': {
+        // x F#4 A4 D5  (2 fingers)
+        // G muted; F#4 on the C string becomes the bass.
+        name: 'D/F#',
+        frets: [-1,6,5,5],
+        fingers: [0,2,1,1],
+        barre: {fret: 5, fromString: 2, toString: 3},
+        baseFret: 1,
+        lowG: true
+    },
+    'G/D': {
+        // x D4 G4 B4  (2 fingers)
+        // G muted so the D on the C string is the bass, not the open low G.
+        name: 'G/D',
+        frets: [-1,2,3,2],
+        fingers: [0,1,2,1],
+        barre: {fret: 2, fromString: 1, toString: 3},
+        baseFret: 1,
+        lowG: true
+    },
+    'Db/Eb': {
+        // x D#4 F4 C#5  (3 fingers)
+        // G muted so Eb stays underneath.
+        name: 'Db/Eb',
+        frets: [-1,3,1,4],
+        fingers: [0,2,1,3],
+        barre: null,
+        baseFret: 1,
+        lowG: true
+    },
+    'E/D#': {
+        // x D#4 E4 B4  (2 fingers)
+        // NO 3rd: G# cannot sit above D#4 in this position, so this is a bass-correct E5/D#. The low G string must be muted - open it sounds G#3 and turns the chord into E/G#.
+        name: 'E/D#',
+        frets: [-1,3,0,2],
+        fingers: [0,2,0,1],
+        barre: null,
+        baseFret: 1,
+        lowG: true,
+        note: 'No 3rd: G# cannot sit above D#4 here. Mute the low G - open it sounds G#3 and turns this into E/G#.'
+    }
+};
+
+/**
+ * Slash chords whose bass note is below a low-G ukulele entirely, so there is no
+ * honest shape to offer - F#3 (54) and D#3 (51) are both under the open low G
+ * (55). The parent chord is shown instead and the UI says why, rather than
+ * drawing a diagram whose bass is simply wrong.
+ */
+const LOW_G_BASS_UNREACHABLE = {
+    'G/F#': 'F#3 is below the lowest note of a low-G ukulele, so the F# bass cannot be played. Showing plain G.',
+};
+
+/**
+ * Which tuning is in effect, defaulting to high-G if nobody has said.
+ *
+ * NOT named currentTuning - voicings.js already has a module-level binding by
+ * that name, and two top-level declarations sharing a name across two classic
+ * <script> files is a SyntaxError that kills the whole page, not a shadowing.
+ *
+ * The authority is getUkuleleTuning() in voicings.js, which this file cannot
+ * simply call: in the browser voicings.js loads AFTER chords.js (fine, because
+ * this only runs at call time), but under require() it is a separate module
+ * scope where the bare identifier does not resolve at all. Getting that wrong is
+ * silent - the override just never fires - so all three routes are tried.
+ */
+function activeTuningName() {
+    if (typeof getUkuleleTuning === 'function') return getUkuleleTuning();
+    if (typeof globalThis !== 'undefined' && typeof globalThis.getUkuleleTuning === 'function') {
+        return globalThis.getUkuleleTuning();
+    }
+    if (typeof require === 'function' && typeof __dirname !== 'undefined') {
+        try { return require(__dirname + '/voicings.js').getUkuleleTuning(); } catch (e) { /* not loaded */ }
+    }
+    return 'high-g';
+}
+
 function resolveChord(chordName) {
+    // Low-G re-voicing comes first: a slash chord's bass lands differently when
+    // the G string is the lowest note rather than the second-highest.
+    if (LOW_G_CHORDS[chordName] && activeTuningName() === 'low-g') {
+        return LOW_G_CHORDS[chordName];
+    }
     if (CHORDS[chordName]) return CHORDS[chordName];
     if (chordName.includes('/')) {
         const parent = chordName.split('/')[0];
@@ -2597,15 +2761,19 @@ function computeChordFromFrets(inputFrets) {
 if (typeof window !== 'undefined') {
     window.findChordByFrets = findChordByFrets;
     window.computeChordFromFrets = computeChordFromFrets;
+    window.LOW_G_CHORDS = LOW_G_CHORDS;
+    window.LOW_G_BASS_UNREACHABLE = LOW_G_BASS_UNREACHABLE;
 }
 
 // CommonJS export for the node test scripts in tests/ (same pattern as voicings.js)
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
-        CHORDS, CHORD_VARIATIONS, SCALE_DEGREES_MAJOR, SCALE_DEGREES_MINOR,
+        CHORDS, CHORD_VARIATIONS, LOW_G_CHORDS, LOW_G_BASS_UNREACHABLE,
+        SCALE_DEGREES_MAJOR, SCALE_DEGREES_MINOR,
         CHROMATIC_SCALE, CHROMATIC_SCALE_FLATS,
         transposeChord, transposeKey, respellChord, canonicalRoot, chordBaseName,
         getScaleDegree, isMinorKey,
         getChordVariations, resolveChord, findChordByFrets, computeChordFromFrets,
+        activeTuningName,
     };
 }

@@ -19,7 +19,7 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
 ### JavaScript Modules (loaded in this order)
 | File | Contents |
 |------|----------|
-| `chords.js` | CHORDS definitions, SCALE_DEGREES_MAJOR/MINOR, CHORD_VARIATIONS, transposeChord(), transposeKey(), getScaleDegree(), isMinorKey(), getChordVariations(), resolveChord(), computeChordFromFrets(), respellChord(), canonicalRoot(), chordBaseName() |
+| `chords.js` | CHORDS definitions, LOW_G_CHORDS (slash-chord shapes for low-G), LOW_G_BASS_UNREACHABLE, activeTuningName(), SCALE_DEGREES_MAJOR/MINOR, CHORD_VARIATIONS, transposeChord(), transposeKey(), getScaleDegree(), isMinorKey(), getChordVariations(), resolveChord(), computeChordFromFrets(), respellChord(), canonicalRoot(), chordBaseName() |
 | `voicings.js` | Chord-melody voicing generator, and the TUNING AUTHORITY: TUNINGS, setUkuleleTuning(), getUkuleleTuning(), isReentrantTuning(), UKULELE_MIDI, CHORD_TYPES, findMelodyVoicings(), findEasiestVoicing(), explainNoVoicings(), parseChordSymbol(), parseNoteName(), midiToNoteName(), fretToMidi(), countFingers(), degreeLabel() |
 | `scales.js` | Scale theory and the melody box finder. SCALE_TYPES, SCALE_DEGREE_LABELS, SCALE_PATTERNS, EAR_LEVELS, getScaleNotes(), getScalePositions(), getMelodyBox(), filterPathByLevel(), explainScaleRange(), scaleNoteName(). Borrows the MIDI/tuning helpers from voicings.js. No DOM. Loaded by practice.html only |
 | `state.js` | `state` object (songIndex, songCache, currentSong, transpose, etc.), slugify(), getDisplayKey(), displayChordName(), detectAccidentalStyle(), and the cookie layer: readCookie(), writeCookie(), applyStoredTuning(), setAndStoreTuning() |
@@ -51,6 +51,7 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
 - **Fretboard click targets / hit boxes**: `ui.js` → createFretboardSVG() geometry constants (`openColumnLeft`, `openColumnRight`, `openColumnCenter`, `labelX`); guarded by `tests/fretboard-hitboxes.test.js`
 - **Drone / single notes**: `audio.js` → startDrone(), stopDrone(), playFretNote()
 - **High-G / low-G tuning**: `voicings.js` → TUNINGS and setUkuleleTuning(); persistence in `state.js` → applyStoredTuning(); the checkbox in `index.html` (`#chord-melody-lowg`) wired by `app.js` → toggleChordMelodyTuning(). Guarded by `tests/tuning-cookie.test.js`
+- **Low-G slash chord shapes**: `chords.js` → LOW_G_CHORDS, applied by resolveChord(); the "Low-G" badge is drawn in `ui.js` → createChordDiagram(), styled by `.chord-lowg-badge`. Guarded by `tests/lowg-slash.test.js`
 
 ## Chord Melody (voicings.js)
 `findMelodyVoicings(chordSymbol, melodyNote, options)` returns playable voicings where the
@@ -277,6 +278,22 @@ Bamboleo, bambolea
 - **Add collapsible section**: Follow pattern in index.html (details/summary), add matching CSS
 - **Add Spotify link**: Add `"spotify": "https://open.spotify.com/track/TRACK_ID"` to song JSON. **Always search the web** to find the correct Spotify track URL - do not guess or make up track IDs.
 
+## Global Scope Is Shared Across `<script>` Tags
+There are no modules here: every file is a classic `<script>`, so all top-level
+declarations land in ONE global lexical environment. Two files on the same page
+declaring the same top-level name where either is `let`/`const`/`class` is a
+**SyntaxError that kills the entire page** — every later script never runs and
+the app loads blank, with no warning. `function` + `function` is legal (the
+later wins, which is how `practice.js` deliberately overrides `ui.js`'s
+`closeModal`), and so is `var` + `var`.
+
+This is easy to hit and invisible to unit tests: `require()` gives each file its
+own module scope, so a colliding pair passes every test and only fails in the
+browser. It happened once — `chords.js` gained a `currentTuning()` helper while
+`voicings.js` already had `let currentTuning` for the tuning state — hence
+`activeTuningName()`. `tests/global-scope.test.js` reads each page's script list
+and fails on any fatal pair.
+
 ## Local Development
 Use `npm run dev` (http://localhost:8899), which runs `serve.py`.
 
@@ -304,6 +321,26 @@ When adding songs to `progressions.json`:
 
 ## Slash Chords
 On a re-entrant GCEA ukulele the bass note often can't physically sit below the chord (the lowest note is middle C on the open C string), so voice the bass where it's reachable, otherwise just play the parent triad. This is the standard uke convention — the slash bass is really for a bassist/guitarist.
+
+**Low-G changes this more than any other feature.** The G string goes from G4
+(second-highest, so it can never be the bass) to G3 (the lowest note on the
+instrument). Measured across the 15 slash chords used in the library and songs,
+the named bass is actually the lowest note in **4/15 on high-G but 14/15 on
+low-G**. `LOW_G_CHORDS` in `chords.js` holds the shapes that differ, and
+`resolveChord()` returns them only while the low-G tuning is active. Things to
+preserve:
+- Four chords need **no** entry — `F/A`, `F#/A#`, `G/B` and `Am/G` are already
+  correct on low-G because the ORDINARY F, F#, G and Am/G shapes put the right
+  note on the now-lowest string. Adding an override for those would be a silent
+  regression in playability, so `tests/lowg-slash.test.js` asserts their absence.
+- Many entries **mute the G string**, and that is the point, not a comfort
+  choice: an open low G would sit *under* the intended bass and steal it.
+- `G/F#` and `E/D#` are the hard cases. F#3 (54) and D#3 (51) are both below the
+  open low G (55). `G/F#` gets no shape at all and is listed in
+  `LOW_G_BASS_UNREACHABLE` with a reason the UI can show; `E/D#` is voiced
+  bass-correct but **without its 3rd**, which its `note` field states.
+- The diagram carries a `Low-G` badge so the shape doesn't look like the library
+  silently changed underneath a high-G player.
 
 When adding songs, **keep slash chord names as-is** in the song JSON (e.g., `"chord": "Eb/G"`) for display/notational purposes. The app's `resolveChord()` function handles lookup: if the exact slash chord has a voicing in `chords.js`, it uses that; otherwise it falls back to the parent chord (the part before `/`).
 

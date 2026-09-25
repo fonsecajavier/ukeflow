@@ -427,6 +427,57 @@ rather than printing the re-entrant explanation as a fact of the instrument.
 the cookie set in Chord Melody. Its measured findings in this document and in
 `CLAUDE.md` are documented for high-G.
 
+### 3o. Low-G Slash Chord Voicings (LOW_G_CHORDS)
+
+When the low-G tuning is active, slash chords are re-voiced so the named bass
+note really is the lowest-sounding note, and the diagram is badged **Low-G**.
+
+**Why slash chords specifically.** The point of a slash chord is which note sits
+underneath, and that is exactly what low-G moves. On high-G the G string sounds
+G4 - second-highest, so it can never be the bass - which is why the uke
+convention is to voice the bass where reachable or fall back to the parent
+triad. On low-G the G string becomes G3, the lowest note on the instrument.
+
+**Measured across the 15 slash chords used in the library and songs:**
+
+| | high-G | low-G |
+|---|---|---|
+| named bass is genuinely the lowest note | 4/15 | **14/15** |
+
+Three examples of what changes:
+
+| Chord | High-G | Low-G |
+|---|---|---|
+| `A/G#` | `[6,-1,4,0]`, 6th position | `[1,1,0,0]` - one-finger barre |
+| `Am/G` | `[0,-1,5,3]` | `[0,0,0,0]` - all open strings |
+| `F/A` | impossible | `[2,0,1,0]` - the ordinary F shape |
+
+**Four chords need no entry at all.** `F/A`, `F#/A#`, `G/B` and `Am/G` are
+already correct on low-G, because the ordinary F, F#, G and Am/G shapes put the
+right note on the now-lowest string. `tests/lowg-slash.test.js` asserts they are
+NOT in `LOW_G_CHORDS` - adding an override there would be a silent regression in
+playability.
+
+**Muting the G string is deliberate.** Entries like `B/D#` `[-1,3,2,2]` mute the
+low G because an open G would sit *under* the intended bass and steal it. That
+is a correctness requirement, not a comfort choice.
+
+**Two bass notes are below the instrument.** F#3 (54) and D#3 (51) are both under
+the open low G (55):
+- `G/F#` gets no shape; it is listed in `LOW_G_BASS_UNREACHABLE` with a reason
+  the UI can display, and the parent G is shown instead.
+- `E/D#` is voiced bass-correct as `[-1,3,0,2]` but **loses its 3rd** (G# cannot
+  sit above D#4 in that position). Its `note` field says so and the badge shows
+  it on hover. Left as the plain `[1,3,0,2]` it would sound G#3-D#4-E4-B4, i.e.
+  an E/G# - the wrong chord.
+
+**Implementation.** `LOW_G_CHORDS` in `chords.js`, consulted by `resolveChord()`
+via `activeTuningName()`. That helper exists because `chords.js` loads BEFORE
+`voicings.js` in the browser and is a separate module scope under `require()`,
+so it tries the bare identifier, then `globalThis`, then a lazy require - the
+failure mode is silent (the override just never fires). The badge is drawn in
+`ui.js` → `createChordDiagram()` and styled by `.chord-lowg-badge`.
+
 ### 3m. Scales & Melody Practice (scales.js, melody.js)
 
 A tab in Practice Mode (`practice.html?mode=scales`) for learning to play melodies
