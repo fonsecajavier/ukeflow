@@ -2355,7 +2355,16 @@ const CHORD_VARIATIONS = {
  * @returns {Array} - Array of chord data objects
  */
 function getChordVariations(chordName) {
-    const defaultChord = CHORDS[chordName];
+    // The DEFAULT must be whatever resolveChord() is actually displaying, or the
+    // variation list contradicts the diagram above it. On low-G, E/D# is drawn
+    // as [-1,3,0,2] while CHORDS still holds the high-G [1,3,0,2] - and that
+    // shape does not even sound an E/D# on a low-G uke (the open G string sits
+    // under the D# and makes it an E/G#), so offering it here under the same
+    // name would be wrong, not merely inconsistent.
+    const lowGShape = LOW_G_CHORDS[chordName] && activeTuningName() === 'low-g'
+        ? LOW_G_CHORDS[chordName]
+        : null;
+    const defaultChord = lowGShape || CHORDS[chordName];
     if (!defaultChord) return [];
 
     const variations = [{ ...defaultChord, description: 'Default' }];

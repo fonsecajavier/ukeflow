@@ -1641,8 +1641,13 @@ function openChordModal(chordName) {
 
     elements.modalChord.innerHTML = '';
 
-    // Get all variations for this chord (resolve slash chords to parent for variations)
-    const lookupName = chordName.includes('/') && !CHORDS[chordName] ? chordName.split('/')[0] : chordName;
+    // Get all variations for this chord (resolve slash chords to parent for variations).
+    // A low-G override counts as "has its own shape": without this, A/G# has no
+    // CHORDS entry, so the modal would list plain A's variations next to the
+    // low-G A/G# diagram it just drew.
+    const hasOwnShape = CHORDS[chordName]
+        || (typeof LOW_G_CHORDS !== 'undefined' && LOW_G_CHORDS[chordName] && chordData.lowG);
+    const lookupName = chordName.includes('/') && !hasOwnShape ? chordName.split('/')[0] : chordName;
     const variations = getChordVariations(lookupName);
     const hasVariations = variations.length > 1;
 
@@ -1661,6 +1666,7 @@ function openChordModal(chordName) {
     nameDiv.textContent = state.showAsNumbers
         ? `${modalDegree} (${displayChordName(chordName)})`
         : displayChordName(chordName);
+    appendLowGBadge(nameDiv, chordData);
     elements.modalChord.appendChild(nameDiv);
 
     // First variation's play button, captured so tap-to-play can auto-trigger it

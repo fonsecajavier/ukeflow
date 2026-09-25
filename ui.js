@@ -164,6 +164,26 @@ function updateClearButtonVisibility() {
 }
 
 /**
+ * Mark a chord label as showing a low-G-specific shape. No-op for every other
+ * chord, so callers can call it unconditionally.
+ *
+ * Shared because the modal builds its own title and would otherwise render a
+ * low-G voicing with nothing saying so.
+ *
+ * @param {HTMLElement} labelEl - the element holding the chord name
+ * @param {Object} chordData - the RESOLVED chord (from resolveChord)
+ */
+function appendLowGBadge(labelEl, chordData) {
+    if (!labelEl || !chordData || !chordData.lowG) return;
+    const badge = document.createElement('span');
+    badge.className = 'chord-lowg-badge';
+    badge.textContent = 'Low-G';
+    badge.title = chordData.note
+        || 'Voiced for low-G: the G string sounds G3, so the slash bass can actually be the lowest note.';
+    labelEl.appendChild(badge);
+}
+
+/**
  * Create a chord diagram element
  * @param {Object} chordData - Chord definition object
  * @param {boolean} large - Whether to render a large version
@@ -184,16 +204,9 @@ function createChordDiagram(chordData, large = false, displayName = null, showPl
     container.appendChild(name);
 
     // A slash chord re-voiced for low-G is a different shape from the one a
-    // high-G player would use, so say so on the diagram rather than letting it
-    // look like the library changed under them.
-    if (chordData.lowG) {
-        const badge = document.createElement('span');
-        badge.className = 'chord-lowg-badge';
-        badge.textContent = 'Low-G';
-        badge.title = chordData.note
-            || 'Voiced for low-G: the G string sounds G3, so the slash bass can actually be the lowest note.';
-        name.appendChild(badge);
-    }
+    // high-G player would use, so say so rather than letting it look like the
+    // library changed under them.
+    appendLowGBadge(name, chordData);
 
     // Add scale degree below chord name
     if (state.currentSong) {

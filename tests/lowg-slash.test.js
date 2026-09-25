@@ -121,5 +121,46 @@ for (const [name, reason] of Object.entries(C.LOW_G_BASS_UNREACHABLE)) {
     V.setUkuleleTuning('high-g');
 }
 
+// ---------------------------------------------------------------------------
+section('The variation list agrees with the diagram');
+
+// createChordDiagram() draws resolveChord()'s shape but builds its "+N" list
+// from getChordVariations(). If those disagree, the modal offers a shape under a
+// name it does not sound: on low-G the stored E/D# [1,3,0,2] is an E/G#, because
+// the open low G sits under the D#.
+V.setUkuleleTuning('low-g');
+for (const name of Object.keys(C.LOW_G_CHORDS)) {
+    const shown = C.resolveChord(name);
+    const vars = C.getChordVariations(name);
+    check(`${name}: variation list is non-empty on low-G`, vars.length > 0);
+    check(`${name}: first variation IS the shape being drawn`,
+        vars.length > 0 && JSON.stringify(vars[0].frets) === JSON.stringify(shown.frets),
+        vars.length ? `${JSON.stringify(vars[0].frets)} vs ${JSON.stringify(shown.frets)}` : 'empty');
+}
+
+// The modal decides whether to show a slash chord's own variations or the
+// parent's. A low-G override has to count as "has its own shape".
+function modalLookup(chordName) {
+    const chordData = C.resolveChord(chordName);
+    const hasOwn = C.CHORDS[chordName] || (C.LOW_G_CHORDS[chordName] && chordData.lowG);
+    return chordName.includes('/') && !hasOwn ? chordName.split('/')[0] : chordName;
+}
+for (const name of Object.keys(C.LOW_G_CHORDS)) {
+    check(`${name}: modal looks up the slash chord, not the parent`, modalLookup(name) === name);
+}
+// ...and the four that need no override still defer to their parent, unbadged.
+for (const name of ['F/A', 'F#/A#']) {
+    check(`${name}: still defers to the parent, with no low-G badge`,
+        modalLookup(name) === name.split('/')[0] && !C.resolveChord(name).lowG);
+}
+
+V.setUkuleleTuning('high-g');
+for (const name of Object.keys(C.LOW_G_CHORDS)) {
+    const vars = C.getChordVariations(name);
+    if (!vars.length) continue;   // no CHORDS entry: nothing to compare
+    check(`${name}: high-G variation list is unchanged`,
+        JSON.stringify(vars[0].frets) === JSON.stringify(C.CHORDS[name].frets));
+}
+
 console.log(`\n${passed} passed, ${failed} failed`);
 process.exit(failed ? 1 : 0);

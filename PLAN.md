@@ -471,6 +471,15 @@ the open low G (55):
   it on hover. Left as the plain `[1,3,0,2]` it would sound G#3-D#4-E4-B4, i.e.
   an E/G# - the wrong chord.
 
+**The display layers have to agree.** `createChordDiagram()` draws
+`resolveChord()`'s shape but builds its `+N` list from `getChordVariations()`,
+and the modal decides between a slash chord's own variations and its parent's.
+All three now follow the tuning: otherwise low-G drew `E/D#` as `[-1,3,0,2]`
+while offering the stored `[1,3,0,2]` under the same name - a shape that sounds
+E/G# on a low-G uke, so it was wrong rather than merely inconsistent. A low-G
+override also counts as "has its own shape" in the modal, or `A/G#` (which has
+no `CHORDS` entry) would list plain A's variations beside a low-G A/G# diagram.
+
 **Implementation.** `LOW_G_CHORDS` in `chords.js`, consulted by `resolveChord()`
 via `activeTuningName()`. That helper exists because `chords.js` loads BEFORE
 `voicings.js` in the browser and is a separate module scope under `require()`,
