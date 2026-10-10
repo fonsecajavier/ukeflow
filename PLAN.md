@@ -487,6 +487,28 @@ so it tries the bare identifier, then `globalThis`, then a lazy require - the
 failure mode is silent (the override just never fires). The badge is drawn in
 `ui.js` → `createChordDiagram()` and styled by `.chord-lowg-badge`.
 
+### 3p. Remembered Transposition (per song)
+
+Transposing a song is remembered in `localStorage`, so reopening it, from the
+dropdown or a fresh visit, comes back in the key you last played it in.
+
+- **Per song, not global.** One key for every song would be wrong: transposing
+  one song into an easier key says nothing about the next. Stored as a map
+  `{ songSlug: semitones }` under `ukeflow_transpose`. Choosing *Original*
+  deletes the entry rather than storing 0.
+- **The URL wins.** A `?transpose=` in the URL (a shared link, or back/forward
+  history) is applied as-is and is NOT saved, because it is the sender's choice,
+  not this user's. Without one, the remembered value is applied and the URL is
+  rewritten with `replaceState` so it matches what is on screen.
+- **Every control goes through `setTranspose()`** (app.js): the dropdown, the
+  "Easy key" suggestion and the key modal's "Transpose to" button. It is the
+  only caller of `storeTranspose()`, so a new control that set `state.transpose`
+  directly would work on screen and silently not be remembered.
+- Helpers live in `state.js`: `getStoredTranspose()`, `storeTranspose()`,
+  `isValidTranspose()` (-5..+6, the range of the `<select>`). Reads are defensive:
+  blocked storage, unparseable JSON or an out-of-range value all read as 0.
+  Guarded by `tests/transpose-storage.test.js`.
+
 ### 3m. Scales & Melody Practice (scales.js, melody.js)
 
 A tab in Practice Mode (`practice.html?mode=scales`) for learning to play melodies

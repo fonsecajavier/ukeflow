@@ -47,16 +47,16 @@ async function loadFromURL() {
             state.accidentalStyle = detectAccidentalStyle(songData);
             updateAccidentalsButton();
 
-            // Apply transpose if specified
-            if (transposeParam) {
-                const transpose = parseInt(transposeParam, 10);
-                if (!isNaN(transpose) && transpose >= -5 && transpose <= 6) {
-                    state.transpose = transpose;
-                    elements.transposeSelect.value = transpose.toString();
-                }
-            }
+            // A transpose in the URL wins (it is a shared link, or history);
+            // otherwise fall back to the one remembered for this song
+            const urlTranspose = transposeParam === null ? NaN : parseInt(transposeParam, 10);
+            state.transpose = isValidTranspose(urlTranspose)
+                ? urlTranspose
+                : getStoredTranspose(songParam);
+            elements.transposeSelect.value = state.transpose.toString();
 
             displaySong();
+            updateURL(false);
         }
     } else {
         // No song selected - show home
@@ -226,10 +226,10 @@ async function selectSongFromDropdown(songMeta) {
     elements.songDropdown.classList.remove('active');
     updateClearButtonVisibility();
 
-    // Reset transpose and relative key when switching songs
-    state.transpose = 0;
+    // Restore this song's remembered transpose, and reset the relative key
+    state.transpose = getStoredTranspose(slugify(songMeta.title));
     state.useRelativeKey = false;
-    elements.transposeSelect.value = '0';
+    elements.transposeSelect.value = state.transpose.toString();
     elements.toggleRelativeKey.classList.remove('active');
 
     // Load full song data (lazy load with cache)
@@ -1324,14 +1324,8 @@ function openKeyModal(majorKey, minorKey) {
         } else {
             transposeBtn.textContent = `Transpose to ${targetKey}`;
             transposeBtn.addEventListener('click', () => {
-                // Set transpose
-                state.transpose = normalizedTranspose;
-                elements.transposeSelect.value = normalizedTranspose.toString();
-
-                // Close modal and update display
                 closeModal();
-                displaySong();
-                updateURL(false);
+                setTranspose(normalizedTranspose);
             });
         }
 
@@ -1495,7 +1489,19 @@ function renderLyrics() {
  * Handle transpose selection
  */
 function handleTranspose(e) {
-    state.transpose = parseInt(e.target.value, 10);
+    setTranspose(parseInt(e.target.value, 10));
+}
+
+/**
+ * Apply a transpose chosen by the user and remember it for this song. Every
+ * control that transposes goes through here, so none of them forgets to save.
+ * Loading a song does NOT - a transpose arriving in a shared link is the
+ * sender's choice, not something this user picked.
+ */
+function setTranspose(semitones) {
+    state.transpose = semitones;
+    elements.transposeSelect.value = semitones.toString();
+    storeTranspose(slugify(state.currentSong.title), semitones);
     displaySong();
     updateURL(false); // Use replaceState for transpose changes
 }
@@ -1582,10 +1588,7 @@ function handleToggleRelativeKey() {
 function handleEasyKeyClick() {
     const semitones = parseInt(elements.easyKeySuggestion.dataset.semitones, 10);
     if (isNaN(semitones)) return;
-    state.transpose = semitones;
-    elements.transposeSelect.value = semitones.toString();
-    displaySong();
-    updateURL(false);
+    setTranspose(semitones);
 }
 
 /**

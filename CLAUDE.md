@@ -51,6 +51,7 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
 - **Fretboard click targets / hit boxes**: `ui.js` → createFretboardSVG() geometry constants (`openColumnLeft`, `openColumnRight`, `openColumnCenter`, `labelX`); guarded by `tests/fretboard-hitboxes.test.js`
 - **Drone / single notes**: `audio.js` → startDrone(), stopDrone(), playFretNote()
 - **High-G / low-G tuning**: `voicings.js` → TUNINGS and setUkuleleTuning(); persistence in `state.js` → applyStoredTuning(); the checkbox in `index.html` (`#chord-melody-lowg`) wired by `app.js` → toggleChordMelodyTuning(). Guarded by `tests/tuning-cookie.test.js`
+- **Remembered transposition (per song)**: `state.js` → getStoredTranspose() / storeTranspose() (localStorage `ukeflow_transpose`); every transpose control must go through `app.js` → setTranspose(), the only place that saves. A `?transpose=` URL param wins and is not saved. Guarded by `tests/transpose-storage.test.js`
 - **Low-G slash chord shapes**: `chords.js` → LOW_G_CHORDS, applied by resolveChord(); the "Low-G" badge is drawn in `ui.js` → createChordDiagram(), styled by `.chord-lowg-badge`. Guarded by `tests/lowg-slash.test.js`
 
 ## Chord Melody (voicings.js)

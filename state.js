@@ -133,6 +133,48 @@ function applyStoredTuning() {
     return getUkuleleTuning();
 }
 
+const TRANSPOSE_STORAGE_KEY = 'ukeflow_transpose';
+
+/** The range the transpose <select> offers; anything else is a stale or hand-edited value. */
+function isValidTranspose(n) {
+    return Number.isInteger(n) && n >= -5 && n <= 6;
+}
+
+/**
+ * Read the per-song map { songSlug: semitones }. Never throws: storage can be
+ * blocked (Safari private mode, disabled site data) or hold unparseable junk,
+ * and either must degrade to "no remembered transposition", not a dead page.
+ */
+function readTransposeMap() {
+    try {
+        const map = JSON.parse(localStorage.getItem(TRANSPOSE_STORAGE_KEY) || '{}');
+        return map && typeof map === 'object' && !Array.isArray(map) ? map : {};
+    } catch (e) {
+        return {};
+    }
+}
+
+/** @returns {number} the remembered transposition for a song, or 0 */
+function getStoredTranspose(songSlug) {
+    const n = readTransposeMap()[songSlug];
+    return isValidTranspose(n) ? n : 0;
+}
+
+/**
+ * Remember a song's transposition. 0 deletes the entry rather than storing it,
+ * so the map only ever holds songs someone actually moved.
+ */
+function storeTranspose(songSlug, semitones) {
+    try {
+        const map = readTransposeMap();
+        if (semitones === 0 || !isValidTranspose(semitones)) delete map[songSlug];
+        else map[songSlug] = semitones;
+        localStorage.setItem(TRANSPOSE_STORAGE_KEY, JSON.stringify(map));
+    } catch (e) {
+        // Blocked storage costs persistence, not function.
+    }
+}
+
 /**
  * Switch tuning and remember it.
  * @returns {string} the tuning key actually in effect
