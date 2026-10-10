@@ -70,6 +70,7 @@
     { "path": "songs/cuan-lejos-voy.json", "title": "Cuán lejos voy", "artist": "Sara Paula Gómez Arias (Moana)" },
     { "path": "songs/lo-mejor-para-los-dos.json", "title": "Lo mejor para los dos (Todo de cabeza)", "artist": "Kaleth Morales" },
     { "path": "songs/eres-mi-religion.json", "title": "Eres Mi Religión", "artist": "Maná" },
-    { "path": "songs/mucho-mas-alla.json", "title": "Mucho Más Allá", "artist": "Carmen Sarahí & AURORA (Frozen 2)" }
+    { "path": "songs/mucho-mas-alla.json", "title": "Mucho Más Allá", "artist": "Carmen Sarahí & AURORA (Frozen 2)" },
+    { "path": "songs/y-si-hacemos-un-muneco.json", "title": "¿Y si hacemos un muñeco?", "artist": "Romina Marroquín Payró (Frozen)" }
   ]
 }
