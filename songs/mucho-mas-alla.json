@@ -1,0 +1,278 @@
+{
+  "title": "Mucho Más Allá",
+  "artist": "Carmen Sarahí & AURORA (Frozen 2)",
+  "key": "D#m",
+  "spotify": "https://open.spotify.com/track/6UWaMec3jc3ESl5hfSaejU",
+  "lines": [
+    { "section": "Intro" },
+    {
+      "lyrics": "Ooh ooh oh ooooh",
+      "chords": [
+        { "chord": "D#m", "position": 0 },
+        { "chord": "G#", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "Ooh ooh oh ooooh",
+      "chords": [
+        { "chord": "D#m", "position": 0 },
+        { "chord": "G#", "position": 11 }
+      ]
+    },
+    { "section": "Verse 1" },
+    {
+      "lyrics": "Puedo oírte, déjalo",
+      "chords": [
+        { "chord": "D#m", "position": 6 },
+        { "chord": "D#m9", "position": 17 },
+        { "chord": "D#m", "position": 24 }
+      ]
+    },
+    {
+      "lyrics": "Hay quien se arriesga pero yo no",
+      "chords": [
+        { "chord": "G#", "position": 14 },
+        { "chord": "G#9", "position": 21 },
+        { "chord": "G#", "position": 30 }
+      ]
+    },
+    {
+      "lyrics": "Más de mil razones hay para seguir igual",
+      "chords": [
+        { "chord": "F#", "position": 8 },
+        { "chord": "C#/F#", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "Oigo tus susurros que ojalá se fueran yaa ooooh,",
+      "chords": [
+        { "chord": "F#", "position": 5 },
+        { "chord": "C#/F#", "position": 26 },
+        { "chord": "D#m", "position": 42 }
+      ]
+    },
+    {
+      "lyrics": "Ooh ooh oh ooooh (oh ooh)",
+      "chords": [
+        { "chord": "D#m", "position": 0 },
+        { "chord": "G#", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "Ooh ooh oh ooooh oooh",
+      "chords": [
+        { "chord": "D#m", "position": 0 },
+        { "chord": "G#", "position": 11 }
+      ]
+    },
+    { "section": "Verse 2" },
+    {
+      "lyrics": "No habla una voz, eres un ruido en mi interior",
+      "chords": [
+        { "chord": "D#m", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "Y aunque te oyera -y es que no- no hay más que hablar, adiós",
+      "chords": [
+        { "chord": "G#", "position": 13 },
+        { "chord": "G#9", "position": 27 },
+        { "chord": "G#", "position": 40 }
+      ]
+    },
+    {
+      "lyrics": "Todo aquel que he querido está en este lugar",
+      "chords": [
+        { "chord": "F#", "position": 0 },
+        { "chord": "C#/F#", "position": 28 }
+      ]
+    },
+    {
+      "lyrics": "Perdóname sirena no te voy a escuchar",
+      "chords": [
+        { "chord": "G#", "position": 3 },
+        { "chord": "A#", "position": 23 }
+      ]
+    },
+    {
+      "lyrics": "Viví ya mi aventura y todo quedo ahí",
+      "chords": [
+        { "chord": "Cm", "position": 2 }
+      ]
+    },
+    {
+      "lyrics": "Tengo miedo de seguirte y arriesgarme a ir",
+      "chords": [
+        { "chord": "G#sus4", "position": 6 },
+        { "chord": "G#", "position": 23 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Mucho más allá",
+      "chords": [
+        { "chord": "D#", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "Mucho más allá",
+      "chords": [
+        { "chord": "G#sus4", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "Mucho más allá",
+      "chords": [
+        { "chord": "Cm", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "Ooh ooh oh ooooh",
+      "chords": [
+        { "chord": "D#m", "position": 0 },
+        { "chord": "G#", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "Ooh ooh oh ooooh",
+      "chords": [
+        { "chord": "D#m", "position": 0 },
+        { "chord": "G#", "position": 11 }
+      ]
+    },
+    { "section": "Verse 3" },
+    {
+      "lyrics": "¿Qué quieres tú? Ya no me dejas ni dormir",
+      "chords": [
+        { "chord": "D#m", "position": 13 }
+      ]
+    },
+    {
+      "lyrics": "¿Has venido a distraerme? No me quieras confundir",
+      "chords": [
+        { "chord": "G#", "position": 7 }
+      ]
+    },
+    {
+      "lyrics": "O tal vez seas alguien que es muy parecido a mí",
+      "chords": [
+        { "chord": "F#", "position": 10 },
+        { "chord": "C#/F#", "position": 34 }
+      ]
+    },
+    {
+      "lyrics": "Que en su interior sabe que no es de aquí",
+      "chords": [
+        { "chord": "G#sus4", "position": 7 },
+        { "chord": "A#", "position": 26 }
+      ]
+    },
+    {
+      "lyrics": "Cada día es más difícil según crece mi poder",
+      "chords": [
+        { "chord": "Cm", "position": 5 }
+      ]
+    },
+    {
+      "lyrics": "Algo hay en mi interior que quiere ir",
+      "chords": [
+        { "chord": "G#sus4", "position": 0 },
+        { "chord": "G#", "position": 17 },
+        { "chord": "A#m", "position": 30 }
+      ]
+    },
+    { "section": "Chorus" },
+    {
+      "lyrics": "Mucho más allá",
+      "chords": [
+        { "chord": "D#", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "Mucho más allá",
+      "chords": [
+        { "chord": "G#", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "Mucho más allá",
+      "chords": [
+        { "chord": "Cm", "position": 11 }
+      ]
+    },
+    {
+      "lyrics": "Ooh ooh oh ooooh",
+      "chords": [
+        { "chord": "G#", "position": 0 },
+        { "chord": "A#", "position": 10 }
+      ]
+    },
+    { "section": "Bridge" },
+    {
+      "lyrics": "Ahora puedes",
+      "chords": [
+        { "chord": "A#", "position": 6 }
+      ]
+    },
+    {
+      "lyrics": "Conocerme",
+      "chords": []
+    },
+    {
+      "lyrics": "Arroparme",
+      "chords": [
+        { "chord": "G#", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "Enseñarme",
+      "chords": [
+        { "chord": "G#", "position": 5 }
+      ]
+    },
+    {
+      "lyrics": "Ooh ooh (oohooh)",
+      "chords": [
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "Ooh ooh (oohooh)",
+      "chords": [
+        { "chord": "F", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "Ooh ooh  ooh ooh",
+      "chords": [
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    {
+      "lyrics": "Ooh ooh ooh ooh",
+      "chords": [
+        { "chord": "C", "position": 4 }
+      ]
+    },
+    { "section": "Outro" },
+    {
+      "lyrics": "¿A dónde vas? No me dejes atrás",
+      "chords": [
+        { "chord": "Dm", "position": 0 }
+      ]
+    },
+    {
+      "lyrics": "¿Cómo te sigo a ti",
+      "chords": [
+        { "chord": "C#", "position": 0 },
+        { "chord": "C#m", "position": 9 }
+      ]
+    },
+    {
+      "lyrics": "Mucho más allá",
+      "chords": [
+        { "chord": "C", "position": 11 }
+      ]
+    }
+  ]
+}
