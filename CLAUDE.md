@@ -240,7 +240,21 @@ Bamboleo, bambolea
 - Match chord positions to character indices in the lyrics line below
 
 ## Audio
-- Uses Karplus-Strong synthesis (no external audio files)
+- Extended Karplus-Strong synthesis (no external audio files). `pluckString()` renders a
+  note; `playPluck()` plays it through the shared body chain. Things that were measured, not
+  chosen - `tests/pluck-synthesis.test.js` pins them:
+  - **The delay line is fractional.** Rounding it to whole samples put notes up the neck
+    out of tune (A5 +4 cents, C6 +6 cents at 44.1 kHz). Keep the pitch within 3 cents.
+  - **Decay is a T60 in seconds per pitch** (`decayTimeFor()`), not a per-sample loss, which
+    made a high note die 6x faster than a low one in wall-clock time.
+  - The excitation is a pluck-shaped pulse + filtered noise, not a sine: the old one had the
+    2nd harmonic 35 dB down, i.e. a sine wave, which is why it sounded like an organ.
+  - Two detuned string "planes" per note for the slow beat and two-stage decay.
+  - Buffers are peak-normalised and **cached** by (pitch, duration, pluck position); volume,
+    pan and humanisation happen in `playPluck()`. Never bake volume into the buffer again.
+  - All plucks go through `getBodyChain()` (EQ + synthetic body convolver + compressor). The
+    drone bypasses it on purpose. `stopAllSources()` / a re-pluck of the same string fade
+    over `CHOKE_SECONDS` rather than cutting, which clicks.
 - Ukulele tuning: G4-C4-E4-A4 by default (high-G), or G3-C4-E4-A4 (low-g). `UKULELE_TUNING`
   is MUTATED IN PLACE by `setUkuleleTuning()` - never reassign it
 - Audio code is in `audio.js`

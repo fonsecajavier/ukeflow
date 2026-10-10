@@ -9,17 +9,41 @@ let audioContext = null;
 // Track active audio sources for muting
 let activeSources = [];
 
+// How fast a choked string dies. A real finger damping a string takes a few
+// milliseconds; cutting a buffer source dead at a non-zero sample clicks.
+const CHOKE_SECONDS = 0.006;
+
 /**
  * Track an audio source for potential muting
  * @param {AudioBufferSourceNode} source - The audio source to track
  * @param {number} endTime - When the source will finish playing
+ * @param {GainNode} [gain] - the source's own gain, so it can be faded rather
+ *        than cut. Sources without one are stopped outright.
  */
-function trackSource(source, endTime) {
-    activeSources.push({ source, endTime });
+function trackSource(source, endTime, gain = null) {
+    activeSources.push({ source, endTime, gain });
     // Clean up when source ends
     source.onended = () => {
         activeSources = activeSources.filter(s => s.source !== source);
     };
+}
+
+/**
+ * Silence one tracked source at a given time, with a short fade when it has a
+ * gain node. Safe on sources that have already ended.
+ */
+function chokeSource({ source, gain }, time) {
+    try {
+        if (gain) {
+            gain.gain.cancelScheduledValues(time);
+            gain.gain.setTargetAtTime(0, time, CHOKE_SECONDS / 3);
+            source.stop(time + CHOKE_SECONDS * 4);
+        } else {
+            source.stop(time);
+        }
+    } catch (e) {
+        // Source may have already stopped
+    }
 }
 
 /**
@@ -29,14 +53,9 @@ function trackSource(source, endTime) {
 function stopAllSources(stopTime) {
     const ctx = getAudioContext();
     const time = stopTime || ctx.currentTime;
-    activeSources.forEach(({ source }) => {
-        try {
-            source.stop(time);
-        } catch (e) {
-            // Source may have already stopped
-        }
-    });
+    activeSources.forEach(entry => chokeSource(entry, time));
     activeSources = [];
+    ringingStrings.fill(null);
 }
 
 /**
@@ -169,116 +188,369 @@ function getNoteFrequency(stringIndex, fret) {
     return baseFreq * Math.pow(2, fret / 12);
 }
 
+// ---------------------------------------------------------------------------
+// Plucked string synthesis
+// ---------------------------------------------------------------------------
+//
+// An extended Karplus-Strong model (Jaffe & Smith). The things that make it
+// sound like a ukulele rather than a synthesizer, in rough order of how much
+// each one matters:
+//
+// - The delay line is FRACTIONAL. Rounding it to whole samples put every note
+//   up the neck out of tune: at 44.1 kHz an A at fret 12 came out 4 cents
+//   sharp and a C at A-string fret 15 came out 6 cents sharp. The loop reads
+//   between samples (linear interpolation), so the pitch is exact.
+// - Two strings per note. A real string vibrates in two planes at very
+//   slightly different frequencies, so the note beats slowly and decays in two
+//   stages (a fast initial drop, then a long quiet tail). One loop gives a dead
+//   exponential; two detuned loops give a note that moves.
+// - Decay time is set per PITCH (a T60 in seconds), not per sample. With a
+//   fixed per-sample loss a high note loses the same fraction per period as a
+//   low one and so decays several times faster in wall-clock time - the old
+//   loop made an A5 die 6x faster than a C4.
+// - The excitation is the shape of an ideal pluck - a pulse whose width is the
+//   pluck position along the string - plus a little filtered noise for finger
+//   texture. A ukulele is strummed roughly a quarter to a third of the way
+//   along the string, which is what cancels the 3rd/4th harmonics and gives
+//   the instrument its hollow sound. Previously the excitation was mostly a
+//   sine wave, which is why every pluck sounded identical and electronic.
+// - A short pitch bend on the attack. Nylon is floppy: the pluck stretches the
+//   string, so a note starts a few cents sharp and settles over ~20 ms.
+// - The BODY is not in here. It is a shared output chain (see getBodyChain())
+//   with a synthetic impulse response, so every string plays through the same
+//   piece of wood.
+//
+// Buffers are rendered at unit peak and cached by (pitch, duration, pluck
+// position); volume, panning and humanisation are applied on playback, so a
+// strum pattern that hits the same chord eight times renders it once.
+
+const PLUCK_CACHE_MAX = 64;
+const pluckCache = new Map();
+
 /**
- * Karplus-Strong plucked string synthesis with ukulele body resonance
- * Creates a warm, bright nylon string ukulele sound
+ * How long a note rings (T60, seconds) as a function of pitch. Low strings on a
+ * nylon ukulele sustain for a couple of seconds; notes above the 12th fret are
+ * closer to one. The square-root curve is a fit to that, clamped at both ends.
  */
-function pluckString(frequency, duration = 1.5, volume = 0.3) {
+function decayTimeFor(frequency) {
+    return Math.min(3.2, Math.max(1.2, 2.8 * Math.sqrt(261.63 / frequency)));
+}
+
+/**
+ * Render one plucked note into an AudioBuffer (mono, peak-normalised).
+ *
+ * @param {number} frequency - Hz
+ * @param {number} duration - buffer length in seconds; the note fades over the
+ *        last part of it if it is still ringing
+ * @param {Object} [options]
+ * @param {number} [options.pluckPosition=0.28] - where along the string it is
+ *        struck, 0..0.5. Nearer the bridge (smaller) is brighter and twangier;
+ *        a strum over the neck joint is ~0.35 and mellow.
+ * @returns {AudioBuffer}
+ */
+function pluckString(frequency, duration = 1.5, options = {}) {
     const ctx = getAudioContext();
     const sampleRate = ctx.sampleRate;
+    const pluckPosition = options.pluckPosition ?? 0.28;
+
+    const key = `${sampleRate}|${frequency.toFixed(3)}|${duration}|${pluckPosition}`;
+    const cached = pluckCache.get(key);
+    if (cached) return cached;
+
     const samples = Math.ceil(sampleRate * duration);
     const buffer = ctx.createBuffer(1, samples, sampleRate);
-    const data = buffer.getChannelData(0);
+    const out = buffer.getChannelData(0);
 
-    // Delay line length determines pitch
-    const delayLength = Math.round(sampleRate / frequency);
-    const delayLine = new Float32Array(delayLength);
+    // --- loop parameters -------------------------------------------------
+    const N = sampleRate / frequency;           // loop length, fractional
+    // One-zero loop filter y = (1-S)x[n] + S x[n-1]. S=0.5 is the classic KS
+    // average, which bleeds highs out of a high note within a few hundred
+    // milliseconds; easing it off above ~300 Hz keeps upper-fret notes from
+    // turning into pure sines almost immediately. S is also the filter's
+    // delay, so it is subtracted from the line length to keep the pitch exact.
+    const S = Math.max(0.25, Math.min(0.5, 0.5 - 0.25 * Math.log2(frequency / 300) / Math.log2(1000 / 300)));
+    const t60 = decayTimeFor(frequency);
+    // The loop filter also loses a little of the FUNDAMENTAL each period, and
+    // at 880 Hz that alone is ~12 dB/s - enough to make the T60 a fiction up
+    // the neck. Divide it out so the decay time means what it says everywhere.
+    const omega = 2 * Math.PI * frequency / sampleRate;
+    const filterGain = Math.sqrt((1 - S) * (1 - S) + S * S + 2 * S * (1 - S) * Math.cos(omega));
+    const rho1 = Math.pow(10, -3 / (frequency * t60)) / filterGain;         // loss per period
+    const rho2 = Math.pow(10, -3 / (frequency * t60 * 1.7)) / filterGain;   // the slower plane
+    const detune = 1.0012;                                     // ~2 cents between planes
+    const bendDepth = 0.006;                                   // ~10 cents sharp at the attack
+    const bendTau = 0.02 * sampleRate;
 
-    // Initialize delay line with shaped noise burst for nylon string character
-    // Mellow ukulele sound - minimal noise, smooth fundamental
-    for (let i = 0; i < delayLength; i++) {
-        const t = i / delayLength;
-        // Very little noise for soft attack
-        const noise = (Math.random() * 2 - 1) * 0.1;
-        const fundamental = Math.sin(2 * Math.PI * t) * 0.6;
-        const harmonic2 = Math.sin(4 * Math.PI * t) * 0.05;
-        // Smoother burst shape
-        const burstShape = Math.sin(Math.PI * t);
-        delayLine[i] = (noise + fundamental + harmonic2) * (0.6 + 0.4 * burstShape);
+    // --- excitation: ideal pluck pulse + filtered, comb-filtered noise ----
+    const Ne = Math.round(N);
+    const cut = Math.max(1, Math.round(pluckPosition * Ne));
+    const exc = new Float32Array(Ne);
+    for (let i = 0; i < Ne; i++) {
+        // Zero-mean rectangular pulse: the force an ideal pluck at this
+        // position delivers to the bridge. Its harmonics go as sin(k*pi*p)/k.
+        exc[i] = (i < cut ? 1 - pluckPosition : -pluckPosition) * 0.65;
+    }
+    const noise = new Float32Array(Ne);
+    const noiseLp = Math.exp(-2 * Math.PI * 4500 / sampleRate);
+    let lp = 0;
+    for (let i = 0; i < Ne; i++) {
+        lp = noiseLp * lp + (1 - noiseLp) * (Math.random() * 2 - 1);
+        noise[i] = lp;
+    }
+    for (let i = Ne - 1; i >= cut; i--) noise[i] -= noise[i - cut];   // same pluck-position comb
+    let noisePeak = 1e-6;
+    for (let i = 0; i < Ne; i++) noisePeak = Math.max(noisePeak, Math.abs(noise[i]));
+    for (let i = 0; i < Ne; i++) exc[i] += 0.35 * noise[i] / noisePeak;
+    // Soft fingertip rather than a plectrum: round the whole burst off
+    const brightLp = Math.exp(-2 * Math.PI * 3200 / sampleRate);
+    lp = 0;
+    let mean = 0;
+    for (let i = 0; i < Ne; i++) {
+        lp = brightLp * lp + (1 - brightLp) * exc[i];
+        exc[i] = lp;
+        mean += lp;
+    }
+    mean /= Ne;
+    for (let i = 0; i < Ne; i++) exc[i] -= mean;
+
+    // --- the two string loops -------------------------------------------
+    const L = Math.ceil(N * detune * (1 + bendDepth)) + 8;
+    const line1 = new Float32Array(L);
+    const line2 = new Float32Array(L);
+    let w = 0;
+    let prev1 = 0, prev2 = 0;
+    const tickLen = Math.round(0.004 * sampleRate);
+    const tickTau = 0.0012 * sampleRate;
+    let lastNoise = 0;
+
+    for (let n = 0; n < samples; n++) {
+        const bend = 1 + bendDepth * Math.exp(-n / bendTau);
+        const D1 = N / bend - S;
+        const D2 = (N * detune) / bend - S;
+
+        // Read the sample written D samples ago, between integer taps
+        let r1 = w - D1; if (r1 < 0) r1 += L;
+        let i1 = r1 | 0; let f1 = r1 - i1; let j1 = i1 + 1; if (j1 >= L) j1 -= L;
+        const x1 = line1[i1] + f1 * (line1[j1] - line1[i1]);
+
+        let r2 = w - D2; if (r2 < 0) r2 += L;
+        let i2 = r2 | 0; let f2 = r2 - i2; let j2 = i2 + 1; if (j2 >= L) j2 -= L;
+        const x2 = line2[i2] + f2 * (line2[j2] - line2[i2]);
+
+        const y1 = rho1 * ((1 - S) * x1 + S * prev1); prev1 = x1;
+        const y2 = rho2 * ((1 - S) * x2 + S * prev2); prev2 = x2;
+
+        const e = n < Ne ? exc[n] : 0;
+        line1[w] = y1 + e;
+        line2[w] = y2 + e * 0.8;
+
+        let sample = 0.72 * line1[w] + 0.28 * line2[w];
+
+        // Nail/fingertip contact: a few milliseconds of high-passed noise,
+        // the same at every pitch because it is the finger, not the string
+        if (n < tickLen) {
+            const white = Math.random() * 2 - 1;
+            sample += (white - lastNoise) * 0.12 * Math.exp(-n / tickTau);
+            lastNoise = white;
+        }
+
+        out[n] = sample;
+        if (++w === L) w = 0;
     }
 
-    // Damping factor - higher value for mellower, longer sustain
-    const damping = 0.997;
-    // Brightness - lower value for warmer, mellower tone
-    const brightness = 0.25;
-    // Body resonance frequencies (typical ukulele body resonance ~400-500Hz)
-    const bodyResonance1 = 420;
-    const bodyResonance2 = 520;
-
-    let delayIndex = 0;
-    let prevSample = 0;
-    let prevSample2 = 0;
-
-    // Body resonance state variables (simple 2-pole resonator simulation)
-    let bodyState1 = 0, bodyState1Prev = 0;
-    let bodyState2 = 0, bodyState2Prev = 0;
-    const bodyDecay1 = 0.985;  // Faster decay to reduce boominess
-    const bodyDecay2 = 0.982;
-    const bodyFreq1 = 2 * Math.PI * bodyResonance1 / sampleRate;
-    const bodyFreq2 = 2 * Math.PI * bodyResonance2 / sampleRate;
-
-    // Generate samples using Karplus-Strong algorithm
-    for (let i = 0; i < samples; i++) {
-        // Get current sample from delay line
-        const currentSample = delayLine[delayIndex];
-
-        // Low-pass filter with slight allpass character for nylon warmth
-        const nextIndex = (delayIndex + 1) % delayLength;
-        const filtered = damping * (
-            brightness * delayLine[delayIndex] +
-            (1 - brightness) * delayLine[nextIndex]
-        );
-
-        // Three-sample averaging for warmer, mellower tone
-        const smoothed = 0.35 * filtered + 0.35 * prevSample + 0.3 * prevSample2;
-        prevSample2 = prevSample;
-        prevSample = filtered;
-
-        // Store filtered sample back in delay line
-        delayLine[delayIndex] = smoothed;
-
-        // Add body resonance (minimal - just a hint of wood)
-        const excitation = currentSample * 0.01;
-        bodyState1 = bodyDecay1 * (bodyState1 * Math.cos(bodyFreq1) - bodyState1Prev * Math.sin(bodyFreq1)) + excitation;
-        bodyState1Prev = bodyState1;
-        bodyState2 = bodyDecay2 * (bodyState2 * Math.cos(bodyFreq2) - bodyState2Prev * Math.sin(bodyFreq2)) + excitation;
-        bodyState2Prev = bodyState2;
-
-        // Mix string sound with body resonance (very subtle)
-        const bodySound = (bodyState1 + bodyState2) * 0.012;
-
-        // Output the sample with body coloration
-        data[i] = (currentSample + bodySound) * volume;
-
-        // Move to next position in delay line
-        delayIndex = nextIndex;
+    // --- fade the tail so a buffer that ends mid-ring does not click --------
+    const fadeLen = Math.min(Math.round(0.2 * sampleRate), Math.round(samples * 0.25));
+    for (let i = 0; i < fadeLen; i++) {
+        const t = i / fadeLen;                       // 0 at the very end
+        out[samples - 1 - i] *= 0.5 - 0.5 * Math.cos(Math.PI * t);
     }
 
-    // Apply amplitude envelope for natural attack and release
-    const attackTime = 0.008 * sampleRate; // Softer attack for mellow pluck
-    const releaseStart = samples - 0.15 * sampleRate;
+    // --- unit peak, so volume on playback means the same at every pitch ------
+    let peak = 1e-6;
+    for (let i = 0; i < samples; i++) peak = Math.max(peak, Math.abs(out[i]));
+    const norm = 0.95 / peak;
+    for (let i = 0; i < samples; i++) out[i] *= norm;
 
-    for (let i = 0; i < samples; i++) {
-        if (i < attackTime) {
-            // Quick attack with slight curve
-            const t = i / attackTime;
-            data[i] *= t * t; // Quadratic attack
-        } else if (i > releaseStart) {
-            // Smooth release
-            const t = (samples - i) / (samples - releaseStart);
-            data[i] *= t * t; // Quadratic release
+    if (pluckCache.size >= PLUCK_CACHE_MAX) {
+        pluckCache.delete(pluckCache.keys().next().value);   // oldest entry
+    }
+    pluckCache.set(key, buffer);
+    return buffer;
+}
+
+// ---------------------------------------------------------------------------
+// The instrument body: a shared output chain every pluck plays through
+// ---------------------------------------------------------------------------
+
+let bodyChain = null;
+
+/**
+ * A synthetic ukulele body impulse response, ~90 ms, stereo.
+ *
+ * A small body is a handful of resonances: the air in it (the Helmholtz
+ * "A0" mode, around 400 Hz on a soprano/concert, and the reason the
+ * instrument booms a little on G#/A), the top plate near 650 Hz, and weaker
+ * modes above. Each is a damped sine. On top of that, a few milliseconds of
+ * decaying noise stand in for the diffuse early reflections inside the box.
+ * The two channels get different phases so the body also gives the sound
+ * some width.
+ */
+function createBodyImpulse(ctx) {
+    const sampleRate = ctx.sampleRate;
+    const length = Math.round(0.09 * sampleRate);
+    const buffer = ctx.createBuffer(2, length, sampleRate);
+    const modes = [
+        { freq: 410,  tau: 0.018, amp: 1.0 },
+        { freq: 650,  tau: 0.012, amp: 0.55 },
+        { freq: 930,  tau: 0.009, amp: 0.35 },
+        { freq: 1340, tau: 0.007, amp: 0.22 },
+        { freq: 2100, tau: 0.005, amp: 0.12 },
+    ];
+    for (let ch = 0; ch < 2; ch++) {
+        const data = buffer.getChannelData(ch);
+        const phases = modes.map(() => Math.random() * Math.PI * 2);
+        for (let i = 0; i < length; i++) {
+            const t = i / sampleRate;
+            let v = 0;
+            modes.forEach((m, k) => {
+                v += m.amp * Math.sin(2 * Math.PI * m.freq * t + phases[k]) * Math.exp(-t / m.tau);
+            });
+            v += (Math.random() * 2 - 1) * 0.5 * Math.exp(-t / 0.004);
+            data[i] = v;
         }
     }
+    return buffer;
+}
 
-    // Gentle high-frequency roll-off for mellow but clear sound
-    let lpState = 0;
-    const lpCoef = 0.82; // Light filtering - warm but not muddy
-    for (let i = 0; i < samples; i++) {
-        lpState = lpCoef * lpState + (1 - lpCoef) * data[i];
-        data[i] = 0.6 * data[i] + 0.4 * lpState;
+/**
+ * Lazily build the shared output chain and return its input node:
+ *
+ *   plucks -> [dry] ----------------------+-> compressor -> master -> out
+ *          -> [body convolver] -> wet gain +
+ *          -> low shelf (uke has no bass) / high shelf (no sizzle) before both
+ *
+ * The compressor is there because the buffers are peak-normalised: four
+ * strings plus a melody note can sum past 1.0, and clipping at the output is
+ * the one thing that sounds worse than any synthesis shortcut.
+ *
+ * The drone (startDrone) deliberately bypasses this - it is not a string.
+ */
+function getBodyChain() {
+    if (bodyChain) return bodyChain.input;
+    const ctx = getAudioContext();
+
+    const input = ctx.createGain();
+
+    const lowShelf = ctx.createBiquadFilter();
+    lowShelf.type = 'lowshelf';
+    lowShelf.frequency.value = 180;
+    lowShelf.gain.value = -4;
+
+    const highShelf = ctx.createBiquadFilter();
+    highShelf.type = 'highshelf';
+    highShelf.frequency.value = 6000;
+    highShelf.gain.value = -3;
+
+    const dry = ctx.createGain();
+    dry.gain.value = 1.0;
+
+    const wet = ctx.createGain();
+    wet.gain.value = 0.28;
+
+    const compressor = ctx.createDynamicsCompressor();
+    compressor.threshold.value = -14;
+    compressor.knee.value = 12;
+    compressor.ratio.value = 3;
+    compressor.attack.value = 0.004;
+    compressor.release.value = 0.12;
+
+    const master = ctx.createGain();
+    master.gain.value = 0.9;
+
+    input.connect(lowShelf);
+    lowShelf.connect(highShelf);
+    highShelf.connect(dry);
+    dry.connect(compressor);
+
+    // ConvolverNode has been in every engine for years, but guard anyway:
+    // losing the body is a far better failure than losing all sound.
+    if (typeof ctx.createConvolver === 'function') {
+        const convolver = ctx.createConvolver();
+        convolver.normalize = true;
+        convolver.buffer = createBodyImpulse(ctx);
+        highShelf.connect(convolver);
+        convolver.connect(wet);
+        wet.connect(compressor);
     }
 
-    return buffer;
+    compressor.connect(master);
+    master.connect(ctx.destination);
+
+    bodyChain = { input, compressor, master };
+    return input;
+}
+
+// Where each string sits in the stereo image, G to A. The G string is nearest
+// the player's head (left), the A nearest the floor (right).
+const STRING_PAN = [-0.35, -0.12, 0.12, 0.35];
+
+// The source currently ringing on each string, so a re-pluck can choke it.
+// Striking a string that is already vibrating restarts it; it does not add a
+// second copy on top, which is what stacking buffer sources would do.
+const ringingStrings = [null, null, null, null];
+
+/**
+ * Play one plucked note through the body at a scheduled time.
+ *
+ * @param {number} frequency - Hz
+ * @param {number} startTime - context time
+ * @param {Object} [options]
+ * @param {number} [options.duration=1.5]
+ * @param {number} [options.volume=0.3]
+ * @param {number} [options.stringIndex] - 0-3; sets the pan position and
+ *        chokes whatever that string was already playing
+ * @param {number} [options.pluckPosition] - see pluckString()
+ * @param {number} [options.humanize=1] - 0 for a mechanical hit, 1 for the
+ *        normal +-1 dB / +-3 cent wobble of a human hand
+ * @returns {{source: AudioBufferSourceNode, gain: GainNode}}
+ */
+function playPluck(frequency, startTime, options = {}) {
+    const ctx = getAudioContext();
+    const {
+        duration = 1.5,
+        volume = 0.3,
+        stringIndex = null,
+        pluckPosition,
+        humanize = 1,
+    } = options;
+
+    const source = ctx.createBufferSource();
+    source.buffer = pluckString(frequency, duration, { pluckPosition });
+    // A hair of detune per hit: no two strokes of a real hand land the same
+    source.playbackRate.value = 1 + humanize * (Math.random() * 2 - 1) * 0.0015;
+
+    const gain = ctx.createGain();
+    gain.gain.value = volume * (1 + humanize * (Math.random() * 2 - 1) * 0.12);
+
+    source.connect(gain);
+    let tail = gain;
+    if (stringIndex !== null && typeof ctx.createStereoPanner === 'function') {
+        const panner = ctx.createStereoPanner();
+        panner.pan.value = STRING_PAN[stringIndex] ?? 0;
+        gain.connect(panner);
+        tail = panner;
+    }
+    tail.connect(getBodyChain());
+
+    if (stringIndex !== null) {
+        const previous = ringingStrings[stringIndex];
+        if (previous) chokeSource(previous, Math.max(ctx.currentTime, startTime - 0.001));
+        ringingStrings[stringIndex] = { source, gain };
+    }
+
+    source.start(startTime);
+    trackSource(source, startTime + duration, gain);
+    return { source, gain };
 }
 
 /**
@@ -288,7 +560,6 @@ function pluckString(frequency, duration = 1.5, volume = 0.3) {
  * @param {number} startTime - When to start playing
  */
 function playStrum(stringFreqs, direction, startTime) {
-    const ctx = getAudioContext();
     const strumSpeed = 0.02; // Time between each string in a strum
 
     if (direction === 'x') {
@@ -303,14 +574,18 @@ function playStrum(stringFreqs, direction, startTime) {
     order.forEach((stringIndex, i) => {
         const freq = stringFreqs[stringIndex];
         if (freq) {
-            const buffer = pluckString(freq, 0.8, 0.25);
-            const source = ctx.createBufferSource();
-            source.buffer = buffer;
-            source.connect(ctx.destination);
-            const sourceStartTime = startTime + i * strumSpeed;
-            source.start(sourceStartTime);
-            // Track source for muting by chunk
-            trackSource(source, sourceStartTime + 0.8);
+            // The strings let ring for 1.5 s: the next stroke chokes them
+            // (see playPluck), so the length only matters for the last stroke
+            // of the pattern, which should trail off naturally. The hand
+            // sweeps across the strings at a slightly uneven pace, and an
+            // upstroke catches the strings lighter than a downstroke.
+            const jitter = (Math.random() * 2 - 1) * 0.004;
+            playPluck(freq, startTime + i * strumSpeed + Math.max(0, jitter), {
+                duration: 1.5,
+                volume: direction === 'U' ? 0.21 : 0.25,
+                stringIndex,
+                pluckPosition: 0.34,   // strummed over the neck joint: mellow
+            });
         }
     });
 }
@@ -399,7 +674,7 @@ function playChunk(startTime) {
     source.connect(highpass);
     highpass.connect(lowpass);
     lowpass.connect(bodyResonance);
-    bodyResonance.connect(ctx.destination);
+    bodyResonance.connect(getBodyChain());
     source.start(startTime);
 }
 
@@ -439,14 +714,11 @@ async function playChord(chordData) {
             strings.forEach(stringIndex => {
                 const freq = stringFreqs[stringIndex];
                 if (freq) {
-                    const buffer = pluckString(freq, 1.2, 0.3);
-                    const source = ctx.createBufferSource();
-                    source.buffer = buffer;
-                    source.connect(ctx.destination);
-                    const sourceStartTime = now + stepIndex * delay;
-                    source.start(sourceStartTime);
-                    // Track source for muting by chunk
-                    trackSource(source, sourceStartTime + 1.2);
+                    playPluck(freq, now + stepIndex * delay, {
+                        duration: 1.6,
+                        volume: 0.3,
+                        stringIndex,
+                    });
                 }
             });
 
@@ -493,15 +765,11 @@ async function playChordMelody(voicing) {
         .sort((a, b) => a.freq - b.freq);
 
     voices.forEach((voice, i) => {
-        const duration = voice.isMelody ? 2.2 : 1.4;
-        const volume = voice.isMelody ? melodyVolume : accompanimentVolume;
-        const buffer = pluckString(voice.freq, duration, volume);
-        const source = ctx.createBufferSource();
-        source.buffer = buffer;
-        source.connect(ctx.destination);
-        const startTime = now + i * spread;
-        source.start(startTime);
-        trackSource(source, startTime + duration);
+        playPluck(voice.freq, now + i * spread, {
+            duration: voice.isMelody ? 2.2 : 1.4,
+            volume: voice.isMelody ? melodyVolume : accompanimentVolume,
+            stringIndex: voice.stringIndex,
+        });
     });
 }
 
@@ -657,10 +925,13 @@ async function playFretNote(stringIndex, fret, options = {}) {
     const frequency = getNoteFrequency(stringIndex, fret);
     if (frequency === null) return;
 
-    const buffer = pluckString(frequency, duration, volume);
-    const source = ctx.createBufferSource();
-    source.buffer = buffer;
-    source.connect(ctx.destination);
-    source.start(ctx.currentTime);
-    trackSource(source, ctx.currentTime + duration);
+    // A single note is a fingerpick, nearer the soundhole than a strum, and
+    // it should land exactly in tune: the ear drill judges pitch on it.
+    playPluck(frequency, ctx.currentTime, {
+        duration,
+        volume,
+        stringIndex,
+        pluckPosition: 0.26,
+        humanize: 0,
+    });
 }

@@ -637,12 +637,36 @@ Melody callers pass no markers and are unchanged.
 - Based on standard ukulele tuning (G4-C4-E4-A4)
 - No external audio files required - generated in real-time
 - Visual feedback when playing (button pulses)
-- **Ukulele-specific sound design**:
-  - Nylon string character with harmonic-rich initial pluck
-  - Body resonance simulation at ~420Hz and ~520Hz
-  - Warm sustain with two-sample averaging
-  - Quadratic attack/release envelopes for natural feel
-  - Subtle high-frequency roll-off for woody tone
+- **Sound design** (extended Karplus-Strong, Jaffe & Smith style; `pluckString()` renders,
+  `playPluck()` plays). Measured facts are pinned by `tests/pluck-synthesis.test.js`:
+  - **Fractional delay line.** The original rounded the line to whole samples, so every
+    note up the neck was sharp - A5 at fret 12 by 4 cents, C6 at A-string fret 15 by 6.
+    Pitch is now within a cent everywhere, at 44.1 and 48 kHz.
+  - **Pluck-shaped excitation**: a rectangular pulse whose width is the pluck position
+    (~0.28 of the string for a fingerpick, 0.34 for a strum over the neck joint - this is
+    what cancels the 3rd/4th harmonics and makes a uke sound hollow) plus filtered,
+    comb-filtered noise for finger texture, rounded off with a 3.2 kHz one-pole, and a
+    4 ms high-passed "nail tick" at the onset. The old excitation was mostly a sine: its
+    2nd harmonic sat 35 dB under the fundamental, so it sounded like an organ.
+  - **Two detuned string planes** (~2 cents apart, the second decaying 1.7x slower) for
+    the slow beat and the two-stage decay of a real string.
+  - **Decay as a T60 in seconds per pitch** (`decayTimeFor()`: ~2.8 s at C4, ~1.5 s at A5).
+    The old per-sample damping made a high note die 6x faster than a low one.
+  - **Attack pitch bend**: nylon stretches when struck, so a note starts a few cents sharp
+    and settles over ~20 ms.
+  - **A shared body** (`getBodyChain()`): low shelf (no bass in a uke) and high shelf, a
+    synthetic 90 ms stereo body impulse response (Helmholtz air mode ~410 Hz, top plate
+    ~650 Hz, weaker modes above, plus a burst of diffuse noise) through a `ConvolverNode`
+    at 28% wet, then a soft compressor so stacked strings cannot clip. The drone bypasses
+    it on purpose - it is not a string.
+  - **Playback realism**: each string is panned to its place (G left, A right); every hit
+    gets +-1 dB and +-3 cents of hand wobble and a strum gets +-4 ms of sweep jitter;
+    upstrokes are a little lighter. **Re-plucking a string chokes the one already
+    ringing** (6 ms fade) instead of stacking a second copy; `stopAllSources()` fades the
+    same way, so a chunk no longer clicks. Single notes for the ear drill are unhumanised
+    so they land exactly in tune.
+  - Buffers are peak-normalised and cached by (pitch, duration, pluck position), so a
+    strum pattern that hits the same chord eight times renders it once (~2 ms a render).
 
 - **iOS / Safari audio lifecycle** (`ensureAudioReady()` in audio.js):
   - Safari parks an `AudioContext` in a WebKit-only **`'interrupted'`** state when the screen
