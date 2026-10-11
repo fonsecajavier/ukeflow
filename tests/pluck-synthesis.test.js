@@ -67,6 +67,28 @@ function measurePitch(data, sampleRate, expected, from = 0.3, to = 0.8) {
 
 const cents = (f, ref) => 1200 * Math.log2(f / ref);
 
+/**
+ * Frequency of the component near f, from how its phase advances between two
+ * 12 ms windows. Unlike autocorrelation this looks at the fundamental alone,
+ * so it is not biased by upper harmonics that change quickly in the attack.
+ */
+function trackedPitch(data, sampleRate, f, t1, t2) {
+    const len = Math.round(0.012 * sampleRate);
+    const phaseAt = at => {
+        let re = 0, im = 0;
+        for (let i = 0; i < len; i++) {
+            const w = 0.5 - 0.5 * Math.cos(2 * Math.PI * i / len);
+            re += data[at + i] * w * Math.cos(2 * Math.PI * f * i / sampleRate);
+            im -= data[at + i] * w * Math.sin(2 * Math.PI * f * i / sampleRate);
+        }
+        return Math.atan2(im, re);
+    };
+    const a1 = Math.round(t1 * sampleRate), a2 = Math.round(t2 * sampleRate);
+    let dphi = phaseAt(a2) - phaseAt(a1) - 2 * Math.PI * f * (a2 - a1) / sampleRate;
+    dphi -= 2 * Math.PI * Math.round(dphi / (2 * Math.PI));
+    return f + dphi / (2 * Math.PI * (a2 - a1) / sampleRate);
+}
+
 function rms(data, from, to, sampleRate) {
     const a = Math.round(from * sampleRate), b = Math.min(data.length, Math.round(to * sampleRate));
     let s = 0;
@@ -101,14 +123,32 @@ console.log('\n...and at 48 kHz, where the rounding error falls differently');
     }
 }
 
-console.log('\nThe attack bends sharp and settles');
+console.log('\nThe attack does not twang');
 {
+    // A 10-cent attack bend with 2 cents between the string planes was
+    // reported from real use as a twang that is not a ukulele. The bend and
+    // the plane detune are read from the source, because a pitch estimate on
+    // the first 25 ms of a decaying pluck scatters by a cent or two and
+    // cannot tell 1.5 cents from 4 reliably.
+    const src = fs.readFileSync(path.join(ROOT, 'audio.js'), 'utf8');
+    const bend = parseFloat((src.match(/const bendDepth = ([\d.]+)/) || [])[1]);
+    const detuneHz = parseFloat((src.match(/const detune = 1 \+ ([\d.]+) \/ frequency/) || [])[1]);
+    check(`attack bend is at most 2 cents (${(1200 * Math.log2(1 + bend)).toFixed(1)})`, bend >= 0 && bend <= 0.0012);
+    // A fixed Hz, not a ratio: a ratio gave A5 a 2 s beat with a 6 dB dip
+    check(`plane detune is a fixed ${detuneHz} Hz (beat period over 5 s)`, detuneHz > 0 && detuneHz <= 0.2);
+    // And measured: the fundamental's pitch at 10 ms must be where it is at
+    // 100 ms. (Autocorrelation on the first 35 ms reads several cents off on
+    // some notes because the upper harmonics are still changing fast; the
+    // phase of the fundamental is not fooled by that.)
     const audio = load(44100);
-    const data = audio.pluckString(261.63, 1.2).getChannelData(0);
-    const early = cents(measurePitch(data, 44100, 261.63, 0.005, 0.045), 261.63);
-    const settled = cents(measurePitch(data, 44100, 261.63, 0.3, 0.8), 261.63);
-    check(`first 40 ms is sharp (${early.toFixed(1)} cents)`, early > 1 && early < 15);
-    check(`steady state is in tune (${settled.toFixed(2)} cents)`, Math.abs(settled) < 3);
+    for (const f of [261.63, 440, 880]) {
+        const data = audio.pluckString(f, 1.2).getChannelData(0);
+        const settledHz = measurePitch(data, 44100, f, 0.3, 0.8);
+        const early = cents(trackedPitch(data, 44100, settledHz, 0.010, 0.022), settledHz);
+        const late = cents(trackedPitch(data, 44100, settledHz, 0.100, 0.112), settledHz);
+        check(`${f} Hz: fundamental at 10 ms within 2 cents of 100 ms (${(early - late).toFixed(2)})`, Math.abs(early - late) < 2);
+        check(`${f} Hz: steady state in tune (${cents(settledHz, f).toFixed(2)})`, Math.abs(cents(settledHz, f)) < 2);
+    }
 }
 
 // --------------------------------------------------------------------------
@@ -116,7 +156,10 @@ console.log('\nDecay is set in seconds, per pitch');
 {
     const audio = load(44100);
     check('T60 is longer for low notes than high', audio.decayTimeFor(196) > audio.decayTimeFor(880));
-    check('T60 stays in a playable range', audio.decayTimeFor(100) <= 3.5 && audio.decayTimeFor(2000) >= 1.0);
+    // Fitted to recordings of a real tenor: open strings ~5 s, 12th fret ~3 s
+    check('T60 matches the recorded instrument (G3 4.5-6 s, A5 2.3-3.2 s)',
+        audio.decayTimeFor(196) >= 4.5 && audio.decayTimeFor(196) <= 6 &&
+        audio.decayTimeFor(880) >= 2.3 && audio.decayTimeFor(880) <= 3.2);
 
     const low = audio.pluckString(261.63, 2.0).getChannelData(0);
     const high = audio.pluckString(880, 2.0).getChannelData(0);

@@ -50,6 +50,7 @@ UkeFlow is a single-page HTML/JS app for learning ukulele chord progressions. No
 - **Scale note dots on the fretboard**: `ui.js` → createFretboardSVG()'s `markers` argument; colours in `styles.css` (`.fretboard-note*`)
 - **Fretboard click targets / hit boxes**: `ui.js` → createFretboardSVG() geometry constants (`openColumnLeft`, `openColumnRight`, `openColumnCenter`, `labelX`); guarded by `tests/fretboard-hitboxes.test.js`
 - **Drone / single notes**: `audio.js` → startDrone(), stopDrone(), playFretNote()
+- **Change which recording a note plays / add a recorded note**: `audio.js` → UKULELE_SAMPLES (frequency + reach), clips in `samples/`, regenerate with `tools/prepare-samples.js`; guarded by `tests/sampler.test.js`
 - **High-G / low-G tuning**: `voicings.js` → TUNINGS and setUkuleleTuning(); persistence in `state.js` → applyStoredTuning(); the checkbox in `index.html` (`#chord-melody-lowg`) wired by `app.js` → toggleChordMelodyTuning(). Guarded by `tests/tuning-cookie.test.js`
 - **Remembered transposition (per song)**: `state.js` → getStoredTranspose() / storeTranspose() (localStorage `ukeflow_transpose`); every transpose control must go through `app.js` → setTranspose(), the only place that saves. A `?transpose=` URL param wins and is not saved. Guarded by `tests/transpose-storage.test.js`
 - **Low-G slash chord shapes**: `chords.js` → LOW_G_CHORDS, applied by resolveChord(); the "Low-G" badge is drawn in `ui.js` → createChordDiagram(), styled by `.chord-lowg-badge`. Guarded by `tests/lowg-slash.test.js`
@@ -240,21 +241,35 @@ Bamboleo, bambolea
 - Match chord positions to character indices in the lyrics line below
 
 ## Audio
-- Extended Karplus-Strong synthesis (no external audio files). `pluckString()` renders a
-  note; `playPluck()` plays it through the shared body chain. Things that were measured, not
-  chosen - `tests/pluck-synthesis.test.js` pins them:
-  - **The delay line is fractional.** Rounding it to whole samples put notes up the neck
-    out of tune (A5 +4 cents, C6 +6 cents at 44.1 kHz). Keep the pitch within 3 cents.
-  - **Decay is a T60 in seconds per pitch** (`decayTimeFor()`), not a per-sample loss, which
-    made a high note die 6x faster than a low one in wall-clock time.
-  - The excitation is a pluck-shaped pulse + filtered noise, not a sine: the old one had the
-    2nd harmonic 35 dB down, i.e. a sine wave, which is why it sounded like an organ.
-  - Two detuned string "planes" per note for the slow beat and two-stage decay.
-  - Buffers are peak-normalised and **cached** by (pitch, duration, pluck position); volume,
-    pan and humanisation happen in `playPluck()`. Never bake volume into the buffer again.
-  - All plucks go through `getBodyChain()` (EQ + synthetic body convolver + compressor). The
-    drone bypasses it on purpose. `stopAllSources()` / a re-pluck of the same string fade
-    over `CHOKE_SECONDS` rather than cutting, which clicks.
+- **Notes are SAMPLED**: `samples/*.m4a` are recordings of the owner's concert ukulele
+  (Worth CM-LG fluorocarbon, low-G) - six single notes plus a muted chuck, ~150 KB in all.
+  There is deliberately no C4 clip (see PLAN.md 4a): C4 plays the E4 clip 4 semitones down.
+  `chooseSample()` picks the nearest clip for a pitch and `playPluck()` shifts its playback
+  rate; the open-A clip has a tiny `reach` because that note on this instrument has a "wolf"
+  decay that must not be spread to its neighbours. The bank is fetched at page start by
+  `preloadUkuleleSamples()` (app.js and practice.js) and decoded in an `OfflineAudioContext`
+  so the live `AudioContext` - and the iOS audio-session claim - is still created only on
+  the first tap. Clips skip the synthetic body EQ/convolver (they contain the real body) and
+  join at the compressor via `getDirectInput()`. To regenerate the clips from new recordings
+  see `tools/prepare-samples.js`. Guarded by `tests/sampler.test.js`.
+- The **synthesis below is the fallback** - it plays until the clips have decoded, and on a
+  page where they cannot be fetched (file://, blocked). It is extended Karplus-Strong,
+  **fitted to the same recordings** - see PLAN.md 4a. `pluckString()` renders a note;
+  `playPluck()` plays it through the shared body chain. `tests/pluck-synthesis.test.js` pins:
+  - **The delay line is a fractional allpass.** Rounding it to whole samples put notes up the
+    neck out of tune (A5 +4 cents, C6 +6 cents). Keep the pitch within 3 cents.
+  - **No attack bend, planes detuned by a fixed 0.12 Hz.** A 10-cent bend and a 2-cent detune
+    were heard as a twang/wobble. The test reads both from the source. Do not "add life" here.
+  - **Decay is a T60 in seconds per pitch** (`decayTimeFor()`, ~5 s on the open strings),
+    and the loop filter S is solved per pitch; a fixed S killed a high note's harmonics in
+    100 ms. Excitation brightness tracks pitch (two poles at 3.5x f0).
+  - Buffers are peak-normalised and **cached** by (pitch, duration, pluck position); volume
+    and humanisation happen in `playPluck()`. Never bake volume into the buffer again.
+  - **No per-string panning.** A uke is a point source; spreading strings left-right put
+    every A-string melody note off to one side (reported from real use).
+  - All plucks go through `getBodyChain()` (EQ fitted to the instrument + synthetic body
+    convolver + compressor). The drone bypasses it on purpose. `stopAllSources()` / a
+    re-pluck of the same string fade over `CHOKE_SECONDS` rather than cutting, which clicks.
 - Ukulele tuning: G4-C4-E4-A4 by default (high-G), or G3-C4-E4-A4 (low-g). `UKULELE_TUNING`
   is MUTATED IN PLACE by `setUkuleleTuning()` - never reassign it
 - Audio code is in `audio.js`

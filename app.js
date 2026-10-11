@@ -19,6 +19,9 @@ async function init() {
     // first. Safe here and not at state.js load time, because every module
     // (audio.js included) has been parsed by now.
     applyStoredTuning();
+    // Fetch and decode the recorded notes now, so the first tap already
+    // plays the real instrument rather than the synthesis fallback
+    preloadUkuleleSamples();
     await loadSongs();
     populatePlayStyleSelector();
     updatePatternDisplay();

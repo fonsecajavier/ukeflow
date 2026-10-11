@@ -89,6 +89,7 @@ function initPractice() {
     // Scales tab's whole range depends on it (low-G drops the floor from C4 to
     // G3). Silently staying high-G here would contradict the other page.
     applyStoredTuning();
+    preloadUkuleleSamples();
 
     // Set up tab listeners
     practiceElements.tabs.forEach(tab => {

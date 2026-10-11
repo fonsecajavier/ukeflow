@@ -633,34 +633,122 @@ Melody callers pass no markers and are unchanged.
 
 ### 4a. Chord Audio Playback
 - Play button on each chord diagram to hear the chord
-- Uses Karplus-Strong synthesis for realistic plucked ukulele sound
-- Based on standard ukulele tuning (G4-C4-E4-A4)
-- No external audio files required - generated in real-time
+- Based on standard ukulele tuning (G4-C4-E4-A4), or low-G
 - Visual feedback when playing (button pulses)
-- **Sound design** (extended Karplus-Strong, Jaffe & Smith style; `pluckString()` renders,
-  `playPluck()` plays). Measured facts are pinned by `tests/pluck-synthesis.test.js`:
-  - **Fractional delay line.** The original rounded the line to whole samples, so every
-    note up the neck was sharp - A5 at fret 12 by 4 cents, C6 at A-string fret 15 by 6.
-    Pitch is now within a cent everywhere, at 44.1 and 48 kHz.
-  - **Pluck-shaped excitation**: a rectangular pulse whose width is the pluck position
-    (~0.28 of the string for a fingerpick, 0.34 for a strum over the neck joint - this is
-    what cancels the 3rd/4th harmonics and makes a uke sound hollow) plus filtered,
-    comb-filtered noise for finger texture, rounded off with a 3.2 kHz one-pole, and a
-    4 ms high-passed "nail tick" at the onset. The old excitation was mostly a sine: its
-    2nd harmonic sat 35 dB under the fundamental, so it sounded like an organ.
-  - **Two detuned string planes** (~2 cents apart, the second decaying 1.7x slower) for
-    the slow beat and the two-stage decay of a real string.
-  - **Decay as a T60 in seconds per pitch** (`decayTimeFor()`: ~2.8 s at C4, ~1.5 s at A5).
-    The old per-sample damping made a high note die 6x faster than a low one.
-  - **Attack pitch bend**: nylon stretches when struck, so a note starts a few cents sharp
-    and settles over ~20 ms.
-  - **A shared body** (`getBodyChain()`): low shelf (no bass in a uke) and high shelf, a
-    synthetic 90 ms stereo body impulse response (Helmholtz air mode ~410 Hz, top plate
-    ~650 Hz, weaker modes above, plus a burst of diffuse noise) through a `ConvolverNode`
-    at 28% wet, then a soft compressor so stacked strings cannot clip. The drone bypasses
-    it on purpose - it is not a string.
-  - **Playback realism**: each string is panned to its place (G left, A right); every hit
-    gets +-1 dB and +-3 cents of hand wobble and a strum gets +-4 ms of sweep jitter;
+- **Sampled notes** (`samples/*.m4a`, ~150 KB): recordings of the owner's concert ukulele
+  with Worth CM-LG fluorocarbon strings (low-G) - open G3/E4/A4, the A string at frets
+  5/7/12, and a muted chuck. (A C4 was recorded too but is NOT in the bank: it was a
+  harder, slower nail pluck than the rest, and every attempt to normalise it left a
+  swell-and-open shape heard as a "whiplash" on a C chord next to an Em, whose clips are
+  all untouched. C4 plays the clean E4 clip 4 semitones down instead - the same shift
+  every other note already gets.) Each was trimmed to 3 ms before its onset, given a 2 ms fade-in
+  and a 350 ms fade-out ending in the noise floor, peak-normalised to -1 dBFS and encoded
+  as 96 kbps AAC (`tools/prepare-samples.js`, then `afconvert`). Why samples: the synthesis
+  below was fitted to these very recordings on every measurable axis and its owner still
+  heard it as synthetic. A recording of the instrument is the instrument.
+  - `chooseSample()` plays the nearest clip within its `reach`, rate-shifted by the exact
+    pitch ratio. Below the 12th-fret A no note is shifted more than 4 semitones; above it
+    (nothing was recorded there) at most 5. The **open-A clip only plays the open A**: on
+    this instrument 440 Hz sits on the body's plate resonance and the note dies three
+    times faster than any other, which is right for that one note and wrong for A#, G#, B.
+    A reach of exactly 4 lost A#4 and G#4 to floating point and handed A#4 to that clip -
+    hence 4.5.
+  - The bank is fetched at page start (`preloadUkuleleSamples()`) and decoded in an
+    `OfflineAudioContext`, so the live `AudioContext` is still created only on the first
+    tap and the iOS audio-session claim in `configureAudioSession()` stays lazy. A failed
+    fetch (file://, a blocked request) is final and quiet: `playPluck()` keeps using the
+    synthesis. Clips skip the synthetic body chain (they already contain the real body)
+    and join at the compressor through `getDirectInput()`; the chuck replaces the
+    synthetic one in `playChunk()`.
+  - Still humanised and choked exactly like the synthesis: +-1 dB and under a cent per
+    hit, re-pluck chokes the ringing string, a 150 ms fade to the requested duration.
+  - **Spectral gate** (in `tools/prepare-samples.js`). Each recording has ~1 s of room
+    tone before the note (-45 to -52 dBFS), and peak-normalising a quiet take lifted it by
+    up to 19 dB - a "whoosh" under the decay and in the tail, stacked four times in a
+    chord. The gate takes the lead-in's own power spectrum out of every frame (3x
+    oversubtraction, -28 dB floor, gains smoothed over time), which leaves the note's
+    harmonics within 0.2 dB and drops the room tone by 10-20 dB.
+  - **Attack normalisation** (in `tools/prepare-samples.js`, baked into the clips). The
+    recordings were plucked unevenly - the low G with the flesh of the thumb (11 ms to
+    peak, no transient) and the E and the fretted notes with the nail (3-5 ms, a click) -
+    so walking up the G string changed the pluck at fret 4 and again at fret 8, which was
+    heard. Two steps, each measured against the fast clips (E4, D5, E5, A5): a gain curve
+    lifts a slow rise to the reference envelope (capped at +8 dB, smoothed, and a clip
+    that already rises as fast is untouched); then a clip short of energy above 3 kHz
+    in its first 12 ms gets the A5 clip's own nail tick layered on, scaled to the
+    reference level; a clip with too much (the C4 and the 12th-fret A, 12 dB over) has
+    its first 15 ms crossfaded toward a zero-phase lowpassed copy until it measures the
+    same - what a softer pluck does physically. Reported from real use as "Em sounds less
+    clicky than C": Em is G3/E4/E4/D5, C brings in the C4 clip. Lessons: the tick must
+    be isolated with a steep highpass (4 poles; 2 leaked the source note's 2nd harmonic
+    into every clip it touched) and scaled by its energy as seen *through* that highpass
+    (or it lands 5 dB short); and "too much nail" cannot be fixed by subtracting the
+    content above 3 kHz - a one-way 4-pole filter is 180 degrees out at its corner, so
+    the subtraction added energy there, and the nail's brightness also lives in the
+    2-3 kHz harmonics it excites. And the envelope the gain curve is built on must be
+    measured over ONE PERIOD of the clip's pitch: a fixed 1 ms window rode the waveform
+    of a 262 Hz note and turned the gain into a 3-7-8-7-4 dB wobble, amplitude modulation
+    stamped onto the attack, reported as a "whiplash" on the C chord. Every clip now
+    measures within 2 dB of the reference, and the fast clips are not touched at all.
+  - **Not panned.** The strings were briefly spread G-left to A-right, a habit from piano
+    and guitar sample libraries. A ukulele's strings are stacked top to bottom a couple of
+    centimetres apart - a point source from anywhere - and the spread put every melody
+    note on the A string off to the right. Reported from real use; keep it mono.
+- **Synthesis fallback** (extended Karplus-Strong) - plays until the clips have decoded, and
+  wherever they cannot load. Fitted to the same recordings:
+- **Sound design of the fallback** (extended Karplus-Strong, Jaffe & Smith style;
+  `pluckString()` renders, `playPluck()` plays). **Fitted to the recordings** (open G/C/E/A, the
+  A string at frets 5/7/12, a strummed chord, a muted "chuck", and a knock on the body),
+  by measuring the same things on the recording and on the model and adjusting until they
+  agreed: harmonic levels over time, spectral centroid, non-harmonic share of the attack,
+  RMS decay at 0.25/0.5/1/2 s, and attack pitch. Measured facts are pinned by
+  `tests/pluck-synthesis.test.js`:
+  - **Fractional delay line**, as a first-order allpass. The original rounded the line to
+    whole samples, so every note up the neck was sharp - A5 at fret 12 by 4 cents, C6 at
+    A-string fret 15 by 6. A linear interpolator fixed the pitch but had its own
+    high-frequency loss (another 14 dB/s off an A5's fundamental); the allpass has none.
+    Pitch is within a cent everywhere, at 44.1 and 48 kHz.
+  - **Pluck-shaped excitation**: a rectangular pulse whose width is the pluck position.
+    The recordings notch the 3rd harmonic 10-40 dB below the 2nd on every string, which is
+    a pluck at a THIRD of the string (0.33 for a fingerpick, 0.36 for a strum). Plus
+    comb-filtered noise for finger texture, rolled off with two poles at **3.5x the
+    pitch** - the open strings are 25-30 dB down by 2-3 kHz and their 4th harmonic and up
+    are weak from the first milliseconds, while a 12th-fret note keeps more top - and a
+    14 ms lowpassed finger thump outside the loop. The first version of the excitation was
+    mostly a sine (2nd harmonic 35 dB down: an organ); the second was far brighter and
+    noisier than the instrument and was heard as a twang.
+  - **Per-pitch loop filter.** The one-zero loss grows with frequency squared, so a fixed
+    S=0.5 gave 1 dB/s of extra loss on a G3's 3rd harmonic and 80 dB/s on an A5's - high
+    notes turned into sine waves within 100 ms. S is now solved per pitch for ~18 dB/s of
+    extra loss on the 3rd harmonic, which is what the recordings show across the neck.
+  - **Two string planes** detuned by a fixed 0.12 Hz (an 8 s beat at any pitch), the second
+    decaying 2.2x slower at 35% of the mix. This is the recordings' two-stage decay: ~13 dB
+    in the first second, ~8 in the next. A ratio detune (0.05%) gave A5 a 2.3 s beat with a
+    6 dB dip mid-note; 2 cents gave a wobble.
+  - **Decay as a T60 in seconds per pitch** (`decayTimeFor()`: ~5.2 s at G3, 4.5 at C4, 2.7
+    at A5), with the loop filter's loss on the fundamental divided out. The first guess
+    (2.8 s at C4) was half the real value. Not modelled on purpose: the recorded open A
+    decays 3x faster than every other note because 440 Hz sits on the body's plate
+    resonance (a "wolf"); that is a quirk of one instrument, not the sound of a ukulele.
+  - **No attack bend.** Real nylon does bend sharp when struck (+10 to +30 cents in the
+    first 20 ms on the recordings), but a 10-cent version was heard as a twang, and even
+    1.7 cents interacted with the allpass at some delay lengths. The pitch is nailed down
+    from the first millisecond; the test reads `bendDepth` and the plane detune from the
+    source to keep it that way.
+  - **A shared body** (`getBodyChain()`) fitted to the knock recording and to the
+    harmonic balance of the notes: a low shelf (-10 dB below 400 Hz - the box radiates
+    poorly under its air resonance, which is why the 2nd harmonic of G, C and E is as loud
+    as the fundamental), a +5 dB bump at the 460 Hz plate modes (why the open A keeps its
+    fundamental 12 dB over its 2nd harmonic), a +6 dB presence lift at 1.3 kHz, a high
+    shelf, then a synthetic 120 ms stereo impulse response built from the measured modes
+    (223, 252, 410, 457, 486, 670, 1250, 1380 Hz with their measured ring times) through a
+    `ConvolverNode` at 30% wet, then a soft compressor so stacked strings cannot clip. Note
+    that `normalize = true` scales the IR to -58 dB RMS, so the convolver is a subtle
+    "air" rather than the resonances themselves - those are the biquads. Mode phases are
+    deterministic: random phases carved a measured 11 dB notch where a mode cancelled the
+    dry path. The drone bypasses the chain on purpose - it is not a string.
+  - **Playback realism**: every hit gets +-1 dB and under a cent of hand wobble and a
+    strum gets +-4 ms of sweep jitter;
     upstrokes are a little lighter. **Re-plucking a string chokes the one already
     ringing** (6 ms fade) instead of stacking a second copy; `stopAllSources()` fades the
     same way, so a chunk no longer clicks. Single notes for the ear drill are unhumanised
@@ -847,7 +935,9 @@ ukeflow/
 ├── chords.js       # Chord definitions, music theory data (scales, transposition)
 ├── state.js        # Application state management
 ├── patterns.js     # Play styles (strums, arpeggios) and tempo settings
-├── audio.js        # Audio synthesis (Karplus-Strong) and playback
+├── audio.js        # Sampled notes (samples/) with Karplus-Strong fallback, playback
+├── samples/        # Recorded ukulele clips: g3 e4 a4 d5 e5 a5 chuck (.m4a)
+├── tools/          # prepare-samples.js: trim/fade/normalise recordings into clips
 ├── scales.js       # Scale definitions and the single-position "melody box" finder
 ├── analysis.js     # Music theory analysis (progressions, harmonic functions)
 ├── ui.js           # UI utilities, DOM elements, chord diagram rendering
@@ -939,7 +1029,7 @@ The application JavaScript is split into modules for maintainability:
 | `scales.js` | Scale definitions (SCALE_TYPES), melody box finder: getMelodyBox, getScalePositions, explainScaleRange |
 | `state.js` | Application state object, slugify utility, getDisplayKey |
 | `patterns.js` | PLAY_STYLES (strums/arpeggios), tempo (currentBPM), getPlayStyle |
-| `audio.js` | AudioContext, Karplus-Strong synthesis, playChord, playStrum, playChunk |
+| `audio.js` | AudioContext, sample bank + Karplus-Strong fallback, playChord, playStrum, playChunk |
 | `analysis.js` | getRelativeKey, detectFamousProgressions, getHarmonicFunction, detectSecondaryDominant, getUsedChords, analyzeKeyConfidence |
 | `ui.js` | DOM elements, createChordDiagram, createChordSVG, populatePlayStyleSelector, updatePatternDisplay |
 | `app.js` | Main app: init, event handlers, rendering functions (displaySong, renderLyrics, etc.) |
