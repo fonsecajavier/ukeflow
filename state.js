@@ -10,6 +10,7 @@ const state = {
     currentSong: null,
     showAsNumbers: false,
     transpose: 0,
+    minorMode: false,      // "Make it minor": show a major-key song in its parallel minor
     useRelativeKey: false,
     highlightedIndex: -1,  // For dropdown keyboard navigation
     tapToPlayMode: false,  // When true, tapping chords plays them instead of opening modal
@@ -68,11 +69,54 @@ function detectAccidentalStyle(song) {
 }
 
 /**
+ * Whether "Make it minor" applies to the loaded song. It is a major -> minor
+ * swap only; a song already in a minor key has nothing to swap, so the mode is
+ * ignored there even if the flag is set (a remembered value from the URL).
+ */
+function isMinorModeActive() {
+    return Boolean(state.minorMode && state.currentSong && !isMinorKey(state.currentSong.key));
+}
+
+/**
+ * The song's key before transposition, after the parallel-minor swap.
+ *
+ * Mode swap FIRST, transpose SECOND. The swap is a lookup in the song's own
+ * key (whose degree tables are known to exist), and transposition is a rigid
+ * shift, so the two commute - doing the swap in the original key just keeps
+ * it away from whatever spelling transposeKey() produces.
+ */
+function baseSongKey() {
+    if (!state.currentSong) return null;
+    return isMinorModeActive() ? parallelMinorKey(state.currentSong.key) : state.currentSong.key;
+}
+
+/** A chord as authored in the song file, after the parallel-minor swap only. */
+function baseSongChord(chord) {
+    return isMinorModeActive() ? toParallelMinor(chord, state.currentSong.key) : chord;
+}
+
+/** The key currently in effect: mode swap, then transpose. Null without a song. */
+function songKey() {
+    const key = baseSongKey();
+    return key === null ? null : transposeKey(key, state.transpose);
+}
+
+/**
+ * A song chord as it should be looked up and played right now: mode swap, then
+ * transpose. EVERY place that turns a chord from the song file into something
+ * on screen must go through here (not transposeChord() directly), or that one
+ * place will show the major-key chord while the rest of the page is in minor.
+ */
+function songChord(chord) {
+    return transposeChord(baseSongChord(chord), state.transpose);
+}
+
+/**
  * Get the current display key (considering relative key toggle)
  */
 function getDisplayKey() {
     if (!state.currentSong) return null;
-    const transposedKey = transposeKey(state.currentSong.key, state.transpose);
+    const transposedKey = songKey();
     if (state.useRelativeKey) {
         return getRelativeKey(transposedKey);
     }
@@ -170,6 +214,38 @@ function storeTranspose(songSlug, semitones) {
         if (semitones === 0 || !isValidTranspose(semitones)) delete map[songSlug];
         else map[songSlug] = semitones;
         localStorage.setItem(TRANSPOSE_STORAGE_KEY, JSON.stringify(map));
+    } catch (e) {
+        // Blocked storage costs persistence, not function.
+    }
+}
+
+const MINOR_MODE_STORAGE_KEY = 'ukeflow_minor';
+
+/** Read the per-song map { songSlug: true }. Defensive like readTransposeMap(). */
+function readMinorModeMap() {
+    try {
+        const map = JSON.parse(localStorage.getItem(MINOR_MODE_STORAGE_KEY) || '{}');
+        return map && typeof map === 'object' && !Array.isArray(map) ? map : {};
+    } catch (e) {
+        return {};
+    }
+}
+
+/** @returns {boolean} whether "Make it minor" was left on for a song */
+function getStoredMinorMode(songSlug) {
+    return readMinorModeMap()[songSlug] === true;
+}
+
+/**
+ * Remember "Make it minor" for a song. Off deletes the entry rather than
+ * storing false, so the map only holds songs someone actually flipped.
+ */
+function storeMinorMode(songSlug, on) {
+    try {
+        const map = readMinorModeMap();
+        if (on === true) map[songSlug] = true;
+        else delete map[songSlug];
+        localStorage.setItem(MINOR_MODE_STORAGE_KEY, JSON.stringify(map));
     } catch (e) {
         // Blocked storage costs persistence, not function.
     }

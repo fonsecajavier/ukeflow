@@ -21,6 +21,7 @@ const elements = {
     toggleBtn: document.getElementById('toggle-progression'),
     toggleTapToPlay: document.getElementById('toggle-tap-to-play'),
     toggleRelativeKey: document.getElementById('toggle-relative-key'),
+    toggleMinorMode: document.getElementById('toggle-minor-mode'),
     toggleAccidentals: document.getElementById('toggle-accidentals'),
     chordReference: document.getElementById('chord-reference'),
     scaleGrid: document.getElementById('scale-grid'),

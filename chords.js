@@ -2231,6 +2231,7 @@ const ENHARMONIC_EQUIVALENTS = {
     'Cbm': 'Bm',
     'Fbm': 'Em',
     'Gbm': 'F#m',
+    'Dbm': 'C#m',
     'Abm': 'G#m'
 };
 
@@ -2562,6 +2563,157 @@ const ROMAN_NUMERALS_MINOR = ['i', 'ii°', 'III', 'iv', 'v', 'VI', 'VII', 'IV', 
  */
 function isMinorKey(key) {
     return key.endsWith('m') && !key.endsWith('dim');
+}
+
+// ---------------------------------------------------------------------------
+// Parallel minor ("Make it minor")
+// ---------------------------------------------------------------------------
+
+/**
+ * The parallel minor of a major key: same tonic, minor quality (C -> Cm).
+ *
+ * The result is always a key SCALE_DEGREES_MINOR knows, so the flat-side
+ * majors whose literal parallel minor has no table (Db -> Dbm, Gb -> Gbm,
+ * Cb -> Cbm, Fb -> Fbm) are folded onto their common enharmonic (C#m, F#m,
+ * Bm, Em). A minor key, or anything not in SCALE_DEGREES_MAJOR, is returned
+ * unchanged.
+ */
+function parallelMinorKey(key) {
+    if (isMinorKey(key) || !SCALE_DEGREES_MAJOR[key]) return key;
+    const literal = key + 'm';
+    if (SCALE_DEGREES_MINOR[literal]) return literal;
+    return ENHARMONIC_EQUIVALENTS[literal] || literal;
+}
+
+// Which chord quality each degree of a major scale carries, and what the same
+// degree carries in the parallel minor. V is the one deliberate deviation from
+// natural minor: it stays MAJOR (harmonic minor), because a minor v is what
+// nobody actually plays and the leading tone is what makes it sound like a key.
+const PARALLEL_MINOR_PLAN = [
+    { from: 'major', to: 'minor', moves: false },  // I   -> i
+    { from: 'minor', to: 'dim',   moves: false },  // ii  -> ii°
+    { from: 'minor', to: 'major', moves: true  },  // iii -> III  (root down a semitone)
+    { from: 'major', to: 'minor', moves: false },  // IV  -> iv
+    { from: 'major', to: 'major', moves: false },  // V   -> V    (harmonic minor)
+    { from: 'minor', to: 'major', moves: true  },  // vi  -> VI   (root down a semitone)
+    { from: 'dim',   to: 'major', moves: true  },  // vii°-> VII  (root down a semitone)
+];
+
+// Suffix translations between the quality families. Anything not listed falls
+// back to the family's generic rule (prefix/strip 'm', or plain 'dim').
+const SUFFIX_MAJOR_TO_MINOR = { '': 'm', '7': 'm7', 'maj7': 'm7', '6': 'm6', '9': 'm9', 'maj9': 'm9', 'add9': 'madd9' };
+const SUFFIX_MINOR_TO_MAJOR = { 'm': '', 'm7': 'maj7', 'm6': '6', 'm9': 'maj9', 'madd9': 'add9' };
+const SUFFIX_MINOR_TO_DIM   = { 'm': 'dim', 'm7': 'm7b5', 'm9': 'm7b5', 'm11': 'm7b5' };
+const SUFFIX_DIM_TO_MAJOR   = { 'dim': '', 'dim7': '7', 'm7b5': '7', '°': '', 'ø': '7' };
+
+/**
+ * Classify a chord suffix by its third. 'neutral' has no third (sus, power
+ * chord) so it is diatonic in both modes; 'other' (aug, etc.) is never diatonic.
+ */
+function suffixFamily(suffix) {
+    if (/^(dim|m7b5|°|ø)/.test(suffix)) return 'dim';
+    if (/^m(?!aj)/.test(suffix)) return 'minor';
+    if (/^(sus|5\b)/.test(suffix)) return 'neutral';
+    if (/^aug|\+/.test(suffix)) return 'other';
+    return 'major';
+}
+
+function convertSuffix(suffix, from, to) {
+    if (from === to) return suffix;
+    if (from === 'major' && to === 'minor') {
+        return SUFFIX_MAJOR_TO_MINOR[suffix] !== undefined ? SUFFIX_MAJOR_TO_MINOR[suffix] : 'm' + suffix;
+    }
+    if (from === 'minor' && to === 'major') {
+        return SUFFIX_MINOR_TO_MAJOR[suffix] !== undefined ? SUFFIX_MINOR_TO_MAJOR[suffix] : suffix.replace(/^m/, '');
+    }
+    if (from === 'minor' && to === 'dim') {
+        return SUFFIX_MINOR_TO_DIM[suffix] !== undefined ? SUFFIX_MINOR_TO_DIM[suffix] : 'dim';
+    }
+    if (from === 'dim' && to === 'major') {
+        return SUFFIX_DIM_TO_MAJOR[suffix] !== undefined ? SUFFIX_DIM_TO_MAJOR[suffix] : '';
+    }
+    return suffix;
+}
+
+const CHORD_ROOT_RE = /^([A-G](?:#|b|x)*)(.*)$/;
+
+/**
+ * The minor tables spell theory-correctly, which for a few keys means a white
+ * key under an accidental (Ebm's VI is Cb, Abm's III is Cb and VI is Fb). No
+ * chord library has a "Cb" diagram and respellChord() deliberately never
+ * touches white keys, so those come out as the note they actually are (B, E).
+ * Real black-key spellings (Eb, Ab, Bb) are left alone.
+ */
+function playableSpelling(root) {
+    return /^(Cb|Fb|E#|B#)$|x|bb/.test(root) ? canonicalRoot(root) : root;
+}
+
+/** Index (0-6) of a root note in a key's diatonic table, or -1. Spelling-agnostic. */
+function diatonicIndexOf(root, scaleChords) {
+    const want = canonicalRoot(root);
+    return scaleChords.findIndex(c => canonicalRoot(c.match(CHORD_ROOT_RE)[1]) === want);
+}
+
+/**
+ * Rewrite one chord from a major key into its parallel minor, degree by degree.
+ *
+ * Only DIATONIC chords move: the chord's root must sit on a scale degree AND its
+ * quality must be the one that degree carries in the major key (so D in C major
+ * is V/V, not ii, and is left alone). Diatonic chords keep their degree and
+ * take the quality the parallel minor gives that degree, with the 3rd, 6th and
+ * 7th degrees dropping a semitone - spelled from SCALE_DEGREES_MINOR so C major
+ * yields Eb/Ab/Bb rather than D#/G#/A#. V stays major (harmonic minor).
+ *
+ * A slash bass follows the same degrees (Em/B -> Eb/Bb) and is left alone when
+ * the chord is.
+ *
+ * @returns {{ chord: string, kept: null|'dominant'|'foreign' }}
+ *   `kept` says why a chord came back unchanged: 'dominant' is the harmonic
+ *   minor V, 'foreign' is a chord the major key does not own (borrowed,
+ *   secondary dominant, aug), which has no defined minor-key counterpart.
+ *   null means the chord moved - or is spelled identically in both modes, like
+ *   a sus chord on the tonic.
+ */
+function describeParallelMinor(chord, majorKey) {
+    const unchanged = (kept) => ({ chord, kept });
+    if (typeof chord !== 'string' || isMinorKey(majorKey)) return unchanged(null);
+
+    const majorScale = SCALE_DEGREES_MAJOR[majorKey];
+    const minorScale = SCALE_DEGREES_MINOR[parallelMinorKey(majorKey)];
+    if (!majorScale || !minorScale) return unchanged(null);
+
+    const [base, bass] = chord.split('/');
+    const match = base.match(CHORD_ROOT_RE);
+    if (!match) return unchanged(null);
+    const [, root, suffix] = match;
+
+    const degree = diatonicIndexOf(root, majorScale);
+    if (degree === -1) return unchanged('foreign');
+
+    const plan = PARALLEL_MINOR_PLAN[degree];
+    const family = suffixFamily(suffix);
+    if (family === 'other') return unchanged('foreign');
+    if (family !== 'neutral' && family !== plan.from) return unchanged('foreign');
+    if (degree === 4) return unchanged('dominant');
+
+    const newRoot = playableSpelling(plan.moves ? minorScale[degree].match(CHORD_ROOT_RE)[1] : root);
+    const newSuffix = family === 'neutral' ? suffix : convertSuffix(suffix, plan.from, plan.to);
+
+    let newBass = bass;
+    if (bass !== undefined) {
+        const bassDegree = diatonicIndexOf(bass, majorScale);
+        if (bassDegree !== -1 && PARALLEL_MINOR_PLAN[bassDegree].moves) {
+            newBass = playableSpelling(minorScale[bassDegree].match(CHORD_ROOT_RE)[1]);
+        }
+    }
+
+    const result = newRoot + newSuffix + (newBass !== undefined ? '/' + newBass : '');
+    return { chord: result, kept: null };
+}
+
+/** The parallel-minor spelling of a chord, or the chord itself when it has none. */
+function toParallelMinor(chord, majorKey) {
+    return describeParallelMinor(chord, majorKey).chord;
 }
 
 /**
@@ -2903,6 +3055,7 @@ if (typeof module !== 'undefined' && module.exports) {
         CHROMATIC_SCALE, CHROMATIC_SCALE_FLATS,
         transposeChord, transposeKey, respellChord, canonicalRoot, chordBaseName,
         getScaleDegree, isMinorKey,
+        parallelMinorKey, describeParallelMinor, toParallelMinor,
         getChordVariations, resolveChord, findChordByFrets, computeChordFromFrets,
         activeTuningName,
     };

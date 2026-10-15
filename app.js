@@ -36,6 +36,7 @@ async function loadFromURL() {
     const params = new URLSearchParams(window.location.search);
     const songParam = params.get('song');
     const transposeParam = params.get('transpose');
+    const minorParam = params.get('minor');
 
     if (songParam) {
         // Find song metadata by slug
@@ -47,8 +48,6 @@ async function loadFromURL() {
             // Load full song data
             const songData = await loadSongData(songMeta);
             state.currentSong = songData;
-            state.accidentalStyle = detectAccidentalStyle(songData);
-            updateAccidentalsButton();
 
             // A transpose in the URL wins (it is a shared link, or history);
             // otherwise fall back to the one remembered for this song
@@ -57,6 +56,11 @@ async function loadFromURL() {
                 ? urlTranspose
                 : getStoredTranspose(songParam);
             elements.transposeSelect.value = state.transpose.toString();
+            // Same rule for "Make it minor": the link's choice, else the remembered one
+            state.minorMode = minorParam !== null
+                ? minorParam === '1'
+                : getStoredMinorMode(songParam);
+            refreshAccidentalStyle();
 
             displaySong();
             updateURL(false);
@@ -65,6 +69,7 @@ async function loadFromURL() {
         // No song selected - show home
         state.currentSong = null;
         state.transpose = 0;
+        state.minorMode = false;
         elements.songSelector.value = '';
         elements.transposeSelect.value = '0';
         updateClearButtonVisibility();
@@ -89,6 +94,9 @@ function updateURL(usePushState = true) {
         params.set('song', slugify(state.currentSong.title));
         if (state.transpose !== 0) {
             params.set('transpose', state.transpose.toString());
+        }
+        if (isMinorModeActive()) {
+            params.set('minor', '1');
         }
     }
 
@@ -229,8 +237,9 @@ async function selectSongFromDropdown(songMeta) {
     elements.songDropdown.classList.remove('active');
     updateClearButtonVisibility();
 
-    // Restore this song's remembered transpose, and reset the relative key
+    // Restore this song's remembered transpose and minor mode, and reset the relative key
     state.transpose = getStoredTranspose(slugify(songMeta.title));
+    state.minorMode = getStoredMinorMode(slugify(songMeta.title));
     state.useRelativeKey = false;
     elements.transposeSelect.value = state.transpose.toString();
     elements.toggleRelativeKey.classList.remove('active');
@@ -238,9 +247,7 @@ async function selectSongFromDropdown(songMeta) {
     // Load full song data (lazy load with cache)
     const songData = await loadSongData(songMeta);
     state.currentSong = songData;
-    // Open each song in the notation it was written in; the button flips from there
-    state.accidentalStyle = detectAccidentalStyle(songData);
-    updateAccidentalsButton();
+    refreshAccidentalStyle();
     displaySong();
     updateURL();
 }
@@ -305,6 +312,7 @@ function setupEventListeners() {
     elements.toggleTapToPlay.addEventListener('click', handleToggleTapToPlay);
     elements.toggleAccidentals.addEventListener('click', handleToggleAccidentals);
     elements.toggleRelativeKey.addEventListener('click', handleToggleRelativeKey);
+    elements.toggleMinorMode.addEventListener('click', handleToggleMinorMode);
     elements.easyKeySuggestion.addEventListener('click', handleEasyKeyClick);
     elements.modalOverlay.addEventListener('click', handleModalClose);
     elements.modalClose.addEventListener('click', closeModal);
@@ -571,7 +579,7 @@ function renderProgressionSummary() {
             // Get chords in order for this line
             const lineChords = line.chords
                 .sort((a, b) => a.position - b.position)
-                .map(c => transposeChord(c.chord, state.transpose));
+                .map(c => songChord(c.chord));
             sectionProgressions[currentSection].push(lineChords);
         }
     });
@@ -632,6 +640,41 @@ function renderProgressionSummary() {
 }
 
 /**
+ * One sentence on what "Make it minor" did to this song: which chords moved,
+ * which stayed because they are the harmonic-minor V, and which were left as
+ * written because the major key does not own them (so they have no defined
+ * minor-key counterpart). Chords are listed in the transposition on screen.
+ */
+function describeMinorModeChanges() {
+    const song = state.currentSong;
+    const seen = new Set();
+    const moved = [], dominant = [], foreign = [];
+    song.lines.forEach(line => {
+        (line.chords || []).forEach(c => {
+            if (seen.has(c.chord)) return;
+            seen.add(c.chord);
+            const { chord, kept } = describeParallelMinor(c.chord, song.key);
+            const before = displayChordName(transposeChord(c.chord, state.transpose));
+            const after = displayChordName(transposeChord(chord, state.transpose));
+            if (kept === 'dominant') dominant.push(after);
+            else if (kept === 'foreign') foreign.push(after);
+            else if (chord !== c.chord) moved.push(`${before}→${after}`);
+        });
+    });
+    const esc = (arr) => arr.map(escapeHtml).join(', ');
+    const parts = [`<strong>Minor version</strong>: every diatonic chord was swapped into the parallel minor` +
+        (moved.length ? ` (${esc(moved)})` : '') + '.'];
+    if (dominant.length) {
+        parts.push(`${esc(dominant)} stays major - that is the harmonic-minor V, the leading tone that makes it sound like a key.`);
+    }
+    if (foreign.length) {
+        parts.push(`${esc(foreign)} ${foreign.length === 1 ? 'was' : 'were'} left as written: not diatonic to the original key, so there is no single right minor-key counterpart.`);
+    }
+    parts.push('Chords only - the melody and lyrics are as written.');
+    return parts.join(' ');
+}
+
+/**
  * Render music trivia section
  */
 function renderMusicTrivia() {
@@ -650,10 +693,14 @@ function renderMusicTrivia() {
         text: `This song is in <strong>${displayChordName(transposedKey)}</strong> (${keyType}). Its relative ${isMinor ? 'major' : 'minor'} is <strong>${displayChordName(relativeKey)}</strong>.`
     });
 
+    if (isMinorModeActive()) {
+        trivia.push({ icon: '🌧️', text: describeMinorModeChanges() });
+    }
+
     // Key confidence analysis - analyze the displayed key (accounts for relative toggle)
     const keyToAnalyze = state.useRelativeKey
-        ? getRelativeKey(state.currentSong.key)
-        : state.currentSong.key;
+        ? getRelativeKey(baseSongKey())
+        : baseSongKey();
     const keyAnalysis = analyzeKeyConfidence(keyToAnalyze);
 
     // Show key indicators
@@ -894,8 +941,8 @@ function renderCircleOfFifths() {
 
     // Get suggested tonic from key analysis (if different from displayed key)
     const keyToAnalyze = state.useRelativeKey
-        ? getRelativeKey(state.currentSong.key)
-        : state.currentSong.key;
+        ? getRelativeKey(baseSongKey())
+        : baseSongKey();
     const keyAnalysis = analyzeKeyConfidence(keyToAnalyze);
     const suggestedTonic = (keyAnalysis.confidence === 'likely different' && keyAnalysis.alternativeKey)
         ? keyAnalysis.alternativeKey
@@ -917,8 +964,8 @@ function renderDominant7thCircle() {
 
     // Get suggested tonic from key analysis (if different from displayed key)
     const keyToAnalyze = state.useRelativeKey
-        ? getRelativeKey(state.currentSong.key)
-        : state.currentSong.key;
+        ? getRelativeKey(baseSongKey())
+        : baseSongKey();
     const keyAnalysis = analyzeKeyConfidence(keyToAnalyze);
     const suggestedTonic = (keyAnalysis.confidence === 'likely different' && keyAnalysis.alternativeKey)
         ? keyAnalysis.alternativeKey
@@ -1293,7 +1340,7 @@ function openKeyModal(majorKey, minorKey) {
         transposeBtn.className = 'key-modal-transpose-btn';
 
         // Calculate semitone difference
-        const originalKey = transposeKey(state.currentSong.key, state.transpose);
+        const originalKey = songKey();
         const targetKey = isCurrentKeyMinor ? minorKey : majorKey;
 
         // Get the root note for comparison
@@ -1413,7 +1460,7 @@ function renderLyrics() {
                     }
 
                     // Transpose the chord
-                    const transposedChord = transposeChord(c.chord, state.transpose);
+                    const transposedChord = songChord(c.chord);
 
                     let displayChord;
                     if (state.showAsNumbers) {
@@ -1554,6 +1601,27 @@ function handleToggleAccidentals() {
  * Sync the accidentals button label with the current style.
  * Like the "Show as Numbers" button, the label names the action, not the state.
  */
+/**
+ * Open each song in the notation it was written in; the button flips from
+ * there. With "Make it minor" on, the notation is read from the SWAPPED chords
+ * instead: a C major song written in naturals becomes C minor, whose III/VI/VII
+ * are Eb/Ab/Bb, and keeping the major song's 'sharp' default would print them
+ * as D#/G#/A#.
+ */
+function refreshAccidentalStyle() {
+    const song = state.currentSong;
+    const view = isMinorModeActive()
+        ? {
+            key: baseSongKey(),
+            lines: song.lines.map(line => line.chords
+                ? { chords: line.chords.map(c => ({ chord: baseSongChord(c.chord) })) }
+                : line),
+        }
+        : song;
+    state.accidentalStyle = detectAccidentalStyle(view);
+    updateAccidentalsButton();
+}
+
 function updateAccidentalsButton() {
     const toFlats = state.accidentalStyle === 'sharp';
     elements.toggleAccidentals.textContent = toFlats ? 'Use Flats (♭)' : 'Use Sharps (♯)';
@@ -1595,15 +1663,57 @@ function handleEasyKeyClick() {
 }
 
 /**
+ * "Make it minor": show a major-key song in its parallel minor. Goes through
+ * setMinorMode() so it is remembered, like every transpose control.
+ */
+function handleToggleMinorMode() {
+    if (!state.currentSong || isMinorKey(state.currentSong.key)) return;
+    setMinorMode(!state.minorMode);
+}
+
+/**
+ * Apply "Make it minor" chosen by the user and remember it for this song.
+ * Loading a song does NOT save - see setTranspose().
+ */
+function setMinorMode(on) {
+    state.minorMode = on;
+    storeMinorMode(slugify(state.currentSong.title), on);
+    refreshAccidentalStyle();
+    displaySong();
+    updateURL(false);
+}
+
+/**
+ * The button only makes sense on a major-key song: a minor song has nothing
+ * to swap, so hide it rather than offer a toggle that does nothing.
+ */
+function updateMinorModeButton() {
+    const btn = elements.toggleMinorMode;
+    if (!state.currentSong || isMinorKey(state.currentSong.key)) {
+        btn.style.display = 'none';
+        return;
+    }
+    btn.style.display = '';
+    const active = isMinorModeActive();
+    btn.classList.toggle('active', active);
+    btn.textContent = active ? 'Back to Major' : 'Make it Minor';
+    btn.title = active
+        ? `Show the song as written, in ${displayChordName(transposeKey(state.currentSong.key, state.transpose))}`
+        : `Swap every chord into the parallel minor, ${displayChordName(transposeKey(parallelMinorKey(state.currentSong.key), state.transpose))} (chords only - the melody is not changed)`;
+}
+
+/**
  * Update the key display in the UI
  */
 function updateKeyDisplay() {
     if (!state.currentSong) return;
-    const transposedKey = transposeKey(state.currentSong.key, state.transpose);
+    const transposedKey = songKey();
     const displayKey = getDisplayKey();
+    updateMinorModeButton();
+    const minorTag = isMinorModeActive() ? ' (minor version)' : '';
 
     // Get key confidence
-    const keyAnalysis = analyzeKeyConfidence(state.currentSong.key);
+    const keyAnalysis = analyzeKeyConfidence(baseSongKey());
     let confidenceIndicator = '';
     if (keyAnalysis.confidence === 'ambiguous') {
         confidenceIndicator = ' ⚖️';
@@ -1618,10 +1728,10 @@ function updateKeyDisplay() {
     if (state.useRelativeKey) {
         const originalType = isMinorKey(transposedKey) ? 'minor' : 'major';
         const relativeType = isMinorKey(displayKey) ? 'minor' : 'major';
-        elements.songKey.textContent = `${displayChordName(displayKey)} (rel. ${relativeType})${confidenceIndicator}`;
+        elements.songKey.textContent = `${displayChordName(displayKey)} (rel. ${relativeType})${minorTag}${confidenceIndicator}`;
         elements.toggleRelativeKey.title = `Switch back to ${displayChordName(transposedKey)}`;
     } else {
-        elements.songKey.textContent = displayChordName(displayKey) + confidenceIndicator;
+        elements.songKey.textContent = displayChordName(displayKey) + minorTag + confidenceIndicator;
         const relativeKey = getRelativeKey(transposedKey);
         elements.toggleRelativeKey.title = `Switch to relative key (${displayChordName(relativeKey)})`;
     }

@@ -509,6 +509,59 @@ dropdown or a fresh visit, comes back in the key you last played it in.
   blocked storage, unparseable JSON or an out-of-range value all read as 0.
   Guarded by `tests/transpose-storage.test.js`.
 
+### 3q. Make it Minor (parallel minor swap)
+
+A **Make it Minor** button in the song controls shows a major-key song in its
+parallel minor: same tonic, every diatonic chord moved to the quality that
+degree carries in minor. It is a chord-only transform (the melody and lyrics
+are as written) and it is applied at render time, like transposition - the
+song file is never changed.
+
+- **The table.** I→i, ii→ii°, iii→III, IV→iv, **V→V**, vi→VI, vii°→VII. The
+  3rd, 6th and 7th degrees drop a semitone; the others keep their root.
+  Sevenths carry their degree (Fmaj7→Fm7, Am7→Abmaj7, Dm7→Dm7b5, Bm7b5→Bb7).
+  `PARALLEL_MINOR_PLAN` in `chords.js` is the table; `describeParallelMinor()`
+  applies it and `toParallelMinor()` is the string-only wrapper.
+- **V stays major (harmonic minor), by decision.** Natural minor's v is what
+  nobody plays; the leading tone is what makes the dominant pull. The result is
+  flagged `kept: 'dominant'` so the UI can say so instead of looking like it
+  forgot a chord.
+- **Only diatonic chords move.** A chord moves when its root is on a scale
+  degree AND its quality is the one that degree carries in the major key.
+  Everything else (secondary dominants like E7 or D in C, borrowed Bb or Fm,
+  aug) comes back unchanged with `kept: 'foreign'`: a chord the major key does
+  not own has no single right minor-key counterpart, and guessing one would be
+  worse than leaving it. The Music Trivia panel lists these.
+- **Spelling comes from `SCALE_DEGREES_MINOR`**, not from `transposeChord()`:
+  C major yields Eb/Ab/Bb rather than D#/G#/A#. A root that does not move keeps
+  the author's spelling. The exception is a white key under an accidental
+  (Ebm's VI is Cb, Abm's VI is Fb): no library has a "Cb" diagram and
+  `respellChord()` never touches white keys, so `playableSpelling()` turns
+  those into B/E. `parallelMinorKey()` folds the flat-side keys without
+  a minor table onto their enharmonic (Db→C#m, Gb→F#m, Cb→Bm, Fb→Em); `Dbm`
+  was added to `ENHARMONIC_EQUIVALENTS` for this.
+- **Chords without a third** (sus, power chords) are diatonic in both modes, so
+  they keep their suffix and only follow the root (Esus4→Ebsus4 in C).
+- **Slash basses follow the same degrees** (Em/B→Eb/Bb, C/E→Cm/Eb) and are
+  left alone when the chord is (G/B stays, D/F# in C stays).
+- **Swap first, transpose second.** `state.js` has `baseSongKey()` /
+  `baseSongChord()` (swap only) and `songKey()` / `songChord()` (swap, then
+  transpose). The swap is a lookup in the song's own key, so it always has a
+  table; transposition is a rigid shift, so the order does not change the
+  pitches. **Every place that turns a chord from the song file into something
+  on screen goes through `songChord()`** - lyrics, chord reference, progression
+  summary, key analysis, easy-key scoring, Chord Melody chips. A new call site
+  that used `transposeChord(c.chord, state.transpose)` directly would show the
+  major chord in a page that is otherwise in minor.
+- **Ignored on a song already in minor.** `isMinorModeActive()` is false for a
+  minor-key song whatever the flag says, and the button is hidden there.
+- **Remembered per song** under `ukeflow_minor` (`{ songSlug: true }`), with
+  the same rules as transposition: `?minor=1` in the URL wins and is not saved,
+  turning it off deletes the entry, every control goes through
+  `setMinorMode()` in `app.js`. Guarded by `tests/parallel-minor.test.js`,
+  which also asserts that all 19 major keys x 7 degrees land on the matching
+  minor-key roman numeral.
+
 ### 3m. Scales & Melody Practice (scales.js, melody.js)
 
 A tab in Practice Mode (`practice.html?mode=scales`) for learning to play melodies
@@ -923,6 +976,7 @@ transitions (`* { transition: none !important }`) or verify from a screenshot in
 ### 7. URL Bookmarking
 - URL updates when selecting a song (e.g., `?song=somewhere-over-the-rainbow`)
 - Transpose value included in URL when not 0 (e.g., `?song=riptide&transpose=2`)
+- `minor=1` included when "Make it Minor" is on (see 3q)
 - Opening a bookmarked URL loads the song and transpose automatically
 - Song titles converted to URL-friendly slugs
 

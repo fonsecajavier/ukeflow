@@ -32,7 +32,7 @@ function detectFamousProgressions(key) {
         if (line.chords && line.chords.length >= 2) {
             const chords = line.chords
                 .sort((a, b) => a.position - b.position)
-                .map(c => getScaleDegree(transposeChord(c.chord, state.transpose), key));
+                .map(c => getScaleDegree(songChord(c.chord), key));
             sequences.push(chords.join('-'));
         }
     });
@@ -97,14 +97,14 @@ function detectBorrowedChords(key, usedChords) {
 }
 
 /**
- * Get all unique chords used in the current song (transposed)
+ * Get all unique chords used in the current song (mode-swapped and transposed)
  */
 function getUsedChords() {
     const chords = new Set();
     state.currentSong.lines.forEach(line => {
         if (line.chords) {
             line.chords.forEach(c => {
-                const transposedChord = transposeChord(c.chord, state.transpose);
+                const transposedChord = songChord(c.chord);
                 chords.add(transposedChord);
             });
         }
@@ -324,7 +324,7 @@ function analyzeKeyConfidence(key) {
         if (line.chords && line.chords.length > 0) {
             const sortedChords = [...line.chords].sort((a, b) => a.position - b.position);
             sortedChords.forEach(c => {
-                const transposed = transposeChord(c.chord, state.transpose);
+                const transposed = songChord(c.chord);
                 allChords.push(transposed);
                 lastChordBeforeSection = transposed;
 
@@ -711,18 +711,21 @@ function findEasyKey(song) {
     // Common ukulele-friendly keys get a bonus (lower = better)
     const commonKeys = new Set(['C', 'G', 'D', 'A', 'F', 'Am', 'Em', 'Dm', 'Gm']);
 
+    // Score the chords as they are in effect (after "Make it minor"), since
+    // those are the shapes the player will actually be asked to hold
     const originalChords = new Set();
     song.lines.forEach(line => {
-        if (line.chords) line.chords.forEach(c => originalChords.add(c.chord));
+        if (line.chords) line.chords.forEach(c => originalChords.add(baseSongChord(c.chord)));
     });
     const chordList = Array.from(originalChords);
     if (chordList.length === 0) return null;
+    const baseKey = baseSongKey();
 
     const scoreKey = (semitones) => {
         const chordScore = chordList.reduce((sum, c) =>
             sum + getChordDifficulty(transposeChord(c, semitones)), 0);
         // Penalize uncommon keys slightly
-        const key = transposeKey(song.key, semitones);
+        const key = transposeKey(baseKey, semitones);
         const keyPenalty = commonKeys.has(key) ? 0 : 1;
         return chordScore + keyPenalty;
     };
@@ -735,7 +738,7 @@ function findEasyKey(song) {
     for (let s = 1; s < 12; s++) {
         const score = scoreKey(s);
         if (score < bestScore || (score === bestScore && bestSemitones !== 0 &&
-            commonKeys.has(transposeKey(song.key, s)) && !commonKeys.has(transposeKey(song.key, bestSemitones)))) {
+            commonKeys.has(transposeKey(baseKey, s)) && !commonKeys.has(transposeKey(baseKey, bestSemitones)))) {
             bestScore = score;
             bestSemitones = s;
         }
@@ -746,7 +749,7 @@ function findEasyKey(song) {
     // Normalize to -5..+6 range
     if (bestSemitones > 6) bestSemitones -= 12;
 
-    const easyKey = transposeKey(song.key, bestSemitones);
+    const easyKey = transposeKey(baseKey, bestSemitones);
     return { key: easyKey, semitones: bestSemitones, score: bestScore };
 }
 

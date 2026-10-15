@@ -302,6 +302,26 @@ body {
     color: #fff;
 }
 
+/* "Make it minor" button */
+.minor-mode-btn {
+    border-color: #9b59b6;
+    color: #9b59b6;
+}
+
+@media (hover: hover) {
+    /* see .toggle-btn:hover above */
+    .minor-mode-btn:hover {
+        background: #9b59b6;
+        color: #fff;
+    }
+}
+
+.minor-mode-btn.active {
+    background: #9b59b6;
+    border-color: #9b59b6;
+    color: #fff;
+}
+
 /* Tap to Play button */
 .tap-to-play-btn {
     border-color: #2ecc71;
