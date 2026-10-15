@@ -1,0 +1,633 @@
+{
+  "title": "Un Mundo Ideal",
+  "artist": "Analy & Demián Bichir (Aladdin)",
+  "key": "D",
+  "spotify": "https://open.spotify.com/track/6kKT3pMpfY5rjOgxMcS1aq",
+  "lines": [
+    {
+      "section": "Verse 1"
+    },
+    {
+      "lyrics": "Yo te quiero enseñar",
+      "chords": [
+        {
+          "chord": "D",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "un fantástico mundo",
+      "chords": [
+        {
+          "chord": "Bm",
+          "position": 16
+        },
+        {
+          "chord": "A",
+          "position": 20
+        }
+      ]
+    },
+    {
+      "lyrics": "ven princesa y deja a tu corazón soñar.",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 0
+        },
+        {
+          "chord": "A7",
+          "position": 7
+        },
+        {
+          "chord": "Bm",
+          "position": 16
+        },
+        {
+          "chord": "G",
+          "position": 25
+        },
+        {
+          "chord": "D",
+          "position": 35
+        }
+      ]
+    },
+    {
+      "section": "Verse 2"
+    },
+    {
+      "lyrics": "Yo te puedo mostrar",
+      "chords": [
+        {
+          "chord": "D",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "cosas maravillosas",
+      "chords": [
+        {
+          "chord": "Bm",
+          "position": 12
+        },
+        {
+          "chord": "A",
+          "position": 19
+        }
+      ]
+    },
+    {
+      "lyrics": "ven princesa y dejate llevar a un mundo ideal.",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 0
+        },
+        {
+          "chord": "A7",
+          "position": 7
+        },
+        {
+          "chord": "Bm",
+          "position": 16
+        },
+        {
+          "chord": "G",
+          "position": 22
+        },
+        {
+          "chord": "D",
+          "position": 34
+        }
+      ]
+    },
+    {
+      "section": "Chorus"
+    },
+    {
+      "lyrics": "Un mundo ideal",
+      "chords": [
+        {
+          "chord": "A",
+          "position": 11
+        },
+        {
+          "chord": "D",
+          "position": 15
+        }
+      ]
+    },
+    {
+      "lyrics": "un mundo en el que tú  y yo",
+      "chords": [
+        {
+          "chord": "A",
+          "position": 12
+        },
+        {
+          "chord": "D",
+          "position": 26
+        }
+      ]
+    },
+    {
+      "lyrics": "podamos decidir, como vivir",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 9
+        },
+        {
+          "chord": "D",
+          "position": 13
+        },
+        {
+          "chord": "G",
+          "position": 20
+        },
+        {
+          "chord": "D",
+          "position": 26
+        }
+      ]
+    },
+    {
+      "lyrics": "sin nadie que lo impida.",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 5
+        },
+        {
+          "chord": "D",
+          "position": 12
+        },
+        {
+          "chord": "A",
+          "position": 22
+        }
+      ]
+    },
+    {
+      "section": "Chorus"
+    },
+    {
+      "lyrics": "Un mundo ideal",
+      "chords": [
+        {
+          "chord": "A",
+          "position": 11
+        },
+        {
+          "chord": "D",
+          "position": 15
+        }
+      ]
+    },
+    {
+      "lyrics": "que nunca pude imaginar",
+      "chords": [
+        {
+          "chord": "A",
+          "position": 10
+        },
+        {
+          "chord": "D",
+          "position": 15
+        }
+      ]
+    },
+    {
+      "lyrics": "donde ya comprendí, que junto a tí",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 9
+        },
+        {
+          "chord": "D",
+          "position": 16
+        },
+        {
+          "chord": "G",
+          "position": 24
+        },
+        {
+          "chord": "D",
+          "position": 32
+        }
+      ]
+    },
+    {
+      "lyrics": "el mundo es un lugar para soñar.",
+      "chords": [
+        {
+          "chord": "G",
+          "position": 3
+        },
+        {
+          "chord": "D",
+          "position": 15
+        },
+        {
+          "chord": "A",
+          "position": 26
+        }
+      ]
+    },
+    {
+      "section": "Verse 3"
+    },
+    {
+      "lyrics": "Fabulosa visión",
+      "chords": [
+        {
+          "chord": "F",
+          "position": 0
+        }
+      ]
+    },
+    {
+      "lyrics": "sentimiento divino",
+      "chords": [
+        {
+          "chord": "Dm",
+          "position": 15
+        },
+        {
+          "chord": "C",
+          "position": 20
+        }
+      ]
+    },
+    {
+      "lyrics": "voy volando contigo hacia un nuevo amanecer.",
+      "chords": [
+        {
+          "chord": "A#m",
+          "position": 0
+        },
+        {
+          "chord": "C7",
+          "position": 8
+        },
+        {
+          "chord": "Dm",
+          "position": 15
+        },
+        {
+          "chord": "A#",
+          "position": 30
+        },
+        {
+          "chord": "F",
+          "position": 41
+        }
+      ]
+    },
+    {
+      "section": "Chorus"
+    },
+    {
+      "lyrics": "Un mundo ideal (mira bien lo que hay)",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 12
+        },
+        {
+          "chord": "F",
+          "position": 16
+        }
+      ]
+    },
+    {
+      "lyrics": "allí mil cosas voy a ver (conteniendo el aliento)",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 11
+        },
+        {
+          "chord": "A#",
+          "position": 17
+        },
+        {
+          "chord": "F",
+          "position": 22
+        }
+      ]
+    },
+    {
+      "lyrics": "soy como un haz de luz que lejos va",
+      "chords": [
+        {
+          "chord": "A#",
+          "position": 13
+        },
+        {
+          "chord": "F",
+          "position": 21
+        },
+        {
+          "chord": "A#",
+          "position": 29
+        },
+        {
+          "chord": "F",
+          "position": 33
+        }
+      ]
+    },
+    {
+      "lyrics": "y nunca ya podrá...(volver atrás)",
+      "chords": [
+        {
+          "chord": "A#",
+          "position": 3
+        },
+        {
+          "chord": "F",
+          "position": 9
+        }
+      ]
+    },
+    {
+      "section": "Chorus"
+    },
+    {
+      "lyrics": "Un mundo ideal",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 12
+        },
+        {
+          "chord": "F",
+          "position": 16
+        }
+      ]
+    },
+    {
+      "lyrics": "un horizonte a descubrir",
+      "chords": [
+        {
+          "chord": "C",
+          "position": 10
+        },
+        {
+          "chord": "A#",
+          "position": 13
+        },
+        {
+          "chord": "F",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "lyrics": "un mundo para tí, para los dos",
+      "chords": [
+        {
+          "chord": "A#",
+          "position": 9
+        },
+        {
+          "chord": "F",
+          "position": 14
+        },
+        {
+          "chord": "A#",
+          "position": 18
+        },
+        {
+          "chord": "F",
+          "position": 27
+        }
+      ]
+    },
+    {
+      "lyrics": "Déjate llevar a un mundo ideal",
+      "chords": [
+        {
+          "chord": "A#",
+          "position": 7
+        },
+        {
+          "chord": "F",
+          "position": 19
+        }
+      ]
+    },
+    {
+      "section": "Chorus"
+    },
+    {
+      "lyrics": "Un mundo ideal",
+      "chords": [
+        {
+          "chord": "C#",
+          "position": 12
+        },
+        {
+          "chord": "F#",
+          "position": 16
+        }
+      ]
+    },
+    {
+      "lyrics": "un mundo en el que tú y yo",
+      "chords": [
+        {
+          "chord": "C#",
+          "position": 13
+        },
+        {
+          "chord": "B",
+          "position": 20
+        },
+        {
+          "chord": "F#",
+          "position": 24
+        }
+      ]
+    },
+    {
+      "lyrics": "podamos decidir, cómo vivir",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 9
+        },
+        {
+          "chord": "F#",
+          "position": 13
+        },
+        {
+          "chord": "B",
+          "position": 18
+        },
+        {
+          "chord": "F#",
+          "position": 23
+        }
+      ]
+    },
+    {
+      "lyrics": "sin nadie que lo impida.",
+      "chords": [
+        {
+          "chord": "D",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "section": "Chorus"
+    },
+    {
+      "lyrics": "Un mundo ideal (cada día una sorpresa)",
+      "chords": [
+        {
+          "chord": "C#",
+          "position": 12
+        },
+        {
+          "chord": "F#",
+          "position": 16
+        }
+      ]
+    },
+    {
+      "lyrics": "un horizonte a descubrir (cada instante es un sueño)",
+      "chords": [
+        {
+          "chord": "C#",
+          "position": 10
+        },
+        {
+          "chord": "B",
+          "position": 13
+        },
+        {
+          "chord": "F#",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "lyrics": "un mundo para tí, para los dos",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 9
+        },
+        {
+          "chord": "F#",
+          "position": 14
+        },
+        {
+          "chord": "B",
+          "position": 18
+        },
+        {
+          "chord": "F#",
+          "position": 27
+        }
+      ]
+    },
+    {
+      "lyrics": "para tí, para los dos",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 0
+        },
+        {
+          "chord": "F#",
+          "position": 5
+        },
+        {
+          "chord": "B",
+          "position": 9
+        },
+        {
+          "chord": "F#",
+          "position": 18
+        }
+      ]
+    },
+    {
+      "lyrics": "llevame a donde sueñes tú.",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 10
+        },
+        {
+          "chord": "F#",
+          "position": 16
+        }
+      ]
+    },
+    {
+      "lyrics": "UUh....",
+      "chords": []
+    },
+    {
+      "lyrics": "Un mundo ideal BIS",
+      "chords": [
+        {
+          "chord": "C#",
+          "position": 12
+        },
+        {
+          "chord": "F#",
+          "position": 16
+        }
+      ]
+    },
+    {
+      "lyrics": "que compartir  BIS",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 0
+        },
+        {
+          "chord": "F#",
+          "position": 4
+        }
+      ]
+    },
+    {
+      "lyrics": "que alcanzar, que contemplar.",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 0
+        },
+        {
+          "chord": "F#",
+          "position": 12
+        }
+      ]
+    },
+    {
+      "lyrics": "Tú junto a mí.",
+      "chords": [
+        {
+          "chord": "B",
+          "position": 0
+        },
+        {
+          "chord": "F#",
+          "position": 7
+        }
+      ]
+    }
+  ]
+}
