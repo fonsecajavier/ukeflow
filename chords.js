@@ -1461,6 +1461,17 @@ const CHORDS = {
         baseFret: 1
     },
 
+    // 13th Chords
+    // F13 is D5-F4-A4-Eb5: root, 3rd, b7 and the 13th; the 5th and 9th are the
+    // notes dropped, which is what a four-string dominant 13 has to do
+    'F13': {
+        name: 'F13',
+        frets: [7, 5, 5, 6],
+        fingers: [4, 1, 2, 3],
+        barre: null,
+        baseFret: 1
+    },
+
     // Sharp 9 Chords
     'B7#9': {
         name: 'B7#9',
@@ -2251,6 +2262,16 @@ function getEnharmonicEquivalent(key) {
  * This object contains additional variations with descriptions
  */
 const CHORD_VARIATIONS = {
+    'F13': [
+        {
+            name: 'F13 (rootless)',
+            description: 'Open position, no root: 3rd, b7, 9th and 13th',
+            frets: [2, 3, 3, 5],
+            fingers: [1, 2, 3, 4],
+            barre: null,
+            baseFret: 1
+        }
+    ],
     'C': [
         {
             name: 'C (high)',

@@ -1,0 +1,704 @@
+{
+  "title": "Just the Two of Us",
+  "artist": "Grover Washington Jr. feat. Bill Withers",
+  "key": "C",
+  "spotify": "https://open.spotify.com/track/5fdNHVZHbWB1AaXk4RBGVD",
+  "lines": [
+    {
+      "section": "Intro"
+    },
+    {
+      "lyrics": "(instrumental, x2)",
+      "chords": [
+        {
+          "chord": "Cmaj7",
+          "position": 0
+        },
+        {
+          "chord": "B7",
+          "position": 9
+        },
+        {
+          "chord": "Em7",
+          "position": 15
+        },
+        {
+          "chord": "Dm7",
+          "position": 22
+        },
+        {
+          "chord": "G7",
+          "position": 27
+        },
+        {
+          "chord": "Cmaj7",
+          "position": 31
+        },
+        {
+          "chord": "B7",
+          "position": 40
+        },
+        {
+          "chord": "Em7",
+          "position": 46
+        }
+      ]
+    },
+    {
+      "section": "Verse 1"
+    },
+    {
+      "lyrics": "   I see the crystal raindrops fall",
+      "chords": [
+        {
+          "chord": "Cmaj7",
+          "position": 0
+        },
+        {
+          "chord": "B7",
+          "position": 13
+        },
+        {
+          "chord": "Em7",
+          "position": 31
+        }
+      ]
+    },
+    {
+      "lyrics": "And the beauty of it all",
+      "chords": [
+        {
+          "chord": "Dm7",
+          "position": 8
+        },
+        {
+          "chord": "G7",
+          "position": 15
+        },
+        {
+          "chord": "Cmaj7",
+          "position": 21
+        }
+      ]
+    },
+    {
+      "lyrics": "Is when the sun comes shining through",
+      "chords": [
+        {
+          "chord": "B7",
+          "position": 12
+        },
+        {
+          "chord": "Em7",
+          "position": 30
+        }
+      ]
+    },
+    {
+      "lyrics": "   To make those rainbows in my mind",
+      "chords": [
+        {
+          "chord": "Cmaj7",
+          "position": 0
+        },
+        {
+          "chord": "B7",
+          "position": 17
+        },
+        {
+          "chord": "Em7",
+          "position": 32
+        }
+      ]
+    },
+    {
+      "lyrics": "When I think of you sometime",
+      "chords": [
+        {
+          "chord": "Dm7",
+          "position": 7
+        },
+        {
+          "chord": "G7",
+          "position": 16
+        },
+        {
+          "chord": "Cmaj7",
+          "position": 24
+        }
+      ]
+    },
+    {
+      "lyrics": "And I wanna spend some time with you",
+      "chords": [
+        {
+          "chord": "B7",
+          "position": 12
+        },
+        {
+          "chord": "Em7",
+          "position": 33
+        }
+      ]
+    },
+    {
+      "section": "Chorus"
+    },
+    {
+      "lyrics": "Just the two of us,    we can make it if we try",
+      "chords": [
+        {
+          "chord": "Cmaj7",
+          "position": 9
+        },
+        {
+          "chord": "B7",
+          "position": 20
+        },
+        {
+          "chord": "Em7",
+          "position": 30
+        },
+        {
+          "chord": "Ebm7",
+          "position": 38
+        },
+        {
+          "chord": "Dm7",
+          "position": 44
+        }
+      ]
+    },
+    {
+      "lyrics": "Just the two of us    (just the two of us)",
+      "chords": [
+        {
+          "chord": "G7",
+          "position": 0
+        },
+        {
+          "chord": "Cmaj7",
+          "position": 9
+        },
+        {
+          "chord": "B7",
+          "position": 19
+        },
+        {
+          "chord": "Em7",
+          "position": 32
+        }
+      ]
+    },
+    {
+      "lyrics": "Just the two of us,    building castles in the sky",
+      "chords": [
+        {
+          "chord": "Cmaj7",
+          "position": 9
+        },
+        {
+          "chord": "B7",
+          "position": 20
+        },
+        {
+          "chord": "Em7",
+          "position": 32
+        },
+        {
+          "chord": "Ebm7",
+          "position": 40
+        },
+        {
+          "chord": "Dm7",
+          "position": 47
+        }
+      ]
+    },
+    {
+      "lyrics": "Just the two of us,    you and I",
+      "chords": [
+        {
+          "chord": "G7",
+          "position": 0
+        },
+        {
+          "chord": "Cmaj7",
+          "position": 9
+        },
+        {
+          "chord": "B7",
+          "position": 20
+        },
+        {
+          "chord": "Em7",
+          "position": 31
+        }
+      ]
+    },
+    {
+      "section": "Verse 2"
+    },
+    {
+      "lyrics": "   We look for love, no time for tears",
+      "chords": [
+        {
+          "chord": "Cmaj7",
+          "position": 0
+        },
+        {
+          "chord": "B7",
+          "position": 15
+        },
+        {
+          "chord": "Em7",
+          "position": 33
+        }
+      ]
+    },
+    {
+      "lyrics": "Wasted water's all that is",
+      "chords": [
+        {
+          "chord": "Dm7",
+          "position": 7
+        },
+        {
+          "chord": "G7",
+          "position": 15
+        },
+        {
+          "chord": "Cmaj7",
+          "position": 24
+        }
+      ]
+    },
+    {
+      "lyrics": "And it don't make no flowers grow",
+      "chords": [
+        {
+          "chord": "B7",
+          "position": 13
+        },
+        {
+          "chord": "Em7",
+          "position": 29
+        }
+      ]
+    },
+    {
+      "lyrics": "   Good things might come to those who wait",
+      "chords": [
+        {
+          "chord": "Cmaj7",
+          "position": 0
+        },
+        {
+          "chord": "B7",
+          "position": 21
+        },
+        {
+          "chord": "Em7",
+          "position": 39
+        }
+      ]
+    },
+    {
+      "lyrics": "But not for those who wait too late",
+      "chords": [
+        {
+          "chord": "Dm7",
+          "position": 12
+        },
+        {
+          "chord": "G7",
+          "position": 22
+        },
+        {
+          "chord": "Cmaj7",
+          "position": 31
+        }
+      ]
+    },
+    {
+      "lyrics": "We gotta go for all we know",
+      "chords": [
+        {
+          "chord": "B7",
+          "position": 9
+        },
+        {
+          "chord": "Em7",
+          "position": 23
+        }
+      ]
+    },
+    {
+      "section": "Chorus"
+    },
+    {
+      "lyrics": "Just the two of us,    we can make it if we try",
+      "chords": [
+        {
+          "chord": "Cmaj7",
+          "position": 9
+        },
+        {
+          "chord": "B7",
+          "position": 20
+        },
+        {
+          "chord": "Em7",
+          "position": 30
+        },
+        {
+          "chord": "Ebm7",
+          "position": 38
+        },
+        {
+          "chord": "Dm7",
+          "position": 44
+        }
+      ]
+    },
+    {
+      "lyrics": "Just the two of us    (just the two of us)",
+      "chords": [
+        {
+          "chord": "G7",
+          "position": 0
+        },
+        {
+          "chord": "Cmaj7",
+          "position": 9
+        },
+        {
+          "chord": "B7",
+          "position": 19
+        },
+        {
+          "chord": "Em7",
+          "position": 32
+        }
+      ]
+    },
+    {
+      "lyrics": "Just the two of us,    building them castles in the sky",
+      "chords": [
+        {
+          "chord": "Cmaj7",
+          "position": 9
+        },
+        {
+          "chord": "B7",
+          "position": 20
+        },
+        {
+          "chord": "Em7",
+          "position": 37
+        },
+        {
+          "chord": "Ebm7",
+          "position": 45
+        },
+        {
+          "chord": "Dm7",
+          "position": 52
+        }
+      ]
+    },
+    {
+      "lyrics": "Just the two of us,    you and I",
+      "chords": [
+        {
+          "chord": "G7",
+          "position": 0
+        },
+        {
+          "chord": "Cmaj7",
+          "position": 9
+        },
+        {
+          "chord": "B7",
+          "position": 20
+        },
+        {
+          "chord": "Em7",
+          "position": 31
+        }
+      ]
+    },
+    {
+      "section": "Solo"
+    },
+    {
+      "lyrics": "(instrumental, x2)",
+      "chords": [
+        {
+          "chord": "Cmaj7",
+          "position": 0
+        },
+        {
+          "chord": "B7",
+          "position": 9
+        },
+        {
+          "chord": "Bbmaj7",
+          "position": 15
+        },
+        {
+          "chord": "A7",
+          "position": 25
+        },
+        {
+          "chord": "Abmaj7",
+          "position": 31
+        },
+        {
+          "chord": "G7",
+          "position": 41
+        },
+        {
+          "chord": "Cmaj7",
+          "position": 47
+        },
+        {
+          "chord": "F13",
+          "position": 56
+        }
+      ]
+    },
+    {
+      "section": "Interlude"
+    },
+    {
+      "lyrics": "(instrumental)",
+      "chords": [
+        {
+          "chord": "Cmaj7",
+          "position": 0
+        },
+        {
+          "chord": "B7",
+          "position": 9
+        },
+        {
+          "chord": "Em7",
+          "position": 15
+        },
+        {
+          "chord": "Dm7",
+          "position": 22
+        },
+        {
+          "chord": "G7",
+          "position": 27
+        },
+        {
+          "chord": "Cmaj7",
+          "position": 31
+        },
+        {
+          "chord": "B7",
+          "position": 40
+        },
+        {
+          "chord": "Em7",
+          "position": 46
+        }
+      ]
+    },
+    {
+      "section": "Verse 3"
+    },
+    {
+      "lyrics": "   I hear the crystal raindrops fall",
+      "chords": [
+        {
+          "chord": "Cmaj7",
+          "position": 0
+        },
+        {
+          "chord": "B7",
+          "position": 14
+        },
+        {
+          "chord": "Em7",
+          "position": 32
+        }
+      ]
+    },
+    {
+      "lyrics": "On the window down the hall",
+      "chords": [
+        {
+          "chord": "Dm7",
+          "position": 7
+        },
+        {
+          "chord": "G7",
+          "position": 14
+        },
+        {
+          "chord": "Cmaj7",
+          "position": 23
+        }
+      ]
+    },
+    {
+      "lyrics": "And it becomes the morning dew",
+      "chords": [
+        {
+          "chord": "B7",
+          "position": 9
+        },
+        {
+          "chord": "Em7",
+          "position": 27
+        }
+      ]
+    },
+    {
+      "lyrics": "   And darling, when the morning comes",
+      "chords": [
+        {
+          "chord": "Cmaj7",
+          "position": 0
+        },
+        {
+          "chord": "B7",
+          "position": 16
+        },
+        {
+          "chord": "Em7",
+          "position": 33
+        }
+      ]
+    },
+    {
+      "lyrics": "And I see the morning sun",
+      "chords": [
+        {
+          "chord": "Dm7",
+          "position": 6
+        },
+        {
+          "chord": "G7",
+          "position": 14
+        },
+        {
+          "chord": "Cmaj7",
+          "position": 22
+        }
+      ]
+    },
+    {
+      "lyrics": "I wanna be the one with you",
+      "chords": [
+        {
+          "chord": "B7",
+          "position": 8
+        },
+        {
+          "chord": "Em7",
+          "position": 24
+        }
+      ]
+    },
+    {
+      "section": "Chorus"
+    },
+    {
+      "lyrics": "Just the two of us,    we can make it if we try",
+      "chords": [
+        {
+          "chord": "Cmaj7",
+          "position": 9
+        },
+        {
+          "chord": "B7",
+          "position": 20
+        },
+        {
+          "chord": "Em7",
+          "position": 30
+        },
+        {
+          "chord": "Ebm7",
+          "position": 38
+        },
+        {
+          "chord": "Dm7",
+          "position": 44
+        }
+      ]
+    },
+    {
+      "lyrics": "Just the two of us    (just the two of us)",
+      "chords": [
+        {
+          "chord": "G7",
+          "position": 0
+        },
+        {
+          "chord": "Cmaj7",
+          "position": 9
+        },
+        {
+          "chord": "B7",
+          "position": 19
+        },
+        {
+          "chord": "Em7",
+          "position": 32
+        }
+      ]
+    },
+    {
+      "lyrics": "Just the two of us,    building big castles way on high",
+      "chords": [
+        {
+          "chord": "Cmaj7",
+          "position": 9
+        },
+        {
+          "chord": "B7",
+          "position": 20
+        },
+        {
+          "chord": "Em7",
+          "position": 36
+        },
+        {
+          "chord": "Ebm7",
+          "position": 44
+        },
+        {
+          "chord": "Dm7",
+          "position": 51
+        }
+      ]
+    },
+    {
+      "lyrics": "Just the two of us,    you and I",
+      "chords": [
+        {
+          "chord": "G7",
+          "position": 0
+        },
+        {
+          "chord": "Cmaj7",
+          "position": 9
+        },
+        {
+          "chord": "B7",
+          "position": 20
+        },
+        {
+          "chord": "Em7",
+          "position": 31
+        }
+      ]
+    }
+  ]
+}
