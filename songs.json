@@ -73,6 +73,7 @@
     { "path": "songs/mucho-mas-alla.json", "title": "Mucho Más Allá", "artist": "Carmen Sarahí & AURORA (Frozen 2)" },
     { "path": "songs/y-si-hacemos-un-muneco.json", "title": "¿Y si hacemos un muñeco?", "artist": "Romina Marroquín Payró (Frozen)" },
     { "path": "songs/un-mundo-ideal.json", "title": "Un Mundo Ideal", "artist": "Analy & Demián Bichir (Aladdin)" },
-    { "path": "songs/just-the-two-of-us.json", "title": "Just the Two of Us", "artist": "Grover Washington Jr. feat. Bill Withers" }
+    { "path": "songs/just-the-two-of-us.json", "title": "Just the Two of Us", "artist": "Grover Washington Jr. feat. Bill Withers" },
+    { "path": "songs/colgando-en-tus-manos.json", "title": "Colgando en tus manos", "artist": "Carlos Baute ft. Marta Sánchez" }
   ]
 }
